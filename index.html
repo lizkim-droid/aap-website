@@ -409,7 +409,7 @@
       <div>
         <div class="about-name">Liz Kim<br><span style="font-size:1.3rem;opacity:0.65;">김예슬</span></div>
         <div class="about-role">Founder &amp; Principal</div>
-        <a href="/cdn-cgi/l/email-protection#96faffecb8fdfffbd6f7f7e6bbe6f7e4e2f8f3e4e5b8f5f9fb" class="about-email"><span class="__cf_email__" data-cfemail="660a0f1c480d0f0b260707164b16071412080314154805090b">[email&#160;protected]</span></a>
+        <a id="about-email" class="about-email"></a>
         <p class="about-bio">
           <span data-ko><strong>Big 4 재무자문(실사·가치평가)</strong>과 <strong>대기업 FP&amp;A</strong>를 모두 경험했습니다.<br><br>오너 입장과 투자자 입장을 동시에 이해합니다. 그 두 언어를 연결하는 것이 AAP의 역할입니다.</span>
           <span data-en>With a background spanning <strong>Big 4 financial advisory</strong> (due diligence &amp; valuation) and <strong>corporate FP&amp;A</strong>, I understand both sides of the table.<br><br>AAP exists to bridge the language between owners and investors — ensuring businesses enter any transaction on the strongest possible footing.</span>
@@ -521,7 +521,7 @@
       <div class="contact-items">
         <div>
           <div class="contact-lbl">Email</div>
-          <a href="/cdn-cgi/l/email-protection#a1cdc8db8fcac8cce1c0c0d18cd1c0d3d5cfc4d3d28fc2cecc" class="contact-val"><span class="__cf_email__" data-cfemail="3b575241155052567b5a5a4b164b5a494f555e494815585456">[email&#160;protected]</span></a>
+          <a id="contact-email" class="contact-val"></a>
         </div>
         <div>
           <div class="contact-lbl"><span data-ko>자문사</span><span data-en>Company</span></div>
@@ -538,10 +538,15 @@
 
 <footer>
   <div class="footer-logo">AAP Advisory</div>
-  <div class="footer-copy">© 2025 AAP Advisory · Confidential</div>
+  <div class="footer-copy">© 2026 AAP Advisory · Confidential</div>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Email (Cloudflare bypass)
+  var e = "info" + "@" + "aap-partners.com";
+  var els = document.querySelectorAll("#about-email, #contact-email");
+  els.forEach(function(el) { el.href = "mailto:" + e; el.textContent = e; });
+
   function setLang(lang) {
     document.body.className = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
