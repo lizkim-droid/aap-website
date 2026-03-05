@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAP Advisory — Anchor. Align. Position.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #111E35;
+    --navy-mid:  #1B2A4A;
+    --navy-card: #162038;
+    --accent:    #A6A6A6;
+    --accent-lt: #C8C8C8;
+    --off-white: #F8F7F4;
+    --gray:      #7A8FA8;
+    --border:    rgba(255,255,255,0.08);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--off-white);
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ─── LANG TOGGLE ─── */
+  .lang-wrap {
+    position: fixed; top: 1.25rem; right: 4rem; z-index: 300;
+  }
+  .lang-toggle {
+    display: flex;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .lang-btn {
+    padding: 0.32rem 0.85rem;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray); cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lang-btn.active { background: var(--accent); color: var(--navy); }
+  .lang-btn:hover:not(.active) { color: var(--off-white); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.3rem 4rem;
+    background: rgba(17,30,53,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--off-white);
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+    margin-right: 8rem;
+  }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--off-white); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 55% 65% at 75% 55%, rgba(166,166,166,0.05) 0%, transparent 65%);
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 6rem; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .eyebrow {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .eyebrow::before {
+    content: ''; display: block;
+    width: 2rem; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+    font-weight: 700; line-height: 1.18;
+    margin-bottom: 1.6rem;
+  }
+  h1 em { font-style: italic; color: var(--accent-lt); }
+  .hero-sub {
+    font-size: 0.88rem; font-weight: 300;
+    line-height: 1.85; color: var(--gray);
+    margin-bottom: 2.2rem; max-width: 580px;
+    white-space: nowrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent-lt);
+    text-decoration: none;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: background 0.25s, color 0.25s;
+  }
+  .btn:hover { background: var(--accent); color: var(--navy); }
+  .tagline-block {
+    border-left: 1px solid var(--border);
+    padding-left: 4rem;
+  }
+  .tw {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 4.5vw, 5rem);
+    font-weight: 700; line-height: 1.08;
+    opacity: 0.06; letter-spacing: -0.02em;
+    transition: opacity 0.5s;
+    cursor: default;
+  }
+  .tw.on { opacity: 1; color: var(--accent-lt); }
+  .tw:hover { opacity: 0.4; }
+
+  /* ─── SHARED ─── */
+  .wrap {
+    max-width: 1200px; margin: 0 auto;
+    padding: 6rem 4rem;
+  }
+  .section-label {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .section-label::before {
+    content: ''; display: block;
+    width: 1.4rem; height: 1px; background: var(--accent);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+    font-weight: 600; line-height: 1.25;
+    margin-bottom: 0.6rem;
+  }
+  .hr { width: 100%; height: 1px; background: var(--border); }
+
+  /* ─── ABOUT ─── */
+  .about-bg {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 5rem; align-items: start;
+    margin-top: 2.8rem;
+  }
+  .about-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 600;
+    line-height: 1.2; margin-bottom: 0.4rem;
+  }
+  .about-role {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.6rem;
+  }
+  .about-email {
+    display: inline-block;
+    font-size: 0.85rem; color: var(--gray);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s;
+    margin-bottom: 2rem;
+  }
+  .about-email:hover { color: var(--accent-lt); border-color: var(--accent); }
+  .about-bio {
+    font-size: 0.98rem; font-weight: 300;
+    line-height: 1.9; color: var(--gray);
+    margin-bottom: 2.2rem;
+  }
+  .about-bio strong { color: var(--off-white); font-weight: 400; }
+  .cred-list { list-style: none; }
+  .cred-list li {
+    font-size: 0.85rem; font-weight: 300;
+    color: var(--gray); line-height: 1.6;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .cred-list li::before {
+    content: '—'; color: var(--accent);
+    flex-shrink: 0; margin-top: 0.05rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-tabs {
+    display: flex; gap: 0; margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-top: 2.8rem;
+  }
+  .tab-btn {
+    padding: 0.8rem 1.8rem;
+    background: none; border: none; border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gray); cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active { color: var(--off-white); border-bottom-color: var(--accent); }
+  .tab-btn:hover { color: var(--off-white); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .svc-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    padding: 1.8rem 2rem;
+    transition: border-color 0.3s;
+  }
+  .svc-card:hover { border-color: rgba(166,166,166,0.3); }
+  .svc-phase {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .svc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; margin-bottom: 0.4rem;
+  }
+  .svc-desc {
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--gray); line-height: 1.75;
+    margin-top: 0.6rem;
+  }
+  .svc-note {
+    margin-top: 0; padding: 1rem 1.4rem;
+    border-left: 2px solid var(--accent);
+    background: rgba(166,166,166,0.04);
+    font-size: 0.82rem; font-weight: 300;
+    color: var(--gray); line-height: 1.7;
+    grid-column: 1 / -1;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-bg {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: center;
+  }
+  .contact-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+    line-height: 1.35; margin-bottom: 1rem;
+  }
+  .contact-sub {
+    font-size: 0.92rem; font-weight: 300;
+    color: var(--gray); line-height: 1.8;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 1.4rem; }
+  .contact-lbl {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.25rem;
+  }
+  .contact-val {
+    font-size: 0.98rem; color: var(--off-white);
+    text-decoration: none; transition: color 0.2s; display: block;
+  }
+  .contact-val:hover { color: var(--accent-lt); }
+  .contact-val.muted { color: var(--gray); font-style: italic; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.6rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--gray);
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+
+  /* ─── FADE IN ─── */
+  .fi {
+    opacity: 1; transform: translateY(0);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fi.ready {
+    opacity: 0; transform: translateY(20px);
+  }
+  .fi.ready.vis { opacity: 1; transform: translateY(0); }
+  .fi.ready:nth-child(2) { transition-delay: 0.08s; }
+  .fi.ready:nth-child(3) { transition-delay: 0.16s; }
+  .fi.ready:nth-child(4) { transition-delay: 0.24s; }
+
+  /* ─── BILINGUAL ─── */
+  body.en [data-ko] { display: none !important; }
+  body.ko [data-en] { display: none !important; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .lang-wrap { right: 1.5rem; }
+    .hero { padding: 6rem 1.5rem 4rem; }
+    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .tagline-block { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
+    .hero-sub { white-space: normal; font-size: 0.85rem; }
+    .wrap { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .tab-pane.active { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body class="ko">
+
+<!-- LANG -->
+<div class="lang-wrap">
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+    <li><a href="#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+    <li><a href="#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">AAP Advisory</div>
+      <h1>
+        <span data-ko>사업 매각·투자유치,<br><em>재무 준비가<br>결과를 바꿉니다.</em></span>
+        <span data-en>Pre-transaction<br><em>financial preparation<br>changes outcomes.</em></span>
+      </h1>
+      <p class="hero-sub">
+        <span data-ko>재무 건전성이 곧 기업가치입니다 — 오너에게는 신뢰를, 투자자에게는 효율을.</span>
+        <span data-en>Financial discipline is enterprise value — credibility for the owner, efficiency for the investor.</span>
+      </p>
+      <a href="#contact" class="btn">
+        <span data-ko>문의하기</span>
+        <span data-en>Get in touch</span>
+      </a>
+    </div>
+    <div class="tagline-block">
+      <span class="tw on" id="tw0">Anchor</span>
+      <span class="tw" id="tw1">Align</span>
+      <span class="tw" id="tw2">Position</span>
+    </div>
+  </div>
+</section>
+
+<div class="hr"></div>
+
+<!-- ABOUT -->
+<div class="about-bg" id="about">
+  <div class="wrap">
+    <div class="section-label">
+      <span data-ko>자문사 소개</span><span data-en>About</span>
+    </div>
+    <h2>AAP Advisory</h2>
+    <div class="about-grid">
+      <div>
+        <div class="about-name">Liz Kim<br><span style="font-size:1.3rem;opacity:0.65;">김예슬</span></div>
+        <div class="about-role">Founder &amp; Principal</div>
+        <a href="/cdn-cgi/l/email-protection#96faffecb8fdfffbd6f7f7e6bbe6f7e4e2f8f3e4e5b8f5f9fb" class="about-email"><span class="__cf_email__" data-cfemail="660a0f1c480d0f0b260707164b16071412080314154805090b">[email&#160;protected]</span></a>
+        <p class="about-bio">
+          <span data-ko><strong>Big 4 재무자문(실사·가치평가)</strong>과 <strong>대기업 FP&amp;A</strong>를 모두 경험했습니다.<br><br>오너 입장과 투자자 입장을 동시에 이해합니다. 그 두 언어를 연결하는 것이 AAP의 역할입니다.</span>
+          <span data-en>With a background spanning <strong>Big 4 financial advisory</strong> (due diligence &amp; valuation) and <strong>corporate FP&amp;A</strong>, I understand both sides of the table.<br><br>AAP exists to bridge the language between owners and investors — ensuring businesses enter any transaction on the strongest possible footing.</span>
+        </p>
+      </div>
+      <div>
+        <ul class="cred-list">
+          <li><span data-ko>글로벌 M&amp;A 및 기업 재무 분야 13년 이상의 경력</span><span data-en>13+ years in global M&amp;A and corporate finance</span></li>
+          <li><span data-ko>Big 4 재무자문 출신 — 재무실사(FDD) 및 가치평가 전문</span><span data-en>Big 4 financial advisory background — specialist in FDD and valuation</span></li>
+          <li><span data-ko>대기업 FP&amp;A — 사업부 단위 재무 계획·분석 경험</span><span data-en>Corporate FP&amp;A — business unit financial planning and analysis</span></li>
+          <li><span data-ko>실제 수익구조 재정리 및 운영 리스크 분석 전문</span><span data-en>Specialist in earnings normalisation and operational risk analysis</span></li>
+          <li><span data-ko>기업 인수·매각 및 지분 승계 자문 다수</span><span data-en>Extensive M&amp;A, disposal and ownership transition experience</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="services">
+  <div class="wrap">
+    <div class="section-label">
+      <span data-ko>서비스</span><span data-en>Services</span>
+    </div>
+    <h2>
+      <span data-ko>두 가지 서비스를 제공합니다</span>
+      <span data-en>Two core service lines</span>
+    </h2>
+
+    <div class="services-tabs">
+      <button class="tab-btn active" onclick="switchTab('pre',this)">
+        <span data-ko>A. Pre-Exit 재무 준비</span><span data-en>A. Pre-Exit Advisory</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('deal',this)">
+        <span data-ko>B. 딜 재무자문</span><span data-en>B. Transaction Advisory</span>
+      </button>
+    </div>
+
+    <div class="tab-pane active" id="tab-pre">
+      <div class="svc-card fi">
+        <div class="svc-phase">Phase 1A</div>
+        <div class="svc-title"><span data-ko>재무 현황 파악</span><span data-en>Financial Snapshot</span></div>
+        <p class="svc-desc"><span data-ko>현재 재무 상태를 빠르게 진단합니다. 실제 수익력이 얼마인지, 어디서 리스크가 발생하는지 핵심만 짚어드립니다.</span><span data-en>A rapid assessment of your current financial position — identifying true earnings and key risk areas in a matter of weeks.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase">Phase 1B</div>
+        <div class="svc-title"><span data-ko>기업가치 전면 진단</span><span data-en>Full Value Diagnostic</span></div>
+        <p class="svc-desc"><span data-ko>투자자·매수자 관점에서 회사 전체를 심층 분석합니다. 수익구조 재정리부터 가치 개선 로드맵까지 제시합니다.</span><span data-en>A comprehensive diagnostic from an investor's perspective — covering earnings quality, cash flow, capital structure, and a clear value improvement roadmap.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase">Phase 2A</div>
+        <div class="svc-title"><span data-ko>기본 자문 리테이너</span><span data-en>Oversight Retainer</span></div>
+        <p class="svc-desc"><span data-ko>Phase 1 이후 지속적인 재무 모니터링을 제공합니다. 딜 준비가 될 때까지 재무 상태를 일정하게 관리합니다.</span><span data-en>Ongoing financial monitoring post-diagnostic — keeping your business in the best shape until you're ready to transact.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase">Phase 2B</div>
+        <div class="svc-title"><span data-ko>전략적 CFO 리테이너</span><span data-en>Strategic CFO Retainer</span></div>
+        <p class="svc-desc"><span data-ko>외부 CFO로서 의사결정에 직접 참여합니다. 투자·자본 전략부터 매각·승계 준비까지 전방위 재무 자문을 제공합니다.</span><span data-en>Acting as an external CFO — actively involved in investment decisions, capital strategy, and full preparation for exit or succession.</span></p>
+      </div>
+      <div class="svc-note">
+        <span data-ko>세부 범위 및 수수료는 문의 시 안내드립니다.</span>
+        <span data-en>Detailed scope and fees are available upon enquiry.</span>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-deal">
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>재무실사</span><span data-en>Due Diligence</span></div>
+        <div class="svc-title">Financial Due Diligence</div>
+        <p class="svc-desc"><span data-ko>매수자 또는 매도자 측 재무실사를 수행합니다. 수익의 질, 현금흐름, 재무 리스크를 딜 관점에서 분석합니다.</span><span data-en>Buy-side or sell-side financial due diligence — rigorous analysis of earnings quality, cash flow, and financial risks from a transaction perspective.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>가치평가</span><span data-en>Valuation</span></div>
+        <div class="svc-title"><span data-ko>가치평가 및 재무 모델링</span><span data-en>Valuation &amp; Financial Modelling</span></div>
+        <p class="svc-desc"><span data-ko>기업가치를 산정하고 딜 협상에 활용할 수 있는 재무 모델을 구축합니다. 유사 기업·거래 비교 분석을 포함합니다.</span><span data-en>Enterprise valuation and financial modelling built for transaction use — including comparable company and precedent transaction analysis.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>거래 지원</span><span data-en>Deal Support</span></div>
+        <div class="svc-title">Transaction Support</div>
+        <p class="svc-desc"><span data-ko>딜 진행 전 과정에서 재무 자문을 제공합니다. 투자자 질의 대응, 데이터룸 운영, 계약서 재무 조항 검토를 지원합니다.</span><span data-en>End-to-end financial support through the transaction process — investor Q&amp;A, data room management, and SPA financial review.</span></p>
+      </div>
+      <div class="svc-note">
+        <span data-ko>세부 범위 및 수수료는 문의 시 안내드립니다.</span>
+        <span data-en>Detailed scope and fees are available upon enquiry.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hr"></div>
+
+<!-- CONTACT -->
+<div class="contact-bg" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">
+          <span data-ko>문의</span><span data-en>Contact</span>
+        </div>
+        <h2 class="contact-headline">
+          <span data-ko>어떤 준비가 필요한지,<br>먼저 말씀 들어보겠습니다.</span>
+          <span data-en>Let's start<br>with a conversation.</span>
+        </h2>
+        <p class="contact-sub">
+          <span data-ko>회사 상황을 공유해 주시면 솔직하게 말씀드리겠습니다. 의무나 부담 없이 시작할 수 있습니다.</span>
+          <span data-en>Share your situation and we'll give you an honest view of what preparation looks like. No obligation.</span>
+        </p>
+      </div>
+      <div class="contact-items">
+        <div>
+          <div class="contact-lbl">Email</div>
+          <a href="/cdn-cgi/l/email-protection#a1cdc8db8fcac8cce1c0c0d18cd1c0d3d5cfc4d3d28fc2cecc" class="contact-val"><span class="__cf_email__" data-cfemail="3b575241155052567b5a5a4b164b5a494f555e494815585456">[email&#160;protected]</span></a>
+        </div>
+        <div>
+          <div class="contact-lbl"><span data-ko>자문사</span><span data-en>Company</span></div>
+          <span class="contact-val">AAP Advisory</span>
+        </div>
+        <div>
+          <div class="contact-lbl">Tagline</div>
+          <span class="contact-val muted">Anchor. Align. Position.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2025 AAP Advisory · Confidential</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  }
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  let cur = 0;
+  setInterval(() => {
+    document.getElementById('tw' + cur).classList.remove('on');
+    cur = (cur + 1) % 3;
+    document.getElementById('tw' + cur).classList.add('on');
+  }, 2000);
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fi').forEach(el => {
+    el.classList.add('ready');
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
