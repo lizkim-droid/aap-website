@@ -383,7 +383,7 @@
         <span data-ko>재무 건전성이 곧 기업가치입니다 — 오너에게는 신뢰를, 투자자에게는 효율을.</span>
         <span data-en>Financial discipline is enterprise value — credibility for the owner, efficiency for the investor.</span>
       </p>
-      <a href="#contact" class="btn">
+      <a id="hero-btn" href="#contact" class="btn">
         <span data-ko>문의하기</span>
         <span data-en>Get in touch</span>
       </a>
@@ -541,11 +541,17 @@
   <div class="footer-copy">© 2026 AAP Advisory · Confidential</div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Email (Cloudflare bypass)
-  var e = "info" + "@" + "aap-partners.com";
-  var els = document.querySelectorAll("#about-email, #contact-email");
-  els.forEach(function(el) { el.href = "mailto:" + e; el.textContent = e; });
+<script>
+  // Email bypass
+  var em = ["info", "aap-partners.com"].join("@");
+  window.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll("#about-email, #contact-email").forEach(function(el) {
+      el.href = "mailto:" + em;
+      el.textContent = em;
+    });
+    var hb = document.getElementById("hero-btn");
+    if (hb) hb.href = "mailto:" + em;
+  });
 
   function setLang(lang) {
     document.body.className = lang;
