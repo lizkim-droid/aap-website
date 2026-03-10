@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -340,23 +340,41 @@
     .lang-wrap { right: 1.5rem; }
     .hero { padding: 6rem 1.5rem 4rem; }
     .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .hero h1 { font-size: 2.4rem; }
     .tagline-block { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
+    .tagline-block .tw { font-size: 2.8rem; }
     .hero-sub { white-space: normal; font-size: 0.85rem; }
-    .wrap { padding: 4rem 1.5rem; }
+    .wrap { padding: 3rem 1.5rem; }
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-name { font-size: 1.8rem; }
+    h2 { font-size: 1.8rem; }
+    .services-tabs { flex-direction: column; gap: 0.5rem; }
+    .tab-btn { width: 100%; text-align: left; padding: 0.7rem 1rem; font-size: 0.8rem; }
     .tab-pane.active { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .svc-card { padding: 1.5rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-headline { font-size: 1.8rem; }
+    .contact-items { gap: 1.2rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.9rem; }
+    .tagline-block .tw { font-size: 2.2rem; }
+    h2 { font-size: 1.5rem; }
+    .about-name { font-size: 1.5rem; }
+    .btn { font-size: 0.75rem; padding: 0.85rem 1.8rem; }
+    .wrap { padding: 2.5rem 1.2rem; }
   }
 </style>
 </head>
-<body class="ko">
+<body class="en">
 
 <!-- LANG -->
 <div class="lang-wrap">
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('ko')">KO</button>
-    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ko')">KO</button>
   </div>
 </div>
 
@@ -376,12 +394,12 @@
     <div>
       <div class="eyebrow">AAP Advisory</div>
       <h1>
-        <span data-ko>사업 매각·투자유치,<br><em>재무 준비가<br>결과를 바꿉니다.</em></span>
-        <span data-en>Pre-transaction<br><em>financial preparation<br>changes outcomes.</em></span>
+        <span data-ko>CFO 없이 버티고 계신가요?<br><em>사업 단계에 맞게,<br>유연하게.</em></span>
+        <span data-en>Without a full-time CFO,<br><em>everything a CFO<br>should do.</em></span>
       </h1>
       <p class="hero-sub">
-        <span data-ko>재무 건전성이 곧 기업가치입니다 — 오너에게는 신뢰를, 투자자에게는 효율을.</span>
-        <span data-en>Financial discipline is enterprise value — credibility for the owner, efficiency for the investor.</span>
+        <span data-ko>Financial discipline equals enterprise value — 사업의 모든 단계에서, 필요한 만큼.</span>
+        <span data-en>Financial discipline equals enterprise value — at every stage of your business, exactly as much as you need.</span>
       </p>
       <a id="hero-btn" href="#contact" class="btn">
         <span data-ko>문의하기</span>
@@ -411,8 +429,8 @@
         <div class="about-role">Founder &amp; Principal</div>
         <a id="about-email" class="about-email"></a>
         <p class="about-bio">
-          <span data-ko><strong>Big 4 재무자문(실사·가치평가)</strong>과 <strong>대기업 FP&amp;A</strong>를 모두 경험했습니다.<br><br>오너 입장과 투자자 입장을 동시에 이해합니다. 그 두 언어를 연결하는 것이 AAP의 역할입니다.</span>
-          <span data-en>With a background spanning <strong>Big 4 financial advisory</strong> (due diligence &amp; valuation) and <strong>corporate FP&amp;A</strong>, I understand both sides of the table.<br><br>AAP exists to bridge the language between owners and investors — ensuring businesses enter any transaction on the strongest possible footing.</span>
+          <span data-ko><strong>Big 4 재무자문(실사·가치평가)</strong>과 <strong>대기업 FP&amp;A</strong>를 거쳤습니다.<br><br>사업의 어느 단계에 있든 — 성장 중이든, 투자를 준비 중이든, 매각을 고민 중이든 — 재무가 정리돼 있어야 다음 단계로 갈 수 있습니다. AAP는 그 역할을 합니다.</span>
+          <span data-en>AAP's background includes <strong>Big 4 financial advisory</strong> (due diligence &amp; valuation) and <strong>corporate FP&amp;A</strong>.<br><br>Whatever stage your business is at — growing, fundraising, or preparing for an exit — your finances need to be in order before the next move. That's what AAP is here for.</span>
         </p>
       </div>
       <div>
@@ -435,39 +453,54 @@
       <span data-ko>서비스</span><span data-en>Services</span>
     </div>
     <h2>
-      <span data-ko>두 가지 서비스를 제공합니다</span>
-      <span data-en>Two core service lines</span>
+      <span data-ko>사업 단계에 맞게, 유연하게</span>
+      <span data-en>The CFO function, built around you</span>
     </h2>
 
     <div class="services-tabs">
-      <button class="tab-btn active" onclick="switchTab('pre',this)">
-        <span data-ko>A. Pre-Exit 재무 준비</span><span data-en>A. Pre-Exit Advisory</span>
+      <button class="tab-btn active" onclick="switchTab('caas',this)">
+        <span data-ko>A. CFO as a Service (CaaS)</span><span data-en>A. CFO as a Service (CaaS)</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('deal',this)">
-        <span data-ko>B. 딜 재무자문</span><span data-en>B. Transaction Advisory</span>
+      <button class="tab-btn" onclick="switchTab('ir',this)">
+        <span data-ko>B. 투자유치 재무 준비</span><span data-en>B. Fundraising Readiness</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('advisory',this)">
+        <span data-ko>C. Pre-Exit 자문</span><span data-en>C. Pre-Exit Advisory</span>
       </button>
     </div>
 
-    <div class="tab-pane active" id="tab-pre">
+    <div class="tab-pane active" id="tab-caas">
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 1A</div>
-        <div class="svc-title"><span data-ko>재무 현황 파악</span><span data-en>Financial Snapshot</span></div>
-        <p class="svc-desc"><span data-ko>현재 재무 상태를 빠르게 진단합니다. 실제 수익력이 얼마인지, 어디서 리스크가 발생하는지 핵심만 짚어드립니다.</span><span data-en>A rapid assessment of your current financial position — identifying true earnings and key risk areas in a matter of weeks.</span></p>
+        <div class="svc-phase">Essential</div>
+        <div class="svc-title"><span data-ko>월간 재무 관리</span><span data-en>Monthly Finance Management</span></div>
+        <p class="svc-desc"><span data-ko>매달 손익·현금흐름을 정리하고 핵심 지표를 리포팅합니다. 숫자를 이해하고 의사결정에 쓸 수 있도록 만들어드립니다.</span><span data-en>Monthly P&amp;L, cash flow tracking and KPI reporting — turning your numbers into decisions, not just spreadsheets.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 1B</div>
-        <div class="svc-title"><span data-ko>기업가치 전면 진단</span><span data-en>Full Value Diagnostic</span></div>
-        <p class="svc-desc"><span data-ko>투자자·매수자 관점에서 회사 전체를 심층 분석합니다. 수익구조 재정리부터 가치 개선 로드맵까지 제시합니다.</span><span data-en>A comprehensive diagnostic from an investor's perspective — covering earnings quality, cash flow, capital structure, and a clear value improvement roadmap.</span></p>
+        <div class="svc-phase">Growth</div>
+        <div class="svc-title"><span data-ko>전략적 CFO 파트너</span><span data-en>Strategic CFO Partner</span></div>
+        <p class="svc-desc"><span data-ko>매달 재무 관리에 더해 사업 의사결정에 직접 참여합니다. 채용·투자·가격전략까지 재무 관점에서 함께 고민합니다.</span><span data-en>Everything in Essential, plus active involvement in business decisions — hiring, pricing, investment and growth strategy from a CFO lens.</span></p>
+      </div>
+      <div class="svc-note">
+        <span data-ko>"우리 유닛 이코노믹스가 맞아?" "이번 라운드 밸류에이션 어떻게 잡아야 해?" — 이런 질문에 답해줄 수 있는 사람이 팀 안에 있나요? AAP가 그 역할을 합니다. 시드~시리즈A 스타트업 및 글로벌 확장을 준비 중인 기업에 최적화돼 있습니다.</span>
+        <span data-en>"Are our unit economics actually right?" "How should we think about valuation for this round?" — does your team have someone who can answer that? AAP fills that seat. Optimised for Seed to Series A startups and corporates preparing for global expansion.</span>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-ir">
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>Step 1</span><span data-en>Step 1</span></div>
+        <div class="svc-title"><span data-ko>투자유치 전 재무 점검</span><span data-en>Pre-Raise Financial Review</span></div>
+        <p class="svc-desc"><span data-ko>투자자 실사 전에 재무 상태를 먼저 점검합니다. 약점을 미리 파악하고 보완해서 딜이 흔들리지 않게 준비합니다.</span><span data-en>A pre-due-diligence review of your financials — identifying gaps before investors do, so nothing derails your raise.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 2A</div>
-        <div class="svc-title"><span data-ko>기본 자문 리테이너</span><span data-en>Oversight Retainer</span></div>
-        <p class="svc-desc"><span data-ko>Phase 1 이후 지속적인 재무 모니터링을 제공합니다. 딜 준비가 될 때까지 재무 상태를 일정하게 관리합니다.</span><span data-en>Ongoing financial monitoring post-diagnostic — keeping your business in the best shape until you're ready to transact.</span></p>
+        <div class="svc-phase"><span data-ko>Step 2</span><span data-en>Step 2</span></div>
+        <div class="svc-title"><span data-ko>사업계획서 (BP) 작성</span><span data-en>Business Plan (BP) Preparation</span></div>
+        <p class="svc-desc"><span data-ko>투자자 언어로 설득력 있는 사업계획서를 작성합니다. 유닛 이코노믹스, 성장 지표, 자금 사용 계획을 재무 근거와 함께 정리합니다.</span><span data-en>A compelling business plan written in investor language — unit economics, growth metrics and use of funds, backed by financial rigour.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 2B</div>
-        <div class="svc-title"><span data-ko>전략적 CFO 리테이너</span><span data-en>Strategic CFO Retainer</span></div>
-        <p class="svc-desc"><span data-ko>외부 CFO로서 의사결정에 직접 참여합니다. 투자·자본 전략부터 매각·승계 준비까지 전방위 재무 자문을 제공합니다.</span><span data-en>Acting as an external CFO — actively involved in investment decisions, capital strategy, and full preparation for exit or succession.</span></p>
+        <div class="svc-phase"><span data-ko>Step 3</span><span data-en>Step 3</span></div>
+        <div class="svc-title"><span data-ko>투자자용 재무 모델링</span><span data-en>Investor-Ready Financial Model</span></div>
+        <p class="svc-desc"><span data-ko>투자자가 실제로 보는 방식으로 재무 모델을 구축합니다. 매출 가정, 비용 구조, 런웨이, 시나리오 분석까지 포함합니다.</span><span data-en>A financial model built the way investors actually read them — revenue assumptions, cost structure, runway, and scenario analysis.</span></p>
       </div>
       <div class="svc-note">
         <span data-ko>세부 범위 및 수수료는 문의 시 안내드립니다.</span>
@@ -475,25 +508,25 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="tab-deal">
+    <div class="tab-pane" id="tab-advisory">
       <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>재무실사</span><span data-en>Due Diligence</span></div>
-        <div class="svc-title">Financial Due Diligence</div>
-        <p class="svc-desc"><span data-ko>매수자 또는 매도자 측 재무실사를 수행합니다. 수익의 질, 현금흐름, 재무 리스크를 딜 관점에서 분석합니다.</span><span data-en>Buy-side or sell-side financial due diligence — rigorous analysis of earnings quality, cash flow, and financial risks from a transaction perspective.</span></p>
+        <div class="svc-phase">Phase 1</div>
+        <div class="svc-title"><span data-ko>기업가치 진단</span><span data-en>Value Diagnostic</span></div>
+        <p class="svc-desc"><span data-ko>매각·투자유치 전 재무 현황을 투자자·매수자 관점에서 점검합니다. 수익구조, 현금흐름, 리스크를 분석하고 가치 개선 로드맵을 제시합니다. (4~6주 프로젝트)</span><span data-en>A pre-transaction diagnostic from a buyer or investor perspective — analysing earnings quality, cash flow and risk, with a clear value improvement roadmap. (4–6 week project)</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>가치평가</span><span data-en>Valuation</span></div>
-        <div class="svc-title"><span data-ko>가치평가 및 재무 모델링</span><span data-en>Valuation &amp; Financial Modelling</span></div>
-        <p class="svc-desc"><span data-ko>기업가치를 산정하고 딜 협상에 활용할 수 있는 재무 모델을 구축합니다. 유사 기업·거래 비교 분석을 포함합니다.</span><span data-en>Enterprise valuation and financial modelling built for transaction use — including comparable company and precedent transaction analysis.</span></p>
+        <div class="svc-phase">Phase 2</div>
+        <div class="svc-title"><span data-ko>딜 준비</span><span data-en>Deal Preparation</span></div>
+        <p class="svc-desc"><span data-ko>진단 이후 실제 딜까지 재무 구조를 개선하고 유지합니다. 실사에서 흔들리지 않는 상태를 만드는 것이 목표입니다. (월 단위 리테이너)</span><span data-en>Post-diagnostic preparation until the deal is ready — improving and maintaining your financial position so it holds up under due diligence. (Monthly retainer)</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>거래 지원</span><span data-en>Deal Support</span></div>
-        <div class="svc-title">Transaction Support</div>
-        <p class="svc-desc"><span data-ko>딜 진행 전 과정에서 재무 자문을 제공합니다. 투자자 질의 대응, 데이터룸 운영, 계약서 재무 조항 검토를 지원합니다.</span><span data-en>End-to-end financial support through the transaction process — investor Q&amp;A, data room management, and SPA financial review.</span></p>
+        <div class="svc-phase">Phase 3</div>
+        <div class="svc-title"><span data-ko>딜 실행 자문</span><span data-en>Deal Execution Advisory</span></div>
+        <p class="svc-desc"><span data-ko>LOI 이후 실사 대응, 가치평가 협상, SPA 재무 조항 검토까지 딜 클로징까지 동행합니다. (딜별 협의)</span><span data-en>From LOI through to closing — due diligence support, valuation negotiation, and SPA financial review. (Fee by deal)</span></p>
       </div>
       <div class="svc-note">
-        <span data-ko>세부 범위 및 수수료는 문의 시 안내드립니다.</span>
-        <span data-en>Detailed scope and fees are available upon enquiry.</span>
+        <span data-ko>매각·지분 승계·Exit을 준비 중인 기업 대표를 위한 서비스입니다. 세부 범위 및 수수료는 문의 시 안내드립니다.</span>
+        <span data-en>For business owners preparing for a sale, equity transition, or exit. Detailed scope and fees available upon enquiry.</span>
       </div>
     </div>
   </div>
@@ -510,13 +543,9 @@
           <span data-ko>문의</span><span data-en>Contact</span>
         </div>
         <h2 class="contact-headline">
-          <span data-ko>어떤 준비가 필요한지,<br>먼저 말씀 들어보겠습니다.</span>
-          <span data-en>Let's start<br>with a conversation.</span>
+          <span data-ko>AAP Advisory</span>
+          <span data-en>AAP Advisory</span>
         </h2>
-        <p class="contact-sub">
-          <span data-ko>회사 상황을 공유해 주시면 솔직하게 말씀드리겠습니다. 의무나 부담 없이 시작할 수 있습니다.</span>
-          <span data-en>Share your situation and we'll give you an honest view of what preparation looks like. No obligation.</span>
-        </p>
       </div>
       <div class="contact-items">
         <div>
