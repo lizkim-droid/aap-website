@@ -617,10 +617,6 @@
     el.classList.toggle('selected');
   }
 
-  function submit() {
-    if (!validate(6)) return;
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-   
   async function submit() {
     if (!validate(6)) return;
 
