@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -383,8 +383,8 @@
 <!-- LANG -->
 <div class="lang-wrap">
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn active" onclick="setLang('ko')">KO</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
   </div>
 </div>
 
@@ -474,8 +474,8 @@
       <button class="tab-btn" onclick="switchTab('ir',this)">
         <span data-ko>B. 투자유치 재무 준비</span><span data-en>B. Fundraising Readiness</span>
       </button>
-      <button class="tab-btn" onclick="switchTab('advisory',this)">
-        <span data-ko>C. Pre-Exit 자문</span><span data-en>C. Pre-Exit Advisory</span>
+      <button class="tab-btn" onclick="switchTab('ma',this)">
+        <span data-ko>C. M&amp;A · Deal Advisory</span><span data-en>C. M&amp;A · Deal Advisory</span>
       </button>
     </div>
 
@@ -522,25 +522,29 @@
       </div>
     </div>
 
-    <div class="tab-pane" id="tab-advisory">
-      <div class="svc-card fi">
-        <div class="svc-phase">Phase 1</div>
-        <div class="svc-title"><span data-ko>기업가치 진단</span><span data-en>Value Diagnostic</span></div>
-        <p class="svc-desc"><span data-ko>매각·투자유치 전 재무 현황을 투자자·매수자 관점에서 점검합니다. 수익구조, 현금흐름, 리스크를 분석하고 가치 개선 로드맵을 제시합니다. (4~6주 프로젝트)</span><span data-en>A pre-transaction diagnostic from a buyer or investor perspective — analysing earnings quality, cash flow and risk, with a clear value improvement roadmap. (4–6 week project)</span></p>
+    <div class="tab-pane" id="tab-ma">
+      <div class="svc-tagline">
+        <span data-ko>좋은 회사는 제값 받고 팔립니다. 준비된 회사만이 제값을 받습니다.</span>
+        <span data-en>A good business deserves a fair price. A prepared business gets one.</span>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 2</div>
-        <div class="svc-title"><span data-ko>딜 준비</span><span data-en>Deal Preparation</span></div>
-        <p class="svc-desc"><span data-ko>진단 이후 실제 딜까지 재무 구조를 개선하고 유지합니다. 실사에서 흔들리지 않는 상태를 만드는 것이 목표입니다. (월 단위 리테이너)</span><span data-en>Post-diagnostic preparation until the deal is ready — improving and maintaining your financial position so it holds up under due diligence. (Monthly retainer)</span></p>
+        <div class="svc-phase">Sell-side</div>
+        <div class="svc-title"><span data-ko>매각 자문</span><span data-en>Sale Advisory</span></div>
+        <p class="svc-desc"><span data-ko>매각 결정부터 클로징까지 — 밸류에이션, 바이어 접촉, 협상, 재무실사 대응까지 전 과정을 함께합니다.</span><span data-en>From the decision to sell through to closing — valuation, buyer outreach, negotiation and FDD support.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Phase 3</div>
-        <div class="svc-title"><span data-ko>딜 실행 자문</span><span data-en>Deal Execution Advisory</span></div>
-        <p class="svc-desc"><span data-ko>LOI 이후 실사 대응, 가치평가 협상, SPA 재무 조항 검토까지 딜 클로징까지 동행합니다. (딜별 협의)</span><span data-en>From LOI through to closing — due diligence support, valuation negotiation, and SPA financial review. (Fee by deal)</span></p>
+        <div class="svc-phase">Buy-side</div>
+        <div class="svc-title"><span data-ko>인수 자문</span><span data-en>Acquisition Advisory</span></div>
+        <p class="svc-desc"><span data-ko>적합한 매물을 찾고, 가치를 검증하고, 협상을 이끕니다. 재무실사로 숨겨진 리스크를 짚어드립니다.</span><span data-en>Target identification, valuation, negotiation and financial due diligence — uncovering risks before you commit.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase">Pre-Exit Readiness</div>
+        <div class="svc-title"><span data-ko>Exit 준비</span><span data-en>Exit Readiness</span></div>
+        <p class="svc-desc"><span data-ko>딜 전에 재무를 정비합니다. 수익구조 정상화, 리스크 제거, 기업가치 극대화 — 실사에서 흔들리지 않는 상태를 만듭니다.</span><span data-en>Clean up your financials before the deal starts — earnings normalisation, risk removal and value maximisation so nothing breaks in due diligence.</span></p>
       </div>
       <div class="svc-note">
-        <span data-ko>매각·지분 승계·Exit을 준비 중인 기업 대표를 위한 서비스입니다. 세부 범위 및 수수료는 문의 시 안내드립니다.</span>
-        <span data-en>For business owners preparing for a sale, equity transition, or exit. Detailed scope and fees available upon enquiry.</span>
+        <span data-ko>재무자문(Financial Advisory), 재무실사(FDD), 가치평가(Valuation)를 원스톱으로 제공합니다. 세부 범위 및 수수료는 문의 시 안내드립니다.</span>
+        <span data-en>Financial advisory, FDD and valuation — all under one roof. Scope and fees available upon enquiry.</span>
       </div>
     </div>
   </div>
@@ -591,6 +595,7 @@
   // Email bypass
   var em = ["info", "aap-partners.com"].join("@");
   window.addEventListener("DOMContentLoaded", function() {
+    setLang('ko');
     document.querySelectorAll("#about-email, #contact-email").forEach(function(el) {
       el.href = "mailto:" + em;
       el.textContent = em;
