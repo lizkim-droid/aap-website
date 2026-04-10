@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인사이트 — AAP Advisory</title>
-<style>html,body{background:#111E35;}</style>
+<style>html,body{background:#111E35;}
+
+  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
+  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
+  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+  .lt-btn.active { background:var(--silver,#A6A6A6); color:#111E35; }
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -281,6 +287,11 @@
       <span data-ko>문의</span><span data-en>Contact</span>
     </a></li>
   </ul>
+
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
 </nav>
 
 <section class="hero">
@@ -294,7 +305,7 @@
       <span data-en>Know before you<br><em>sell.</em></span>
     </h1>
     <p class="hero-sub">
-      <span data-ko>바이어는 준비되어 있습니다. 셀러도 그래야 합니다. AAP Advisory의 FDD 실무 경험을 바탕으로 오너가 꼭 알아야 할 것들을 정리합니다.</span>
+      <span data-ko>바이어는 준비되어 있습니다. 오너도 그래야 합니다. AAP Advisory의 FDD 실무 경험을 바탕으로 오너가 꼭 알아야 할 것들을 정리합니다.</span>
       <span data-en>Buyers come prepared. Sellers should too. Practical guides and checklists from AAP Advisory's FDD experience — built for business owners, not bankers.</span>
     </p>
   </div>
@@ -362,7 +373,7 @@
           </p>
           <div class="card-footer">
             <span class="card-date-sm">2026. 04</span>
-            <a href="#" class="card-cta">
+            <a href="/aap_col_ebitda.html" class="card-cta">
               <span data-ko>읽기</span><span data-en>Read</span>
             </a>
           </div>
@@ -386,7 +397,7 @@
           </p>
           <div class="card-footer">
             <span class="card-date-sm">2026. 04</span>
-            <a href="#" class="card-cta">
+            <a href="/aap_col_ev.html" class="card-cta">
               <span data-ko>읽기</span><span data-en>Read</span>
             </a>
           </div>
@@ -410,7 +421,7 @@
           </p>
           <div class="card-footer">
             <span class="card-date-sm">2026. 04</span>
-            <a href="#" class="card-cta">
+            <a href="/aap_col_vdd.html" class="card-cta">
               <span data-ko>읽기</span><span data-en>Read</span>
             </a>
           </div>
@@ -444,6 +455,14 @@
     if (featured) {
       featured.style.gridColumn = featured.style.display === 'none' ? '' : '1 / -1';
     }
+  }
+
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    document.querySelectorAll('[data-ko]').forEach(el => el.style.display = lang==='ko' ? '' : 'none');
+    document.querySelectorAll('[data-en]').forEach(el => el.style.display = lang==='en' ? '' : 'none');
   }
 
   // ── bilingual
