@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인사이트 — AAP Advisory</title>
+<style>html,body{background:#111E35;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #111E35;
+    --navy-mid:  #1B2A4A;
+    --navy-card: #162038;
+    --gold:      #C9A96E;
+    --gold-lt:   #DFC090;
+    --silver:    #A6A6A6;
+    --gray:      #7A8FA8;
+    --off-white: #F8F7F4;
+    --cream:     #FAFAF7;
+    --border:    rgba(255,255,255,0.08);
+    --border-d:  rgba(17,30,53,0.10);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--off-white);
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.3rem 4rem;
+    background: #111E35;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--off-white);
+  }
+  .nav-logo span { color: var(--silver); }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+    margin-right: 2rem;
+  }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--off-white); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .eyebrow::before {
+    content: ''; display: block;
+    width: 1.8rem; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--off-white); margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-lt); }
+  .hero-sub {
+    font-size: 0.95rem; font-weight: 300;
+    line-height: 1.8; color: var(--gray);
+    max-width: 580px;
+  }
+
+  /* ── CONTENT AREA ── */
+  .content-wrap {
+    background: var(--navy);
+    min-height: 100vh;
+    padding: 3.5rem 4rem 6rem;
+  }
+  .content-inner { max-width: 900px; margin: 0 auto; }
+
+  /* ── FILTER TABS ── */
+  .filter-row {
+    display: flex; gap: 0.5rem;
+    margin-bottom: 2.4rem;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.38rem 1rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: transparent;
+    color: var(--gray);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: var(--silver); color: var(--off-white); }
+  .filter-btn.active {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--navy);
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  /* ── FEATURED CARD ── */
+  .card-featured {
+    grid-column: 1 / -1;
+    background: var(--navy);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 5px 1fr;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .card-featured:hover { transform: translateY(-2px); }
+  .card-featured .accent-bar { background: var(--gold); }
+  .card-featured .card-body { padding: 2rem 2.2rem; }
+  .badge-pill {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.22rem 0.7rem;
+    background: rgba(201,169,110,0.15);
+    color: var(--gold);
+    border-radius: 2px;
+    margin-bottom: 0.8rem;
+  }
+  .card-featured h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--off-white); line-height: 1.3;
+    margin-bottom: 0.7rem;
+  }
+  .card-featured p {
+    font-size: 0.88rem; font-weight: 300;
+    color: var(--gray); line-height: 1.7;
+    margin-bottom: 1.4rem;
+    max-width: 560px;
+  }
+  .card-featured-footer {
+    display: flex; align-items: center;
+    justify-content: space-between;
+  }
+  .card-date {
+    font-size: 0.72rem; color: rgba(166,166,166,0.5);
+    letter-spacing: 0.08em;
+  }
+  .cta-link {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: gap 0.2s;
+  }
+  .cta-link:hover { gap: 0.7rem; }
+  .cta-link::after { content: '→'; }
+
+  /* ── REGULAR CARD ── */
+  .card {
+    background: var(--navy-card);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+  .card-top-bar { height: 4px; background: var(--silver); }
+  .card-top-bar.gold { background: var(--gold); }
+  .card-inner { padding: 1.4rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+  .card-type {
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 0.6rem;
+  }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 600;
+    color: var(--off-white); line-height: 1.4;
+    margin-bottom: 0.7rem;
+  }
+  .card p {
+    font-size: 0.83rem; font-weight: 300;
+    color: rgba(122,143,168,0.9); line-height: 1.65;
+    flex: 1; margin-bottom: 1.2rem;
+  }
+  .card-footer {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .card-date-sm {
+    font-size: 0.68rem; color: rgba(166,166,166,0.45); letter-spacing: 0.06em;
+  }
+  .card-cta {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    display: flex; align-items: center; gap: 0.3rem;
+    transition: gap 0.2s;
+  }
+  .card-cta:hover { gap: 0.5rem; }
+  .card-cta::after { content: '→'; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 100%;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem; font-weight: 600;
+    letter-spacing: 0.1em; color: var(--gray);
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.18); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; margin-right: 0; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .content-wrap { padding: 2.5rem 1.5rem 4rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .card-featured { grid-column: 1; }
+    footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body class="ko">
+
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="/">
+      <span data-ko>홈</span><span data-en>Home</span>
+    </a></li>
+    <li><a href="/#services">
+      <span data-ko>서비스</span><span data-en>Services</span>
+    </a></li>
+    <li><a href="/aap_insights.html" class="active">
+      <span data-ko>인사이트</span><span data-en>Insights</span>
+    </a></li>
+    <li><a href="/#contact">
+      <span data-ko>문의</span><span data-en>Contact</span>
+    </a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <span data-ko>셀러를 위한 실무 인사이트</span>
+      <span data-en>Practical insights for sellers</span>
+    </div>
+    <h1>
+      <span data-ko>Exit, 알고 준비하면<br><em>달라집니다.</em></span>
+      <span data-en>Know before you<br><em>sell.</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-ko>바이어는 준비되어 있습니다. 셀러도 그래야 합니다. AAP Advisory의 FDD 실무 경험을 바탕으로 오너가 꼭 알아야 할 것들을 정리합니다.</span>
+      <span data-en>Buyers come prepared. Sellers should too. Practical guides and checklists from AAP Advisory's FDD experience — built for business owners, not bankers.</span>
+    </p>
+  </div>
+</section>
+
+<div class="content-wrap">
+  <div class="content-inner">
+
+    <div class="filter-row">
+      <button class="filter-btn active" onclick="filter('all', this)">
+        <span data-ko>전체</span><span data-en>All</span>
+      </button>
+      <button class="filter-btn" onclick="filter('checklist', this)">
+        <span data-ko>체크리스트</span><span data-en>Checklist</span>
+      </button>
+      <button class="filter-btn" onclick="filter('guide', this)">
+        <span data-ko>가이드</span><span data-en>Guide</span>
+      </button>
+      <button class="filter-btn" onclick="filter('valuation', this)">
+        <span data-ko>밸류에이션</span><span data-en>Valuation</span>
+      </button>
+    </div>
+
+    <div class="card-grid" id="cardGrid">
+
+      <!-- FEATURED: 체크리스트 -->
+      <div class="card-featured" data-tag="checklist">
+        <div class="accent-bar"></div>
+        <div class="card-body">
+          <div class="badge-pill">
+            <span data-ko>체크리스트</span><span data-en>Checklist</span>
+          </div>
+          <h2>
+            <span data-ko>Exit 전 꼭 정리해야 할 재무 체크리스트</span>
+            <span data-en>Financial checklist before your exit</span>
+          </h2>
+          <p>
+            <span data-ko>바이어 실사팀이 들어오기 전에, 우리가 먼저 봅니다. P&L 정비부터 세무 리스크, 계약 현황까지 — 24가지 항목으로 현재 Exit 준비도를 점검하세요.</span>
+            <span data-en>Before the buyer's due diligence team arrives, we look first. From P&L clean-up to tax risk and contract review — check your Exit readiness across 24 items.</span>
+          </p>
+          <div class="card-featured-footer">
+            <span class="card-date">2026. 04</span>
+            <a href="/aap_checklist.html" class="cta-link">
+              <span data-ko>체크리스트 시작하기</span>
+              <span data-en>Start checklist</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 1: EBITDA -->
+      <div class="card" data-tag="guide">
+        <div class="card-top-bar"></div>
+        <div class="card-inner">
+          <div class="card-type">
+            <span data-ko>가이드</span><span data-en>Guide</span>
+          </div>
+          <h3>
+            <span data-ko>바이어가 EBITDA를 깎는 다섯 가지 방법</span>
+            <span data-en>Five ways buyers cut your EBITDA</span>
+          </h3>
+          <p>
+            <span data-ko>실사에서 자주 나오는 조정 항목들 — 오너 개인 비용, 일회성 항목, Pro Forma 인건비, 관계사 거래, 오너 리스크. 먼저 알고 준비하면 협상이 달라집니다.</span>
+            <span data-en>Owner costs, one-offs, pro forma salaries, related-party transactions, key-person risk. Know them before the buyer does.</span>
+          </p>
+          <div class="card-footer">
+            <span class="card-date-sm">2026. 04</span>
+            <a href="#" class="card-cta">
+              <span data-ko>읽기</span><span data-en>Read</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 2: EV vs Equity Value -->
+      <div class="card" data-tag="valuation">
+        <div class="card-top-bar"></div>
+        <div class="card-inner">
+          <div class="card-type">
+            <span data-ko>밸류에이션</span><span data-en>Valuation</span>
+          </div>
+          <h3>
+            <span data-ko>기업가치(EV)와 실수령액은 왜 다른가</span>
+            <span data-en>Why EV and your proceeds are not the same</span>
+          </h3>
+          <p>
+            <span data-ko>Net Debt, DLI, 운전자본 조정까지 — EV 300억이 실수령 200억이 되는 이유. 딜 전에 반드시 이해해야 할 세 가지 차감 구조.</span>
+            <span data-en>Net debt, debt-like items, working capital adjustments — why a ₩30bn EV can mean ₩20bn in your pocket. Three deductions every seller must understand.</span>
+          </p>
+          <div class="card-footer">
+            <span class="card-date-sm">2026. 04</span>
+            <a href="#" class="card-cta">
+              <span data-ko>읽기</span><span data-en>Read</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 카드 3: VDD -->
+      <div class="card" data-tag="guide">
+        <div class="card-top-bar gold"></div>
+        <div class="card-inner">
+          <div class="card-type">
+            <span data-ko>가이드</span><span data-en>Guide</span>
+          </div>
+          <h3>
+            <span data-ko>FDD는 바이어만 하는 게 아닙니다</span>
+            <span data-en>Due diligence isn't just for buyers</span>
+          </h3>
+          <p>
+            <span data-ko>VDD(Vendor Due Diligence)를 먼저 수행하면 협상 주도권, 딜 속도, 복수 바이어 경쟁 구도 — 세 가지를 동시에 얻을 수 있습니다.</span>
+            <span data-en>Running VDD first gives you negotiating control, deal speed, and a competitive buyer dynamic — all at once.</span>
+          </p>
+          <div class="card-footer">
+            <span class="card-date-sm">2026. 04</span>
+            <a href="#" class="card-cta">
+              <span data-ko>읽기</span><span data-en>Read</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  // ── 언어 토글 (메인 사이트와 동일 방식)
+  (function() {
+    document.body.className = 'ko';
+  })();
+
+  // ── 필터
+  function filter(tag, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('#cardGrid > [data-tag]').forEach(card => {
+      card.style.display = (tag === 'all' || card.dataset.tag === tag) ? '' : 'none';
+    });
+    // featured는 grid-column 복원
+    const featured = document.querySelector('.card-featured');
+    if (featured) {
+      featured.style.gridColumn = featured.style.display === 'none' ? '' : '1 / -1';
+    }
+  }
+
+  // ── bilingual
+  const body = document.body;
+  body.querySelectorAll('[data-ko]').forEach(el => {
+    const isEn = body.classList.contains('en');
+    el.style.display = isEn ? 'none' : '';
+  });
+  body.querySelectorAll('[data-en]').forEach(el => {
+    const isEn = body.classList.contains('en');
+    el.style.display = isEn ? '' : 'none';
+  });
+</script>
+</body>
+</html>
