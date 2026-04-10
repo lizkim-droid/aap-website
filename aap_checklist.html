@@ -50,6 +50,9 @@
   }
   .lang-btn.active { background: #A6A6A6; color: #111E35; }
   .lang-btn:hover:not(.active) { color: #F8F7F4; }
+
+  body.ko [data-en] { display:none !important; }
+  body.en [data-ko] { display:none !important; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -381,7 +384,7 @@
   }
 </style>
 </head>
-<body>
+<body class="ko">
 
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
