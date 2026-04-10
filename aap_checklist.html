@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exit 전 재무 체크리스트 — AAP Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #111E35;
+    --navy-mid: #1B2A4A;
+    --navy-lt:  #243355;
+    --gold:     #C9A96E;
+    --gold-lt:  #DFC090;
+    --silver:   #A6A6A6;
+    --gray:     #7A8FA8;
+    --cream:    #F8F7F4;
+    --white:    #FFFFFF;
+    --border:   rgba(255,255,255,0.08);
+    --border-d: rgba(17,30,53,0.10);
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--navy);
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(17,30,53,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo img { height: 26px; width: auto; }
+  .nav-back {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--silver);
+    text-decoration: none; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--cream); }
+  .nav-back::before { content: '← '; }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 9rem 4rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px; background: var(--gold); opacity: 0.3;
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 1.6rem; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--cream); margin-bottom: 1.2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-lt); }
+  .hero-sub {
+    font-size: 0.95rem; font-weight: 300;
+    line-height: 1.8; color: var(--gray);
+    max-width: 640px;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    background: var(--navy-mid);
+    padding: 1.4rem 4rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 64px; z-index: 100;
+  }
+  .progress-inner {
+    max-width: 860px; margin: 0 auto;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .progress-label {
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--silver); letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1; height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .progress-count {
+    font-size: 0.72rem; font-weight: 500;
+    color: var(--gold); white-space: nowrap;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content { max-width: 860px; margin: 0 auto; padding: 3rem 4rem 6rem; }
+
+  /* ── INTRO NOTE ── */
+  .intro-note {
+    background: #FBF8F3;
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.6rem;
+    margin-bottom: 2.8rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .intro-note p {
+    font-size: 0.88rem; line-height: 1.7;
+    color: #4A4030;
+  }
+  .intro-note strong { color: var(--navy); font-weight: 500; }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 3rem; }
+  .section-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-d);
+  }
+  .section-num {
+    width: 32px; height: 32px; flex-shrink: 0;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: 0.78rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 600;
+    color: var(--navy);
+  }
+  .section-badge {
+    margin-left: auto;
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+  .badge-critical { background: #FEE8E8; color: #8B2020; }
+  .badge-important { background: #FEF4E0; color: #7A5010; }
+  .badge-standard { background: #E8F0F8; color: #1B3A6A; }
+
+  /* ── CHECK ITEM ── */
+  .check-list { display: flex; flex-direction: column; gap: 0; }
+
+  .check-item {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 0 0.9rem;
+    padding: 0.9rem 0.6rem;
+    border-bottom: 1px solid rgba(17,30,53,0.06);
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 4px;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item:hover { background: #FAFAF8; }
+  .check-item.checked { background: #F6FBF6; }
+
+  .check-box {
+    width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0;
+    border: 1.5px solid #D0CBBF;
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .check-item.checked .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+  .check-tick {
+    width: 10px; height: 8px;
+    display: none;
+  }
+  .check-item.checked .check-tick { display: block; }
+  .check-tick path { stroke: white; stroke-width: 2; fill: none; }
+
+  .check-content {}
+  .check-title {
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--navy); line-height: 1.4;
+    margin-bottom: 0.25rem;
+  }
+  .check-item.checked .check-title {
+    color: var(--silver);
+    text-decoration: line-through;
+    text-decoration-color: var(--gold);
+  }
+  .check-desc {
+    font-size: 0.8rem; font-weight: 300;
+    color: var(--gray); line-height: 1.6;
+  }
+  .check-tag {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    margin-right: 0.4rem; margin-top: 0.3rem;
+    vertical-align: middle;
+  }
+  .tag-buyer { background: #FDECEA; color: #8B2020; }
+  .tag-value { background: #FEF4E0; color: #7A5010; }
+  .tag-legal { background: #EAF0FB; color: #1B3A6A; }
+  .tag-ops   { background: #EDF7EE; color: #1A5C1A; }
+
+  /* ── SCORE CARD ── */
+  .score-card {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 2rem 2.4rem;
+    margin: 3rem 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .score-label {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--silver); margin-bottom: 0.4rem;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 700;
+    color: var(--gold); line-height: 1;
+  }
+  .score-sub {
+    font-size: 0.8rem; color: var(--gray);
+    margin-top: 0.3rem;
+  }
+  .score-meter {
+    width: 120px; text-align: center;
+  }
+  .score-circle {
+    width: 88px; height: 88px;
+    margin: 0 auto 0.5rem;
+    position: relative;
+  }
+  .score-circle svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .score-track { fill: none; stroke: rgba(255,255,255,0.08); stroke-width: 6; }
+  .score-arc   { fill: none; stroke: var(--gold); stroke-width: 6;
+                 stroke-linecap: round; transition: stroke-dashoffset 0.6s ease; }
+  .score-pct {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700; color: var(--cream);
+  }
+  .score-ready {
+    font-size: 0.75rem; font-weight: 500;
+    color: var(--silver); letter-spacing: 0.08em;
+  }
+
+  /* ── RESULT MESSAGE ── */
+  .result-msg {
+    padding: 1rem 1.4rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    font-size: 0.88rem; line-height: 1.6;
+    display: none;
+  }
+  .result-msg.show { display: block; }
+  .result-low  { background: #FEE8E8; color: #8B2020; border-left: 3px solid #C0392B; }
+  .result-mid  { background: #FEF4E0; color: #7A5010; border-left: 3px solid #C9A96E; }
+  .result-high { background: #EDF7EE; color: #1A5C1A; border-left: 3px solid #2E8B2E; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy);
+    border-radius: 6px;
+    padding: 2.4rem;
+    margin-top: 3rem;
+    text-align: center;
+  }
+  .cta-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--cream); margin-bottom: 0.6rem;
+  }
+  .cta-section p {
+    font-size: 0.88rem; color: var(--gray);
+    margin-bottom: 1.4rem; line-height: 1.7;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    border-radius: 2px;
+  }
+  .cta-btn:hover { background: var(--gold); color: var(--navy); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    padding: 1.4rem 4rem;
+    text-align: center;
+  }
+  .footer-logo img { height: 18px; opacity: 0.45; margin-bottom: 0.5rem; }
+  .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3.5rem; }
+    .content { padding: 2rem 1.5rem 4rem; }
+    .progress-bar { padding: 1rem 1.5rem; }
+    .score-card { grid-template-columns: 1fr; }
+    footer { padding: 1.4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://www.aap-partners.com/logo-white.png" alt="AAP Advisory"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span style="display:none; font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:#F8F7F4; letter-spacing:0.1em;">AAP<span style="color:#A6A6A6;">.</span></span>
+  </div>
+  <a href="/" class="nav-back">홈으로</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">오너를 위한 M&A 가이드</div>
+    <h1>Exit 전 꼭 정리해야 할<br><em>재무 체크리스트</em></h1>
+    <p class="hero-sub">
+      바이어의 실사팀이 들어오기 전에, 우리가 먼저 봅니다.
+      이 체크리스트는 AAP Advisory의 FDD 실무 경험을 바탕으로
+      셀러 오너가 사전에 점검해야 할 핵심 항목을 정리한 것입니다.
+    </p>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<div class="progress-bar">
+  <div class="progress-inner">
+    <span class="progress-label">준비도</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <span class="progress-count" id="progressCount">0 / 24 완료</span>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- INTRO NOTE -->
+  <div class="intro-note">
+    <p>
+      <strong>이 체크리스트는 어떻게 활용하나요?</strong><br>
+      항목을 클릭하면 체크됩니다. 완료된 항목 비율로 현재 Exit 준비도를 확인할 수 있습니다.
+      <strong>바이어 실사팀이 들어오기 6개월 전</strong>부터 정리를 시작하는 것을 권장합니다.
+    </p>
+  </div>
+
+  <!-- SCORE CARD -->
+  <div class="score-card">
+    <div>
+      <div class="score-label">현재 Exit 준비도</div>
+      <div class="score-value" id="scoreValue">0점</div>
+      <div class="score-sub" id="scoreDesc">체크리스트를 완료하면 준비도를 확인할 수 있습니다.</div>
+    </div>
+    <div class="score-meter">
+      <div class="score-circle">
+        <svg viewBox="0 0 88 88">
+          <circle class="score-track" cx="44" cy="44" r="38"/>
+          <circle class="score-arc" id="scoreArc" cx="44" cy="44" r="38"
+                  stroke-dasharray="238.76" stroke-dashoffset="238.76"/>
+        </svg>
+        <div class="score-pct" id="scorePct">0%</div>
+      </div>
+      <div class="score-ready" id="scoreReady">시작 전</div>
+    </div>
+  </div>
+
+  <!-- RESULT MESSAGES -->
+  <div class="result-msg result-low" id="msgLow">
+    ⚠️ 준비도가 낮습니다. 바이어가 실사에 들어오면 가격 조정 압박이 클 수 있습니다.
+    지금 바로 정리를 시작하세요. AAP Advisory가 도와드립니다.
+  </div>
+  <div class="result-msg result-mid" id="msgMid">
+    △ 기본은 갖춰졌습니다. 남은 항목을 정리하면 협상에서 훨씬 유리한 위치를 가져갈 수 있습니다.
+  </div>
+  <div class="result-msg result-high" id="msgHigh">
+    ✓ 훌륭합니다. 잘 준비된 셀러는 협상에서 주도권을 가집니다.
+    AAP Advisory와 함께 최적의 Exit을 설계하세요.
+  </div>
+
+  <!-- ── SECTION 1: 손익계산서 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div class="section-title">손익계산서 (P&L) 정비</div>
+      <span class="section-badge badge-critical">최우선</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">최근 3개년 + LTM 손익 자료 준비</div>
+          <div class="check-desc">
+            연간 감사/검토 재무제표 또는 관리 회계 기준 P&L을 연도별로 정리합니다.
+            바이어는 반드시 3년 이상의 추세를 요구합니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">오너 개인 비용 분리 및 정상화</div>
+          <div class="check-desc">
+            대표이사 차량, 개인 보험, 가족 급여 등 회사 장부에 섞인 개인 비용을 식별하고
+            정상화합니다. 이를 사전에 정리하지 않으면 바이어가 EBITDA 조정 근거로 사용합니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">일회성 비용 목록화</div>
+          <div class="check-desc">
+            소송비, 일시적 설비 투자, 특별 컨설팅 비용 등 반복되지 않는 항목을 정리합니다.
+            이를 EBITDA 조정 항목으로 사전에 준비해두면 협상에서 근거 자료가 됩니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">Pro Forma 인건비 산정</div>
+          <div class="check-desc">
+            대표이사 역할을 외부 전문 경영인으로 대체할 경우의 시장 급여를 추정합니다.
+            바이어는 반드시 이를 EBITDA 차감 항목으로 반영합니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">관계사 거래 시장가 검토</div>
+          <div class="check-desc">
+            특수관계인과의 거래(임차료, 용역비 등)가 시장 가격과 다를 경우
+            바이어가 조정 요구를 합니다. 미리 검토하고 근거를 마련해두세요.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2: 재무상태표 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div class="section-title">재무상태표 (B/S) 및 부채 정비</div>
+      <span class="section-badge badge-critical">최우선</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">금융 부채 전체 목록화</div>
+          <div class="check-desc">
+            은행 차입금, 리스 부채, 사채, 주주 차입금 등 모든 금융 부채를 정리합니다.
+            잔액, 금리, 만기, 조기상환 조건을 포함해야 합니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">부채 유사 항목(DLI) 사전 식별</div>
+          <div class="check-desc">
+            퇴직급여 미적립 부족분, 장기근속수당(미지급), 소송 충당부채 등
+            장부에 없거나 과소 계상된 경제적 의무를 파악합니다.
+            바이어는 이를 EV에서 차감하는 DLI로 취급합니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">퇴직급여 충당부채 적정성 확인</div>
+          <div class="check-desc">
+            법정 퇴직급여 기준 대비 실제 적립액이 부족하면 그 차액이 DLI로 처리됩니다.
+            외부 계리 검토를 받아두면 협상 시 방어 자료가 됩니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">담보·보증 현황 정리</div>
+          <div class="check-desc">
+            대표이사 개인 보증, 계열사 담보 제공, 부동산 근저당 현황을 정리합니다.
+            딜 클로징 전에 해소가 필요한 항목을 사전에 파악해두세요.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3: 운전자본 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div class="section-title">운전자본 (Working Capital) 현황</div>
+      <span class="section-badge badge-important">중요</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">월별 운전자본 12개월 추이 정리</div>
+          <div class="check-desc">
+            매출채권, 재고, 매입채무의 월별 잔액을 12개월 이상 정리합니다.
+            계절성 패턴을 파악하고 정상 운전자본 수준을 산출하는 기초 자료입니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">매출채권 연령분석 (Aging) 준비</div>
+          <div class="check-desc">
+            30일 이내, 30~60일, 60~90일, 90일 이상으로 구분한 채권 현황을 준비합니다.
+            장기 미회수 채권은 바이어의 가격 조정 근거가 됩니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">재고 현황 및 진부화 충당금 검토</div>
+          <div class="check-desc">
+            재고 목록과 회전율, 진부화·불용 재고 규모를 파악합니다.
+            과다 재고나 불용 재고는 WC 조정 또는 DLI로 처리될 수 있습니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">정상 운전자본 수준 사전 추정</div>
+          <div class="check-desc">
+            12개월 평균 또는 LTM 기준 정상 NWC를 계산해둡니다.
+            Completion Accounts 구조라면 이 숫자가 가격 조정의 기준(Peg)이 됩니다.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4: 세무 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div class="section-title">세무 리스크 점검</div>
+      <span class="section-badge badge-important">중요</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">최근 5년 세무신고 내역 확인</div>
+          <div class="check-desc">
+            법인세, 부가세, 원천세 신고 이력을 점검합니다.
+            수정신고 이력, 세무조사 이력, 미납 세금이 있다면 사전에 파악해두세요.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">주식 양도 vs 영업 양도 세제 비교</div>
+          <div class="check-desc">
+            딜 구조에 따라 오너의 세후 실수령액이 크게 달라집니다.
+            세무사 또는 자문사와 함께 최적 구조를 사전에 검토해두세요.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">이전가격 이슈 검토 (해외 거래가 있는 경우)</div>
+          <div class="check-desc">
+            해외 특수관계인과의 거래가 있다면 이전가격 문제가 있는지 확인합니다.
+            미확인 세무 리스크는 바이어 DLI 요구로 이어질 수 있습니다.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5: 계약·법무 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div class="section-title">주요 계약 및 법무 현황</div>
+      <span class="section-badge badge-important">중요</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">주요 고객·공급사 계약 만기 및 조건 확인</div>
+          <div class="check-desc">
+            매출의 20% 이상을 차지하는 주요 고객·공급사 계약의 잔여 기간, 갱신 조건,
+            Change of Control 조항 유무를 확인합니다. CoC 조항은 딜 클로징을 막을 수 있습니다.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">진행 중인 소송·분쟁 현황 파악</div>
+          <div class="check-desc">
+            현재 진행 중이거나 예상되는 소송·행정처분·노무 분쟁을 목록화합니다.
+            충당부채가 적절히 반영되어 있는지 확인하세요.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">지식재산권 등록 현황 확인</div>
+          <div class="check-desc">
+            특허, 상표, 저작권이 회사 명의로 적절히 등록되어 있는지 확인합니다.
+            대표이사 개인 명의 IP가 있다면 사전에 법인으로 이전해두세요.
+            <span class="check-tag tag-legal">법적 리스크</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6: 운영 ── -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div class="section-title">운영 및 조직 준비도</div>
+      <span class="section-badge badge-standard">표준</span>
+    </div>
+    <div class="check-list">
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">오너 의존도 점검 및 관리 팀 구성 확인</div>
+          <div class="check-desc">
+            주요 고객 관계, 공급사 협상, 핵심 의사결정이 대표이사에게 집중되어 있다면
+            바이어는 이를 가치 할인 요인으로 봅니다. 이를 분산시킬 계획이 있다면 제시하세요.
+            <span class="check-tag tag-value">가치 직결</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">핵심 인력 이탈 리스크 파악</div>
+          <div class="check-desc">
+            딜 공개 후 핵심 인력의 이탈 가능성을 점검합니다.
+            필요하다면 Retention Bonus 구조를 사전에 설계해두세요.
+            <span class="check-tag tag-ops">운영 리스크</span>
+          </div>
+        </div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">
+          <svg class="check-tick" viewBox="0 0 10 8"><path d="M1 4L3.5 6.5L9 1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="check-content">
+          <div class="check-title">Data Room 구축 시작</div>
+          <div class="check-desc">
+            재무제표, 계약서, 인허가, 조직도, 부동산 서류 등 실사 자료를
+            폴더 구조로 정리해두면 바이어 요청에 신속히 대응할 수 있고
+            딜 클로징을 빠르게 할 수 있습니다.
+            <span class="check-tag tag-buyer">바이어 필수 요구</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h3>준비가 필요한 항목이 있으신가요?</h3>
+    <p>
+      AAP Advisory는 셀러 편에서 Exit을 설계합니다.<br>
+      초기 상담은 무료로 제공됩니다.
+    </p>
+    <a href="/#contact" class="cta-btn">상담 문의하기</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="https://www.aap-partners.com/logo-white.png" alt="AAP Advisory"
+         onerror="this.style.display='none'">
+  </div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  const TOTAL = document.querySelectorAll('.check-item').length;
+  let checked = 0;
+
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    checked = document.querySelectorAll('.check-item.checked').length;
+    updateScore();
+  }
+
+  function updateScore() {
+    const pct = Math.round((checked / TOTAL) * 100);
+
+    // Progress bar
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = checked + ' / ' + TOTAL + ' 완료';
+
+    // Score card
+    document.getElementById('scoreValue').textContent = pct + '점';
+    document.getElementById('scorePct').textContent = pct + '%';
+
+    // Arc
+    const circumference = 238.76;
+    const offset = circumference - (circumference * pct / 100);
+    document.getElementById('scoreArc').style.strokeDashoffset = offset;
+
+    // Labels
+    let desc = '', ready = '';
+    if (pct === 0) { desc = '체크리스트를 완료하면 준비도를 확인할 수 있습니다.'; ready = '시작 전'; }
+    else if (pct < 40) { desc = '준비 초기 단계입니다. 핵심 항목부터 시작하세요.'; ready = '준비 초기'; }
+    else if (pct < 70) { desc = '중간 단계입니다. 남은 항목을 완료해 협상력을 높이세요.'; ready = '진행 중'; }
+    else if (pct < 100) { desc = '거의 준비됐습니다. 마무리 단계입니다.'; ready = '거의 완료'; }
+    else { desc = '모든 항목이 완료됐습니다. Exit 준비가 잘 되어 있습니다.'; ready = '준비 완료'; }
+
+    document.getElementById('scoreDesc').textContent = desc;
+    document.getElementById('scoreReady').textContent = ready;
+
+    // Result messages
+    document.getElementById('msgLow').classList.toggle('show', pct > 0 && pct < 40);
+    document.getElementById('msgMid').classList.toggle('show', pct >= 40 && pct < 75);
+    document.getElementById('msgHigh').classList.toggle('show', pct >= 75);
+  }
+</script>
+</body>
+</html>
