@@ -515,7 +515,7 @@
       <div class="svc-card fi">
         <div class="svc-phase">Sell-side Advisory</div>
         <div class="svc-title"><span data-ko>매각 자문</span><span data-en>Sale Advisory</span></div>
-        <p class="svc-desc"><span data-ko>매각 결정부터 클로징까지 — 밸류에이션, 바이어 발굴, 협상, 실사까지 셀러 편에서 전 과정을 함께합니다. 대표님이 혼자 감당하지 않아도 됩니다.</span><span data-en>From decision to closing — valuation, buyer identification, negotiation and due diligence. All on the seller's side.</span></p>
+        <p class="svc-desc"><span data-ko>매각 결정부터 클로징까지 — 밸류에이션, 바이어 발굴, 협상, 실사까지. 오너가 주도권을 갖고 딜을 마무리할 수 있도록 전 과정을 함께합니다.</span><span data-en>From decision to closing — valuation, buyer identification, negotiation and due diligence. Built around the owner's interests.</span></p>
       </div>
       <div class="svc-card fi">
         <div class="svc-phase">Vendor Due Diligence (VDD)</div>
@@ -532,8 +532,7 @@
 </div>
 
 <!-- CHECKLIST BANNER -->
-<div style="background:#1B2A4A; border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06);">
-  <div class="wrap" style="padding-top:2.4rem; padding-bottom:2.4rem;">
+<div class="wrap" style="padding-top:2.4rem; padding-bottom:2.4rem;">
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
       <div>
         <div style="font-size:0.68rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#C9A96E; margin-bottom:0.5rem;">
@@ -543,7 +542,7 @@
           <span data-ko>Exit, 알고 준비하면 달라집니다.</span><span data-en>Know before you sell.</span>
         </div>
         <div style="font-size:0.85rem; font-weight:300; color:#7A8FA8;">
-          <span data-ko>체크리스트, 가이드, 밸류에이션 인사이트 — 셀러 편에서 씁니다.</span><span data-en>Checklists, guides and valuation insights — written for sellers.</span>
+          <span data-ko>Exit을 앞둔 오너가 알아야 할 것들을 씁니다.</span><span data-en>Written to help owners understand what buyers already know.</span>
         </div>
       </div>
       <a href="./aap_insights.html" style="display:inline-block; padding:0.85rem 2rem; border:1px solid #C9A96E; color:#C9A96E; font-size:0.78rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; white-space:nowrap; transition:background 0.2s, color 0.2s; border-radius:2px;"
@@ -600,7 +599,8 @@
   // Email bypass
   var em = ["info", "aap-partners.com"].join("@");
   window.addEventListener("DOMContentLoaded", function() {
-    setLang('ko');
+    var saved = (function(){ try{ return localStorage.getItem('aap-lang'); }catch(e){ return null; } })();
+    setLang(saved === 'en' ? 'en' : 'ko');
     document.querySelectorAll("#about-email, #contact-email").forEach(function(el) {
       el.href = "mailto:" + em;
       el.textContent = em;
@@ -613,6 +613,7 @@
     document.body.className = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
   }
 
   function switchTab(id, btn) {

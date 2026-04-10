@@ -3,12 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>바이어가 EBITDA를 깎는 다섯 가지 방법 — AAP Advisory</title>
+<title>How Buyers Cut Your EBITDA — AAP Advisory</title>
 <style>html,body{background:#111E35;}
-  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
-  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
-  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
-  .lt-btn.active { background:var(--silver,#A6A6A6); color:#111E35; }
+
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.3rem 4rem;
+    background: rgba(17,30,53,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    letter-spacing: 0.1em; color: #F8F7F4;
+  }
+  .nav-logo span { color: #A6A6A6; }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+    margin-right: 8rem;
+  }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #7A8FA8; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #F8F7F4; }
+  .nav-links a.active { color: #C9A96E; }
+  .lang-wrap {
+    position: fixed; top: 1.25rem; right: 4rem; z-index: 300;
+  }
+  .lang-toggle {
+    display: flex;
+    border: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .lang-btn {
+    padding: 0.32rem 0.85rem;
+    background: none; border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: #7A8FA8; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lang-btn.active { background: #A6A6A6; color: #111E35; }
+  .lang-btn:hover:not(.active) { color: #F8F7F4; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -21,13 +63,6 @@
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
-  .nav-logo span{color:var(--silver);}
-  .nav-links{display:flex;gap:2.5rem;list-style:none;margin-right:2rem;}
-  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
-  .nav-links a:hover{color:var(--off-white);}
-  .nav-links a.active{color:var(--gold);}
 
   .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
   .hero-inner{max-width:720px;margin:0 auto;}
@@ -63,8 +98,7 @@
   footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
   .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
-  @media(max-width:768px){
-    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;margin-right:0;}
+  @media(max-width:768px){nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;margin-right:4rem;} .lang-wrap{right:1.5rem;} 
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;} footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
     .cta-box{flex-direction:column;}
   }
@@ -72,30 +106,23 @@
 </head>
 <body class="ko">
 
-
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
-  
   <ul class="nav-links">
-    <li><a href="/">
-      <span data-ko>홈</span><span data-en>Home</span>
-    </a></li>
-    <li><a href="/#services">
-      <span data-ko>서비스</span><span data-en>Services</span>
-    </a></li>
-    <li><a href="/aap_insights.html" class="active">
-      <span data-ko>인사이트</span><span data-en>Insights</span>
-    </a></li>
-    <li><a href="/#contact">
-      <span data-ko>문의</span><span data-en>Contact</span>
-    </a></li>
+    <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+    <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+    <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
   </ul>
-
-  <div class="lang-toggle">
-    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
-    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
-  </div>
 </nav>
+<div class="lang-wrap">
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lang-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+
 
 <section class="hero">
   <div class="hero-inner">
@@ -189,15 +216,20 @@
 
 <script>
   function setLang(lang) {
+    try { localStorage.setItem(\'aap-lang\', lang); } catch(e) {}
     document.body.className = lang;
-    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
-    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    document.getElementById('btn-ko').className = 'lang-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lang-btn' + (lang==='en' ? ' active' : '');
     document.querySelectorAll('[data-ko]').forEach(el => el.style.display = lang==='ko' ? '' : 'none');
     document.querySelectorAll('[data-en]').forEach(el => el.style.display = lang==='en' ? '' : 'none');
     document.querySelector('[data-lang="ko"]').style.display = lang==='ko' ? '' : 'none';
     document.querySelector('[data-lang="en"]').style.display = lang==='en' ? '' : 'none';
   }
-  setLang('ko');
+  (function() {
+    var saved;
+    try { saved = localStorage.getItem('aap-lang'); } catch(e) {}
+    setLang(saved === 'en' ? 'en' : 'ko');
+  })();
 </script>
 </body>
 </html>
