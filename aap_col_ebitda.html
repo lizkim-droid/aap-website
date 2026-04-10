@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>바이어가 EBITDA를 깎는 다섯 가지 방법 — AAP Advisory</title>
+<style>html,body{background:#111E35;}
+  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
+  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
+  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+  .lt-btn.active { background:var(--silver,#A6A6A6); color:#111E35; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#111E35; --navy-mid:#1B2A4A; --navy-card:#162038;
+    --gold:#C9A96E; --gold-lt:#DFC090; --silver:#A6A6A6;
+    --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
+  .nav-logo span{color:var(--silver);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;margin-right:2rem;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--gold);}
+
+  .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
+  .hero-inner{max-width:720px;margin:0 auto;}
+  .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
+  .back-link:hover{color:var(--gold);}
+  .back-link::before{content:'←';}
+  .eyebrow{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;color:var(--off-white);margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--gold-lt);}
+  .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
+  .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
+
+  .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
+  .section{margin-bottom:2.8rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .sec-body{font-size:0.92rem;font-weight:300;line-height:1.85;color:rgba(122,143,168,0.95);}
+  .sec-body p{margin-bottom:1rem;}
+  .sec-body strong{color:var(--off-white);font-weight:500;}
+  .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
+  .callout p{font-size:0.88rem;color:rgba(248,247,244,0.8);line-height:1.7;margin:0;}
+  .callout strong{color:var(--gold);}
+  .num-list{padding-left:1.2rem;margin:0.8rem 0;}
+  .num-list li{font-size:0.9rem;font-weight:300;color:rgba(122,143,168,0.95);line-height:1.7;margin-bottom:0.5rem;}
+  .num-list li strong{color:var(--off-white);}
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
+
+  .cta-box{background:var(--navy-mid);border:1px solid rgba(201,169,110,0.2);border-radius:4px;padding:2rem 2.4rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .cta-box p{font-size:0.9rem;font-weight:300;color:var(--gray);line-height:1.6;}
+  .cta-box strong{display:block;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--off-white);margin-bottom:0.4rem;}
+  .cta-btn{display:inline-block;padding:0.8rem 1.8rem;border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;}
+  .cta-btn:hover{background:var(--gold);color:var(--navy);}
+
+  footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;margin-right:0;}
+    .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;} footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+    .cta-box{flex-direction:column;}
+  }
+</style>
+</head>
+<body class="ko">
+
+
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  
+  <ul class="nav-links">
+    <li><a href="/">
+      <span data-ko>홈</span><span data-en>Home</span>
+    </a></li>
+    <li><a href="/#services">
+      <span data-ko>서비스</span><span data-en>Services</span>
+    </a></li>
+    <li><a href="/aap_insights.html" class="active">
+      <span data-ko>인사이트</span><span data-en>Insights</span>
+    </a></li>
+    <li><a href="/#contact">
+      <span data-ko>문의</span><span data-en>Contact</span>
+    </a></li>
+  </ul>
+
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <a href="/aap_insights.html" class="back-link">
+      <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
+    </a>
+    <div class="eyebrow">
+      <span data-ko>가이드</span><span data-en>Guide</span>
+    </div>
+    <h1>
+      <span data-ko>바이어가 EBITDA를 깎는 다섯 가지 방법</span>
+      <span data-en>Five ways buyers cut your EBITDA</span>
+    </h1>
+    <div class="hero-meta">AAP Advisory · 2026. 04</div>
+    <p class="hero-lead">
+      <span data-ko>실사에서 자주 나오는 조정 항목들을 미리 파악하고 준비하면 협상이 달라집니다. 바이어가 들어오기 전에, 우리가 먼저 봐야 하는 이유입니다.</span>
+      <span data-en>Knowing the adjustments buyers commonly make — before they arrive — fundamentally changes the negotiation. Here is what to prepare for.</span>
+    </p>
+  </div>
+</section>
+
+<div class="article">
+  <div data-lang="ko">
+      <div class="section">
+        <h2 class="sec-title">EBITDA란 무엇인가</h2>
+        <div class="sec-body"><p>EBITDA는 <strong>Earnings Before Interest, Taxes, Depreciation and Amortization</strong>의 약자로, 이자·세금·감가상각을 차감하기 전의 영업이익을 의미합니다. 쉽게 말해, 회사가 본업으로 얼마나 벌어들이는지를 보여주는 숫자입니다.</p><p>M&amp;A에서 EBITDA가 중요한 이유는 기업가치(EV) 산정의 기준이 되기 때문입니다. 바이어는 보통 <strong>EV = EBITDA × 멀티플</strong>로 기업가치를 산정합니다. EBITDA가 10억이고 멀티플이 5배라면 EV는 50억이 됩니다. 멀티플 1포인트 차이가 수억 원의 가격 차이로 이어지는 구조입니다.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">EBITDA 조정이란 무엇인가</h2>
+        <div class="sec-body"><p>바이어의 재무실사팀이 하는 가장 중요한 작업 중 하나는 셀러의 EBITDA를 '정상화(Normalisation)'하는 것입니다. 보고된 EBITDA에서 <strong>비반복적이거나 비사업적인 항목</strong>을 제거하거나 추가해 실질적인 수익력을 산출하는 과정입니다.</p><p>문제는 이 조정 과정에서 바이어와 셀러의 이해관계가 정반대라는 점입니다. 바이어는 EBITDA를 낮추려 하고, 셀러는 높이려 합니다. 준비된 셀러는 각 항목에 대한 논리와 근거를 갖추고 있습니다.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">① 오너 개인 비용 (Owner Add-backs)</h2>
+        <div class="sec-body"><p>대표이사 차량 리스, 개인 보험료, 가족 구성원 급여, 해외 출장 등 회사 장부에 섞인 개인 비용입니다. 바이어는 이를 비사업적 비용으로 간주해 EBITDA에서 차감합니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 역설적으로 이 항목은 셀러에게 유리하게 작용할 수도 있습니다. 오너 개인 비용이 크다면, 이를 EBITDA 가산 항목(add-back)으로 활용해 정상화 EBITDA를 높일 수 있습니다. 단, 문서화와 논리가 갖춰져 있어야 합니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">② 일회성 비용 (One-offs)</h2>
+        <div class="sec-body"><p>소송 합의금, 구조조정 비용, 비반복적 컨설팅 비용, 자연재해 등 특수 상황으로 인한 비용입니다. 바이어는 이를 미래에도 반복될 수 있다고 주장하며 차감을 시도합니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 셀러는 각 항목이 왜 일회성인지 명확한 근거를 준비해야 합니다. "그냥 일회성입니다"는 통하지 않습니다. 계약서, 판결문, 이사회 의사록 등 구체적인 문서가 필요합니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">③ Pro Forma 인건비 (CEO Replacement Cost)</h2>
+        <div class="sec-body"><p>대표이사가 회사를 떠난 후, 동일한 역할을 수행할 전문 경영인의 시장 급여를 EBITDA에서 차감합니다. 오너가 낮은 급여를 받고 있거나, 복수의 역할을 겸임하는 경우 조정 금액이 커집니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 딜 전에 대표이사의 실질적인 역할을 명확히 정의하고, 시장 급여 벤치마크를 선제적으로 제시하면 바이어의 과도한 조정을 막을 수 있습니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">④ 관계사 거래 조정 (Related Party Normalisation)</h2>
+        <div class="sec-body"><p>특수관계인과의 임차료, 용역비, 구매 거래가 시장 가격과 다를 경우 바이어는 차이만큼 조정합니다. 특히 대표이사 소유 부동산을 회사가 임차하는 구조는 자주 문제가 됩니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 관계사 거래는 사전에 시장 가격과의 비교 분석을 준비해두는 것이 중요합니다. 시장 가격이 맞다면 근거 자료가, 차이가 있다면 해소 계획이 필요합니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">⑤ 오너 리스크 할인 (Key Person Risk)</h2>
+        <div class="sec-body"><p>엄밀히 말하면 EBITDA 조정 항목이 아니지만, 대표이사에 대한 의존도가 높을 경우 바이어는 밸류에이션 멀티플 자체를 낮추거나 Earn-out 조건을 강화하는 방식으로 반영합니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 딜 전 2~3년 동안 핵심 고객 관계와 운영 권한을 관리팀으로 이전하는 작업이 필요합니다. 이는 밸류에이션을 지키는 가장 효과적인 방법 중 하나입니다.</p></div></div>
+      </div></div>
+  <div data-lang="en" style="display:none">
+      <div class="section">
+        <h2 class="sec-title">What is EBITDA?</h2>
+        <div class="sec-body"><p>EBITDA stands for <strong>Earnings Before Interest, Taxes, Depreciation and Amortization</strong>. In plain terms, it measures how much cash a business generates from its core operations, before financing costs and accounting adjustments.</p><p>In M&amp;A, EBITDA matters because it is the foundation of enterprise value. Buyers typically value businesses as <strong>EV = EBITDA × multiple</strong>. If EBITDA is ₩1bn and the multiple is 5x, EV is ₩5bn. A single turn of multiple difference translates directly into hundreds of millions in deal price.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">What is EBITDA normalisation?</h2>
+        <div class="sec-body"><p>One of the first things a buyer's due diligence team does is "normalise" the seller's EBITDA — stripping out <strong>non-recurring or non-business items</strong> to arrive at the true underlying earnings power.</p><p>The problem is that buyer and seller have opposite interests in this process. Buyers want EBITDA lower; sellers want it higher. Prepared sellers have the logic and documentation to defend every line item.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">① Owner add-backs</h2>
+        <div class="sec-body"><p>Personal car leases, private insurance, family member salaries, personal travel — costs that sit in the company's books but aren't core business expenses. Buyers deduct these from EBITDA.</p><div class="callout"><p><strong>AAP insight —</strong> Paradoxically, this can work in the seller's favour. Large owner personal costs can be added back to raise normalised EBITDA — but only with clear documentation and a defensible rationale.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">② One-off costs</h2>
+        <div class="sec-body"><p>Legal settlements, restructuring charges, one-time consulting fees, unusual events. Buyers argue these could recur and push for deductions.</p><div class="callout"><p><strong>AAP insight —</strong> "It was just a one-off" isn't enough. Prepare the contracts, court documents, or board minutes that prove non-recurrence for each item.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">③ Pro forma management salary</h2>
+        <div class="sec-body"><p>If the owner departs, what would it cost to replace them with a professional CEO? Buyers deduct this market-rate salary from EBITDA — especially if the owner takes a low salary or wears multiple hats.</p><div class="callout"><p><strong>AAP insight —</strong> Define the owner's actual role clearly before the deal, and present a market salary benchmark proactively. This prevents buyers from applying inflated replacement costs.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">④ Related-party normalisation</h2>
+        <div class="sec-body"><p>If the company leases property from the owner, or transacts with affiliated entities at non-market rates, buyers adjust for the difference. Owner-occupied property leased to the company is a very common issue.</p><div class="callout"><p><strong>AAP insight —</strong> Prepare a market comparison for all related-party transactions in advance. If pricing is at market, document it. If not, have a resolution plan ready.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">⑤ Key person risk</h2>
+        <div class="sec-body"><p>Strictly speaking, this isn't an EBITDA line item — but high owner dependency leads buyers to apply a lower valuation multiple or impose stronger Earn-out conditions.</p><div class="callout"><p><strong>AAP insight —</strong> Two to three years before a deal, begin transferring key customer relationships and operational authority to your management team. This is one of the most effective ways to protect your valuation.</p></div></div>
+      </div></div>
+<a href="/#contact" class="cta-btn">
+      <span data-ko>상담 문의하기</span><span data-en>Book a consultation</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    document.querySelectorAll('[data-ko]').forEach(el => el.style.display = lang==='ko' ? '' : 'none');
+    document.querySelectorAll('[data-en]').forEach(el => el.style.display = lang==='en' ? '' : 'none');
+    document.querySelector('[data-lang="ko"]').style.display = lang==='ko' ? '' : 'none';
+    document.querySelector('[data-lang="en"]').style.display = lang==='en' ? '' : 'none';
+  }
+  setLang('ko');
+</script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기업가치(EV)와 실수령액은 왜 다른가 — AAP Advisory</title>
+<style>html,body{background:#111E35;}
+  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
+  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
+  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+  .lt-btn.active { background:var(--silver,#A6A6A6); color:#111E35; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#111E35; --navy-mid:#1B2A4A; --navy-card:#162038;
+    --gold:#C9A96E; --gold-lt:#DFC090; --silver:#A6A6A6;
+    --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
+  .nav-logo span{color:var(--silver);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;margin-right:2rem;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--gold);}
+
+  .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
+  .hero-inner{max-width:720px;margin:0 auto;}
+  .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
+  .back-link:hover{color:var(--gold);}
+  .back-link::before{content:'←';}
+  .eyebrow{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;color:var(--off-white);margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--gold-lt);}
+  .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
+  .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
+
+  .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
+  .section{margin-bottom:2.8rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .sec-body{font-size:0.92rem;font-weight:300;line-height:1.85;color:rgba(122,143,168,0.95);}
+  .sec-body p{margin-bottom:1rem;}
+  .sec-body strong{color:var(--off-white);font-weight:500;}
+  .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
+  .callout p{font-size:0.88rem;color:rgba(248,247,244,0.8);line-height:1.7;margin:0;}
+  .callout strong{color:var(--gold);}
+  .num-list{padding-left:1.2rem;margin:0.8rem 0;}
+  .num-list li{font-size:0.9rem;font-weight:300;color:rgba(122,143,168,0.95);line-height:1.7;margin-bottom:0.5rem;}
+  .num-list li strong{color:var(--off-white);}
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
+
+  .cta-box{background:var(--navy-mid);border:1px solid rgba(201,169,110,0.2);border-radius:4px;padding:2rem 2.4rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .cta-box p{font-size:0.9rem;font-weight:300;color:var(--gray);line-height:1.6;}
+  .cta-box strong{display:block;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--off-white);margin-bottom:0.4rem;}
+  .cta-btn{display:inline-block;padding:0.8rem 1.8rem;border:1px solid var(--gold);color:var(--gold);font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;}
+  .cta-btn:hover{background:var(--gold);color:var(--navy);}
+
+  footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;margin-right:0;}
+    .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;} footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+    .cta-box{flex-direction:column;}
+  }
+</style>
+</head>
+<body class="ko">
+
+
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  
+  <ul class="nav-links">
+    <li><a href="/">
+      <span data-ko>홈</span><span data-en>Home</span>
+    </a></li>
+    <li><a href="/#services">
+      <span data-ko>서비스</span><span data-en>Services</span>
+    </a></li>
+    <li><a href="/aap_insights.html" class="active">
+      <span data-ko>인사이트</span><span data-en>Insights</span>
+    </a></li>
+    <li><a href="/#contact">
+      <span data-ko>문의</span><span data-en>Contact</span>
+    </a></li>
+  </ul>
+
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <a href="/aap_insights.html" class="back-link">
+      <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
+    </a>
+    <div class="eyebrow">
+      <span data-ko>밸류에이션</span><span data-en>Valuation</span>
+    </div>
+    <h1>
+      <span data-ko>기업가치(EV)와 실수령액은 왜 다른가</span>
+      <span data-en>Why EV and your proceeds are not the same</span>
+    </h1>
+    <div class="hero-meta">AAP Advisory · 2026. 04</div>
+    <p class="hero-lead">
+      <span data-ko>바이어가 제시한 기업가치가 곧 내 손에 들어오는 금액이 아닙니다. 세 가지 차감 구조를 이해해야 딜을 제대로 읽을 수 있습니다.</span>
+      <span data-en>The enterprise value a buyer proposes is not what lands in your account. Three deduction structures separate EV from your actual proceeds.</span>
+    </p>
+  </div>
+</section>
+
+<div class="article">
+  <div data-lang="ko">
+      <div class="section">
+        <h2 class="sec-title">EV와 Equity Value의 차이</h2>
+        <div class="sec-body"><p>M&A에서 바이어가 제시하는 가격은 보통 <strong>기업가치(Enterprise Value, EV)</strong>입니다. 그러나 오너가 실제로 수령하는 금액은 <strong>주주가치(Equity Value)</strong>이며, 두 숫자는 항상 다릅니다.</p><p>공식으로 표현하면: <strong>Equity Value = EV − (Net Debt + DLI) ± WC 조정</strong></p><p>EV 300억 딜에서 실수령액이 200억이 되는 경우는 드물지 않습니다. 세 가지 차감 구조를 이해하는 것이 딜을 읽는 출발점입니다.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">① 순차입금 + 부채 유사 항목 (Net Debt + DLI)</h2>
+        <div class="sec-body"><p><strong>순차입금(Net Debt)</strong>은 금융 부채(은행 차입금, 리스 부채, 사채 등)에서 현금성 자산을 차감한 금액입니다. K-IFRS 16 도입 이후 운용리스도 포함되므로 간과하기 쉬운 항목입니다.</p><p><strong>부채 유사 항목(DLI, Debt-like Items)</strong>은 장부에 명시되지 않지만 경제적으로 부채와 같은 의무들입니다. 대표적인 항목은 다음과 같습니다.</p><ul class="num-list"><li><strong>임직원 관련 미지급 의무:</strong> 퇴직급여 적립 부족분, 미지급 장기근속 보상 등 인건비 성격의 누적 의무</li><li><strong>우발 부채:</strong> 진행 중인 소송, 세무 리스크, 환경 정화 의무</li><li><strong>필수 자본적 지출 미이행:</strong> 정상적인 사업 운영을 위해 필요한 설비 교체나 유지보수 투자가 이루어지지 않은 경우 — 바이어가 인수 후 부담해야 할 비용으로 간주</li></ul><div class="callout"><p><strong>AAP 인사이트 —</strong> DLI는 딜 협상에서 가장 많이 다투는 영역입니다. 오너가 먼저 식별하고 수치화해두면 바이어의 과도한 차감 요구를 방어할 수 있습니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">② 운전자본 조정 (Working Capital Adjustment)</h2>
+        <div class="sec-body"><p>딜 클로징일의 실제 운전자본(NWC)이 합의된 기준 운전자본(Peg)보다 낮으면 Equity Value에서 차감, 높으면 가산합니다.</p><p>정상 운전자본은 일반적으로 과거 12개월 평균을 기준으로 산정합니다. Completion Accounts 방식에서 특히 중요합니다.</p><div class="callout"><p><strong>AAP 인사이트 —</strong> 딜 직전에 매출채권을 무리하게 회수하거나 매입채무를 늦게 지급하면 기준 운전자본 대비 클로징일 NWC가 낮아져 차감이 발생합니다. 정상적인 운영 기조를 유지하는 것이 중요합니다.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">실무에서 어떻게 대비하나</h2>
+        <div class="sec-body"><p>세 가지 차감 구조를 이해했다면, 딜 전에 해야 할 일은 명확합니다.</p><ul class="num-list"><li><strong>Net Debt 목록화:</strong> 모든 금융 부채와 현금성 자산을 정리하고 리스 부채까지 포함</li><li><strong>DLI 사전 식별:</strong> 퇴직급여 적립 현황, 미지급 의무, 소송 현황 파악</li><li><strong>정상 NWC 산출:</strong> 12개월 월별 추이를 정리하고 계절성 패턴 파악</li><li><strong>Peg 협상 준비:</strong> 셀러에게 유리한 기준 시점과 계산 방식을 사전에 검토</li></ul></div>
+      </div></div>
+  <div data-lang="en" style="display:none">
+      <div class="section">
+        <h2 class="sec-title">The gap between EV and Equity Value</h2>
+        <div class="sec-body"><p>In M&A, the price a buyer proposes is usually the <strong>Enterprise Value (EV)</strong>. But what the owner actually receives is the <strong>Equity Value</strong> — and the two numbers are never the same.</p><p>The formula: <strong>Equity Value = EV − (Net Debt + DLI) ± WC adjustment</strong></p><p>A ₩30bn EV deal delivering ₩20bn to the seller is not unusual. Understanding the three deduction structures is the starting point for reading any deal.</p></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">① Net Debt + Debt-like Items (DLI)</h2>
+        <div class="sec-body"><p><strong>Net Debt</strong> is financial liabilities (bank debt, lease liabilities, bonds, shareholder loans) minus cash and cash equivalents. Since K-IFRS 16, operating leases appear on the balance sheet — an item that is often overlooked.</p><p><strong>Debt-like Items (DLIs)</strong> are obligations that do not appear explicitly on the balance sheet but carry the economic substance of debt. Key categories include:</p><ul class="num-list"><li><strong>Employee-related accrued obligations:</strong> retirement benefit shortfalls, unpaid long-service entitlements — cumulative liabilities of a personnel nature</li><li><strong>Contingent liabilities:</strong> ongoing litigation, tax exposure, environmental remediation</li><li><strong>Required capital expenditure:</strong> equipment replacement or maintenance investment necessary for normal operations that has been deferred — treated by buyers as costs they will inherit post-acquisition</li></ul><div class="callout"><p><strong>AAP insight —</strong> DLIs are the most contested area in deal negotiations. Owners who identify and quantify them first are in a much stronger position to defend against aggressive buyer deductions.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">② Working capital adjustment</h2>
+        <div class="sec-body"><p>If actual NWC at closing is below the agreed peg, Equity Value is reduced; above, it increases. The peg is typically based on the trailing 12-month average NWC. This matters most in Completion Accounts structures.</p><div class="callout"><p><strong>AAP insight —</strong> Aggressively collecting receivables or delaying payables just before closing depresses NWC below the peg and triggers a deduction. Maintain normal operating patterns through the deal process.</p></div></div>
+      </div>
+      <div class="section">
+        <h2 class="sec-title">③ How to prepare in practice</h2>
+        <div class="sec-body"><p>Once you understand the three deduction structures, the pre-deal checklist is clear.</p><ul class="num-list"><li><strong>Map net debt:</strong> list all financial liabilities and cash — including lease liabilities</li><li><strong>Identify DLIs early:</strong> retirement provisions, accrued obligations, litigation status</li><li><strong>Calculate normalised NWC:</strong> 12-month monthly trend with seasonality analysis</li><li><strong>Prepare peg negotiation:</strong> review the reference date and calculation methodology that favours the seller</li></ul></div>
+      </div></div>
+<a href="/#contact" class="cta-btn">
+      <span data-ko>상담 문의하기</span><span data-en>Book a consultation</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    document.querySelectorAll('[data-ko]').forEach(el => el.style.display = lang==='ko' ? '' : 'none');
+    document.querySelectorAll('[data-en]').forEach(el => el.style.display = lang==='en' ? '' : 'none');
+    document.querySelector('[data-lang="ko"]').style.display = lang==='ko' ? '' : 'none';
+    document.querySelector('[data-lang="en"]').style.display = lang==='en' ? '' : 'none';
+  }
+  setLang('ko');
+</script>
+</body>
+</html>
