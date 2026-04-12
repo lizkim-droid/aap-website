@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAP Advisory — Anchor. Align. Position.</title>
+<title>AAP Advisory</title>
 <style>html,body{background:#111E35;}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -123,13 +123,13 @@
   .tw {
     display: block;
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 4.5vw, 5rem);
-    font-weight: 700; line-height: 1.08;
-    opacity: 0.06; letter-spacing: -0.02em;
-    transition: opacity 0.5s;
+    font-size: clamp(2.6rem, 4vw, 4.4rem);
+    font-weight: 700; line-height: 1.1;
+    opacity: 0.05; letter-spacing: -0.02em;
+    transition: opacity 0.6s ease;
     cursor: default;
   }
-  .tw.on { opacity: 1; color: var(--accent-lt); }
+  .tw.on { opacity: 1; color: var(--accent-lt); transition: opacity 0.6s ease; }
   .tw:hover { opacity: 0.4; }
 
   /* ─── SHARED ─── */
@@ -397,9 +397,9 @@
       </p>
     </div>
     <div class="tagline-block">
-      <span class="tw on" id="tw0">Anchor</span>
-      <span class="tw" id="tw1">Align</span>
-      <span class="tw" id="tw2">Position</span>
+      <span class="tw" id="tw0">Financial<br>discipline</span>
+      <span class="tw" id="tw1">drives</span>
+      <span class="tw" id="tw2">enterprise<br>value.</span>
     </div>
   </div>
 </section>
@@ -538,8 +538,7 @@
           </a>
         </div>
         <div>
-          <div class="contact-lbl">Tagline</div>
-          <span class="contact-val muted">Anchor. Align. Position.</span>
+          <span class="contact-val muted" style="font-family:'Playfair Display',serif; font-style:italic; font-size:0.95rem; line-height:1.5;">Financial discipline<br>drives enterprise value.</span>
         </div>
       </div>
     </div>
@@ -579,12 +578,27 @@
     btn.classList.add('active');
   }
 
-  let cur = 0;
-  setInterval(() => {
-    document.getElementById('tw' + cur).classList.remove('on');
-    cur = (cur + 1) % 3;
-    document.getElementById('tw' + cur).classList.add('on');
-  }, 2000);
+  // 태그라인: 단어별 쌓이기 → 전체 완성 → 리셋
+  (function() {
+    const words = ['tw0','tw1','tw2'];
+    let phase = 0;
+
+    function nextPhase() {
+      if (phase < words.length) {
+        document.getElementById(words[phase]).classList.add('on');
+        phase++;
+        setTimeout(nextPhase, 900);
+      } else {
+        // 완성 후 2초 대기 → 리셋
+        setTimeout(() => {
+          words.forEach(id => document.getElementById(id).classList.remove('on'));
+          phase = 0;
+          setTimeout(nextPhase, 400);
+        }, 2200);
+      }
+    }
+    nextPhase();
+  })();
 
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
