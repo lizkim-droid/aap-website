@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>지금 팔 생각이 없어도 해야 할 것들 — AAP Advisory</title>
+
+<style>html,body{background:#111E35;}
+  body.ko [data-en] { display:none; }
+  body.en [data-ko] { display:none; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#111E35; --navy-mid:#1B2A4A; --navy-card:#162038;
+    --gold:#C9A96E; --gold-lt:#DFC090; --silver:#A6A6A6;
+    --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
+  .nav-logo span{color:var(--silver);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--gold);}
+  .lang-toggle{display:flex;border:1px solid rgba(255,255,255,0.12);overflow:hidden;}
+  .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
+  .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
+  .lt-btn.active{background:var(--silver);color:#111E35;}
+
+  .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
+  .hero-inner{max-width:720px;margin:0 auto;}
+  .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
+  .back-link:hover{color:var(--gold);}
+  .back-link::before{content:'←';}
+  .series-label{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.4rem;}
+  .eyebrow{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;color:var(--off-white);margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--gold-lt);}
+  .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
+  .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
+
+  .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
+  .section{margin-bottom:2.8rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .sec-body{font-size:0.92rem;font-weight:300;line-height:1.9;color:rgba(122,143,168,0.95);}
+  .sec-body p{margin-bottom:1.1rem;}
+  .sec-body strong{color:var(--off-white);font-weight:500;}
+  .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
+  .callout p{font-size:0.88rem;color:rgba(248,247,244,0.85);line-height:1.75;margin:0;}
+  .callout strong{color:var(--gold);}
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
+
+  .next-box{background:var(--navy-card);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.4rem 1.8rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+  .next-label{font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.3rem;}
+  .next-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--off-white);}
+  .next-btn{display:inline-block;padding:0.65rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
+  .next-btn:hover{background:var(--gold);color:var(--navy);}
+
+  footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
+    .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
+    footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body class="ko">
+
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+    <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+    <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <a href="/aap_insights.html" class="back-link">
+      <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
+    </a>
+    <div class="series-label">
+      <span data-ko>시리즈 1 · 팔기로 했다면</span><span data-en>Series 1 · If you have decided to sell</span>
+    </div>
+    <div class="eyebrow">
+      <span data-ko>오너 가이드</span><span data-en>Owner guide</span>
+    </div>
+    <h1>
+      <span data-ko>지금 팔 생각이 없어도 해야 할 것들</span>
+      <span data-en>Things to do even if you are not selling yet</span>
+    </h1>
+    <div class="hero-meta">AAP Advisory · 2026. 04</div>
+    <p class="hero-lead">
+      <span data-ko>Exit은 결심하고 나서 준비하는 게 아닙니다. 준비가 먼저 되어 있어야 좋은 타이밍을 잡을 수 있습니다.</span>
+      <span data-en>You do not prepare for an exit after you decide to sell. The preparation has to come first — so that when the right moment arrives, you are ready to move.</span>
+    </p>
+  </div>
+</section>
+
+<div class="article">
+  <div data-lang="ko">
+      <div class="section">
+        <h2 class="sec-title">타이밍은 선택할 수 있어야 한다</h2>
+        <div class="sec-body"><p>최고의 딜은 오너가 급하지 않을 때 나옵니다. 사업이 잘 되고 있을 때, 바이어가 경쟁하는 상황일 때, 오너에게 시간이 있을 때 — 이때 협상력이 가장 높습니다.</p>
+<p>반대로 건강 문제, 파트너 분쟁, 사업 악화 같은 이유로 급하게 팔아야 할 때 좋은 조건을 받기 어렵습니다. 바이어는 셀러의 절박함을 읽습니다.</p>
+<p>준비가 되어 있다는 것은 좋은 타이밍을 선택할 수 있다는 의미입니다. 기회가 왔을 때 6개월을 준비에 쓰지 않아도 됩니다.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">지금 바로 시작할 수 있는 것들</h2>
+        <div class="sec-body"><p><strong>재무 가시성 높이기.</strong> 월별 관리 회계 자료를 체계적으로 유지하세요. 매출, EBITDA, 현금흐름이 월별로 추적 가능해야 합니다. 감에 의존하는 경영에서 숫자로 설명 가능한 경영으로.</p>
+<p><strong>오너 비용 분리.</strong> 회사 장부에 섞인 개인 비용을 지금부터 분리하세요. 차량, 보험, 개인 여행 등. 이것을 지금 정리해두면 나중에 EBITDA 정상화 작업이 훨씬 간단해집니다.</p>
+<p><strong>핵심 계약 점검.</strong> 주요 고객, 공급사, 임차 계약의 만기와 갱신 조건을 파악해두세요. Change of Control 조항이 있는 계약은 특히 확인이 필요합니다.</p>
+<div class="callout"><p><strong>가장 흔한 후회 —</strong> "좀 더 일찍 정리를 시작할 걸." 딜을 마친 오너들의 공통된 이야기입니다. 지금 하는 준비가 몇 년 후 수억 원의 차이를 만들 수 있습니다.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">회사를 설명할 수 있어야 한다</h2>
+        <div class="sec-body"><p>바이어가 물어봤을 때 오너가 즉각 답할 수 있어야 하는 것들이 있습니다. 최근 3년 매출과 EBITDA 추이, 상위 5개 고객의 비중, 고정비와 변동비 구조, 주요 부채와 보증 현황.</p>
+<p>이 숫자들이 오너의 머릿속에 있고, 자료로도 뒷받침될 때 — 그때 바이어와 대등한 대화가 가능합니다.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">전문가와 미리 이야기해두기</h2>
+        <div class="sec-body"><p>매각을 구체적으로 결정하기 전이라도 M&A 자문사나 세무사와 미리 이야기해두는 것이 도움됩니다. 현재 상황에서 어떤 준비가 필요한지, 어떤 구조가 세금 면에서 유리한지 — 이런 것들은 딜을 앞두고 갑자기 알기 어렵습니다.</p>
+<p>준비 없이 갑자기 시작된 딜에서는 중요한 결정을 촉박하게 내려야 하는 경우가 많습니다. 미리 알아두면 여유가 생깁니다.</p></div>
+      </div></div>
+  <div data-lang="en" style="display:none">
+      <div class="section">
+        <h2 class="sec-title">You need to be able to choose your timing</h2>
+        <div class="sec-body"><p>The best deals happen when the owner is not in a hurry. When the business is performing well, when buyers are competing for it, when the owner has time — that is when negotiating leverage is strongest.</p>
+<p>The opposite is also true. When health, partnership disputes or business decline force a quick sale, good terms become hard to achieve. Buyers read the urgency of a seller.</p>
+<p>Being prepared means you can choose when to sell. When an opportunity arrives, you will not need to spend six months getting ready first.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">Things you can start now</h2>
+        <div class="sec-body"><p><strong>Build financial visibility.</strong> Maintain monthly management accounts in a structured way. Revenue, EBITDA and cash flow should be trackable month by month. Move from intuition-based management to numbers-based management.</p>
+<p><strong>Separate owner costs.</strong> Start now to clearly separate personal expenses from the company books — car leases, insurance, personal travel. Doing this now makes the EBITDA normalisation exercise much simpler later.</p>
+<p><strong>Review key contracts.</strong> Know the expiry dates and renewal terms of your major customer, supplier and lease contracts. Contracts with Change of Control clauses need particular attention.</p>
+<div class="callout"><p><strong>The most common regret —</strong> "I wish I had started preparing earlier." This is what owners consistently say after completing a deal. The preparation you do now can mean the difference of hundreds of millions of won a few years from now.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">You need to be able to explain your business</h2>
+        <div class="sec-body"><p>There are things an owner should be able to answer immediately when a buyer asks. Revenue and EBITDA trend for the last three years. Revenue concentration among the top five customers. Fixed versus variable cost structure. Major debt and guarantee positions.</p>
+<p>When these numbers are in the owner's head and backed by documentation — that is when you can have an equal conversation with a buyer.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">Talk to advisers early</h2>
+        <div class="sec-body"><p>Even before you have made a firm decision to sell, it is worth having an early conversation with an M&A adviser and a tax adviser. What preparation is needed at your current stage. Which deal structure makes sense from a tax perspective. These are not things you can figure out quickly once a deal is already moving.</p>
+<p>When a deal starts without preparation, important decisions often have to be made under pressure. Knowing the answers in advance gives you room to think clearly.</p></div>
+      </div></div>
+  
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
+    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
+  }
+  (function() {
+    var saved; try { saved = localStorage.getItem('aap-lang'); } catch(e) {}
+    setLang(saved === 'en' ? 'en' : 'ko');
+  })();
+</script>
+</body>
+</html>

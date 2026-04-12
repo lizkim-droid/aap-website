@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>준비된 오너와 그렇지 않은 오너의 차이 — AAP Advisory</title>
+
+<style>html,body{background:#111E35;}
+  body.ko [data-en] { display:none; }
+  body.en [data-ko] { display:none; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#111E35; --navy-mid:#1B2A4A; --navy-card:#162038;
+    --gold:#C9A96E; --gold-lt:#DFC090; --silver:#A6A6A6;
+    --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
+  .nav-logo span{color:var(--silver);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--gold);}
+  .lang-toggle{display:flex;border:1px solid rgba(255,255,255,0.12);overflow:hidden;}
+  .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
+  .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
+  .lt-btn.active{background:var(--silver);color:#111E35;}
+
+  .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
+  .hero-inner{max-width:720px;margin:0 auto;}
+  .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
+  .back-link:hover{color:var(--gold);}
+  .back-link::before{content:'←';}
+  .series-label{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.4rem;}
+  .eyebrow{font-size:0.65rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.2;color:var(--off-white);margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--gold-lt);}
+  .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
+  .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
+
+  .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
+  .section{margin-bottom:2.8rem;}
+  .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .sec-body{font-size:0.92rem;font-weight:300;line-height:1.9;color:rgba(122,143,168,0.95);}
+  .sec-body p{margin-bottom:1.1rem;}
+  .sec-body strong{color:var(--off-white);font-weight:500;}
+  .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
+  .callout p{font-size:0.88rem;color:rgba(248,247,244,0.85);line-height:1.75;margin:0;}
+  .callout strong{color:var(--gold);}
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
+
+  .next-box{background:var(--navy-card);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.4rem 1.8rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+  .next-label{font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.3rem;}
+  .next-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--off-white);}
+  .next-btn{display:inline-block;padding:0.65rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
+  .next-btn:hover{background:var(--gold);color:var(--navy);}
+
+  footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+  @media(max-width:768px){
+    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
+    .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
+    footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body class="ko">
+
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+    <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+    <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <a href="/aap_insights.html" class="back-link">
+      <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
+    </a>
+    <div class="series-label">
+      <span data-ko>시리즈 1 · 팔기로 했다면</span><span data-en>Series 1 · If you have decided to sell</span>
+    </div>
+    <div class="eyebrow">
+      <span data-ko>오너 가이드</span><span data-en>Owner guide</span>
+    </div>
+    <h1>
+      <span data-ko>준비된 오너와 그렇지 않은 오너의 차이</span>
+      <span data-en>Prepared vs. unprepared — why it matters</span>
+    </h1>
+    <div class="hero-meta">AAP Advisory · 2026. 04</div>
+    <p class="hero-lead">
+      <span data-ko>같은 회사라도 오너가 얼마나 준비했느냐에 따라 딜의 결과가 완전히 달라집니다. 차이는 협상 테이블에 앉기 전에 이미 만들어집니다.</span>
+      <span data-en>Same business, very different outcomes — depending on how prepared the owner is. The difference is made before you ever sit down to negotiate.</span>
+    </p>
+  </div>
+</section>
+
+<div class="article">
+  <div data-lang="ko">
+      <div class="section">
+        <h2 class="sec-title">왜 준비가 결과를 바꾸는가</h2>
+        <div class="sec-body"><p>사업을 매각하는 과정에서 바이어는 처음부터 준비되어 있습니다. 전문 실사팀, 법무팀, 회계사가 붙어서 수십 가지 질문을 던집니다. 오너 혼자서 이 과정을 처음 맞닥뜨리면 압도되기 쉽습니다.</p>
+<p>준비된 오너는 다릅니다. 바이어가 물어볼 것을 먼저 알고 있고, 대답과 근거 자료를 갖추고 있습니다. 이것만으로도 협상에서 주도권이 바뀝니다.</p>
+<div class="callout"><p><strong>핵심은 이겁니다 —</strong> 실사에서 바이어가 '발견'하는 문제와 오너가 '먼저 설명'하는 문제는 협상에서 전혀 다른 무게를 가집니다. 바이어가 찾아낸 문제는 가격 조정의 근거가 됩니다. 오너가 먼저 꺼낸 문제는 이미 가격에 반영된 사실이 됩니다.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">준비된 오너가 하는 것들</h2>
+        <div class="sec-body"><p>보통 딜 시작 6개월에서 1년 전부터 준비합니다. 재무제표를 정리하고, 오너 개인 비용을 분리하고, 주요 계약의 상태를 점검합니다. 회사 숫자가 설명 가능한 상태인지 스스로 먼저 확인합니다.</p>
+<p>Data Room도 미리 구축합니다. 바이어가 요청할 자료를 폴더별로 정리해두면 실사 기간이 짧아지고, 딜이 빠르게 진행됩니다. 실사가 길어질수록 리스크가 커집니다 — 정보 유출, 임직원 동요, 바이어의 환경 변화까지.</p>
+<div class="callout"><p><strong>현실 —</strong> 많은 오너들이 "팔기로 마음먹고 나서 준비하면 되겠지"라고 생각합니다. 그러나 바이어는 계약서에 서명하기 전까지 언제든 물러날 수 있습니다. 준비가 부족한 상태에서 나온 숫자와 자료는 바이어에게 불신을 줍니다.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">준비되지 않은 오너에게 일어나는 일</h2>
+        <div class="sec-body"><p>가장 흔한 패턴은 이렇습니다. 바이어가 실사에서 예상치 못한 항목을 발견합니다. 오너는 설명은 할 수 있지만 근거 자료가 없습니다. 바이어는 그것을 리스크로 간주하고 가격 조정을 요구합니다. 협상이 길어지다가 딜이 틀어지거나, 오너가 불리한 조건을 받아들이게 됩니다.</p>
+<p>준비 없이 시작한 딜은 결국 바이어의 실사팀이 주도권을 가져갑니다. 바이어가 찾아낸 숫자로 협상이 진행됩니다.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">준비는 언제 시작해야 하나</h2>
+        <div class="sec-body"><p>이상적으로는 매각 희망 시점 기준으로 최소 6개월 전입니다. 재무 정리는 3개년 이상의 데이터가 필요하고, 계약 점검이나 세무 리스크 확인도 시간이 걸립니다.</p>
+<p>당장 팔 생각이 없더라도 미리 준비해두는 것은 손해가 없습니다. 준비된 회사는 기회가 왔을 때 빠르게 움직일 수 있습니다.</p>
+<div class="callout"><p><strong>AAP Advisory의 역할 —</strong> 오너가 혼자서 이 모든 것을 파악하고 준비하기는 어렵습니다. 바이어 실사팀이 보는 시각으로 회사를 먼저 들여다보고, 무엇을 정리해야 하는지 같이 파악하는 것이 저희가 하는 일입니다.</p></div></div>
+      </div></div>
+  <div data-lang="en" style="display:none">
+      <div class="section">
+        <h2 class="sec-title">Why preparation changes the outcome</h2>
+        <div class="sec-body"><p>In any M&A process, the buyer arrives prepared. They have a due diligence team, legal counsel and accountants — ready to ask dozens of questions. An owner encountering this for the first time can easily feel overwhelmed.</p>
+<p>A prepared owner is different. They already know what buyers will ask, and have the answers and supporting documents ready. That alone shifts the balance of negotiation.</p>
+<div class="callout"><p><strong>The key point —</strong> A problem that a buyer <em>discovers</em> during due diligence and a problem that an owner <em>explains upfront</em> carry very different weight in negotiation. What the buyer finds becomes grounds for a price reduction. What the owner discloses first is already treated as a known fact reflected in the price.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">What prepared owners do</h2>
+        <div class="sec-body"><p>Typically, preparation begins six months to a year before the intended sale. Financial statements are cleaned up, owner personal costs are separated, and key contracts are reviewed. The owner checks first whether the company's numbers can be clearly explained.</p>
+<p>A data room is built in advance. Having documents organised by category means due diligence moves faster, and faster deals carry less risk — of information leaks, employee anxiety, or a change in the buyer's circumstances.</p>
+<div class="callout"><p><strong>The reality —</strong> Many owners think "I'll prepare once I've decided to sell." But buyers can walk away at any point before signing. Incomplete information and poorly organised data breed distrust.</p></div></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">What happens to unprepared owners</h2>
+        <div class="sec-body"><p>The most common pattern: a buyer finds something unexpected in due diligence. The owner can explain it, but has no supporting documents. The buyer treats it as a risk and demands a price adjustment. Negotiations drag on, the deal falls apart, or the owner accepts unfavourable terms.</p>
+<p>In a deal that starts without preparation, the buyer's due diligence team ends up in the driving seat. The negotiation runs on the buyer's numbers.</p></div>
+      </div>
+
+      <div class="section">
+        <h2 class="sec-title">When to start</h2>
+        <div class="sec-body"><p>Ideally, at least six months before your target exit date. Financial clean-up requires three or more years of data. Contract review and tax risk assessment both take time.</p>
+<p>Even if you are not planning to sell soon, there is no downside to preparing early. A ready company can move quickly when the right opportunity comes.</p>
+<div class="callout"><p><strong>What AAP Advisory does —</strong> It is hard for an owner to identify and address all of this alone. We look at your business through the lens of a buyer's due diligence team — and work through what needs to be addressed before you go to market.</p></div></div>
+      </div></div>
+  
+      <div class="divider"></div>
+      <div class="next-box">
+        <div>
+          <div class="next-label"><span data-ko>다음 글</span><span data-en>Next</span></div>
+          <div class="next-title">
+            <span data-ko>바이어가 실사에서 가장 먼저 보는 것</span>
+            <span data-en>What buyers look at first in due diligence</span>
+          </div>
+        </div>
+        <a href="/aap_s1_02.html" class="next-btn">
+          <span data-ko>읽기 →</span><span data-en>Read →</span>
+        </a>
+      </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
+    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
+  }
+  (function() {
+    var saved; try { saved = localStorage.getItem('aap-lang'); } catch(e) {}
+    setLang(saved === 'en' ? 'en' : 'ko');
+  })();
+</script>
+</body>
+</html>
