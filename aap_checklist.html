@@ -886,13 +886,13 @@
     if (pl) pl.textContent = t.progressLabel;
     var fc = document.querySelector('.footer-copy');
     if (fc) fc.textContent = t.footerCopy;
-    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
     updateProgress();
   }
 
   (function() {
     var saved;
-    try { saved = localStorage.getItem('aap-lang'); } catch(e) {}
+    try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
 

@@ -578,7 +578,7 @@
   // Email bypass
   var em = ["info", "aap-partners.com"].join("@");
   window.addEventListener("DOMContentLoaded", function() {
-    var saved = (function(){ try{ return localStorage.getItem('aap-lang'); }catch(e){ return null; } })();
+    var saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
     setLang(saved === 'en' ? 'en' : 'ko');
     document.querySelectorAll("#about-email, #contact-email").forEach(function(el) {
       el.href = "mailto:" + em;
@@ -592,7 +592,7 @@
     document.body.className = lang;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
-    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
   }
 
   function switchTab(id, btn) {

@@ -302,10 +302,10 @@
     document.body.className = lang;
     document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
     document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
-    try { localStorage.setItem('aap-lang', lang); } catch(e) {}
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
   }
   (function() {
-    var saved; try { saved = localStorage.getItem('aap-lang'); } catch(e) {}
+    var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
 </script>
