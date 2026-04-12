@@ -411,9 +411,8 @@
     <div class="hero-eyebrow">오너를 위한 M&A 가이드</div>
     <h1>Exit 전 꼭 정리해야 할<br><em>재무 체크리스트</em></h1>
     <p class="hero-sub">
-      바이어의 실사팀이 들어오기 전에, 우리가 먼저 봅니다.
-      이 체크리스트는 AAP Advisory의 FDD 실무 경험을 바탕으로
-      셀러 오너가 사전에 점검해야 할 핵심 항목을 정리한 것입니다.
+      <span data-ko>바이어 실사 이전에 핵심 재무 이슈를 선제적으로 점검합니다. AAP Advisory는 FDD 실무 경험을 바탕으로 주요 리스크와 이슈를 정리합니다.</span>
+      <span data-en>We identify the key financial issues before buyers do. Based on AAP Advisory's FDD experience, we map the risks and issues that matter most.</span>
     </p>
   </div>
 </section>
@@ -825,7 +824,7 @@
     ko: {
       eyebrow: '오너를 위한 M&A 가이드',
       h1: 'Exit 전 꼭 정리해야 할<br><em>재무 체크리스트</em>',
-      heroSub: '바이어의 실사팀이 들어오기 전에, 우리가 먼저 봅니다. AAP Advisory의 FDD 실무 경험을 바탕으로 핵심 항목을 정리했습니다.',
+      heroSub: '바이어 실사 이전에 핵심 재무 이슈를 선제적으로 점검합니다. AAP Advisory는 FDD 실무 경험을 바탕으로 주요 리스크와 이슈를 정리합니다.',
       introNote: '<strong>이 체크리스트는 어떻게 활용하나요?</strong><br>항목을 클릭하면 체크됩니다. 완료된 항목 비율로 현재 Exit 준비도를 확인할 수 있습니다. <strong>바이어 실사팀이 들어오기 6개월 전</strong>부터 정리를 시작하는 것을 권장합니다.',
       progressLabel: '준비도',
       navBack: '홈으로',
@@ -838,7 +837,7 @@
     en: {
       eyebrow: 'M&A Guide for Business Owners',
       h1: 'Financial Checklist<br><em>Before Your Exit</em>',
-      heroSub: 'Before the buyer due diligence team arrives, we look first. Based on AAP Advisory FDD experience across hundreds of deals.',
+      heroSub: 'We identify the key financial issues before buyers do. Based on AAP Advisory FDD experience, we map the risks and issues that matter most.',
       introNote: '<strong>How to use this checklist</strong><br>Click each item to check it off. Your readiness score updates in real time. We recommend starting at least <strong>6 months before buyer due diligence begins</strong>.',
       progressLabel: 'Readiness',
       navBack: 'Back to Home',
@@ -880,8 +879,6 @@
     if (nb) nb.textContent = t.navBack;
     var ey = document.querySelector('.hero-eyebrow');
     if (ey) ey.textContent = t.eyebrow;
-    var hs = document.querySelector('.hero-sub');
-    if (hs) hs.textContent = t.heroSub;
     var pl = document.querySelector('.progress-label');
     if (pl) pl.textContent = t.progressLabel;
     var fc = document.querySelector('.footer-copy');
