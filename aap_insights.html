@@ -160,6 +160,7 @@
 
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
@@ -169,7 +170,6 @@
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
     </ul>
     <div class="lang-toggle">
-      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
       <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
       <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
     </div>
