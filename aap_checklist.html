@@ -21,6 +21,18 @@
 
   body.ko [data-en] { display:none !important; }
   body.en [data-ko] { display:none !important; }
+
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
+  .hamburger span{display:block;width:22px;height:2px;background:#F8F7F4;transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#7A8FA8;text-decoration:none;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover{color:#F8F7F4;}
+  .mobile-menu a.active{color:#C9A96E;}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -41,7 +53,7 @@
   }
 
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-y: scroll; }
 
   body {
     font-family: 'DM Sans', sans-serif;
@@ -345,6 +357,7 @@
   .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); }
 
   @media (max-width: 768px) {
+    .hamburger{display:flex;} .nav-links{display:none;}
     .hero { padding: 7rem 1.5rem 3.5rem; }
     .content { padding: 2rem 1.5rem 4rem; }
     .progress-bar { padding: 1rem 1.5rem; }
@@ -357,6 +370,7 @@
 
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
@@ -371,6 +385,14 @@
     </div>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
+  <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
+  <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+  <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
+  <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
+</div>
 <div class="lang-wrap">
   <div class="lang-toggle">
     <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
@@ -907,6 +929,18 @@
     if (mm) mm.classList.toggle('show', pct >= 40 && pct < 75);
     if (mh) mh.classList.toggle('show', pct >= 75);
   }
+
+  function toggleMenu(){
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click',function(e){
+    var hb=document.getElementById('hamburger');
+    var mm=document.getElementById('mobileMenu');
+    if(mm&&mm.classList.contains('open')&&!mm.contains(e.target)&&hb&&!hb.contains(e.target)){
+      hb.classList.remove('open');mm.classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
