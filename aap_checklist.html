@@ -394,13 +394,18 @@
   }
   .footer-logo img { height: 18px; opacity: 0.45; margin-bottom: 0.5rem; }
   .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); }
-
-  @media (max-width: 768px) {
-    .hero { padding: 7rem 1.5rem 3.5rem; }
     .content { padding: 2rem 1.5rem 4rem; }
     .progress-bar { padding: 1rem 1.5rem; }
     .score-card { grid-template-columns: 1fr; }
     footer { padding: 1.4rem 1.5rem; }
+  }
+
+  @media(max-width:768px){
+    .hamburger{display:flex;}
+    .nav-links{display:none !important;}
+    .nav-right{gap:1rem;}
+    nav{padding:1rem 1.5rem;}
+    .mobile-menu a{display:block;}
   }
 </style>
 </head>
