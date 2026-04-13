@@ -342,17 +342,7 @@
     text-align: center;
   }
   .footer-logo img { height: 18px; opacity: 0.45; margin-bottom: 0.5rem; }
-  .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); }@media (max-width: 768px) {
-    .hamburger { display: flex; }
-    .nav-right { gap: 1rem; }
-    .nav-links { display: none; }
-    .hero { padding: 7rem 1.5rem 3.5rem; }
-    .content { padding: 2rem 1.5rem 4rem; }
-    .progress-bar { padding: 1rem 1.5rem; }
-    .score-card { grid-template-columns: 1fr; }
-    footer { padding: 1.4rem 1.5rem; }
-  }
-  .hamburger {
+  .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.15); }  .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
@@ -401,6 +391,26 @@
   .mobile-menu a:last-child { border-bottom: none; }
   .mobile-menu a:hover { color: var(--off-white, #F8F7F4); }
   .mobile-menu a.active { color: var(--gold, #C9A96E); }
+
+@media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-right { gap: 1rem; }
+    .nav-links { display: none; }
+
+    .hero { padding: 7rem 1.5rem 3.5rem; }
+    .content { padding: 2rem 1.5rem 4rem; }
+    .progress-bar { padding: 1rem 1.5rem; }
+    .score-card { grid-template-columns: 1fr; }
+    footer { padding: 1.4rem 1.5rem; }
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--off-white, #F8F7F4);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
 </style>
 </head>
 <body class="ko">
