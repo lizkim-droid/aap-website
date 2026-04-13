@@ -9,52 +9,6 @@
 <style>html,body{background:#111E35;}
   body.ko [data-en] { display:none; }
   body.en [data-ko] { display:none; }
-
-  /* ── 햄버거 메뉴 ── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
-  }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0; right: 0;
-    background: #111E35;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 1.2rem 1.5rem;
-    z-index: 200;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-
-  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
-  .hamburger span{display:block;width:22px;height:2px;background:#F8F7F4;transition:all 0.3s;transform-origin:center;}
-  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-  .hamburger.open span:nth-child(2){opacity:0;}
-  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;}
-  .mobile-menu.open{display:flex;}
-  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#7A8FA8;text-decoration:none;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
-  .mobile-menu a:last-child{border-bottom:none;}
-  .mobile-menu a:hover{color:#F8F7F4;}
-  .mobile-menu a.active{color:#C9A96E;}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -65,7 +19,7 @@
     --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth; overflow-y:scroll;}
+  html{scroll-behavior:smooth;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
 
   nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);} .nav-right{display:flex;align-items:center;gap:2.5rem;}
@@ -111,15 +65,11 @@
 
   footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
-  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);} 
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+  @media(max-width:768px){
     nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
     footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
-  }
-
-  @media(max-width:768px){
-    .hamburger{display:flex;} .nav-links{display:none;}
-    nav{padding:1rem 1.5rem;}
   }
 </style>
 </head>
@@ -127,7 +77,6 @@
 
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
@@ -135,21 +84,13 @@
     <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
     <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
-    </ul>    <div class="lang-toggle">
+    </ul>
+    <div class="lang-toggle">
       <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
       <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
     </div>
   </div>
 </nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-  <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
-  <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
-  <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
-  <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
-</div>
-
 
 <section class="hero">
   <div class="hero-inner">
@@ -255,24 +196,16 @@
     document.body.className = lang;
     document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
     document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
+    var ko = document.querySelector('[data-lang="ko"]');
+    var en = document.querySelector('[data-lang="en"]');
+    if (ko) ko.style.display = lang === 'ko' ? '' : 'none';
+    if (en) en.style.display = lang === 'en' ? '' : 'none';
     try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
   }
   (function() {
     var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
-
-  function toggleMenu(){
-    document.getElementById('hamburger').classList.toggle('open');
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-  document.addEventListener('click',function(e){
-    var hb=document.getElementById('hamburger');
-    var mm=document.getElementById('mobileMenu');
-    if(mm&&mm.classList.contains('open')&&!mm.contains(e.target)&&hb&&!hb.contains(e.target)){
-      hb.classList.remove('open');mm.classList.remove('open');
-    }
-  });
 </script>
 </body>
 </html>
