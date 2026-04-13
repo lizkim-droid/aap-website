@@ -672,6 +672,23 @@
     el.classList.add('ready');
     io.observe(el);
   });
+
+  function toggleMenu() {
+    var hb = document.getElementById('hamburger');
+    var mm = document.getElementById('mobileMenu');
+    if (!hb || !mm) return;
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var hb = document.getElementById('hamburger');
+    var mm = document.getElementById('mobileMenu');
+    if (!mm || !hb) return;
+    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
+      hb.classList.remove('open');
+      mm.classList.remove('open');
+    }
+  });
 </script>
 </body>
 </html>
