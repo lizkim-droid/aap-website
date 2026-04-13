@@ -74,7 +74,6 @@
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
     footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
   }
-
   .hamburger {
     display: none;
     flex-direction: column;
@@ -145,7 +144,6 @@
     </div>
   </div>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
     <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
@@ -153,6 +151,7 @@
     <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
+
 
 <section class="hero">
   <div class="hero-inner">
@@ -255,7 +254,7 @@
     var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
-  function toggleMenu() {
+    function toggleMenu() {
     var hb = document.getElementById('hamburger');
     var mm = document.getElementById('mobileMenu');
     if (!hb || !mm) return;

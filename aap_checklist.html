@@ -352,7 +352,6 @@
     .score-card { grid-template-columns: 1fr; }
     footer { padding: 1.4rem 1.5rem; }
   }
-
   .hamburger {
     display: none;
     flex-direction: column;
@@ -409,7 +408,7 @@
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
-<div class="nav-right">
+  <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
     <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
@@ -423,7 +422,6 @@
     </div>
   </div>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
     <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
@@ -431,6 +429,7 @@
     <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
+
 
 <div class="lang-wrap">
   <div class="lang-toggle">
@@ -968,7 +967,7 @@
     if (mm) mm.classList.toggle('show', pct >= 40 && pct < 75);
     if (mh) mh.classList.toggle('show', pct >= 75);
   }
-  function toggleMenu() {
+    function toggleMenu() {
     var hb = document.getElementById('hamburger');
     var mm = document.getElementById('mobileMenu');
     if (!hb || !mm) return;
