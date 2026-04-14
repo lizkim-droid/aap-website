@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Things to do even if you are not selling yet — AAP Advisory</title>
+<title>Numbers most owners overlook — AAP Advisory</title>
 
 <style>html,body{background:#111E35;}
   body.ko [data-en] { display:none; }
@@ -19,12 +19,23 @@
     --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-y:scroll;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);} .nav-right{display:flex;align-items:center;gap:2.5rem;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--off-white,#F8F7F4);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray,#7A8FA8);text-decoration:none;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover{color:var(--off-white,#F8F7F4);}
+  .mobile-menu a.active{color:var(--gold,#C9A96E);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
   .nav-logo span{color:var(--silver);}
+  .nav-right{display:flex;align-items:center;gap:2.5rem;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
   .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
   .nav-links a:hover{color:var(--off-white);}
@@ -33,7 +44,6 @@
   .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
   .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
   .lt-btn.active{background:var(--silver);color:#111E35;}
-
   .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
   .hero-inner{max-width:720px;margin:0 auto;}
   .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
@@ -45,7 +55,6 @@
   .hero h1 em{font-style:italic;color:var(--gold-lt);}
   .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
   .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
-
   .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
   .section{margin-bottom:2.8rem;}
   .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
@@ -55,96 +64,32 @@
   .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
   .callout p{font-size:0.88rem;color:rgba(248,247,244,0.85);line-height:1.75;margin:0;}
   .callout strong{color:var(--gold);}
-  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
-
   .next-box{background:var(--navy-card);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.4rem 1.8rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
   .next-label{font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.3rem;}
   .next-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--off-white);}
   .next-btn{display:inline-block;padding:0.65rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
   .next-btn:hover{background:var(--gold);color:var(--navy);}
-
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
   footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
   .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
-    .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0; right: 0;
-    background: #111E35;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 1.2rem 1.5rem;
-    z-index: 200;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray, #7A8FA8);
-    text-decoration: none;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: color 0.2s;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--off-white, #F8F7F4); }
-  .mobile-menu a.active { color: var(--gold, #C9A96E); }
-
-@media(max-width:768px){
-    .hamburger { display: flex; }
-    .nav-right { gap: 1rem; }
-    .nav-links { display: none; }
-
-    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
+  @media(max-width:768px){
+    .hamburger{display:flex;} .nav-right{gap:1rem;} .nav-links{display:none;}
+    nav{padding:1rem 1.5rem;}
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
     footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
   }
 </style>
 </head>
 <body class="ko">
-
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
-    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
     </ul>
@@ -156,99 +101,91 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
-
-
 <section class="hero">
   <div class="hero-inner">
     <a href="/aap_insights.html" class="back-link">
       <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
     </a>
     <div class="series-label">
-      <span data-ko>시리즈 1 · 팔기로 했다면</span><span data-en>Series 1 · If you have decided to sell</span>
+      <span data-ko>시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en>Series 1 · Understanding your own financials</span>
     </div>
     <div class="eyebrow">
       <span data-ko>오너 가이드</span><span data-en>Owner guide</span>
     </div>
     <h1>
-      <span data-ko>지금 팔 생각이 없어도 해야 할 것들</span>
-      <span data-en>Things to do even if you are not selling yet</span>
+      <span data-ko>오너가 흔히 놓치는 숫자들</span>
+      <span data-en>Numbers most owners overlook</span>
     </h1>
     <div class="hero-meta">AAP Advisory · 2026. 04</div>
     <p class="hero-lead">
-      <span data-ko>Exit은 결심하고 나서 준비하는 게 아닙니다. 준비가 먼저 되어 있어야 좋은 타이밍을 잡을 수 있습니다.</span>
-      <span data-en>You do not prepare for an exit after you decide to sell. The preparation has to come first — so that when the right moment arrives, you are ready to move.</span>
+      <span data-ko>매출과 영업이익은 챙기지만, 정작 경영에서 더 중요한 숫자들을 놓치는 경우가 많습니다. 투자자와 바이어가 가장 먼저 들여다보는 것들입니다.</span>
+      <span data-en>Revenue and operating profit get attention. But the numbers that matter most for running the business — and that investors and buyers look at first — are often the ones that get overlooked.</span>
     </p>
   </div>
 </section>
-
 <div class="article">
   <div data-lang="ko">
       <div class="section">
-        <h2 class="sec-title">타이밍은 선택할 수 있어야 한다</h2>
-        <div class="sec-body"><p>최고의 딜은 오너가 급하지 않을 때 나옵니다. 사업이 잘 되고 있을 때, 바이어가 경쟁하는 상황일 때, 오너에게 시간이 있을 때 — 이때 협상력이 가장 높습니다.</p>
-<p>반대로 건강 문제, 파트너 분쟁, 사업 악화 같은 이유로 급하게 팔아야 할 때 좋은 조건을 받기 어렵습니다. 바이어는 셀러의 절박함을 읽습니다.</p>
-<p>준비가 되어 있다는 것은 좋은 타이밍을 선택할 수 있다는 의미입니다. 기회가 왔을 때 6개월을 준비에 쓰지 않아도 됩니다.</p></div>
+        <h2 class="sec-title">EBITDA — 현금 창출력의 척도</h2>
+        <div class="sec-body"><p>EBITDA는 이자, 세금, 감가상각을 빼기 전 이익입니다. 왜 이게 중요하냐면, 재무구조나 세금 환경이 다른 회사들 사이에서 <strong>실제 영업 현금 창출력</strong>을 비교할 수 있는 지표이기 때문입니다.</p>
+<p>M&A에서 기업가치는 대부분 EBITDA의 몇 배수(멀티플)로 계산됩니다. 대표가 EBITDA를 모른다면, 내 회사가 얼마짜리인지 논의 자체가 불가능합니다.</p>
+<div class="callout"><p><strong>그리고 Normalised EBITDA —</strong> 오너 급여가 시장 수준보다 낮거나 높다면, 개인 비용이 법인으로 처리됐다면 — 이런 것들을 조정한 것이 Normalised EBITDA입니다. 실사에서 가장 치열하게 다퉈지는 숫자입니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">지금 바로 시작할 수 있는 것들</h2>
-        <div class="sec-body"><p><strong>재무 가시성 높이기.</strong> 월별 관리 회계 자료를 체계적으로 유지하세요. 매출, EBITDA, 현금흐름이 월별로 추적 가능해야 합니다. 감에 의존하는 경영에서 숫자로 설명 가능한 경영으로.</p>
-<p><strong>오너 비용 분리.</strong> 회사 장부에 섞인 개인 비용을 지금부터 분리하세요. 차량, 보험, 개인 여행 등. 이것을 지금 정리해두면 나중에 EBITDA 정상화 작업이 훨씬 간단해집니다.</p>
-<p><strong>핵심 계약 점검.</strong> 주요 고객, 공급사, 임차 계약의 만기와 갱신 조건을 파악해두세요. Change of Control 조항이 있는 계약은 특히 확인이 필요합니다.</p>
-<div class="callout"><p><strong>가장 흔한 후회 —</strong> "좀 더 일찍 정리를 시작할 걸." 딜을 마친 오너들의 공통된 이야기입니다. 지금 하는 준비가 몇 년 후 수억 원의 차이를 만들 수 있습니다.</p></div></div>
+        <h2 class="sec-title">매출채권 회수 기간(DSO)과 재고 회전율</h2>
+        <div class="sec-body"><p>매출채권 회수 기간(Days Sales Outstanding)은 외상 매출이 현금으로 바뀌는 데 걸리는 평균 시간입니다. 이 숫자가 길수록 현금이 더 오래 묶입니다.</p>
+<p>재고 회전율은 재고가 얼마나 빨리 팔리는지입니다. 회전율이 낮으면 현금이 창고에 쌓여있는 것이고, 재고가 오래될수록 가치도 떨어집니다.</p>
+<p>이 두 숫자는 운전자본 효율성을 보는 핵심 지표입니다. 바이어 실사에서 반드시 확인하는 항목이기도 합니다.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">회사를 설명할 수 있어야 한다</h2>
-        <div class="sec-body"><p>바이어가 물어봤을 때 오너가 즉각 답할 수 있어야 하는 것들이 있습니다. 최근 3년 매출과 EBITDA 추이, 상위 5개 고객의 비중, 고정비와 변동비 구조, 주요 부채와 보증 현황.</p>
-<p>이 숫자들이 오너의 머릿속에 있고, 자료로도 뒷받침될 때 — 그때 바이어와 대등한 대화가 가능합니다.</p></div>
+        <h2 class="sec-title">고객 집중도</h2>
+        <div class="sec-body"><p>상위 1개 고객이 전체 매출의 40%를 차지한다면, 그 고객이 떠났을 때 회사는 어떻게 됩니까? 이것이 고객 집중도 리스크입니다.</p>
+<p>고객 집중도가 높으면 바이어는 그 고객과의 계약 내용, 관계 유지 여부, 오너가 빠졌을 때 유지 가능성 등을 집중적으로 들여다봅니다. 그리고 그 리스크만큼 가격을 낮춥니다.</p>
+<div class="callout"><p><strong>오너가 할 수 있는 것 —</strong> 매출 다각화는 단기에 되지 않습니다. 하지만 지금부터 어떤 고객 구조를 만들어가고 있는지 인식하는 것이 시작입니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">전문가와 미리 이야기해두기</h2>
-        <div class="sec-body"><p>매각을 구체적으로 결정하기 전이라도 M&A 자문사나 세무사와 미리 이야기해두는 것이 도움됩니다. 현재 상황에서 어떤 준비가 필요한지, 어떤 구조가 세금 면에서 유리한지 — 이런 것들은 딜을 앞두고 갑자기 알기 어렵습니다.</p>
-<p>준비 없이 갑자기 시작된 딜에서는 중요한 결정을 촉박하게 내려야 하는 경우가 많습니다. 미리 알아두면 여유가 생깁니다.</p></div>
-      </div></div>
+        <h2 class="sec-title">오너 의존도</h2>
+        <div class="sec-body"><p>회사의 핵심 고객 관계, 주요 공급사 협상, 중요한 의사결정이 모두 오너 한 명에게 집중되어 있다면 — 오너가 빠졌을 때 이 사업은 어떻게 돌아갑니까?</p>
+<p>이것이 오너 의존도 리스크입니다. 바이어는 오너 없이도 사업이 돌아가는지를 봅니다. 오너 의존도가 높을수록 가치평가 멀티플이 낮아집니다.</p>
+<p>지금 팔 생각이 없어도, 경영진에게 권한을 이양하고 시스템을 만드는 것은 좋은 경영입니다. 그리고 그것이 나중에 회사의 가치를 높이는 일이기도 합니다.</p></div>
+      </div>
+  </div>
   <div data-lang="en" style="display:none">
       <div class="section">
-        <h2 class="sec-title">You need to be able to choose your timing</h2>
-        <div class="sec-body"><p>The best deals happen when the owner is not in a hurry. When the business is performing well, when buyers are competing for it, when the owner has time — that is when negotiating leverage is strongest.</p>
-<p>The opposite is also true. When health, partnership disputes or business decline force a quick sale, good terms become hard to achieve. Buyers read the urgency of a seller.</p>
-<p>Being prepared means you can choose when to sell. When an opportunity arrives, you will not need to spend six months getting ready first.</p></div>
+        <h2 class="sec-title">EBITDA — the measure of cash generation</h2>
+        <div class="sec-body"><p>EBITDA is earnings before interest, tax, depreciation and amortisation. It matters because it provides a way to compare the <strong>underlying cash generation of businesses</strong> with different financing structures and tax environments.</p>
+<p>In M&A, enterprise value is almost always expressed as a multiple of EBITDA. If an owner does not know their own EBITDA, a meaningful valuation conversation is not possible.</p>
+<div class="callout"><p><strong>And normalised EBITDA —</strong> If owner salary is above or below market rate, or personal expenses run through the company, these need to be adjusted out. The result is normalised EBITDA — the number that gets debated most intensely in due diligence.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">Things you can start now</h2>
-        <div class="sec-body"><p><strong>Build financial visibility.</strong> Maintain monthly management accounts in a structured way. Revenue, EBITDA and cash flow should be trackable month by month. Move from intuition-based management to numbers-based management.</p>
-<p><strong>Separate owner costs.</strong> Start now to clearly separate personal expenses from the company books — car leases, insurance, personal travel. Doing this now makes the EBITDA normalisation exercise much simpler later.</p>
-<p><strong>Review key contracts.</strong> Know the expiry dates and renewal terms of your major customer, supplier and lease contracts. Contracts with Change of Control clauses need particular attention.</p>
-<div class="callout"><p><strong>The most common regret —</strong> "I wish I had started preparing earlier." This is what owners consistently say after completing a deal. The preparation you do now can mean the difference of hundreds of millions of won a few years from now.</p></div></div>
+        <h2 class="sec-title">Days sales outstanding and inventory turnover</h2>
+        <div class="sec-body"><p>Days Sales Outstanding (DSO) is the average time it takes for a credit sale to convert to cash. The longer this period, the more cash is tied up waiting to be collected.</p>
+<p>Inventory turnover measures how quickly stock moves out. Low turnover means cash is sitting in a warehouse, and stock that ages often loses value.</p>
+<p>Both are key efficiency metrics for working capital management — and both are items due diligence teams check as a matter of course.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">You need to be able to explain your business</h2>
-        <div class="sec-body"><p>There are things an owner should be able to answer immediately when a buyer asks. Revenue and EBITDA trend for the last three years. Revenue concentration among the top five customers. Fixed versus variable cost structure. Major debt and guarantee positions.</p>
-<p>When these numbers are in the owner's head and backed by documentation — that is when you can have an equal conversation with a buyer.</p></div>
+        <h2 class="sec-title">Customer concentration</h2>
+        <div class="sec-body"><p>If a single customer accounts for 40% of total revenue — what happens to the business when that customer leaves? This is customer concentration risk.</p>
+<p>High customer concentration prompts buyers to scrutinise the contract terms, the relationship history, and whether it survives without the owner. The risk is priced into the valuation accordingly.</p>
+<div class="callout"><p><strong>What owners can do —</strong> Revenue diversification does not happen quickly. But being aware of what customer structure you are building towards is where it starts.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">Talk to advisers early</h2>
-        <div class="sec-body"><p>Even before you have made a firm decision to sell, it is worth having an early conversation with an M&A adviser and a tax adviser. What preparation is needed at your current stage. Which deal structure makes sense from a tax perspective. These are not things you can figure out quickly once a deal is already moving.</p>
-<p>When a deal starts without preparation, important decisions often have to be made under pressure. Knowing the answers in advance gives you room to think clearly.</p></div>
-      </div></div>
-  
+        <h2 class="sec-title">Owner dependency</h2>
+        <div class="sec-body"><p>If key customer relationships, major supplier negotiations, and important decisions all sit with one person — how does this business operate when that person is gone?</p>
+<p>This is owner dependency risk. Buyers ask whether the business runs without the owner. High owner dependency compresses valuation multiples.</p>
+<p>Even without any intention to sell, delegating authority and building systems is simply good management. And it is also what increases the value of the business over time.</p></div>
+      </div>
+  </div>
 </div>
-
 <footer>
   <div class="footer-logo">AAP Advisory</div>
   <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
 </footer>
-
 <script>
   function setLang(lang) {
     document.body.className = lang;
@@ -264,20 +201,14 @@
     var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
-    function toggleMenu() {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!hb || !mm) return;
-    hb.classList.toggle('open');
-    mm.classList.toggle('open');
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
   document.addEventListener('click', function(e) {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!mm || !hb) return;
-    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
-      hb.classList.remove('open');
-      mm.classList.remove('open');
+    var hb=document.getElementById('hamburger'); var mm=document.getElementById('mobileMenu');
+    if(mm&&mm.classList.contains('open')&&!mm.contains(e.target)&&hb&&!hb.contains(e.target)){
+      hb.classList.remove('open'); mm.classList.remove('open');
     }
   });
 </script>

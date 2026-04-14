@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What separates successful exits from the rest — AAP Advisory</title>
+<title>Growing revenue, shrinking profit — why? — AAP Advisory</title>
 
 <style>html,body{background:#111E35;}
   body.ko [data-en] { display:none; }
@@ -19,12 +19,23 @@
     --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-y:scroll;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);} .nav-right{display:flex;align-items:center;gap:2.5rem;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--off-white,#F8F7F4);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray,#7A8FA8);text-decoration:none;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover{color:var(--off-white,#F8F7F4);}
+  .mobile-menu a.active{color:var(--gold,#C9A96E);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
   .nav-logo span{color:var(--silver);}
+  .nav-right{display:flex;align-items:center;gap:2.5rem;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
   .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
   .nav-links a:hover{color:var(--off-white);}
@@ -33,7 +44,6 @@
   .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
   .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
   .lt-btn.active{background:var(--silver);color:#111E35;}
-
   .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
   .hero-inner{max-width:720px;margin:0 auto;}
   .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
@@ -45,7 +55,6 @@
   .hero h1 em{font-style:italic;color:var(--gold-lt);}
   .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
   .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
-
   .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
   .section{margin-bottom:2.8rem;}
   .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
@@ -55,96 +64,32 @@
   .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
   .callout p{font-size:0.88rem;color:rgba(248,247,244,0.85);line-height:1.75;margin:0;}
   .callout strong{color:var(--gold);}
-  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
-
   .next-box{background:var(--navy-card);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.4rem 1.8rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
   .next-label{font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.3rem;}
   .next-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--off-white);}
   .next-btn{display:inline-block;padding:0.65rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
   .next-btn:hover{background:var(--gold);color:var(--navy);}
-
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
   footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
   .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
-    .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0; right: 0;
-    background: #111E35;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 1.2rem 1.5rem;
-    z-index: 200;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray, #7A8FA8);
-    text-decoration: none;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: color 0.2s;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--off-white, #F8F7F4); }
-  .mobile-menu a.active { color: var(--gold, #C9A96E); }
-
-@media(max-width:768px){
-    .hamburger { display: flex; }
-    .nav-right { gap: 1rem; }
-    .nav-links { display: none; }
-
-    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
+  @media(max-width:768px){
+    .hamburger{display:flex;} .nav-right{gap:1rem;} .nav-links{display:none;}
+    nav{padding:1rem 1.5rem;}
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
     footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
   }
 </style>
 </head>
 <body class="ko">
-
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
-    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
     </ul>
@@ -156,99 +101,90 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
-
-
 <section class="hero">
   <div class="hero-inner">
     <a href="/aap_insights.html" class="back-link">
       <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
     </a>
     <div class="series-label">
-      <span data-ko>시리즈 1 · 팔기로 했다면</span><span data-en>Series 1 · If you have decided to sell</span>
+      <span data-ko>시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en>Series 1 · Understanding your own financials</span>
     </div>
     <div class="eyebrow">
       <span data-ko>오너 가이드</span><span data-en>Owner guide</span>
     </div>
     <h1>
-      <span data-ko>준비된 오너와 그렇지 않은 오너의 차이</span>
-      <span data-en>What separates successful exits from the rest</span>
+      <span data-ko>매출은 느는데 왜 이익이 안 남지</span>
+      <span data-en>Growing revenue, shrinking profit — why?</span>
     </h1>
     <div class="hero-meta">AAP Advisory · 2026. 04</div>
     <p class="hero-lead">
-      <span data-ko>같은 회사라도 오너가 얼마나 준비했느냐에 따라 딜의 결과가 완전히 달라집니다. 차이는 협상 테이블에 앉기 전에 이미 만들어집니다.</span>
-      <span data-en>Same business, very different outcomes — depending on how prepared the owner is. The difference is made before you ever sit down to negotiate.</span>
+      <span data-ko>매출이 오르는데 통장은 늘 빠듯합니다. 장사는 되는 것 같은데 이익이 남질 않습니다. 이 문제는 숫자를 제대로 들여다보지 않으면 원인을 찾기 어렵습니다.</span>
+      <span data-en>Revenue is climbing, but the bank account always feels tight. Business seems to be going well, yet profit never quite shows up. Without looking at the right numbers, the cause stays hidden.</span>
     </p>
   </div>
 </section>
-
 <div class="article">
   <div data-lang="ko">
       <div class="section">
-        <h2 class="sec-title">왜 준비가 결과를 바꾸는가</h2>
-        <div class="sec-body"><p>사업을 매각하는 과정에서 바이어는 처음부터 준비되어 있습니다. 전문 실사팀, 법무팀, 회계사가 붙어서 수십 가지 질문을 던집니다. 오너 혼자서 이 과정을 처음 맞닥뜨리면 압도되기 쉽습니다.</p>
-<p>준비된 오너는 다릅니다. 바이어가 물어볼 것을 먼저 알고 있고, 대답과 근거 자료를 갖추고 있습니다. 이것만으로도 협상에서 주도권이 바뀝니다.</p>
-<div class="callout"><p><strong>핵심은 이겁니다 —</strong> 실사에서 바이어가 '발견'하는 문제와 오너가 '먼저 설명'하는 문제는 협상에서 전혀 다른 무게를 가집니다. 바이어가 찾아낸 문제는 가격 조정의 근거가 됩니다. 오너가 먼저 꺼낸 문제는 이미 가격에 반영된 사실이 됩니다.</p></div></div>
+        <h2 class="sec-title">매출과 이익은 다른 이야기입니다</h2>
+        <div class="sec-body"><p>많은 대표들이 매출을 기준으로 사업의 건강을 판단합니다. 그런데 매출이 오른다는 것과 이익이 남는다는 것은 전혀 다른 이야기입니다.</p>
+<p>매출이 늘어도 이익이 줄어드는 이유는 대부분 두 가지입니다. <strong>원가 구조가 바뀌었거나, 고정비가 매출보다 빠르게 늘었기 때문</strong>입니다. 사람을 뽑고, 공간을 늘리고, 마케팅을 확대하는 과정에서 비용이 매출 성장 속도를 앞질러버리는 경우가 많습니다.</p>
+<div class="callout"><p><strong>핵심 질문 —</strong> 지난 1년간 매출이 20% 올랐다면, 이익도 같은 비율로 올랐습니까? 그렇지 않다면 어디서 새고 있는지 들여다볼 필요가 있습니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">준비된 오너가 하는 것들</h2>
-        <div class="sec-body"><p>보통 딜 시작 6개월에서 1년 전부터 준비합니다. 재무제표를 정리하고, 오너 개인 비용을 분리하고, 주요 계약의 상태를 점검합니다. 회사 숫자가 설명 가능한 상태인지 스스로 먼저 확인합니다.</p>
-<p>Data Room도 미리 구축합니다. 바이어가 요청할 자료를 폴더별로 정리해두면 실사 기간이 짧아지고, 딜이 빠르게 진행됩니다. 실사가 길어질수록 리스크가 커집니다 — 정보 유출, 임직원 동요, 바이어의 환경 변화까지.</p>
-<div class="callout"><p><strong>현실 —</strong> 많은 오너들이 "팔기로 마음먹고 나서 준비하면 되겠지"라고 생각합니다. 그러나 바이어는 계약서에 서명하기 전까지 언제든 물러날 수 있습니다. 준비가 부족한 상태에서 나온 숫자와 자료는 바이어에게 불신을 줍니다.</p></div></div>
+        <h2 class="sec-title">제품·서비스별로 마진이 다릅니다</h2>
+        <div class="sec-body"><p>회사 전체 이익을 보면 괜찮아 보여도, 제품별·고객별로 뜯어보면 실제로 돈을 버는 곳과 잃는 곳이 나뉩니다. 마진이 낮은 제품에 자원을 쏟고 있을 수 있습니다.</p>
+<p>예를 들어 매출의 40%를 차지하는 주력 제품의 마진이 5%이고, 나머지 60%에서 마진이 25%라면 — 사실상 주력 제품이 이익을 갉아먹고 있는 구조입니다.</p>
+<div class="callout"><p><strong>실무 포인트 —</strong> 제품별 매출 원가(COGS)를 분리해서 보는 것이 시작입니다. 원가를 명확히 배분하지 않으면 어디서 이익이 나고 어디서 손해가 나는지 알 수 없습니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">준비되지 않은 오너에게 일어나는 일</h2>
-        <div class="sec-body"><p>가장 흔한 패턴은 이렇습니다. 바이어가 실사에서 예상치 못한 항목을 발견합니다. 오너는 설명은 할 수 있지만 근거 자료가 없습니다. 바이어는 그것을 리스크로 간주하고 가격 조정을 요구합니다. 협상이 길어지다가 딜이 틀어지거나, 오너가 불리한 조건을 받아들이게 됩니다.</p>
-<p>준비 없이 시작한 딜은 결국 바이어의 실사팀이 주도권을 가져갑니다. 바이어가 찾아낸 숫자로 협상이 진행됩니다.</p></div>
+        <h2 class="sec-title">고정비 레버리지를 이해해야 합니다</h2>
+        <div class="sec-body"><p>임대료, 인건비, 감가상각처럼 매출에 관계없이 나가는 비용이 고정비입니다. 고정비는 매출이 늘수록 단위당 부담이 줄어드는 구조입니다. 그래서 매출이 어느 수준을 넘으면 이익이 급격히 올라가지만, 그 이하에서는 매출이 조금만 줄어도 이익이 크게 빠집니다.</p>
+<p>현재 고정비 수준에서 손익분기점(BEP)이 어디인지 아는 것은 경영의 기본입니다. 그리고 그 BEP가 현재 매출 대비 얼마나 여유가 있는지가 사업의 안전마진입니다.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">준비는 언제 시작해야 하나</h2>
-        <div class="sec-body"><p>이상적으로는 매각 희망 시점 기준으로 최소 6개월 전입니다. 재무 정리는 3개년 이상의 데이터가 필요하고, 계약 점검이나 세무 리스크 확인도 시간이 걸립니다.</p>
-<p>당장 팔 생각이 없더라도 미리 준비해두는 것은 손해가 없습니다. 준비된 회사는 기회가 왔을 때 빠르게 움직일 수 있습니다.</p>
-<div class="callout"><p><strong>AAP Advisory의 역할 —</strong> 오너가 혼자서 이 모든 것을 파악하고 준비하기는 어렵습니다. 바이어 실사팀이 보는 시각으로 회사를 먼저 들여다보고, 무엇을 정리해야 하는지 같이 파악하는 것이 저희가 하는 일입니다.</p></div></div>
-      </div></div>
+        <h2 class="sec-title">숫자를 보는 구조가 먼저입니다</h2>
+        <div class="sec-body"><p>위 문제들을 파악하려면 단순한 손익계산서 하나로는 부족합니다. 제품별, 사업부별로 매출과 원가가 분리된 관리 회계 구조가 필요합니다.</p>
+<p>많은 중소기업은 세금 신고용 재무제표만 갖추고 있어서 실제 경영 판단에 쓸 수 있는 숫자가 없습니다. 대표가 매달 들여다볼 수 있는 숫자 체계를 만드는 것, 그것이 시작입니다.</p>
+<div class="callout"><p><strong>AAP Advisory가 하는 일 —</strong> 지금 갖고 있는 숫자에서 출발해서, 제품별 수익성과 비용 구조를 분리하고 대표가 의사결정에 쓸 수 있는 형태로 정리합니다.</p></div></div>
+      </div>
+  </div>
   <div data-lang="en" style="display:none">
       <div class="section">
-        <h2 class="sec-title">Why preparation changes the outcome</h2>
-        <div class="sec-body"><p>In any M&A process, the buyer arrives prepared. They have a due diligence team, legal counsel and accountants — ready to ask dozens of questions. An owner encountering this for the first time can easily feel overwhelmed.</p>
-<p>A prepared owner is different. They already know what buyers will ask, and have the answers and supporting documents ready. That alone shifts the balance of negotiation.</p>
-<div class="callout"><p><strong>The key point —</strong> A problem that a buyer <em>discovers</em> during due diligence and a problem that an owner <em>explains upfront</em> carry very different weight in negotiation. What the buyer finds becomes grounds for a price reduction. What the owner discloses first is already treated as a known fact reflected in the price.</p></div></div>
+        <h2 class="sec-title">Revenue and profit are different stories</h2>
+        <div class="sec-body"><p>Many business owners measure the health of their business by revenue. But revenue growth and profit are entirely separate things.</p>
+<p>When revenue rises but profit does not, the cause is usually one of two things: <strong>the cost structure has changed, or fixed costs have grown faster than revenue</strong>. Hiring, expanding space, scaling marketing — these expenses often outpace revenue growth.</p>
+<div class="callout"><p><strong>The key question —</strong> If revenue grew 20% last year, did profit grow at the same rate? If not, something is leaking. That is worth understanding.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">What prepared owners do</h2>
-        <div class="sec-body"><p>Typically, preparation begins six months to a year before the intended sale. Financial statements are cleaned up, owner personal costs are separated, and key contracts are reviewed. The owner checks first whether the company's numbers can be clearly explained.</p>
-<p>A data room is built in advance. Having documents organised by category means due diligence moves faster, and faster deals carry less risk — of information leaks, employee anxiety, or a change in the buyer's circumstances.</p>
-<div class="callout"><p><strong>The reality —</strong> Many owners think "I'll prepare once I've decided to sell." But buyers can walk away at any point before signing. Incomplete information and poorly organised data breed distrust.</p></div></div>
+        <h2 class="sec-title">Margins differ by product and service line</h2>
+        <div class="sec-body"><p>The company's overall profit might look acceptable, but at the product or customer level, there are always areas that make money and areas that lose it. Resources may be going into low-margin products without anyone realising.</p>
+<p>If the flagship product accounts for 40% of revenue but carries a 5% margin, while the remaining 60% earns 25% margins — the flagship is effectively eroding the overall profit.</p>
+<div class="callout"><p><strong>Practical point —</strong> Separating cost of goods sold (COGS) by product line is the starting point. Without clear cost allocation, it is impossible to know where profit is being made and where it is being lost.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">What happens to unprepared owners</h2>
-        <div class="sec-body"><p>The most common pattern: a buyer finds something unexpected in due diligence. The owner can explain it, but has no supporting documents. The buyer treats it as a risk and demands a price adjustment. Negotiations drag on, the deal falls apart, or the owner accepts unfavourable terms.</p>
-<p>In a deal that starts without preparation, the buyer's due diligence team ends up in the driving seat. The negotiation runs on the buyer's numbers.</p></div>
+        <h2 class="sec-title">Understanding fixed cost leverage matters</h2>
+        <div class="sec-body"><p>Rent, payroll, and depreciation are fixed costs — they go out regardless of revenue. Fixed costs decrease in unit terms as revenue grows. This means profit accelerates sharply once revenue exceeds a certain level, but a small drop in revenue below that level can hit profit hard.</p>
+<p>Knowing the breakeven point at the current fixed cost base is a management fundamental. And the gap between that breakeven and current revenue is the business's safety margin.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">When to start</h2>
-        <div class="sec-body"><p>Ideally, at least six months before your target exit date. Financial clean-up requires three or more years of data. Contract review and tax risk assessment both take time.</p>
-<p>Even if you are not planning to sell soon, there is no downside to preparing early. A ready company can move quickly when the right opportunity comes.</p>
-<div class="callout"><p><strong>What AAP Advisory does —</strong> It is hard for an owner to identify and address all of this alone. We look at your business through the lens of a buyer's due diligence team — and work through what needs to be addressed before you go to market.</p></div></div>
-      </div></div>
-  
+        <h2 class="sec-title">The right reporting structure comes first</h2>
+        <div class="sec-body"><p>Understanding these issues requires more than a single profit-and-loss statement. Management accounting that separates revenue and costs by product or business unit is needed.</p>
+<p>Many smaller businesses have only tax-filing financials — no numbers structured for actual management decisions. Building a monthly reporting framework that an owner can actually use is where this work starts.</p>
+<div class="callout"><p><strong>What AAP Advisory does —</strong> Starting from the numbers you already have, we separate product-level profitability and cost structures — and put them in a form management can actually use to make decisions.</p></div></div>
+      </div>
+  </div>
       <div class="divider"></div>
       <div class="next-box">
         <div>
           <div class="next-label"><span data-ko>다음 글</span><span data-en>Next</span></div>
           <div class="next-title">
-            <span data-ko>바이어가 실사에서 가장 먼저 보는 것</span>
-            <span data-en>What buyers look at first in due diligence</span>
+            <span data-ko>현금이 다 어디로 간 걸까</span><span data-en>Where does all the cash go?</span>
           </div>
         </div>
         <a href="/aap_s1_02.html" class="next-btn">
@@ -256,12 +192,10 @@
         </a>
       </div>
 </div>
-
 <footer>
   <div class="footer-logo">AAP Advisory</div>
   <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
 </footer>
-
 <script>
   function setLang(lang) {
     document.body.className = lang;
@@ -277,20 +211,14 @@
     var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
-    function toggleMenu() {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!hb || !mm) return;
-    hb.classList.toggle('open');
-    mm.classList.toggle('open');
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
   document.addEventListener('click', function(e) {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!mm || !hb) return;
-    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
-      hb.classList.remove('open');
-      mm.classList.remove('open');
+    var hb=document.getElementById('hamburger'); var mm=document.getElementById('mobileMenu');
+    if(mm&&mm.classList.contains('open')&&!mm.contains(e.target)&&hb&&!hb.contains(e.target)){
+      hb.classList.remove('open'); mm.classList.remove('open');
     }
   });
 </script>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>What buyers look at first in due diligence — AAP Advisory</title>
+<title>Where does all the cash go? — AAP Advisory</title>
 
 <style>html,body{background:#111E35;}
   body.ko [data-en] { display:none; }
@@ -19,12 +19,23 @@
     --gray:#7A8FA8; --off-white:#F8F7F4; --border:rgba(255,255,255,0.08);
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; overflow-y:scroll;}
   body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
-
-  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);} .nav-right{display:flex;align-items:center;gap:2.5rem;}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--off-white,#F8F7F4);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray,#7A8FA8);text-decoration:none;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+  .mobile-menu a:last-child{border-bottom:none;}
+  .mobile-menu a:hover{color:var(--off-white,#F8F7F4);}
+  .mobile-menu a.active{color:var(--gold,#C9A96E);}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
   .nav-logo span{color:var(--silver);}
+  .nav-right{display:flex;align-items:center;gap:2.5rem;}
   .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
   .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
   .nav-links a:hover{color:var(--off-white);}
@@ -33,7 +44,6 @@
   .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
   .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
   .lt-btn.active{background:var(--silver);color:#111E35;}
-
   .hero{background:var(--navy);padding:8rem 4rem 4rem;border-bottom:1px solid rgba(201,169,110,0.15);}
   .hero-inner{max-width:720px;margin:0 auto;}
   .back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;margin-bottom:1.8rem;transition:color 0.2s;}
@@ -45,7 +55,6 @@
   .hero h1 em{font-style:italic;color:var(--gold-lt);}
   .hero-meta{font-size:0.75rem;color:rgba(166,166,166,0.5);letter-spacing:0.08em;margin-bottom:1.2rem;}
   .hero-lead{font-size:1rem;font-weight:300;line-height:1.8;color:var(--gray);}
-
   .article{max-width:720px;margin:0 auto;padding:3.5rem 4rem 6rem;}
   .section{margin-bottom:2.8rem;}
   .sec-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--off-white);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(255,255,255,0.08);}
@@ -55,96 +64,32 @@
   .callout{background:var(--navy-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:1.4rem 0;border-radius:0 4px 4px 0;}
   .callout p{font-size:0.88rem;color:rgba(248,247,244,0.85);line-height:1.75;margin:0;}
   .callout strong{color:var(--gold);}
-  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
-
   .next-box{background:var(--navy-card);border:1px solid rgba(255,255,255,0.06);border-radius:4px;padding:1.4rem 1.8rem;margin-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
   .next-label{font-size:0.65rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:rgba(201,169,110,0.6);margin-bottom:0.3rem;}
   .next-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:600;color:var(--off-white);}
   .next-btn{display:inline-block;padding:0.65rem 1.4rem;border:1px solid var(--gold);color:var(--gold);font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-decoration:none;border-radius:2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0;}
   .next-btn:hover{background:var(--gold);color:var(--navy);}
-
+  .divider{height:1px;background:rgba(255,255,255,0.06);margin:2.5rem 0;}
   footer{background:var(--navy-mid);border-top:1px solid var(--border);padding:1.4rem 4rem;display:flex;justify-content:space-between;align-items:center;}
   .footer-logo{font-family:'Playfair Display',serif;font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
   .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
-    .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0; right: 0;
-    background: #111E35;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 1.2rem 1.5rem;
-    z-index: 200;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray, #7A8FA8);
-    text-decoration: none;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: color 0.2s;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--off-white, #F8F7F4); }
-  .mobile-menu a.active { color: var(--gold, #C9A96E); }
-
-@media(max-width:768px){
-    .hamburger { display: flex; }
-    .nav-right { gap: 1rem; }
-    .nav-links { display: none; }
-
-    nav{padding:1rem 1.5rem;} .nav-links{gap:1.2rem;}
+  @media(max-width:768px){
+    .hamburger{display:flex;} .nav-right{gap:1rem;} .nav-links{display:none;}
+    nav{padding:1rem 1.5rem;}
     .hero{padding:6rem 1.5rem 3rem;} .article{padding:2.5rem 1.5rem 4rem;}
     footer{padding:1.2rem 1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
   }
 </style>
 </head>
 <body class="ko">
-
 <nav>
   <div class="nav-logo">AAP<span>.</span></div>
   <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
   <div class="nav-right">
     <ul class="nav-links">
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
-    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+    <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
     <li><a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
     </ul>
@@ -156,99 +101,90 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+    <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
     <a href="/aap_insights.html" class="active"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
-
-
 <section class="hero">
   <div class="hero-inner">
     <a href="/aap_insights.html" class="back-link">
       <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
     </a>
     <div class="series-label">
-      <span data-ko>시리즈 1 · 팔기로 했다면</span><span data-en>Series 1 · If you have decided to sell</span>
+      <span data-ko>시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en>Series 1 · Understanding your own financials</span>
     </div>
     <div class="eyebrow">
       <span data-ko>오너 가이드</span><span data-en>Owner guide</span>
     </div>
     <h1>
-      <span data-ko>바이어가 실사에서 가장 먼저 보는 것</span>
-      <span data-en>What buyers look at first in due diligence</span>
+      <span data-ko>현금이 다 어디로 간 걸까</span>
+      <span data-en>Where does all the cash go?</span>
     </h1>
     <div class="hero-meta">AAP Advisory · 2026. 04</div>
     <p class="hero-lead">
-      <span data-ko>바이어 실사팀이 들어오면 처음 일주일 안에 회사의 90%를 판단합니다. 그들이 먼저 보는 것은 의외로 단순합니다.</span>
-      <span data-en>Within the first week of due diligence, buyers form a view on 90% of a business. What they look at first is simpler than most owners expect.</span>
+      <span data-ko>이익이 나는데 현금이 없습니다. 손익계산서는 흑자인데 통장이 빕니다. 이 현상을 이해하지 못하면, 좋은 사업도 유동성 위기로 무너질 수 있습니다.</span>
+      <span data-en>The business is profitable, but cash is always tight. The P&L shows a surplus, yet the bank account runs dry. Without understanding this, even a good business can collapse under a liquidity crisis.</span>
     </p>
   </div>
 </section>
-
 <div class="article">
   <div data-lang="ko">
       <div class="section">
-        <h2 class="sec-title">숫자가 일관성이 있는가</h2>
-        <div class="sec-body"><p>바이어 실사팀이 가장 먼저 하는 일은 회사의 재무 숫자가 서로 맞아 떨어지는지 확인하는 것입니다. 세무 신고, 재무제표, 관리 회계 자료가 서로 다른 숫자를 보여주면 즉시 의심이 시작됩니다.</p>
-<p>오너 입장에서는 "이유가 있는 차이"라도, 설명이 없으면 바이어는 최악의 가정을 합니다. 숫자의 일관성 자체가 신뢰의 출발점입니다.</p>
-<div class="callout"><p><strong>흔한 패턴 —</strong> 세금을 줄이기 위해 비용을 과다 계상해두었다가, 정작 매각할 때 수익성이 낮아 보이는 역효과가 납니다. 실사에서 이 부분을 설명하려면 별도의 정상화 작업이 필요합니다.</p></div></div>
+        <h2 class="sec-title">이익과 현금흐름은 왜 다른가</h2>
+        <div class="sec-body"><p>이익은 회계적 개념입니다. 매출이 발생하면 아직 돈을 못 받아도 이익에 잡힙니다. 반대로 현금흐름은 실제로 통장에 들어오고 나가는 돈입니다.</p>
+<p>대표가 느끼는 "현금이 없다"는 감각은 손익계산서가 아니라 현금흐름표를 봐야 설명됩니다. 매출채권이 늘었거나, 재고가 쌓였거나, 설비에 투자했거나 — 이런 것들이 이익이 있어도 현금을 마르게 합니다.</p>
+<div class="callout"><p><strong>흔한 패턴 —</strong> 매출이 급성장하는 회사일수록 이 문제가 심합니다. 매출은 늘지만 외상 매출이 쌓이고 재고가 늘면서 현금이 사업에 묶입니다. 이를 운전자본 함정이라고 합니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">매출의 질 — 이 매출, 계속 나오는 건가</h2>
-        <div class="sec-body"><p>매출이 크다는 것만으로는 충분하지 않습니다. 바이어는 그 매출이 앞으로도 지속될 수 있는지를 봅니다. 반복 매출(구독, 장기계약, 재구매)이 많을수록 높은 가치를 인정받습니다.</p>
-<p>반대로, 특정 고객 한 명이 매출의 40%를 차지하거나, 일회성 프로젝트 매출이 대부분이라면 바이어는 가치를 낮게 봅니다. 오너가 없어지면 그 고객도 떠날 수 있다고 생각하기 때문입니다.</p>
-<div class="callout"><p><strong>실사에서 자주 나오는 질문 —</strong> "상위 5개 고객이 전체 매출에서 차지하는 비중이 얼마나 됩니까?" "장기 계약이 있는 고객 비율은요?" 이 두 가지에 명확한 답을 준비해두세요.</p></div></div>
+        <h2 class="sec-title">운전자본이 현금을 잡아먹습니다</h2>
+        <div class="sec-body"><p>운전자본(Working Capital)은 사업을 운영하는 데 묶여있는 돈입니다. 외상으로 판 돈(매출채권), 아직 안 팔린 재고, 미리 낸 비용 등이 여기 해당합니다.</p>
+<p>매출채권 회수가 60일인데 매입채무 지급이 30일이라면, 사업을 하면 할수록 현금이 부족해지는 구조입니다. 이 갭이 운전자본 부담이고, 매출이 클수록 더 많은 현금이 필요합니다.</p>
+<p>운전자본 관리는 단순히 현금을 아끼는 것이 아닙니다. 고객에게 외상을 얼마나 줄지, 재고를 얼마나 쌓을지, 대금은 언제 받고 언제 낼지 — 이것이 모두 경영 전략입니다.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">오너 없이도 돌아가는 회사인가</h2>
-        <div class="sec-body"><p>많은 중소기업에서 대표이사가 핵심 고객 관계, 주요 거래처 협상, 핵심 의사결정을 혼자 감당합니다. 바이어 입장에서는 "이 사람이 나가면 회사가 어떻게 되지?"가 가장 큰 우려입니다.</p>
-<p>이것이 밸류에이션에서 '오너 리스크 할인'으로 나타납니다. 같은 수익성이라도 오너 의존도가 높은 회사는 낮은 멀티플을 적용받습니다.</p>
-<div class="callout"><p><strong>팔기 전 2~3년 —</strong> 핵심 고객 관계와 운영 권한을 관리팀으로 점진적으로 이전하는 것이 밸류에이션을 지키는 가장 효과적인 방법 중 하나입니다.</p></div></div>
+        <h2 class="sec-title">Capex와 현금의 관계</h2>
+        <div class="sec-body"><p>설비 투자(Capex)는 손익계산서에서 한 번에 비용으로 잡히지 않고 감가상각을 통해 나눠집니다. 그래서 큰 설비를 구입해도 이익은 별로 줄지 않지만 현금은 한번에 빠집니다.</p>
+<p>반대로 감가상각은 현금이 나가지 않는 비용이라서 이익에서 빠지지만 현금흐름에는 영향이 없습니다. 이런 특성 때문에 EBITDA(이자·세금·감가상각 전 이익)가 실제 현금 창출력을 보는 지표로 쓰입니다.</p>
+<div class="callout"><p><strong>대표가 알아야 할 것 —</strong> 올해 이익이 얼마인지와 올해 현금이 얼마나 생겼는지는 다릅니다. 투자자나 바이어는 이 둘을 모두 봅니다.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">부채와 숨겨진 의무는 없는가</h2>
-        <div class="sec-body"><p>바이어는 장부에 나오는 부채 외에, 장부에 없지만 실질적으로 회사가 져야 할 의무를 찾습니다. 퇴직급여 적립이 충분한지, 진행 중인 소송은 없는지, 대표이사 개인 보증이 얼마나 걸려있는지.</p>
-<p>이런 항목들은 EV(기업가치)에서 차감 요소가 됩니다. 먼저 파악하고 있으면 바이어와 대등하게 논의할 수 있습니다. 바이어가 먼저 발견하면 그대로 협상 무기가 됩니다.</p></div>
-      </div></div>
+        <h2 class="sec-title">현금흐름을 예측할 수 있어야 합니다</h2>
+        <div class="sec-body"><p>현금이 어디서 들어오고 어디로 나가는지 구조를 이해하면, 앞으로 몇 달 뒤 현금이 얼마나 될지 예측할 수 있습니다. 이것이 현금흐름 예측(Cash Flow Forecast)입니다.</p>
+<p>계절성이 있는 사업이라면 특정 시기에 현금이 마르는 패턴을 미리 알 수 있고, 차입이나 투자 시점을 조율할 수 있습니다. 현금이 없어서 급하게 대출을 받는 것과 미리 알고 준비하는 것은 조건이 완전히 다릅니다.</p></div>
+      </div>
+  </div>
   <div data-lang="en" style="display:none">
       <div class="section">
-        <h2 class="sec-title">Is the financial picture consistent?</h2>
-        <div class="sec-body"><p>The first thing due diligence teams do is check whether a company's financial numbers align across different sources — tax filings, financial statements and management accounts. Inconsistencies trigger immediate suspicion.</p>
-<p>Even when differences have legitimate explanations, if there is no explanation ready, buyers assume the worst. Consistency itself is the starting point for trust.</p>
-<div class="callout"><p><strong>A common pattern —</strong> Owners who have suppressed profits for tax purposes can find that their business looks less profitable when it comes time to sell. Correcting this in due diligence requires a formal normalisation exercise.</p></div></div>
+        <h2 class="sec-title">Why profit and cash flow diverge</h2>
+        <div class="sec-body"><p>Profit is an accounting concept. Revenue is recognised when a sale occurs, even if cash has not been received. Cash flow, on the other hand, is what actually moves in and out of the bank account.</p>
+<p>The feeling that "there's no cash" is explained by the cash flow statement, not the P&L. Growing receivables, accumulating inventory, capital expenditure — these drain cash even when profit is positive.</p>
+<div class="callout"><p><strong>A common pattern —</strong> Fast-growing businesses often feel this most acutely. Revenue grows, but receivables pile up and inventory builds, locking cash inside the business. This is the working capital trap.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">Quality of revenue — will this revenue keep coming?</h2>
-        <div class="sec-body"><p>Revenue size alone is not enough. Buyers want to know whether that revenue will continue after the sale. Recurring revenue — subscriptions, long-term contracts, repeat purchases — commands a premium.</p>
-<p>If a single customer accounts for 40% of sales, or most revenue is project-based and non-recurring, buyers discount the value. Their concern: when the owner leaves, that customer may leave too.</p>
-<div class="callout"><p><strong>Questions that come up in due diligence —</strong> "What percentage of revenue comes from your top five customers?" "What proportion of customers are on long-term contracts?" Have clear answers ready for both.</p></div></div>
+        <h2 class="sec-title">Working capital absorbs cash</h2>
+        <div class="sec-body"><p>Working capital is the money tied up in running the business day to day: receivables from customers, unsold inventory, prepaid expenses.</p>
+<p>If receivables take 60 days to collect but payables are due in 30 days, the business structure means more trading generates more cash shortfall. This gap is the working capital burden, and it grows with revenue.</p>
+<p>Managing working capital is not simply about conserving cash. How much credit to extend to customers, how much inventory to hold, when to collect and when to pay — these are all strategic decisions.</p></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">Can this business run without the owner?</h2>
-        <div class="sec-body"><p>In many small and mid-sized businesses, the CEO personally manages the key customer relationships, handles major supplier negotiations and makes most significant decisions. For buyers, the central question is: "What happens to this business when this person leaves?"</p>
-<p>This shows up in valuation as an owner dependency discount. A business with strong profitability but high owner dependency receives a lower multiple than one that operates independently.</p>
-<div class="callout"><p><strong>Two to three years before a sale —</strong> Gradually transferring key customer relationships and operational responsibility to your management team is one of the most effective ways to protect your valuation.</p></div></div>
+        <h2 class="sec-title">Capex and its effect on cash</h2>
+        <div class="sec-body"><p>Capital expenditure is not fully expensed on the P&L in the year it is incurred — it is spread through depreciation over time. So a large equipment purchase barely moves the profit figure, but hits cash immediately.</p>
+<p>Conversely, depreciation is a non-cash expense: it reduces profit but does not affect cash. This is why EBITDA (earnings before interest, tax, depreciation and amortisation) is used as a proxy for cash generation capacity.</p>
+<div class="callout"><p><strong>What owners need to know —</strong> How much profit was made this year and how much cash was generated this year are two different numbers. Investors and buyers look at both.</p></div></div>
       </div>
-
       <div class="section">
-        <h2 class="sec-title">Are there hidden liabilities?</h2>
-        <div class="sec-body"><p>Beyond balance sheet debt, buyers look for obligations that do not appear in the accounts but are real economic liabilities — whether retirement benefit provisions are adequate, whether there are ongoing legal disputes, and how much personal guarantee the CEO has outstanding.</p>
-<p>These items become deductions from enterprise value. If you have already identified them, you can discuss them as equals. If buyers find them first, they become negotiating leverage.</p></div>
-      </div></div>
-  
+        <h2 class="sec-title">Cash flow should be forecastable</h2>
+        <div class="sec-body"><p>Understanding where cash comes from and where it goes makes it possible to project what the cash position will look like months ahead. That is cash flow forecasting.</p>
+<p>For businesses with seasonality, the pattern of cash shortfalls at certain times can be identified in advance — and borrowing or investment timing can be planned accordingly. Taking out an emergency loan when cash runs dry is very different from arranging finance ahead of time on your own terms.</p></div>
+      </div>
+  </div>
       <div class="divider"></div>
       <div class="next-box">
         <div>
           <div class="next-label"><span data-ko>다음 글</span><span data-en>Next</span></div>
           <div class="next-title">
-            <span data-ko>지금 팔 생각이 없어도 해야 할 것들</span>
-            <span data-en>Things to do even if you are not selling yet</span>
+            <span data-ko>오너가 흔히 놓치는 숫자들</span><span data-en>Numbers most owners overlook</span>
           </div>
         </div>
         <a href="/aap_s1_03.html" class="next-btn">
@@ -256,12 +192,10 @@
         </a>
       </div>
 </div>
-
 <footer>
   <div class="footer-logo">AAP Advisory</div>
   <div class="footer-copy">© 2026 AAP Advisory · All rights reserved</div>
 </footer>
-
 <script>
   function setLang(lang) {
     document.body.className = lang;
@@ -277,20 +211,14 @@
     var saved; try { saved = sessionStorage.getItem('aap-lang'); } catch(e) {}
     setLang(saved === 'en' ? 'en' : 'ko');
   })();
-    function toggleMenu() {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!hb || !mm) return;
-    hb.classList.toggle('open');
-    mm.classList.toggle('open');
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
   }
   document.addEventListener('click', function(e) {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!mm || !hb) return;
-    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
-      hb.classList.remove('open');
-      mm.classList.remove('open');
+    var hb=document.getElementById('hamburger'); var mm=document.getElementById('mobileMenu');
+    if(mm&&mm.classList.contains('open')&&!mm.contains(e.target)&&hb&&!hb.contains(e.target)){
+      hb.classList.remove('open'); mm.classList.remove('open');
     }
   });
 </script>
