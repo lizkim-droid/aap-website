@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>진단 리포트 신청 — AAP Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #111E35;
+    --navy-mid: #1B2A4A;
+    --navy-card:#162038;
+    --teal:     #1B7A7A;
+    --teal-lt:  #2AADAD;
+    --teal-pale:#EBF5F5;
+    --off-white:#F8F7F4;
+    --cream:    #F2EFE9;
+    --gray:     #7A8FA8;
+    --gray-lt:  #94A3B8;
+    --border:   rgba(255,255,255,0.08);
+    --border-lt:#DDE3EC;
+    --text:     #111E35;
+    --text-mid: #4A5568;
+    --red:      #DC2626;
+    --amber:    #D97706;
+    --serif:    'Playfair Display', serif;
+    --sans:     'DM Sans', sans-serif;
+    --mono:     'DM Mono', monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);text-decoration:none;}
+  .nav-logo span{color:var(--teal-lt);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--teal-lt);}
+  .nav-right{display:flex;align-items:center;gap:2rem;}
+  .lang-toggle{display:flex;border:1px solid rgba(255,255,255,0.12);overflow:hidden;}
+  .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:var(--sans);font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
+  .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
+  .lt-btn.active{background:var(--teal-lt);color:var(--navy);}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--off-white);transition:all 0.3s;}
+  .mobile-menu{display:none;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:199;padding:5rem 2rem 2rem;gap:0;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;padding:0.85rem 0;border-bottom:1px solid var(--border);transition:color 0.2s;}
+  .mobile-menu a:hover,.mobile-menu a.active{color:var(--teal-lt);}
+
+  /* ── HERO ── */
+  .hero{padding:8rem 4rem 4rem;border-bottom:1px solid var(--border);}
+  .hero-inner{max-width:1200px;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:0.68rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+  .eyebrow::before{content:'';display:block;width:1.8rem;height:1px;background:var(--teal-lt);}
+  .hero h1{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--teal-lt);}
+  .hero-sub{font-size:0.92rem;font-weight:300;line-height:1.85;color:var(--gray);max-width:600px;margin-bottom:0;}
+
+  /* ── WRAP ── */
+  .wrap{max-width:1200px;margin:0 auto;padding:4rem;}
+
+  /* ── SERVICE SELECTOR ── */
+  .selector-section{background:var(--navy);padding:3rem 4rem;}
+  .selector-inner{max-width:1200px;margin:0 auto;}
+  .section-label{font-family:var(--mono);font-size:0.68rem;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.7rem;}
+  .section-label::before{content:'';display:block;width:1.4rem;height:1px;background:var(--teal-lt);}
+
+  .svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0.6rem;margin-bottom:0;}
+  .svc-btn{
+    background:var(--navy-card);border:1px solid var(--border);
+    padding:1.2rem;cursor:pointer;text-align:left;
+    transition:all 0.2s;position:relative;
+  }
+  .svc-btn:hover{border-color:rgba(42,173,173,0.4);}
+  .svc-btn.active{border-color:var(--teal-lt);background:rgba(27,122,122,0.12);}
+  .svc-btn.active::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--teal-lt);}
+  .svc-btn-tag{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.4rem;}
+  .svc-btn-name{font-family:var(--serif);font-size:0.95rem;font-weight:600;color:var(--off-white);line-height:1.3;margin-bottom:0.5rem;}
+  .svc-btn-price{font-family:var(--mono);font-size:0.8rem;color:var(--gray-lt);}
+  .svc-btn-badge{display:inline-block;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.45rem;background:rgba(27,122,122,0.2);color:var(--teal-lt);border:1px solid rgba(27,122,122,0.3);margin-top:0.4rem;}
+
+  /* ── DETAIL PANES ── */
+  .detail-section{background:var(--navy-mid);border-top:1px solid var(--border);}
+  .detail-pane{display:none;padding:3rem 4rem;}
+  .detail-pane.active{display:block;}
+  .detail-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+  .detail-left h2{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;margin-bottom:0.8rem;}
+  .detail-left h2 em{font-style:italic;color:var(--teal-lt);}
+  .detail-tagline{font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;margin-bottom:2rem;}
+  .detail-includes{list-style:none;margin-bottom:2rem;}
+  .detail-includes li{font-size:0.85rem;color:var(--off-white);padding:0.5rem 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:0.7rem;line-height:1.5;}
+  .detail-includes li::before{content:'✓';color:var(--teal-lt);font-size:0.75rem;flex-shrink:0;margin-top:0.1rem;}
+  .detail-out{list-style:none;margin-bottom:2rem;}
+  .detail-out li{font-size:0.8rem;color:var(--gray);padding:0.3rem 0;display:flex;align-items:flex-start;gap:0.6rem;}
+  .detail-out li::before{content:'✕';color:rgba(255,255,255,0.2);font-size:0.7rem;flex-shrink:0;margin-top:0.1rem;}
+  .detail-meta{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:2rem;}
+  .meta-item{background:var(--navy-card);border:1px solid var(--border);padding:0.9rem 1rem;}
+  .meta-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-lt);margin-bottom:0.3rem;}
+  .meta-value{font-size:0.85rem;color:var(--off-white);font-weight:400;}
+  .detail-price-row{display:flex;align-items:baseline;gap:0.8rem;margin-bottom:1.5rem;}
+  .detail-price{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--off-white);}
+  .detail-price-note{font-size:0.75rem;color:var(--gray);}
+  .btn-order{display:inline-block;padding:0.9rem 2.2rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;text-decoration:none;cursor:pointer;border:none;transition:background 0.2s;}
+  .btn-order:hover{background:#35BDBD;}
+  .btn-order-ghost{display:inline-block;padding:0.9rem 2rem;background:none;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);font-family:var(--sans);font-size:0.82rem;cursor:pointer;text-decoration:none;transition:all 0.2s;margin-left:0.8rem;}
+  .btn-order-ghost:hover{border-color:rgba(255,255,255,0.5);color:var(--off-white);}
+
+  /* ── DATA NEEDED ── */
+  .data-box{background:var(--navy-card);border:1px solid var(--border);border-top:2px solid var(--teal-lt);padding:1.8rem;}
+  .data-box h3{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--off-white);margin-bottom:0.6rem;}
+  .data-box p{font-size:0.8rem;color:var(--gray);line-height:1.7;margin-bottom:1.2rem;}
+  .data-list{list-style:none;}
+  .data-list li{font-size:0.82rem;color:var(--off-white);padding:0.45rem 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .data-list li:last-child{border-bottom:none;}
+  .data-req{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;}
+  .data-req.must{color:var(--teal-lt);}
+  .data-req.opt{color:rgba(255,255,255,0.25);}
+  .data-note{margin-top:1.2rem;padding:0.9rem 1rem;background:rgba(27,122,122,0.08);border-left:2px solid var(--teal-lt);}
+  .data-note p{font-size:0.78rem;color:var(--gray);line-height:1.6;margin-bottom:0;}
+
+  /* ── ORDER FORM ── */
+  .order-section{background:var(--navy);border-top:1px solid var(--border);}
+  .order-inner{max-width:800px;margin:0 auto;padding:4rem;}
+  .order-inner h2{font-family:var(--serif);font-size:1.6rem;font-weight:700;margin-bottom:0.6rem;}
+  .order-inner h2 em{font-style:italic;color:var(--teal-lt);}
+  .order-inner .sub{font-size:0.85rem;color:var(--gray);line-height:1.7;margin-bottom:2.5rem;}
+  .field{margin-bottom:1.4rem;}
+  .field label{display:block;font-family:var(--mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray-lt);margin-bottom:0.5rem;}
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--navy-card);border:1px solid var(--border);
+    color:var(--off-white);font-family:var(--sans);font-size:0.88rem;font-weight:300;
+    padding:0.75rem 1rem;outline:none;transition:border-color 0.2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal-lt);}
+  .field select option{background:var(--navy);}
+  .field textarea{resize:vertical;min-height:80px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .req{color:var(--teal-lt);margin-left:2px;}
+
+  .upload-area{
+    border:1px dashed rgba(255,255,255,0.2);padding:2rem;text-align:center;
+    cursor:pointer;transition:border-color 0.2s;background:var(--navy-card);
+    position:relative;
+  }
+  .upload-area:hover{border-color:var(--teal-lt);}
+  .upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+  .upload-icon{font-size:1.4rem;margin-bottom:0.5rem;opacity:0.4;}
+  .upload-text{font-size:0.82rem;color:var(--gray);line-height:1.6;}
+  .upload-text strong{color:var(--teal-lt);font-weight:400;}
+  .upload-list{margin-top:0.8rem;list-style:none;text-align:left;}
+  .upload-list li{font-size:0.75rem;color:var(--gray);padding:0.2rem 0;}
+  .upload-list li::before{content:'→ ';color:var(--teal-lt);}
+
+  .selected-service-display{
+    background:rgba(27,122,122,0.1);border:1px solid rgba(27,122,122,0.3);
+    padding:0.9rem 1.1rem;margin-bottom:1.8rem;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .selected-service-display .name{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--off-white);}
+  .selected-service-display .price{font-family:var(--mono);font-size:0.85rem;color:var(--teal-lt);}
+
+  .checkbox-row{display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;}
+  .checkbox-row input[type=checkbox]{width:16px;height:16px;flex-shrink:0;margin-top:2px;accent-color:var(--teal-lt);}
+  .checkbox-row span{font-size:0.8rem;color:var(--gray);line-height:1.6;}
+  .checkbox-row a{color:var(--teal-lt);text-decoration:none;}
+  .checkbox-row a:hover{text-decoration:underline;}
+
+  .submit-row{display:flex;align-items:center;gap:1.5rem;margin-top:2rem;}
+  .submit-note{font-size:0.75rem;color:rgba(255,255,255,0.25);line-height:1.5;}
+
+  /* ── LIMITATIONS ── */
+  .limits-section{background:var(--navy-mid);border-top:1px solid var(--border);}
+  .limits-inner{max-width:1200px;margin:0 auto;padding:3.5rem 4rem;}
+  .limits-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-top:2rem;}
+  .limit-card{padding:1.4rem;background:var(--navy-card);border:1px solid var(--border);}
+  .limit-card-label{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem;}
+  .limit-card h4{font-family:var(--serif);font-size:0.95rem;font-weight:600;color:var(--off-white);margin-bottom:0.5rem;}
+  .limit-card p{font-size:0.78rem;color:var(--gray);line-height:1.7;}
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-section{border-top:1px solid var(--border);padding:2.5rem 4rem;}
+  .disclaimer-inner{max-width:1200px;margin:0 auto;}
+  .disclaimer-box{background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:1.5rem 2rem;}
+  .disclaimer-box h4{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray-lt);margin-bottom:0.8rem;}
+  .disclaimer-box p{font-size:0.75rem;color:rgba(122,143,168,0.7);line-height:1.8;}
+  .disclaimer-box p + p{margin-top:0.6rem;}
+
+  /* ── FOOTER ── */
+  footer{border-top:1px solid var(--border);padding:1.6rem 4rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;}
+  .footer-logo{font-family:var(--serif);font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+
+  /* ── SUCCESS ── */
+  .success-screen{display:none;text-align:center;padding:5rem 2rem;}
+  .success-screen.active{display:block;}
+  .success-icon{font-size:3rem;margin-bottom:1.5rem;}
+  .success-screen h2{font-family:var(--serif);font-size:1.8rem;font-weight:700;margin-bottom:0.8rem;}
+  .success-screen h2 em{font-style:italic;color:var(--teal-lt);}
+  .success-screen p{font-size:0.88rem;color:var(--gray);line-height:1.8;margin-bottom:0.4rem;}
+  .order-token{font-family:var(--mono);font-size:1rem;color:var(--teal-lt);background:rgba(27,122,122,0.1);border:1px solid rgba(27,122,122,0.3);padding:0.5rem 1.5rem;display:inline-block;margin:1rem 0;}
+
+
+  /* ── BILINGUAL ── */
+  body.en [data-ko] { display: none !important; }
+  body.ko [data-en] { display: none !important; }
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .hero,.selector-section,.detail-pane,.order-inner,.limits-inner,.disclaimer-section{padding-left:1.5rem;padding-right:1.5rem;}
+    .svc-grid{grid-template-columns:1fr 1fr;}
+    .detail-inner{grid-template-columns:1fr;gap:2rem;}
+    .limits-grid{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+    footer{padding:1.5rem;flex-direction:column;gap:0.5rem;text-align:center;}
+  }
+</style>
+</head>
+<body class="ko">
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">AAP<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+      <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+      <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+      <li><a href="/snapshot.html" class="active"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a></li>
+      <li><a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+      <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
+    <div class="lang-toggle">
+      <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+      <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
+  <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+  <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
+  <a href="/snapshot.html" class="active"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a>
+  <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
+  <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span data-ko>AAP Advisory — 진단 리포트</span><span data-en>AAP Advisory — Diagnostic Reports</span></div>
+    <h1>
+      <span data-ko>지금 무엇이 필요하신가요?<br><em>목적에 맞는 서비스를 선택하세요.</em></span>
+      <span data-en>What do you need right now?<br><em>Choose the service that fits.</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-ko>있는 그대로의 재무 자료를 주시면 됩니다. 별도 양식 없이, Big 4 수준의 분석을 영업일 기준 48시간 안에 드립니다.<br>일회성 진단은 커밋 없는 프리미엄입니다. 월별 구독이 더 저렴하고 분석은 더 깊습니다.</span>
+      <span data-en>Submit your financials as-is. No template required. Big 4 quality analysis delivered within 48 business hours.<br>One-off scans carry a no-commitment premium. Monthly subscriptions are lower cost with deeper analysis.</span>
+    </p>
+  </div>
+</section>
+
+<!-- SERVICE SELECTOR -->
+<div class="selector-section">
+  <div class="selector-inner">
+    <div class="section-label"><span data-ko>서비스 선택</span><span data-en>Select a service</span></div>
+    <div class="svc-grid">
+
+      <button class="svc-btn active" onclick="selectService('operational', this)" id="btn-operational">
+        <div class="svc-btn-tag"><span data-ko>내 사업 현황 파악</span><span data-en>Operational</span></div>
+        <div class="svc-btn-name">Operational Scan</div>
+        <div class="svc-btn-price">₩690,000</div>
+      </button>
+
+      <button class="svc-btn" onclick="selectService('valuation', this)" id="btn-valuation">
+        <div class="svc-btn-tag"><span data-ko>기업가치 확인</span><span data-en>Valuation</span></div>
+        <div class="svc-btn-name">Valuation Scan</div>
+        <div class="svc-btn-price">₩990,000</div>
+      </button>
+
+      <button class="svc-btn" onclick="selectService('transaction', this)" id="btn-transaction">
+        <div class="svc-btn-tag"><span data-ko>매각 · 투자 준비</span><span data-en>Transaction</span></div>
+        <div class="svc-btn-name">Transaction Scan</div>
+        <div class="svc-btn-price">₩1,490,000</div>
+      </button>
+
+      <button class="svc-btn" onclick="selectService('bundle', this)" id="btn-bundle">
+        <div class="svc-btn-tag"><span data-ko>딜 전 완전한 준비</span><span data-en>Full Package</span></div>
+        <div class="svc-btn-name">Transaction +<br>Valuation</div>
+        <div class="svc-btn-price">₩1,990,000</div>
+        <div class="svc-btn-badge"><span data-ko>₩490K 절감</span><span data-en>Save ₩490K</span></div>
+      </button>
+
+      <button class="svc-btn" onclick="selectService('monthly', this)" id="btn-monthly">
+        <div class="svc-btn-tag"><span data-ko>월별 구독</span><span data-en>Monthly</span></div>
+        <div class="svc-btn-name">Monthly Monitor</div>
+        <div class="svc-btn-price">₩490,000/월</div>
+        <div class="svc-btn-badge"><span data-ko>일회성보다 저렴</span><span data-en>Lower than one-off</span></div>
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANES -->
+<div class="detail-section">
+
+  <!-- Operational -->
+  <div class="detail-pane active" id="pane-operational">
+    <div class="detail-inner">
+      <div class="detail-left">
+        <h2><em>Operational</em> Scan</h2>
+        <p class="detail-tagline">
+          <span data-ko>지금 잘 되고 있나? 어디서 새고 있나?<br>수익성·현금·운전자본 흐름을 딜 현장의 시각으로 스캔합니다.</span>
+          <span data-en>Is the business healthy? Where are the leaks?<br>Profitability, cash and working capital — scanned through a deal lens.</span>
+        </p>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
+        <ul class="detail-includes">
+          <li><span data-ko>매출 성장성 및 CAGR 분석</span><span data-en>Revenue growth and CAGR analysis</span></li>
+          <li><span data-ko>Gross Margin % · EBITDA % 추이 및 업종 벤치마크 대비</span><span data-en>GP% and EBITDA% trend vs industry benchmark</span></li>
+          <li><span data-ko>비용 구조 분해 (인건비 · 원가 · SG&A)</span><span data-en>Cost structure breakdown (labour, COGS, SG&A)</span></li>
+          <li><span data-ko>운전자본 효율 — DSO · DIO · DPO · CCC</span><span data-en>Working capital efficiency — DSO, DIO, DPO, CCC</span></li>
+          <li><span data-ko>FCFF 및 현금창출 전환율</span><span data-en>FCFF and cash conversion rate</span></li>
+          <li><span data-ko>Red Flag 감지 5~7개 (🔴 · 🟡 구분)</span><span data-en>5–7 red flags identified and graded</span></li>
+          <li><span data-ko>업종 벤치마크 대비 종합 판정</span><span data-en>Overall position vs industry benchmark</span></li>
+        </ul>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
+        <ul class="detail-out">
+          <li><span data-ko>원인 분석 및 개선 방안 — Advisory Retainer에서</span><span data-en>Root cause analysis and recommendations — Advisory Retainer</span></li>
+          <li><span data-ko>제품별 / 고객별 수익성 분석</span><span data-en>Product-level or customer-level profitability</span></li>
+          <li><span data-ko>EV 산정 및 Normalisation — Valuation / Transaction Scan에서</span><span data-en>Enterprise value or normalisation — Valuation / Transaction Scan</span></li>
+        </ul>
+        <div class="detail-price-row">
+          <div class="detail-price">₩690,000</div>
+          <div class="detail-price-note">VAT 별도 · 7슬라이드 PPT</div>
+        </div>
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Operational Scan', '₩690,000')">
+          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
+        </a>
+        <a href="/intake.html" class="btn-order-ghost"><span data-ko>문의하기</span><span data-en>Enquire</span></a>
+      </div>
+      <div class="detail-right">
+        <div class="data-box">
+          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
+          <p><span data-ko>있는 그대로 보내주시면 됩니다. Excel, PDF, 이미지 모두 가능합니다.</span><span data-en>Send as-is. Excel, PDF and images all accepted.</span></p>
+          <ul class="data-list">
+            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L statement (3 years+)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>감가상각비 내역</span><span data-en>Depreciation schedule</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>매출채권 · 재고 · 매입채무 기말 잔액</span><span data-en>AR, inventory, AP closing balances</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>현금 잔액</span><span data-en>Cash balance</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>업종 · 주요 제품 / 서비스 설명</span><span data-en>Industry and key product/service description</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>고객 집중도 (Top 3~5 비중)</span><span data-en>Customer concentration (top 3–5 share)</span><span class="data-req opt">선택</span></li>
+          </ul>
+          <div class="data-note">
+            <p><span data-ko>자료가 불완전해도 괜찮습니다. 누락 항목은 n/a로 처리하고, 제출 후 7일 이내 보완 자료를 주시면 <strong>1회 무상 업데이트</strong>를 드립니다. 회사명은 코드명으로 익명 처리 가능합니다.</span><span data-en>Incomplete data is fine. Missing items are marked n/a. One free update if supplementary data is provided within 7 days. Company names can be anonymised.</span></p>
+          </div>
+        </div>
+        <div class="detail-meta" style="margin-top:1rem;">
+          <div class="meta-item">
+            <div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div>
+            <div class="meta-value"><span data-ko>영업일 기준 48시간</span><span data-en>48 business hours</span></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div>
+            <div class="meta-value"><span data-ko>PPT 7슬라이드 + PDF</span><span data-en>7-slide PPT + PDF</span></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label"><span data-ko>분석 기준</span><span data-en>Basis</span></div>
+            <div class="meta-value"><span data-ko>Reported / Pre-normalisation</span><span data-en>Reported / Pre-normalisation</span></div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label"><span data-ko>지원 업종</span><span data-en>Industries</span></div>
+            <div class="meta-value"><span data-ko>8개 업종</span><span data-en>8 industries</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Valuation -->
+  <div class="detail-pane" id="pane-valuation">
+    <div class="detail-inner">
+      <div class="detail-left">
+        <h2><em>Valuation</em> Scan</h2>
+        <p class="detail-tagline">
+          <span data-ko>지금 내 회사는 대략 얼마인가? LOI 전 Sanity check, 투자유치 전 기준 파악.</span>
+          <span data-en>What is my business roughly worth? Sanity check before LOI or ahead of raising investment.</span>
+        </p>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
+        <ul class="detail-includes">
+          <li><span data-ko>EBITDA 기반 EV 추정 범위 (Low / Mid / High)</span><span data-en>EBITDA-based EV range (Low / Mid / High)</span></li>
+          <li><span data-ko>업종 EV/EBITDA 멀티플 밴드</span><span data-en>Industry EV/EBITDA multiple band</span></li>
+          <li><span data-ko>Equity Value 추정 (Net Debt 차감)</span><span data-en>Equity value estimate (net of debt)</span></li>
+          <li><span data-ko>고객 · 매출 집중도 Discount 반영</span><span data-en>Customer and revenue concentration discount</span></li>
+          <li><span data-ko>Simplified DCF Cross-check (업종 평균 가정)</span><span data-en>Simplified DCF cross-check (industry average assumptions)</span></li>
+          <li><span data-ko>멀티플 변동 핵심 요인 분석</span><span data-en>Key drivers of multiple variation</span></li>
+        </ul>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
+        <ul class="detail-out">
+          <li><span data-ko>Normalisation 후 정밀 EV — Transaction Scan에서</span><span data-en>Normalised EV — Transaction Scan</span></li>
+          <li><span data-ko>경영진 사업계획 기반 Full DCF</span><span data-en>Full DCF based on management business plan</span></li>
+          <li><span data-ko>구체적 협상 숫자 및 투자 의사결정 근거</span><span data-en>Specific negotiation numbers or investment decisions</span></li>
+        </ul>
+        <div class="detail-price-row">
+          <div class="detail-price">₩990,000</div>
+          <div class="detail-price-note">VAT 별도 · 9슬라이드 PPT</div>
+        </div>
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Valuation Scan', '₩990,000')">
+          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
+        </a>
+        <a href="/intake.html" class="btn-order-ghost"><span data-ko>문의하기</span><span data-en>Enquire</span></a>
+      </div>
+      <div class="detail-right">
+        <div class="data-box">
+          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
+          <p><span data-ko>손익 + 재무상태표가 기본입니다.</span><span data-en>P&L and balance sheet are the foundation.</span></p>
+          <ul class="data-list">
+            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L (3 years+)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>재무상태표</span><span data-en>Balance sheet</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>차입금 현황 (금융기관 · 리스 · 주주)</span><span data-en>Debt schedule (bank, lease, shareholder)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>현금 및 현금성 자산</span><span data-en>Cash and equivalents</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>업종 · 사업 개요</span><span data-en>Industry and business overview</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>고객 집중도</span><span data-en>Customer concentration</span><span class="data-req opt">선택</span></li>
+          </ul>
+          <div class="data-note">
+            <p><span data-ko>Pre-normalisation 기준입니다. 오너 급여 조정 · 비경상 항목 정밀 정상화는 포함되지 않습니다. 실제 딜 협상 · 투자 의사결정에 활용하려면 추가 자문이 필요합니다.</span><span data-en>Pre-normalisation basis. Owner salary adjustments and detailed normalisation are not included. Additional advisory is required for actual deal negotiation or investment decisions.</span></p>
+          </div>
+        </div>
+        <div class="detail-meta" style="margin-top:1rem;">
+          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 기준 48시간</span><span data-en>48 business hours</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>PPT 9슬라이드 + PDF</span><span data-en>9-slide PPT + PDF</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>분석 기준</span><span data-en>Basis</span></div><div class="meta-value"><span data-ko>Pre-normalisation</span><span data-en>Pre-normalisation</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>EV 범위</span><span data-en>EV range</span></div><div class="meta-value"><span data-ko>Low / Mid / High 3구간</span><span data-en>Low / Mid / High</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transaction -->
+  <div class="detail-pane" id="pane-transaction">
+    <div class="detail-inner">
+      <div class="detail-left">
+        <h2><em>Transaction</em> Scan</h2>
+        <p class="detail-tagline">
+          <span data-ko>바이어·투자자 눈에 어떻게 보이나? 오너의 실사 사전 준비, PE·GP의 매물 초기 스크리닝에 활용됩니다.</span>
+          <span data-en>How does a buyer or investor see this business? For seller pre-diligence preparation and buyer initial screening.</span>
+        </p>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
+        <ul class="detail-includes">
+          <li><span data-ko>Quality of Earnings (QoE) 시그널</span><span data-en>Quality of Earnings (QoE) signals</span></li>
+          <li><span data-ko>Indicative Normalisation 플래그 (오너 비용 · 비경상 항목)</span><span data-en>Indicative normalisation flags (owner costs, non-recurring items)</span></li>
+          <li><span data-ko>Working Capital 분석 및 Target NWC 관찰</span><span data-en>Working capital analysis and indicative target NWC</span></li>
+          <li><span data-ko>Net Debt 명세 및 Debt-like Items 분류</span><span data-en>Net debt schedule and debt-like items classification</span></li>
+          <li><span data-ko>Revenue Quality (반복매출 · 고객 집중도 · 성장성)</span><span data-en>Revenue quality — recurring revenue, concentration, growth</span></li>
+          <li><span data-ko>EV Bridge 시산 (Indicative)</span><span data-en>Indicative EV bridge</span></li>
+          <li><span data-ko>Red / Yellow Flag 분류 및 딜 리스크 관찰</span><span data-en>Red/yellow flags and deal risk observations</span></li>
+          <li><span data-ko>Sell-side / Buy-side 관점 분기</span><span data-en>Sell-side / buy-side perspective split</span></li>
+        </ul>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
+        <ul class="detail-out">
+          <li><span data-ko>정밀 Normalisation 수치 · SPA 조건 설계 — Advisory로</span><span data-en>Precise normalisation or SPA terms — Advisory</span></li>
+          <li><span data-ko>WC peg 협상 · Diligence Q&A 대응</span><span data-en>WC peg negotiation or diligence Q&A responses</span></li>
+        </ul>
+        <div class="detail-price-row">
+          <div class="detail-price">₩1,490,000</div>
+          <div class="detail-price-note">VAT 별도 · 21슬라이드 PPT</div>
+        </div>
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Transaction Scan', '₩1,490,000')">
+          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
+        </a>
+        <a href="/intake.html" class="btn-order-ghost"><span data-ko>문의하기</span><span data-en>Enquire</span></a>
+      </div>
+      <div class="detail-right">
+        <div class="data-box">
+          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
+          <p><span data-ko>손익 + 재무상태표 + 차입금 현황이 기본입니다.</span><span data-en>P&L, balance sheet and debt schedule are the core requirements.</span></p>
+          <ul class="data-list">
+            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L (3 years+)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>재무상태표</span><span data-en>Balance sheet</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>차입금 현황 (종류 · 금리 · 만기)</span><span data-en>Debt schedule (type, rate, maturity)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>퇴직급여충당부채 및 외부 적립 현황</span><span data-en>Retirement benefit obligation and funding</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>고객 집중도 (Top 3~5)</span><span data-en>Customer concentration (top 3–5)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>반복매출 · 계약 기반 매출 비중</span><span data-en>Recurring / contract revenue proportion</span><span class="data-req opt">선택</span></li>
+            <li><span data-ko>소송 · 우발부채 현황</span><span data-en>Litigation and contingent liabilities</span><span class="data-req opt">선택</span></li>
+          </ul>
+          <div class="data-note">
+            <p><span data-ko>Sell-side (매각 준비) 또는 Buy-side (인수 스크리닝) 중 신청 시 선택해 주세요. 관점에 따라 코멘트 방향이 달라집니다.</span><span data-en>Please indicate sell-side (preparing for sale) or buy-side (acquisition screening). The commentary direction differs by perspective.</span></p>
+          </div>
+        </div>
+        <div class="detail-meta" style="margin-top:1rem;">
+          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 기준 48시간</span><span data-en>48 business hours</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>PPT 21슬라이드 + PDF</span><span data-en>21-slide PPT + PDF</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>관점 선택</span><span data-en>Perspective</span></div><div class="meta-value"><span data-ko>Sell-side / Buy-side</span><span data-en>Sell-side / Buy-side</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>분석 기준</span><span data-en>Basis</span></div><div class="meta-value"><span data-ko>Indicative normalisation</span><span data-en>Indicative normalisation</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bundle -->
+  <div class="detail-pane" id="pane-bundle">
+    <div class="detail-inner">
+      <div class="detail-left">
+        <h2>Transaction + <em>Valuation</em></h2>
+        <p class="detail-tagline">
+          <span data-ko>Transaction Scan + Valuation Scan을 동시에. 같은 자료로 두 가지 분석을 함께 받을 수 있습니다. ₩490,000 절감.</span>
+          <span data-en>Transaction Scan and Valuation Scan combined. Two analyses from the same data. Save ₩490,000.</span>
+        </p>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
+        <ul class="detail-includes">
+          <li><span data-ko>Transaction Scan 전체 포함 (21슬라이드)</span><span data-en>Full Transaction Scan (21 slides)</span></li>
+          <li><span data-ko>Valuation Scan 전체 포함 (9슬라이드)</span><span data-en>Full Valuation Scan (9 slides)</span></li>
+          <li><span data-ko>EV Bridge 통합 분석</span><span data-en>Integrated EV bridge analysis</span></li>
+          <li><span data-ko>딜 준비도 종합 판단</span><span data-en>Overall deal readiness assessment</span></li>
+        </ul>
+        <div class="detail-price-row">
+          <div class="detail-price">₩1,990,000</div>
+          <div class="detail-price-note" style="display:flex;flex-direction:column;gap:2px;">
+            <span>VAT 별도</span>
+            <span style="color:var(--teal-lt);">단독 합산 ₩2,480,000 대비 ₩490,000 절감</span>
+          </div>
+        </div>
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Transaction + Valuation Bundle', '₩1,990,000')">
+          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
+        </a>
+        <a href="/intake.html" class="btn-order-ghost"><span data-ko>문의하기</span><span data-en>Enquire</span></a>
+      </div>
+      <div class="detail-right">
+        <div class="data-box">
+          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
+          <p><span data-ko>Transaction Scan 기준 자료를 주시면 Valuation Scan은 추가 자료 없이 함께 진행됩니다.</span><span data-en>Provide Transaction Scan data and the Valuation Scan will be completed simultaneously without additional data.</span></p>
+          <ul class="data-list">
+            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L (3 years+)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>재무상태표</span><span data-en>Balance sheet</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>차입금 현황</span><span data-en>Debt schedule</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>퇴직급여충당부채 및 외부 적립 현황</span><span data-en>Retirement benefit obligation</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>고객 집중도</span><span data-en>Customer concentration</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>소송 · 우발부채 현황</span><span data-en>Contingent liabilities</span><span class="data-req opt">선택</span></li>
+          </ul>
+          <div class="data-note">
+            <p><span data-ko>할인 이유: 동일 자료로 두 분석을 동시에 수행하므로 효율이 발생합니다. 납기는 영업일 기준 48~72시간입니다.</span><span data-en>Discount rationale: both analyses use the same data, generating efficiency. Delivery is 48–72 business hours.</span></p>
+          </div>
+        </div>
+        <div class="detail-meta" style="margin-top:1rem;">
+          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 기준 48~72시간</span><span data-en>48–72 business hours</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>PPT 30슬라이드 + PDF</span><span data-en>30-slide PPT + PDF</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>절감액</span><span data-en>Saving</span></div><div class="meta-value" style="color:var(--teal-lt);">₩490,000</div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>관점 선택</span><span data-en>Perspective</span></div><div class="meta-value"><span data-ko>Sell-side / Buy-side</span><span data-en>Sell-side / Buy-side</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Monthly -->
+  <div class="detail-pane" id="pane-monthly">
+    <div class="detail-inner">
+      <div class="detail-left">
+        <h2><em>Monthly</em> Monitor</h2>
+        <p class="detail-tagline">
+          <span data-ko>매달 무슨 일이 있었는지 + 어떤 패턴인지. 세무사 숫자 정리와 다릅니다. Big 4 FDD 렌즈로 변화를 감지하고 패턴을 해석합니다.</span>
+          <span data-en>What happened this month, and what pattern does it reveal? Different from a bookkeeper's summary. Detecting change and interpreting patterns through a Big 4 FDD lens.</span>
+        </p>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>매달 포함 분석</span><span data-en>Monthly included</span></div>
+        <ul class="detail-includes">
+          <li><span data-ko>Revenue / GP / EBITDA — MoM · YoY · QoQ 비교</span><span data-en>Revenue / GP / EBITDA — MoM, YoY, QoQ</span></li>
+          <li><span data-ko>운전자본 변화 (DSO · DIO · DPO) 전월 대비</span><span data-en>Working capital changes (DSO, DIO, DPO) vs prior month</span></li>
+          <li><span data-ko>신호등 3개 (🟢 양호 / 🟡 주의 / 🔴 위험)</span><span data-en>3 traffic lights (green / amber / red)</span></li>
+          <li><span data-ko>이달의 포커스 인사이트 1개 (월별 로테이션 토픽)</span><span data-en>One focused monthly insight (rotating topic)</span></li>
+          <li><span data-ko>Budget vs Actual 숫자 비교 (예산 자료 제공 시)</span><span data-en>Budget vs actual comparison (if budget provided)</span></li>
+        </ul>
+        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
+        <ul class="detail-out">
+          <li><span data-ko>원인 규명 (왜) · 처방 및 실행 — Advisory Retainer에서</span><span data-en>Root cause analysis and recommendations — Advisory Retainer</span></li>
+          <li><span data-ko>Budget 재작성 및 Forecasting</span><span data-en>Budget reforecasting</span></li>
+          <li><span data-ko>Unit economics 심층 분석 (원장 데이터 필요)</span><span data-en>Deep unit economics (requires ledger-level data)</span></li>
+        </ul>
+        <div class="detail-price-row">
+          <div class="detail-price">₩490,000</div>
+          <div class="detail-price-note" style="display:flex;flex-direction:column;gap:2px;">
+            <span>/월 · VAT 별도</span>
+            <span style="color:var(--teal-lt);">PE 포트폴리오 3개↑ 건당 ₩390,000</span>
+          </div>
+        </div>
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Monthly Monitor', '₩490,000/월')">
+          <span data-ko>구독 시작하기 →</span><span data-en>Start subscription →</span>
+        </a>
+        <a href="/intake.html" class="btn-order-ghost"><span data-ko>문의하기</span><span data-en>Enquire</span></a>
+      </div>
+      <div class="detail-right">
+        <div class="data-box">
+          <h3><span data-ko>필요한 자료 — 매달</span><span data-en>Data required — monthly</span></h3>
+          <p><span data-ko>온보딩 시 AAP 표준 월간 템플릿(Google Sheet)을 제공합니다. 매달 15일까지 채워서 제출하면 됩니다.</span><span data-en>At onboarding, AAP provides a standard monthly template (Google Sheet). Complete and submit by the 15th of each month.</span></p>
+          <ul class="data-list">
+            <li><span data-ko>당월 손익 (Revenue · GP · EBITDA)</span><span data-en>Monthly P&L (Revenue, GP, EBITDA)</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>AR · 재고 · AP 기말 잔액</span><span data-en>AR, inventory, AP closing balances</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>현금 잔액</span><span data-en>Cash balance</span><span class="data-req must">필수</span></li>
+            <li><span data-ko>이달의 포커스 토픽 관련 추가 자료</span><span data-en>Additional data for the month's focus topic</span><span class="data-req opt">선택</span></li>
+            <li><span data-ko>예산 자료 (있는 경우)</span><span data-en>Budget (if available)</span><span class="data-req opt">선택</span></li>
+          </ul>
+          <div class="data-note">
+            <p><span data-ko><strong>운영 캘린더:</strong> 매달 10일 AAP가 먼저 연락해 이번 달 토픽과 필요 자료를 안내합니다. 15일 제출 마감 → 말일 리포트 발행. 토픽은 월 1회 변경 요청 가능합니다.</span><span data-en><strong>Calendar:</strong> AAP contacts you on the 10th with the month's topic and any additional data needed. Submit by the 15th → report published by month-end. Topic changes accepted once per month.</span></p>
+          </div>
+        </div>
+        <div class="detail-meta" style="margin-top:1rem;">
+          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>매달 말일</span><span data-en>Month-end</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>리포트 + 대시보드 링크</span><span data-en>Report + dashboard link</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>약정</span><span data-en>Commitment</span></div><div class="meta-value"><span data-ko>최소 3개월 권장</span><span data-en>3 months recommended</span></div></div>
+          <div class="meta-item"><div class="meta-label"><span data-ko>깊이 기준</span><span data-en>Depth</span></div><div class="meta-value"><span data-ko>Level 1+2 (현상 + 패턴)</span><span data-en>Level 1+2 (what + pattern)</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /detail-section -->
+
+<!-- ORDER FORM -->
+<div class="order-section" id="order-form">
+  <div class="order-inner">
+
+    <div id="form-view">
+      <h2><span data-ko>신청하기</span><span data-en>Apply</span></h2>
+      <p class="sub">
+        <span data-ko>작성해 주신 내용을 확인한 뒤 영업일 기준 4시간 이내로 연락드립니다. 자료는 메시지로 보내주시면 됩니다.</span>
+        <span data-en>We will review your submission and be in touch within 4 business hours. Data can be sent separately by message.</span>
+      </p>
+
+      <div class="selected-service-display" id="selected-display">
+        <div class="name" id="selected-name">Operational Scan</div>
+        <div class="price" id="selected-price">₩690,000</div>
+      </div>
+
+      <form id="order-form-el" onsubmit="submitForm(event)">
+
+        <div class="field-row">
+          <div class="field">
+            <label><span data-ko>이름</span><span data-en>Name</span><span class="req">*</span></label>
+            <input type="text" id="f-name" placeholder="홍길동" required>
+          </div>
+          <div class="field">
+            <label><span data-ko>연락처</span><span data-en>Phone</span></label>
+            <input type="tel" id="f-phone" placeholder="010-0000-0000">
+          </div>
+        </div>
+
+        <div class="field">
+          <label><span data-ko>이메일</span><span data-en>Email</span><span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="example@company.com" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label><span data-ko>회사명</span><span data-en>Company</span></label>
+            <input type="text" id="f-company" placeholder="(주)OOO 또는 코드명">
+          </div>
+          <div class="field">
+            <label><span data-ko>업종</span><span data-en>Industry</span></label>
+            <select id="f-industry">
+              <option value="">선택</option>
+              <option value="01">제조업 (일반)</option>
+              <option value="02">의료기기</option>
+              <option value="03">MSO (병·의원)</option>
+              <option value="04">레스토랑 · F&B</option>
+              <option value="05">키즈카페 · 실내체험</option>
+              <option value="06">IT / SaaS</option>
+              <option value="07">도소매 유통</option>
+              <option value="08">서비스업 (전문직 · B2B)</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field" id="perspective-field" style="display:none;">
+          <label><span data-ko>관점 선택</span><span data-en>Perspective</span></label>
+          <select id="f-perspective">
+            <option value="sell">Sell-side — 매각 준비</option>
+            <option value="buy">Buy-side — 인수 스크리닝</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label><span data-ko>재무 자료 업로드 (선택 — 이후 이메일로도 가능)</span><span data-en>Upload data (optional — can also send by email)</span></label>
+          <div class="upload-area">
+            <input type="file" id="f-files" multiple accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png,.zip,.hwp,.csv">
+            <div class="upload-icon">↑</div>
+            <div class="upload-text"><strong><span data-ko>클릭 또는 드래그</span><span data-en>Click or drag</span></strong><br><span data-ko>Excel · PDF · 이미지 · ZIP · HWP</span><span data-en>Excel · PDF · Images · ZIP</span></div>
+            <ul class="upload-list" id="file-list"></ul>
+          </div>
+        </div>
+
+        <div class="field">
+          <label><span data-ko>추가 전달 사항 (선택)</span><span data-en>Additional notes (optional)</span></label>
+          <textarea id="f-notes" placeholder="예) 자료가 불완전합니다  /  특별히 봐주셨으면 하는 포인트가 있습니다  /  일정이 급합니다"></textarea>
+        </div>
+
+        <div class="field">
+          <label class="checkbox-row">
+            <input type="checkbox" id="f-agree" required>
+            <span>
+              <span data-ko>제출하신 자료는 리포트 작성 목적으로만 사용됩니다. 제3자에게 공유하지 않습니다. 회사명은 코드명으로 익명 처리 가능합니다.</span>
+              <span data-en>Submitted data will be used solely for report preparation and will not be shared with third parties. Company names can be anonymised.</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-order">
+            <span data-ko>신청서 제출하기 →</span>
+            <span data-en>Submit application →</span>
+          </button>
+          <p class="submit-note">
+            <span data-ko>접수 확인 후 영업일 기준 4시간 이내 연락드립니다.<br>급한 경우 info@aap-advisory.com으로 직접 연락 주세요.</span>
+            <span data-en>We will confirm receipt and be in touch within 4 business hours.<br>For urgent matters: info@aap-advisory.com</span>
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="success-screen" id="success-view">
+      <div class="success-icon">✓</div>
+      <h2><span data-ko>신청이 <em>접수됐습니다.</em></span><span data-en>Application <em>received.</em></span></h2>
+      <p><span data-ko>영업일 기준 4시간 이내로 연락드립니다.</span><span data-en>We will be in touch within 4 business hours.</span></p>
+      <p><span data-ko>주문 번호:</span><span data-en>Order reference:</span></p>
+      <div class="order-token" id="order-token-display">—</div>
+      <p style="margin-top:1rem;font-size:0.8rem;">
+        <span data-ko>이 번호를 저장해 두세요. 진행 상황 문의 시 필요합니다.</span>
+        <span data-en>Please save this reference. You will need it for any status enquiries.</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIMITATIONS -->
+<div class="limits-section">
+  <div class="limits-inner">
+    <div class="section-label"><span data-ko>서비스 범위 및 제한</span><span data-en>Scope and limitations</span></div>
+    <div class="limits-grid">
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>데이터 기준</span><span data-en>Data basis</span></div>
+        <h4><span data-ko>제출 자료 기준 분석</span><span data-en>Based on submitted data only</span></h4>
+        <p><span data-ko>모든 분석은 클라이언트가 제출한 자료에 기반합니다. AAP Advisory는 자료의 정확성과 완전성을 독립적으로 검증하지 않으며, 자료의 신뢰성에 대한 보증을 제공하지 않습니다.</span><span data-en>All analysis is based solely on data provided by the client. AAP Advisory does not independently verify the accuracy or completeness of submitted data and makes no warranty as to its reliability.</span></p>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>분석 깊이</span><span data-en>Depth of analysis</span></div>
+        <h4><span data-ko>스냅샷 수준 진단</span><span data-en>Snapshot-level diagnostic</span></h4>
+        <p><span data-ko>본 서비스는 재무 패턴과 이상 신호를 감지하는 수준의 진단입니다. 이슈의 확정적 원인 규명, 처방, 개선 방안은 포함되지 않습니다. 실사(Due Diligence) 수준의 검토는 Advisory 서비스를 통해 제공됩니다.</span><span data-en>This service is a pattern-detection diagnostic. Definitive root cause analysis, prescriptive recommendations and full due diligence are not included and are available through Advisory services.</span></p>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>활용 목적</span><span data-en>Intended use</span></div>
+        <h4><span data-ko>의사결정 보조 자료</span><span data-en>Supporting material only</span></h4>
+        <p><span data-ko>본 리포트는 경영 판단을 보조하는 참고 자료입니다. 실제 M&A·투자·대출 협상 등 중요 의사결정에 직접 활용하려면 전문가의 추가 검토가 필요합니다. AAP Advisory는 본 리포트를 근거로 한 의사결정의 결과에 대해 책임지지 않습니다.</span><span data-en>This report is a reference tool to support management judgement. For material decisions — M&A, investment, financing — additional professional review is required. AAP Advisory accepts no liability for decisions made in reliance on this report.</span></p>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>세무 · 법무</span><span data-en>Tax and legal</span></div>
+        <h4><span data-ko>세무 · 법무 자문 미포함</span><span data-en>Not tax or legal advice</span></h4>
+        <p><span data-ko>본 서비스는 재무 분석 서비스로, 세무 자문, 법무 자문, 회계 감사를 포함하지 않습니다. 세무·법무 관련 사항은 관련 전문가에게 별도로 확인하시기 바랍니다.</span><span data-en>This is a financial analysis service. It does not constitute tax advice, legal advice or audit. Tax and legal matters should be confirmed separately with the relevant professionals.</span></p>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>기밀 유지</span><span data-en>Confidentiality</span></div>
+        <h4><span data-ko>제출 자료 기밀 처리</span><span data-en>Submitted data treated as confidential</span></h4>
+        <p><span data-ko>제출된 자료와 분석 결과는 리포트 작성 목적으로만 사용되며, 제3자에게 공유하지 않습니다. 회사명과 고객사명은 요청 시 코드명으로 익명 처리 가능합니다. NDA 요청 시 별도 제공 가능합니다.</span><span data-en>Submitted data and analysis are used solely for report preparation and are not shared with third parties. Company and client names can be anonymised on request. NDA available on request.</span></p>
+      </div>
+      <div class="limit-card">
+        <div class="limit-card-label"><span data-ko>환불 정책</span><span data-en>Refund policy</span></div>
+        <h4><span data-ko>자료 제출 전 취소 가능</span><span data-en>Cancellation before data submission</span></h4>
+        <p><span data-ko>자료 제출 전에는 전액 환불이 가능합니다. 자료 제출 후 분석이 시작된 경우 환불이 불가합니다. 자료 불완전으로 인한 분석 제한은 환불 사유가 되지 않으며, 7일 이내 보완 자료 제출 시 1회 무상 업데이트로 대응합니다.</span><span data-en>Full refund is available before data submission. Once analysis has commenced following data submission, refunds are not available. Analysis limitations due to incomplete data are addressed via one free update within 7 days, not via refund.</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-section">
+  <div class="disclaimer-inner">
+    <div class="disclaimer-box">
+      <h4>Reliance Restricted — Important Notice</h4>
+      <p><span data-ko>본 리포트는 AAP Advisory가 클라이언트의 요청에 따라, 클라이언트가 제공한 자료를 기반으로 작성한 내부 참고용 자료입니다. 본 리포트는 제3자에 대한 공개 또는 배포를 목적으로 작성되지 않았으며, 클라이언트 이외의 제3자가 본 리포트를 신뢰하거나 이를 근거로 어떠한 행위를 하더라도 AAP Advisory는 이에 대한 어떠한 책임도 지지 않습니다.</span><span data-en>This report has been prepared by AAP Advisory at the request of the client, based solely on information provided by the client. It is not intended for disclosure or distribution to third parties. AAP Advisory accepts no responsibility or liability to any third party who relies on or acts upon the contents of this report.</span></p>
+      <p style="margin-top:0.8rem;"><span data-ko>본 리포트에 포함된 기업가치 추정치는 Pre-normalisation 기준의 추정 범위이며, 실제 거래 가격, 투자 가치 또는 자산 가치를 보증하는 것이 아닙니다. 모든 수치는 제출 자료의 정확성을 전제로 하며, 독립적 검증 없이 작성되었습니다.</span><span data-en>Any enterprise value estimates contained in this report are indicative ranges on a pre-normalisation basis. They do not represent a guarantee of transaction price, investment value or asset value. All figures are conditional on the accuracy of submitted data and have been prepared without independent verification.</span></p>
+      <p style="margin-top:0.8rem;color:rgba(122,143,168,0.5);">© 2026 AAP Advisory · aap-advisory.com · info@aap-advisory.com</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · Confidential</div>
+</footer>
+
+<script>
+  // ── State ────────────────────────────
+  let currentService = 'operational';
+  let orderService   = 'Operational Scan';
+  let orderPrice     = '₩690,000';
+
+  // ── Service selector ─────────────────
+  function selectService(id, btn) {
+    document.querySelectorAll('.svc-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.detail-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-' + id).classList.add('active');
+    currentService = id;
+
+    // Show perspective field for transaction / bundle
+    const pf = document.getElementById('perspective-field');
+    if (pf) pf.style.display = (id === 'transaction' || id === 'bundle') ? 'block' : 'none';
+
+    // Scroll to detail
+    document.querySelector('.detail-section').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  // ── Set order service from CTA ────────
+  function setOrderService(name, price) {
+    orderService = name;
+    orderPrice   = price;
+    document.getElementById('selected-name').textContent = name;
+    document.getElementById('selected-price').textContent = price;
+    document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
+  }
+
+  // ── File upload ───────────────────────
+  document.getElementById('f-files').addEventListener('change', function() {
+    const list = document.getElementById('file-list');
+    list.innerHTML = '';
+    Array.from(this.files).forEach(f => {
+      const li = document.createElement('li');
+      li.textContent = f.name + ' (' + (f.size/1024).toFixed(0) + ' KB)';
+      list.appendChild(li);
+    });
+  });
+
+  // ── Form submit ───────────────────────
+  function submitForm(e) {
+    e.preventDefault();
+    const name  = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const agree = document.getElementById('f-agree').checked;
+    if (!name || !email || !agree) return;
+
+    // Generate order token
+    const token = 'AAP-' +
+      Date.now().toString(36).toUpperCase().slice(-4) + '-' +
+      Math.random().toString(36).toUpperCase().slice(2, 6);
+
+    // Show success
+    document.getElementById('form-view').style.display  = 'none';
+    document.getElementById('success-view').classList.add('active');
+    document.getElementById('order-token-display').textContent = token;
+    document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
+  }
+
+  // ── Lang ──────────────────────────────
+  const INDUSTRY_OPTS = {
+    ko: ['선택','제조업 (일반)','의료기기','MSO (병·의원)','레스토랑 · F&B','키즈카페 · 실내체험','IT / SaaS','도소매 유통','서비스업 (전문직 · B2B)','기타'],
+    en: ['Select','Manufacturing','Medical devices','MSO (clinics)','Restaurant / F&B','Kids cafe / indoor','IT / SaaS','Wholesale / retail','Services (professional / B2B)','Other']
+  };
+  const PERSPECTIVE_OPTS = {
+    ko: ['Sell-side — 매각 준비','Buy-side — 인수 스크리닝'],
+    en: ['Sell-side — preparing for sale','Buy-side — acquisition screening']
+  };
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    // Update select options
+    const ind = document.getElementById('f-industry');
+    if (ind) Array.from(ind.options).forEach((o,i) => { o.text = INDUSTRY_OPTS[lang][i] || o.text; });
+    const persp = document.getElementById('f-perspective');
+    if (persp) Array.from(persp.options).forEach((o,i) => { o.text = PERSPECTIVE_OPTS[lang][i] || o.text; });
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e){}
+  }
+
+  // ── Mobile menu ───────────────────────
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const mm = document.getElementById('mobileMenu');
+    const hb = document.getElementById('hamburger');
+    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
+      hb.classList.remove('open');
+      mm.classList.remove('open');
+    }
+  });
+
+  // ── Init ──────────────────────────────
+  window.addEventListener('DOMContentLoaded', function() {
+    // Restore lang
+    const saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
+    setLang(saved === 'en' ? 'en' : 'ko');
+
+    // Hash-based service selection
+    const hash = window.location.hash;
+    const map = {
+      '#pane-a': 'operational', '#pane-b': 'transaction',
+      '#pane-c': 'valuation',   '#pane-bundle': 'bundle',
+      '#pane-monthly': 'monthly'
+    };
+    if (map[hash]) {
+      const id = map[hash];
+      selectService(id, document.getElementById('btn-' + id));
+    }
+  });
+</script>
+</body>
+</html>
