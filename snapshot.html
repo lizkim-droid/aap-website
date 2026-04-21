@@ -621,6 +621,92 @@
 
 </div><!-- /detail-section -->
 
+<!-- SAMPLE DASHBOARD -->
+<div style="background:var(--navy-mid);border-top:1px solid var(--border);padding:3rem 4rem;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div>
+        <div class="section-label" style="color:var(--teal-lt);display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
+          <span style="display:block;width:1.4rem;height:1px;background:var(--teal-lt);"></span>
+          <span data-ko>Monthly Monitor 샘플</span><span data-en>Monthly Monitor Sample</span>
+        </div>
+        <h2 style="font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;margin-bottom:0.8rem;">
+          <span data-ko>대시보드가 <em style="font-style:italic;color:var(--teal-lt);">어떻게 생겼는지</em><br>직접 확인해보세요.</span>
+          <span data-en>See what the <em style="font-style:italic;color:var(--teal-lt);">dashboard looks like</em><br>for yourself.</span>
+        </h2>
+        <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+          <span data-ko>Monthly Monitor 구독 시 매달 이런 형식의 인터랙티브 대시보드가 제공됩니다. 기간 · 보기 · 비교 기준을 슬라이서로 조정하면서 직접 클릭해보세요.</span>
+          <span data-en>Monthly Monitor subscribers receive an interactive dashboard in this format each month. Try adjusting the period, view and comparison slicers.</span>
+        </p>
+        <a href="aap_dashboard.html" target="_blank"
+           style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s;"
+           onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
+          <span data-ko>↗ Sample Dashboard 열어보기</span>
+          <span data-en>↗ Open Sample Dashboard</span>
+        </a>
+        <p style="font-size:0.72rem;color:rgba(122,143,168,0.5);margin-top:0.8rem;">
+          <span data-ko>샘플 데이터 기반 — 실제 납품 대시보드는 클라이언트 데이터로 생성됩니다.</span>
+          <span data-en>Sample data only — live dashboards are generated from client data.</span>
+        </p>
+      </div>
+      <div style="position:relative;">
+        <!-- Dashboard preview mockup -->
+        <div style="background:var(--navy-card);border:1px solid rgba(42,173,173,0.25);padding:1.2rem;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+          <!-- Mini slicer strip -->
+          <div style="display:flex;gap:0.5rem;margin-bottom:1rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);flex-wrap:wrap;">
+            <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;color:rgba(255,255,255,0.3);text-transform:uppercase;padding:0.2rem 0;align-self:center;">기간</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;background:var(--teal-lt);color:var(--navy);">12M</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">6M</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">3M</span>
+            <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;color:rgba(255,255,255,0.3);text-transform:uppercase;padding:0.2rem 0 0.2rem 0.5rem;align-self:center;">비교</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;background:var(--teal-lt);color:var(--navy);">전월비</span>
+            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">전년비</span>
+          </div>
+          <!-- Mini KPIs -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem;">
+            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #16A34A;">
+              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">Revenue</div>
+              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">₩12,500</div>
+              <div style="font-family:var(--mono);font-size:0.6rem;color:#16A34A;">↑ +4.2%</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #DC2626;">
+              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">GP Margin</div>
+              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">39.2%</div>
+              <div style="font-family:var(--mono);font-size:0.6rem;color:#DC2626;">↓ -2.5%p</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #D97706;">
+              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">DSO</div>
+              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">58일</div>
+              <div style="font-family:var(--mono);font-size:0.6rem;color:#D97706;">↑ +1일</div>
+            </div>
+          </div>
+          <!-- Mini chart bars -->
+          <div style="margin-bottom:0.6rem;">
+            <div style="font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Revenue & EBITDA Margin</div>
+            <div style="display:flex;align-items:flex-end;gap:3px;height:48px;">
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:65%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:72%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:78%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:83%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:88%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:91%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:85%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:88%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:90%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.5);height:92%;"></div>
+              <div style="flex:1;background:rgba(42,173,173,0.6);height:96%;"></div>
+              <div style="flex:1;background:var(--teal-lt);height:100%;"></div>
+            </div>
+          </div>
+          <div style="text-align:center;padding:0.5rem 0 0;">
+            <span style="font-family:var(--mono);font-size:0.6rem;color:var(--teal-lt);letter-spacing:0.05em;">↗ 클릭하면 슬라이서로 직접 조작 가능</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ORDER FORM -->
 <div class="order-section" id="order-form">
   <div class="order-inner">

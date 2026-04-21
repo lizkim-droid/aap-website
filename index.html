@@ -267,9 +267,9 @@
 
   /* ─── SERVICES ─── */
   .services-tabs {
-    display: flex; gap: 0; margin-bottom: 2.5rem;
+    display: flex; flex-direction: row; gap: 0; margin-bottom: 2.5rem;
     border-bottom: 1px solid var(--border);
-    margin-top: 2.8rem;
+    margin-top: 2.8rem; flex-wrap: nowrap;
   }
   .tab-btn {
     padding: 0.8rem 1.8rem;
@@ -736,7 +736,6 @@
             <span data-ko>수익성·현금·운전자본 흐름을 딜 현장의 시각으로 스캔합니다.</span>
             <span data-en>Profitability, cash and working capital — through a deal lens.</span>
           </p>
-          <div class="diag-card-price">₩690,000</div>
         </a>
 
         <a class="diag-card" href="snapshot.html#pane-c">
@@ -748,7 +747,6 @@
             <span data-ko>EBITDA 기반 EV 추정 범위와 업종 멀티플 밴드를 산출합니다.</span>
             <span data-en>EBITDA-based EV range with industry multiple benchmarks.</span>
           </p>
-          <div class="diag-card-price">₩990,000</div>
         </a>
 
         <a class="diag-card" href="snapshot.html#pane-b">
@@ -760,7 +758,6 @@
             <span data-ko>바이어 눈에 어떻게 보이나? QoE·WC·DLI 분석.</span>
             <span data-en>How does a buyer see your business? QoE, WC, DLI.</span>
           </p>
-          <div class="diag-card-price">₩1,490,000</div>
         </a>
 
         <a class="diag-card featured" href="snapshot.html#pane-bundle" style="grid-column:1/3;">
@@ -772,7 +769,6 @@
             <span data-ko>Transaction Scan + Valuation Scan 동시 수령.</span>
             <span data-en>Transaction Scan + Valuation Scan combined.</span>
           </p>
-          <div class="diag-card-price">₩1,990,000 <span class="diag-card-save">₩490K 절감</span></div>
         </a>
 
         <!-- Monthly Monitor label -->
@@ -788,11 +784,9 @@
           </div>
           <div class="diag-card-name" style="color:var(--text);">Monthly Monitor</div>
           <p class="diag-card-desc" style="color:var(--text-mid);">
-            <span data-ko>매달 MoM·YoY·QoQ 분석 + 이달의 포커스 인사이트. Big 4 FDD 렌즈로 변화를 감지하고 패턴을 해석합니다. 일회성보다 저렴하고, 분석은 더 깊습니다.</span>
-            <span data-en>Monthly MoM · YoY · QoQ analysis plus a focused monthly insight. Detecting change and interpreting patterns through a Big 4 FDD lens. Deeper analysis, lower price than a one-off scan.</span>
+            <span data-ko>매달 MoM·YoY·QoQ 분석 + 이달의 포커스 인사이트. Big 4 FDD 렌즈로 변화를 감지하고 패턴을 해석합니다.</span>
+            <span data-en>Monthly MoM · YoY · QoQ analysis plus a focused monthly insight — through a Big 4 FDD lens.</span>
           </p>
-          <div class="diag-card-price" style="color:var(--teal);">₩490,000<span style="font-size:0.7rem;font-weight:300;color:var(--text-lt);margin-left:0.3rem;">/월</span>
-          <span class="diag-card-save">일회성보다 저렴</span></div>
         </a>
 
       </div>
