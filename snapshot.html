@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnostic — AAP Advisory</title>
+<title>진단 리포트 신청 — AAP Advisory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -838,32 +838,39 @@
         <div class="price" id="selected-price">₩690,000</div>
       </div>
 
-      <form id="order-form-el" onsubmit="submitForm(event)">
+      <form id="order-form-el" action="https://formspree.io/f/xqewqako" method="POST" onsubmit="submitForm(event)" enctype="multipart/form-data">
+
+        <!-- Formspree hidden fields -->
+        <input type="hidden" name="_subject" id="f-subject" value="AAP 진단 리포트 신청">
+        <input type="hidden" name="_replyto" id="f-replyto-hidden">
+        <input type="hidden" name="신청 서비스" id="f-service-hidden">
+        <input type="hidden" name="주문 번호" id="f-token-hidden">
+        <input type="hidden" name="_next" value="">
 
         <div class="field-row">
           <div class="field">
             <label><span data-ko>이름</span><span data-en>Name</span><span class="req">*</span></label>
-            <input type="text" id="f-name" placeholder="홍길동" required>
+            <input type="text" id="f-name" name="이름" placeholder="홍길동" required>
           </div>
           <div class="field">
             <label><span data-ko>연락처</span><span data-en>Phone</span></label>
-            <input type="tel" id="f-phone" placeholder="010-0000-0000">
+            <input type="tel" id="f-phone" name="연락처" placeholder="010-0000-0000">
           </div>
         </div>
 
         <div class="field">
           <label><span data-ko>이메일</span><span data-en>Email</span><span class="req">*</span></label>
-          <input type="email" id="f-email" placeholder="example@company.com" required>
+          <input type="email" id="f-email" name="이메일" placeholder="example@company.com" required>
         </div>
 
         <div class="field-row">
           <div class="field">
             <label><span data-ko>회사명</span><span data-en>Company</span></label>
-            <input type="text" id="f-company" placeholder="(주)OOO 또는 코드명">
+            <input type="text" id="f-company" name="회사명" placeholder="(주)OOO 또는 코드명">
           </div>
           <div class="field">
             <label><span data-ko>업종</span><span data-en>Industry</span></label>
-            <select id="f-industry">
+            <select id="f-industry" name="업종">
               <option value="">선택</option>
               <option value="01">제조업 (일반)</option>
               <option value="02">의료기기</option>
@@ -880,25 +887,25 @@
 
         <div class="field" id="perspective-field" style="display:none;">
           <label><span data-ko>관점 선택</span><span data-en>Perspective</span></label>
-          <select id="f-perspective">
+          <select id="f-perspective" name="관점">
             <option value="sell">Sell-side — 매각 준비</option>
             <option value="buy">Buy-side — 인수 스크리닝</option>
           </select>
         </div>
 
         <div class="field">
-          <label><span data-ko>재무 자료 업로드 (선택 — 이후 이메일로도 가능)</span><span data-en>Upload data (optional — can also send by email)</span></label>
-          <div class="upload-area">
-            <input type="file" id="f-files" multiple accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png,.zip,.hwp,.csv">
+          <label><span data-ko>재무 자료 — 신청 후 info@aap-advisory.com 으로 이메일 첨부</span><span data-en>Data — email to info@aap-advisory.com after submitting</span></label>
+          <div class="upload-area" style="opacity:0.45;cursor:default;pointer-events:none;border-style:dashed;">
+            <input type="file" id="f-files" multiple accept=".xlsx,.xls,.pdf,.jpg,.jpeg,.png,.zip,.hwp,.csv" disabled>
             <div class="upload-icon">↑</div>
-            <div class="upload-text"><strong><span data-ko>클릭 또는 드래그</span><span data-en>Click or drag</span></strong><br><span data-ko>Excel · PDF · 이미지 · ZIP · HWP</span><span data-en>Excel · PDF · Images · ZIP</span></div>
+            <div class="upload-text"><span data-ko>접수 완료 후 이메일로 자료를 보내주세요</span><span data-en>Send data by email after your application is received</span><br><span style="font-size:0.72rem;opacity:0.6;">info@aap-advisory.com</span></div>
             <ul class="upload-list" id="file-list"></ul>
           </div>
         </div>
 
         <div class="field">
           <label><span data-ko>추가 전달 사항 (선택)</span><span data-en>Additional notes (optional)</span></label>
-          <textarea id="f-notes" placeholder="예) 자료가 불완전합니다  /  특별히 봐주셨으면 하는 포인트가 있습니다  /  일정이 급합니다"></textarea>
+          <textarea id="f-notes" name="추가 전달 사항" placeholder="예) 자료가 불완전합니다  /  특별히 봐주셨으면 하는 포인트가 있습니다  /  일정이 급합니다"></textarea>
         </div>
 
         <div class="field">
@@ -1051,11 +1058,41 @@
       Date.now().toString(36).toUpperCase().slice(-4) + '-' +
       Math.random().toString(36).toUpperCase().slice(2, 6);
 
-    // Show success
-    document.getElementById('form-view').style.display  = 'none';
-    document.getElementById('success-view').classList.add('active');
-    document.getElementById('order-token-display').textContent = token;
-    document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
+    // Populate hidden fields
+    document.getElementById('f-token-hidden').value  = token;
+    document.getElementById('f-replyto-hidden').value = email;
+    document.getElementById('f-service-hidden').value = orderService + ' ' + orderPrice;
+    document.getElementById('f-subject').value =
+      '[AAP 신청] ' + orderService + ' — ' + name + ' (' + token + ')';
+
+    // Show loading state
+    const btn = document.querySelector('#order-form-el button[type=submit]');
+    if (btn) { btn.textContent = '제출 중...'; btn.disabled = true; }
+
+    // Submit to Formspree via fetch
+    const form = document.getElementById('order-form-el');
+    const data = new FormData(form);
+
+    fetch('https://formspree.io/f/xqewqako', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      if (res.ok) {
+        document.getElementById('form-view').style.display = 'none';
+        document.getElementById('success-view').classList.add('active');
+        document.getElementById('order-token-display').textContent = token;
+        document.getElementById('order-form').scrollIntoView({behavior:'smooth'});
+      } else {
+        if (btn) { btn.textContent = '신청서 제출하기 →'; btn.disabled = false; }
+        alert('제출 중 오류가 발생했습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
+      }
+    })
+    .catch(function() {
+      if (btn) { btn.textContent = '신청서 제출하기 →'; btn.disabled = false; }
+      alert('네트워크 오류가 발생했습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
+    });
   }
 
   // ── Lang ──────────────────────────────
