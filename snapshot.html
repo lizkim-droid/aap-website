@@ -732,15 +732,38 @@
           <span data-en>Monthly Monitor subscribers receive an interactive dashboard in this format each month. Try adjusting the period, view and comparison slicers.</span>
         </p>
         <a href="aap_dashboard.html" target="_blank"
-           style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s;"
+           onclick="toggleDashboard(event)"
+           id="dash-toggle-btn"
+           style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s;cursor:pointer;"
            onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
-          <span data-ko>↗ Sample Dashboard 열어보기</span>
-          <span data-en>↗ Open Sample Dashboard</span>
+          <span id="dash-btn-label-ko" data-ko>▶ Sample Dashboard 열어보기</span>
+          <span id="dash-btn-label-en" data-en>▶ Open Sample Dashboard</span>
         </a>
         <p style="font-size:0.72rem;color:rgba(122,143,168,0.5);margin-top:0.8rem;">
           <span data-ko>샘플 데이터 기반 — 실제 납품 대시보드는 클라이언트 데이터로 생성됩니다.</span>
           <span data-en>Sample data only — live dashboards are generated from client data.</span>
         </p>
+
+        <!-- INLINE DASHBOARD EMBED -->
+        <div id="dash-embed"
+             style="max-height:0;overflow:hidden;transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1),opacity 0.4s;opacity:0;margin-top:0;">
+          <div style="position:relative;margin-top:1.5rem;border:1px solid rgba(42,173,173,0.3);background:var(--navy-card);">
+            <!-- close bar -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem;border-bottom:1px solid rgba(42,173,173,0.2);background:rgba(27,122,122,0.1);">
+              <span style="font-family:var(--sans);font-size:0.72rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.04em;">
+                <span data-ko>Sample Dashboard — Monthly Monitor</span>
+                <span data-en>Sample Dashboard — Monthly Monitor</span>
+              </span>
+              <button onclick="closeDashboard()"
+                      style="background:none;border:none;color:var(--gray);font-size:1.1rem;cursor:pointer;padding:0 0.2rem;line-height:1;transition:color 0.2s;"
+                      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--gray)'">✕</button>
+            </div>
+            <iframe src="aap_dashboard.html" id="dash-iframe"
+                    style="width:100%;height:700px;border:none;display:block;"
+                    loading="lazy"></iframe>
+          </div>
+        </div>
+
       </div>
       <div style="position:relative;">
         <!-- Dashboard preview mockup -->
@@ -1071,7 +1094,38 @@
     }
   });
 
-  // ── Init ──────────────────────────────
+  // ── Dashboard inline embed ─────────────────────────
+  var dashOpen = false;
+  function toggleDashboard(e) {
+    e.preventDefault();
+    dashOpen ? closeDashboard() : openDashboard();
+  }
+  function openDashboard() {
+    dashOpen = true;
+    var el  = document.getElementById('dash-embed');
+    var btn = document.getElementById('dash-toggle-btn');
+    var ko  = document.getElementById('dash-btn-label-ko');
+    var en  = document.getElementById('dash-btn-label-en');
+    el.style.maxHeight = '800px';
+    el.style.opacity   = '1';
+    el.style.marginTop = '0';
+    if (ko) ko.textContent = '▼ Dashboard 닫기';
+    if (en) en.textContent = '▼ Close Dashboard';
+    // Smooth scroll to embed
+    setTimeout(function() {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+  function closeDashboard() {
+    dashOpen = false;
+    var el = document.getElementById('dash-embed');
+    var ko = document.getElementById('dash-btn-label-ko');
+    var en = document.getElementById('dash-btn-label-en');
+    el.style.maxHeight = '0';
+    el.style.opacity   = '0';
+    if (ko) ko.textContent = '▶ Sample Dashboard 열어보기';
+    if (en) en.textContent = '▶ Open Sample Dashboard';
+  }
   window.addEventListener('DOMContentLoaded', function() {
     // Restore lang
     const saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
