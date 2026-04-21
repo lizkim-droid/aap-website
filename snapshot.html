@@ -710,109 +710,54 @@
 
 <!-- SAMPLE DASHBOARD -->
 <div style="background:var(--navy-mid);border-top:1px solid var(--border);padding:3rem 4rem;">
-  <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
-      <div>
-        <div class="section-label" style="color:var(--teal-lt);display:flex;align-items:center;gap:0.7rem;margin-bottom:1rem;">
-          <span data-ko>Monthly Monitor 샘플</span><span data-en>Monthly Monitor Sample</span>
-        </div>
-        <h2 style="font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;margin-bottom:0.8rem;">
-          <span data-ko>대시보드가 <em style="font-style:italic;color:var(--teal-lt);">어떻게 생겼는지</em><br>직접 확인해보세요.</span>
-          <span data-en>See what the <em style="font-style:italic;color:var(--teal-lt);">dashboard looks like</em><br>for yourself.</span>
-        </h2>
-        <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;margin-bottom:2rem;">
-          <span data-ko>Monthly Monitor 구독 시 매달 이런 형식의 인터랙티브 대시보드가 제공됩니다. 기간 · 보기 · 비교 기준을 슬라이서로 조정하면서 직접 클릭해보세요.</span>
-          <span data-en>Monthly Monitor subscribers receive an interactive dashboard in this format each month. Try adjusting the period, view and comparison slicers.</span>
-        </p>
-        <a href="aap_dashboard.html" target="_blank"
-           onclick="toggleDashboard(event)"
-           id="dash-toggle-btn"
-           style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s;cursor:pointer;"
-           onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
-          <span id="dash-btn-label-ko" data-ko>▶ Sample Dashboard 열어보기</span>
-          <span id="dash-btn-label-en" data-en>▶ Open Sample Dashboard</span>
-        </a>
-        <p style="font-size:0.72rem;color:rgba(122,143,168,0.5);margin-top:0.8rem;">
-          <span data-ko>샘플 데이터 기반 — 실제 납품 대시보드는 클라이언트 데이터로 생성됩니다.</span>
-          <span data-en>Sample data only — live dashboards are generated from client data.</span>
-        </p>
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;">
 
-        <!-- INLINE DASHBOARD EMBED -->
-        <div id="dash-embed"
-             style="max-height:0;overflow:hidden;transition:max-height 0.55s cubic-bezier(0.4,0,0.2,1),opacity 0.4s;opacity:0;margin-top:0;">
-          <div style="position:relative;margin-top:1.5rem;border:1px solid rgba(42,173,173,0.3);background:var(--navy-card);">
-            <!-- close bar -->
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:0.6rem 1rem;border-bottom:1px solid rgba(42,173,173,0.2);background:rgba(27,122,122,0.1);">
-              <span style="font-family:var(--sans);font-size:0.72rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.04em;">
-                <span data-ko>Sample Dashboard — Monthly Monitor</span>
-                <span data-en>Sample Dashboard — Monthly Monitor</span>
-              </span>
-              <button onclick="closeDashboard()"
-                      style="background:none;border:none;color:var(--gray);font-size:1.1rem;cursor:pointer;padding:0 0.2rem;line-height:1;transition:color 0.2s;"
-                      onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--gray)'">✕</button>
-            </div>
-            <iframe src="aap_dashboard.html" id="dash-iframe"
-                    style="width:100%;height:700px;border:none;display:block;"
-                    loading="lazy"></iframe>
-          </div>
-        </div>
-
+    <div>
+      <div class="section-label" style="color:var(--teal-lt);margin-bottom:1rem;">
+        <span data-ko>Monthly Monitor 샘플</span><span data-en>Monthly Monitor Sample</span>
       </div>
-      <div style="position:relative;">
-        <!-- Dashboard preview mockup -->
-        <div style="background:var(--navy-card);border:1px solid rgba(42,173,173,0.25);padding:1.2rem;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-          <!-- Mini slicer strip -->
-          <div style="display:flex;gap:0.5rem;margin-bottom:1rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border);flex-wrap:wrap;">
-            <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;color:rgba(255,255,255,0.3);text-transform:uppercase;padding:0.2rem 0;align-self:center;">기간</span>
-            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;background:var(--teal-lt);color:var(--navy);">12M</span>
-            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">6M</span>
-            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">3M</span>
-            <span style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;color:rgba(255,255,255,0.3);text-transform:uppercase;padding:0.2rem 0 0.2rem 0.5rem;align-self:center;">비교</span>
-            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;background:var(--teal-lt);color:var(--navy);">전월비</span>
-            <span style="font-family:var(--mono);font-size:0.6rem;padding:0.18rem 0.55rem;border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.4);">전년비</span>
-          </div>
-          <!-- Mini KPIs -->
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1rem;">
-            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #16A34A;">
-              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">Revenue</div>
-              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">₩12,500</div>
-              <div style="font-family:var(--mono);font-size:0.6rem;color:#16A34A;">↑ +4.2%</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #DC2626;">
-              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">GP Margin</div>
-              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">39.2%</div>
-              <div style="font-family:var(--mono);font-size:0.6rem;color:#DC2626;">↓ -2.5%p</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:0.6rem 0.7rem;border-top:2px solid #D97706;">
-              <div style="font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;">DSO</div>
-              <div style="font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;">58일</div>
-              <div style="font-family:var(--mono);font-size:0.6rem;color:#D97706;">↑ +1일</div>
-            </div>
-          </div>
-          <!-- Mini chart bars -->
-          <div style="margin-bottom:0.6rem;">
-            <div style="font-family:var(--mono);font-size:0.58rem;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.5rem;">Revenue & EBITDA Margin</div>
-            <div style="display:flex;align-items:flex-end;gap:3px;height:48px;">
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:65%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:72%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:78%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:83%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:88%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:91%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:85%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:88%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:90%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.5);height:92%;"></div>
-              <div style="flex:1;background:rgba(42,173,173,0.6);height:96%;"></div>
-              <div style="flex:1;background:var(--teal-lt);height:100%;"></div>
-            </div>
-          </div>
-          <div style="text-align:center;padding:0.5rem 0 0;">
-            <span style="font-family:var(--mono);font-size:0.6rem;color:var(--teal-lt);letter-spacing:0.05em;">↗ 클릭하면 슬라이서로 직접 조작 가능</span>
-          </div>
-        </div>
-      </div>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;margin-bottom:0.8rem;">
+        <span data-ko>대시보드가 <em style="font-style:italic;color:var(--teal-lt);">어떻게 생겼는지</em><br>직접 확인해보세요.</span>
+        <span data-en>See what the <em style="font-style:italic;color:var(--teal-lt);">dashboard looks like</em><br>for yourself.</span>
+      </h2>
+      <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;margin-bottom:0;">
+        <span data-ko>Monthly Monitor 구독 시 매달 이런 형식의 인터랙티브 대시보드가 제공됩니다. 슬라이서로 기간·비교 기준을 조정하면서 직접 클릭해보세요.</span>
+        <span data-en>Monthly Monitor subscribers receive an interactive dashboard in this format each month. Try adjusting slicers for period and comparison.</span>
+      </p>
     </div>
+
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.6rem;flex-shrink:0;">
+      <button onclick="openDashModal()"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-family:var(--sans);font-size:0.85rem;font-weight:500;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
+        onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
+        <span data-ko>▶ Sample Dashboard 열어보기</span>
+        <span data-en>▶ Open Sample Dashboard</span>
+      </button>
+      <p style="font-size:0.72rem;color:rgba(122,143,168,0.45);margin:0;text-align:right;">
+        <span data-ko>샘플 데이터 기반</span><span data-en>Sample data only</span>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- DASHBOARD MODAL -->
+<div id="dash-modal"
+     style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,16,30,0.88);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:2rem;">
+  <div style="position:relative;width:100%;max-width:1100px;max-height:90vh;display:flex;flex-direction:column;background:var(--navy-card);border:1px solid rgba(42,173,173,0.3);box-shadow:0 24px 60px rgba(0,0,0,0.6);">
+    <!-- Modal header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1.2rem;border-bottom:1px solid rgba(42,173,173,0.2);background:rgba(27,122,122,0.1);flex-shrink:0;">
+      <span style="font-family:var(--sans);font-size:0.78rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.04em;">
+        Sample Dashboard — Monthly Monitor
+      </span>
+      <button onclick="closeDashModal()"
+        style="background:none;border:none;color:var(--gray);font-size:1.3rem;cursor:pointer;line-height:1;padding:0 0.3rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--gray)'">✕</button>
+    </div>
+    <!-- iframe -->
+    <iframe id="dash-iframe" src="" data-src="aap_dashboard.html"
+            style="width:100%;flex:1;min-height:600px;border:none;display:block;"
+            loading="lazy"></iframe>
   </div>
 </div>
 
@@ -821,7 +766,7 @@
   <div class="order-inner">
 
     <div id="form-view">
-      <h2><span data-ko>신청하기</span><span data-en>Apply</span></h2>
+      <h2><span data-ko>진단 리포트 <em>신청</em></span><span data-en>Diagnostic Report <em>Application</em></span></h2>
       <p class="sub">
         <span data-ko>작성해 주신 내용을 확인한 뒤 영업일 기준 4시간 이내로 연락드립니다. 자료는 메시지로 보내주시면 됩니다.</span>
         <span data-en>We will review your submission and be in touch within 4 business hours. Data can be sent separately by message.</span>
@@ -1004,6 +949,14 @@
   let orderPrice     = '₩690,000';
 
   // ── Service selector ─────────────────
+  const SERVICE_INFO = {
+    operational: { name: 'Operational Scan',                price: '₩690,000' },
+    valuation:   { name: 'Valuation Scan',                  price: '₩990,000' },
+    transaction: { name: 'Transaction Scan',                price: '₩1,490,000' },
+    bundle:      { name: 'Transaction + Valuation Bundle',  price: '₩1,990,000' },
+    monthly:     { name: 'Monthly Monitor',                 price: '₩490,000/월' },
+  };
+
   function selectService(id, btn) {
     document.querySelectorAll('.svc-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.detail-pane').forEach(p => p.classList.remove('active'));
@@ -1015,8 +968,17 @@
     const pf = document.getElementById('perspective-field');
     if (pf) pf.style.display = (id === 'transaction' || id === 'bundle') ? 'block' : 'none';
 
-    // Scroll to detail
-    document.querySelector('.detail-section').scrollIntoView({behavior:'smooth', block:'start'});
+    // Auto-update order form title (no scroll)
+    const info = SERVICE_INFO[id];
+    if (info) {
+      orderService = info.name;
+      orderPrice   = info.price;
+      const nameEl  = document.getElementById('selected-name');
+      const priceEl = document.getElementById('selected-price');
+      if (nameEl)  nameEl.textContent  = info.name;
+      if (priceEl) priceEl.textContent = info.price;
+    }
+    // NO scrollIntoView — stay in place
   }
 
   // ── Set order service from CTA ────────
@@ -1124,38 +1086,31 @@
     }
   });
 
-  // ── Dashboard inline embed ─────────────────────────
-  var dashOpen = false;
-  function toggleDashboard(e) {
-    e.preventDefault();
-    dashOpen ? closeDashboard() : openDashboard();
+    // ── Dashboard modal ──────────────────────────────
+  function openDashModal() {
+    var modal = document.getElementById('dash-modal');
+    var iframe = document.getElementById('dash-iframe');
+    // Lazy load: only set src on first open
+    if (iframe && !iframe.src.includes('aap_dashboard')) {
+      iframe.src = iframe.getAttribute('data-src');
+    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
-  function openDashboard() {
-    dashOpen = true;
-    var el  = document.getElementById('dash-embed');
-    var btn = document.getElementById('dash-toggle-btn');
-    var ko  = document.getElementById('dash-btn-label-ko');
-    var en  = document.getElementById('dash-btn-label-en');
-    el.style.maxHeight = '800px';
-    el.style.opacity   = '1';
-    el.style.marginTop = '0';
-    if (ko) ko.textContent = '▼ Dashboard 닫기';
-    if (en) en.textContent = '▼ Close Dashboard';
-    // Smooth scroll to embed
-    setTimeout(function() {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+  function closeDashModal() {
+    var modal = document.getElementById('dash-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
   }
-  function closeDashboard() {
-    dashOpen = false;
-    var el = document.getElementById('dash-embed');
-    var ko = document.getElementById('dash-btn-label-ko');
-    var en = document.getElementById('dash-btn-label-en');
-    el.style.maxHeight = '0';
-    el.style.opacity   = '0';
-    if (ko) ko.textContent = '▶ Sample Dashboard 열어보기';
-    if (en) en.textContent = '▶ Open Sample Dashboard';
-  }
+  // Close on backdrop click
+  document.addEventListener('click', function(e) {
+    var modal = document.getElementById('dash-modal');
+    if (modal && e.target === modal) closeDashModal();
+  });
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeDashModal();
+  });
   window.addEventListener('DOMContentLoaded', function() {
     // Restore lang
     const saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
