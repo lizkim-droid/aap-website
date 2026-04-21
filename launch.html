@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>재무 진단 — AAP Advisory 런칭 이벤트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  :root {
+    --navy:    #0E1828;
+    --navy-2:  #162035;
+    --navy-3:  #1C2A45;
+    --teal:    #1B7A7A;
+    --teal-lt: #2AADAD;
+    --cream:   #F5F0E8;
+    --off-w:   #EDE8DF;
+    --gray:    #8A96A8;
+    --border:  rgba(255,255,255,0.07);
+    --serif:   'Playfair Display', Georgia, serif;
+    --sans:    'DM Sans', sans-serif;
+    --mono:    'DM Mono', monospace;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--off-w);
+    overflow-x: hidden;
+    word-break: keep-all;
+  }
+
+  body.en [data-ko] { display: none !important; }
+  body.ko [data-en] { display: none !important; }
+
+  /* ── HEADER ── */
+  header {
+    padding: 1.4rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--off-w);
+    text-decoration: none;
+  }
+  .logo span { color: var(--teal-lt); }
+  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
+  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:var(--sans); font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
+  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+  .lt-btn.active { background: var(--teal-lt); color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 6rem 4rem 5rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .event-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-lt);
+    border: 1px solid rgba(42,173,173,0.35);
+    padding: 0.3rem 0.9rem;
+    margin-bottom: 2rem;
+  }
+  .event-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-lt);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.4rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal-lt);
+  }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.85;
+    max-width: 620px;
+    margin: 0 auto 3rem;
+  }
+
+  /* ── TWO TRACK CARDS ── */
+  .tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 4rem 5rem;
+  }
+
+  .track {
+    border: 1px solid var(--border);
+    padding: 2.2rem;
+    position: relative;
+    transition: border-color 0.25s;
+    cursor: pointer;
+  }
+  .track:hover { border-color: rgba(42,173,173,0.4); }
+
+  .track.free {
+    border-color: rgba(42,173,173,0.25);
+    background: rgba(27,122,122,0.06);
+  }
+  .track.paid {
+    background: var(--navy-2);
+  }
+  .track.sold-out {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .track-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal-lt);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .track-status {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.1em;
+  }
+  .track-status.open {
+    background: rgba(42,173,173,0.15);
+    color: var(--teal-lt);
+    border: 1px solid rgba(42,173,173,0.3);
+  }
+  .track-status.closed {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .track h2 {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+  .track h2 em { font-style: italic; color: var(--teal-lt); }
+
+  .track-price {
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--off-w);
+    margin-bottom: 0.3rem;
+  }
+  .track-price .original {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.25);
+    text-decoration: line-through;
+    margin-left: 0.4rem;
+  }
+  .track-price-note {
+    font-size: 0.75rem;
+    color: var(--gray);
+    margin-bottom: 1.4rem;
+  }
+
+  .track-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.4rem;
+  }
+
+  .track-includes {
+    list-style: none;
+    margin-bottom: 1.8rem;
+  }
+  .track-includes li {
+    font-size: 0.84rem;
+    color: rgba(237,232,223,0.8);
+    padding: 0.35rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.5;
+  }
+  .track-includes li::before {
+    content: '✓';
+    color: var(--teal-lt);
+    font-size: 0.72rem;
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .track-condition {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.6;
+    padding: 0.8rem 1rem;
+    background: rgba(255,255,255,0.03);
+    border-left: 2px solid rgba(42,173,173,0.3);
+    margin-bottom: 1.6rem;
+  }
+  .track-condition strong { color: var(--teal-lt); font-weight: 500; }
+
+  .btn-track {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1rem;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-track.primary {
+    background: var(--teal-lt);
+    color: var(--navy);
+  }
+  .btn-track.primary:hover { background: #35BDBD; }
+  .btn-track.secondary {
+    background: none;
+    border: 1px solid rgba(42,173,173,0.4);
+    color: var(--teal-lt);
+  }
+  .btn-track.secondary:hover {
+    background: rgba(42,173,173,0.08);
+  }
+  .btn-track.disabled {
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.2);
+    cursor: default;
+  }
+
+  /* ── SOLD OUT OVERLAY ── */
+  .sold-out-tag {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: none;
+  }
+  .track.sold-out .sold-out-tag { display: block; }
+
+  /* ── WHO IT'S FOR ── */
+  .who-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 4rem 5rem;
+  }
+  .section-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-lt);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 1.4rem; height: 1px;
+    background: var(--teal-lt);
+  }
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem;
+  }
+  .who-item {
+    padding: 1.2rem 1.3rem;
+    background: var(--navy-2);
+    border: 1px solid var(--border);
+  }
+  .who-item-q {
+    font-size: 0.82rem;
+    color: rgba(237,232,223,0.6);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  .who-item-q::before {
+    content: '"';
+    color: var(--teal-lt);
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 0;
+    vertical-align: -0.3rem;
+    margin-right: 0.1rem;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how-section {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem;
+  }
+  .how-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .how-steps::before {
+    content: '';
+    position: absolute;
+    top: 1.2rem;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: rgba(42,173,173,0.2);
+  }
+  .how-step {
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+  }
+  .how-step-num {
+    width: 2.4rem; height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(42,173,173,0.4);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--teal-lt);
+    position: relative;
+    z-index: 1;
+  }
+  .how-step h4 {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--off-w);
+    margin-bottom: 0.4rem;
+  }
+  .how-step p {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+
+  /* ── BIO ── */
+  .bio-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 4rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .bio-initial {
+    width: 5rem; height: 5rem;
+    background: var(--navy-3);
+    border: 1px solid rgba(42,173,173,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--teal-lt);
+    flex-shrink: 0;
+  }
+  .bio-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+  .bio-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-lt);
+    margin-bottom: 1rem;
+  }
+  .bio-text {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.85;
+  }
+  .bio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .bio-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(237,232,223,0.5);
+    text-transform: uppercase;
+  }
+
+  /* ── FORM MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(8,14,26,0.9);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--navy-2);
+    border: 1px solid rgba(42,173,173,0.25);
+    width: 100%;
+    max-width: 540px;
+    max-height: 92vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-header {
+    padding: 1.2rem 1.6rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background: var(--navy-2);
+    z-index: 1;
+  }
+  .modal-type-badge {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    background: rgba(42,173,173,0.15);
+    color: var(--teal-lt);
+    border: 1px solid rgba(42,173,173,0.3);
+  }
+  .modal-close {
+    background: none; border: none;
+    color: var(--gray); font-size: 1.2rem;
+    cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--off-w); }
+  .modal-body { padding: 2rem 1.6rem; }
+  .modal-body h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .modal-body h3 em { font-style: italic; color: var(--teal-lt); }
+  .modal-body .modal-sub {
+    font-size: 0.82rem;
+    color: var(--gray);
+    margin-bottom: 1.8rem;
+    line-height: 1.65;
+  }
+
+  .f-field { margin-bottom: 1.2rem; }
+  .f-field label {
+    display: block;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(138,150,168,0.9);
+    margin-bottom: 0.45rem;
+  }
+  .f-field input,
+  .f-field select,
+  .f-field textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--off-w);
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 300;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .f-field input:focus,
+  .f-field select:focus,
+  .f-field textarea:focus { border-color: var(--teal-lt); }
+  .f-field select { appearance: none; }
+  .f-field textarea { resize: vertical; min-height: 72px; }
+  .f-field select option { background: var(--navy); }
+  .req { color: var(--teal-lt); margin-left: 2px; }
+
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+  .f-note {
+    font-size: 0.75rem;
+    color: var(--gray);
+    line-height: 1.6;
+    padding: 0.8rem 1rem;
+    background: rgba(42,173,173,0.05);
+    border-left: 2px solid rgba(42,173,173,0.3);
+    margin-bottom: 1.4rem;
+  }
+  .f-note strong { color: var(--teal-lt); font-weight: 400; }
+
+  .f-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    margin-bottom: 1.6rem;
+    cursor: pointer;
+  }
+  .f-checkbox input { width:15px; height:15px; flex-shrink:0; margin-top:2px; accent-color: var(--teal-lt); }
+  .f-checkbox span { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--teal-lt);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .btn-submit:hover { background: #35BDBD; }
+  .btn-submit:disabled {
+    background: rgba(42,173,173,0.3);
+    cursor: default;
+  }
+
+  /* ── SUCCESS STATE ── */
+  .success-view {
+    display: none;
+    padding: 3rem 1.6rem;
+    text-align: center;
+  }
+  .success-view.show { display: block; }
+  .success-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .success-view h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .success-view h3 em { font-style: italic; color: var(--teal-lt); }
+  .success-view p {
+    font-size: 0.85rem;
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 0.4rem;
+  }
+  .ref-token {
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    color: var(--teal-lt);
+    background: rgba(42,173,173,0.1);
+    border: 1px solid rgba(42,173,173,0.3);
+    padding: 0.4rem 1.2rem;
+    display: inline-block;
+    margin: 0.8rem 0;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--navy-2);
+    border-top: 1px solid var(--border);
+    padding: 4rem;
+  }
+  .faq-inner { max-width: 900px; margin: 0 auto; }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.4rem;
+    margin-top: 2rem;
+  }
+  .faq-item {}
+  .faq-q {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--off-w);
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+  .faq-a {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 1.6rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 0.88rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.18);
+  }
+
+  @media (max-width: 760px) {
+    header, .hero, .who-section, .bio-section, .how-section, .faq-section, footer {
+      padding-left: 1.5rem; padding-right: 1.5rem;
+    }
+    .tracks { grid-template-columns: 1fr; padding-left: 1.5rem; padding-right: 1.5rem; }
+    .who-grid { grid-template-columns: 1fr; }
+    .how-steps { grid-template-columns: 1fr 1fr; }
+    .how-steps::before { display: none; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .bio-section { grid-template-columns: 1fr; gap: 1.5rem; }
+    .f-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="ko">
+
+<!-- HEADER -->
+<header>
+  <a href="/" class="logo">AAP<span>.</span></a>
+  <div class="lang-toggle">
+    <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+    <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="event-badge">
+    <span data-ko>런칭 이벤트 — 한정 모집</span>
+    <span data-en>Launch Event — Limited Spots</span>
+  </div>
+  <h1>
+    <span data-ko>지금 내 사업 숫자,<br><em>제대로</em> 읽어드립니다.</span>
+    <span data-en>Your business numbers,<br>read <em>properly</em>.</span>
+  </h1>
+  <p class="hero-sub">
+    <span data-ko>Big 4 회계법인 재무실사(FDD) 출신 전문가가 직접 분석합니다. 있는 그대로의 자료로, 영업일 기준 48시간 안에.</span>
+    <span data-en>Analysis by a Big 4 financial due diligence professional. From your data as-is, delivered within 48 business hours.</span>
+  </p>
+</section>
+
+<!-- TWO TRACK CARDS -->
+<div class="tracks">
+
+  <!-- TRACK A: 무료 -->
+  <div class="track free" id="track-free">
+    <div class="sold-out-tag" data-ko>마감</div>
+    <div class="sold-out-tag" data-en>Closed</div>
+    <div class="track-eyebrow">
+      <span data-ko>Track A — 무료</span>
+      <span data-en>Track A — Free</span>
+      <span class="track-status open" id="free-status" data-ko>1건 한정</span>
+      <span class="track-status open" id="free-status-en" data-en>1 spot</span>
+    </div>
+    <h2 data-ko>무료 진단 <em>1건</em></h2>
+    <h2 data-en>Free Diagnostic <em>1 spot</em></h2>
+    <div class="track-price" data-ko>₩0 <span class="original">₩690,000</span></div>
+    <div class="track-price" data-en>Free <span class="original">₩690,000</span></div>
+    <div class="track-price-note">
+      <span data-ko>완전 무료 · 단 1건 한정</span>
+      <span data-en>Completely free · 1 spot only</span>
+    </div>
+    <div class="track-divider"></div>
+    <ul class="track-includes">
+      <li><span data-ko>Operational Scan 전체 — 수익성 · 현금 · 운전자본 분석</span><span data-en>Full Operational Scan — profitability, cash, working capital</span></li>
+      <li><span data-ko>Red Flag 5~7개 감지 및 업종 벤치마크 비교</span><span data-en>5–7 red flags with industry benchmark</span></li>
+      <li><span data-ko>PDF 리포트 (최대 10슬라이드)</span><span data-en>PDF report (up to 10 slides)</span></li>
+      <li><span data-ko>영업일 기준 48시간 납품</span><span data-en>Delivered within 48 business hours</span></li>
+    </ul>
+    <div class="track-condition">
+      <strong data-ko>조건 한 가지 —</strong>
+      <strong data-en>One condition —</strong>
+      <span data-ko>리포트 수령 후 솔직한 피드백을 주시면 됩니다. 서비스 개선에 활용됩니다.</span>
+      <span data-en>Please share honest feedback after receiving the report. Used to improve the service.</span>
+    </div>
+    <button class="btn-track secondary" onclick="openModal('free')">
+      <span data-ko>무료 진단 신청하기</span>
+      <span data-en>Apply for free diagnostic</span>
+    </button>
+  </div>
+
+  <!-- TRACK B: 유료 -->
+  <div class="track paid" id="track-paid">
+    <div class="track-eyebrow">
+      <span data-ko>Track B — 유료 런칭가</span>
+      <span data-en>Track B — Launch Price</span>
+      <span class="track-status open" data-ko>5건 한정</span>
+      <span class="track-status open" data-en>5 spots</span>
+    </div>
+    <h2 data-ko>런칭 <em>특가</em></h2>
+    <h2 data-en>Launch <em>Special</em></h2>
+    <div class="track-price" data-ko>₩390,000 <span class="original">₩690,000</span></div>
+    <div class="track-price" data-en>₩390,000 <span class="original">₩690,000</span></div>
+    <div class="track-price-note">
+      <span data-ko>VAT 별도 · 처음 5건에만 적용</span>
+      <span data-en>+ VAT · First 5 engagements only</span>
+    </div>
+    <div class="track-divider"></div>
+    <ul class="track-includes">
+      <li><span data-ko>Operational Scan 전체 — 수익성 · 현금 · 운전자본 분석</span><span data-en>Full Operational Scan — profitability, cash, working capital</span></li>
+      <li><span data-ko>Red Flag 5~7개 감지 및 업종 벤치마크 비교</span><span data-en>5–7 red flags with industry benchmark</span></li>
+      <li><span data-ko>PDF 리포트 (최대 10슬라이드)</span><span data-en>PDF report (up to 10 slides)</span></li>
+      <li><span data-ko>영업일 기준 48시간 납품</span><span data-en>Delivered within 48 business hours</span></li>
+      <li><span data-ko>7일 이내 보완 자료 제출 시 1회 무상 업데이트</span><span data-en>One free update if supplementary data within 7 days</span></li>
+    </ul>
+    <div class="track-condition">
+      <strong data-ko>런칭 특가 종료 후 —</strong>
+      <strong data-en>After launch pricing ends —</strong>
+      <span data-ko>정가 ₩690,000으로 복귀. 이후에도 AAP Advisory 웹사이트에서 정가로 신청 가능합니다.</span>
+      <span data-en>Returns to ₩690,000. Continued availability at full price on the AAP Advisory website.</span>
+    </div>
+    <button class="btn-track primary" onclick="openModal('paid')">
+      <span data-ko>런칭가로 시작하기 →</span>
+      <span data-en>Start at launch price →</span>
+    </button>
+  </div>
+
+</div>
+
+<!-- WHO IT'S FOR -->
+<section class="who-section">
+  <div class="section-label">
+    <span data-ko>이런 분께 맞습니다</span>
+    <span data-en>Who this is for</span>
+  </div>
+  <div class="who-grid">
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>매출은 늘었는데 왜 통장이 빠듯하지?</span>
+        <span data-en>Revenue is growing — why does cash feel tight?</span>
+      </p>
+    </div>
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>세무사 숫자는 받는데 경영에 어떻게 쓰는지 모르겠다.</span>
+        <span data-en>I get numbers from my accountant but don't know how to use them.</span>
+      </p>
+    </div>
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>투자 유치나 대출 전에 재무 상태를 미리 점검하고 싶다.</span>
+        <span data-en>I want to check where I stand before fundraising or borrowing.</span>
+      </p>
+    </div>
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>회사가 잘 돌아가는 건지, 문제가 있는 건지 판단이 안 선다.</span>
+        <span data-en>I genuinely can't tell if the business is healthy or not.</span>
+      </p>
+    </div>
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>회계법인은 너무 비싸고 세무사는 세금 목적이라 답이 안 나온다.</span>
+        <span data-en>Accounting firms cost too much; my bookkeeper only thinks about tax.</span>
+      </p>
+    </div>
+    <div class="who-item">
+      <p class="who-item-q">
+        <span data-ko>언젠가 회사를 팔 생각인데 지금 어디서부터 준비해야 할지 모른다.</span>
+        <span data-en>I might sell someday — I have no idea where to start.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-label">
+      <span data-ko>어떻게 진행되나요</span>
+      <span data-en>How it works</span>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <h4><span data-ko>신청</span><span data-en>Apply</span></h4>
+        <p><span data-ko>아래 폼에 연락처와 업종 입력</span><span data-en>Submit your contact and industry below</span></p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <h4><span data-ko>자료 제출</span><span data-en>Submit data</span></h4>
+        <p><span data-ko>손익계산서 등 보유 자료를 이메일로. 완벽하지 않아도 됩니다.</span><span data-en>Email your P&L and financials as-is. Incomplete is fine.</span></p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <h4><span data-ko>분석</span><span data-en>Analysis</span></h4>
+        <p><span data-ko>AAP Advisory가 직접 분석. 영업일 기준 48시간.</span><span data-en>AAP Advisory analyses your data. 48 business hours.</span></p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">04</div>
+        <h4><span data-ko>리포트 수령</span><span data-en>Receive report</span></h4>
+        <p><span data-ko>PDF 리포트 이메일 납품. 궁금한 점은 추가 문의 가능.</span><span data-en>PDF report by email. Follow-up questions welcome.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section class="bio-section">
+  <div class="bio-initial">L</div>
+  <div>
+    <div class="bio-name">Liz Kim</div>
+    <div class="bio-title">Founder, AAP Advisory</div>
+    <p class="bio-text">
+      <span data-ko>Big 4 회계법인에서 13년간 수백 건의 M&A 재무실사(FDD)를 수행했습니다. 딜 현장에서 투자자와 바이어가 숫자를 보는 방식, 어디서 가격을 깎으려 하는지를 압니다. 그 경험을 중소기업 오너가 접근할 수 있는 형태로 제공합니다.</span>
+      <span data-en>13 years in Big 4 financial due diligence, across hundreds of M&A transactions. I know how investors and buyers read numbers — and where they push for price adjustments. I bring that experience to business owners in an accessible format.</span>
+    </p>
+    <div class="bio-tags">
+      <span class="bio-tag">Big 4 FDD</span>
+      <span class="bio-tag">M&A</span>
+      <span class="bio-tag">13년 경력</span>
+      <span class="bio-tag">Corporate FP&A</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="section-label">
+      <span data-ko>자주 묻는 질문</span>
+      <span data-en>FAQ</span>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>어떤 자료가 필요한가요?</span><span data-en>What data do I need to provide?</span></p>
+        <p class="faq-a"><span data-ko>손익계산서 3개년치가 기본입니다. Excel, PDF, 사진 모두 가능합니다. 완벽하게 준비하지 않아도 됩니다 — 있는 것부터 보내주시면 됩니다.</span><span data-en>3 years of P&L is the starting point. Excel, PDF or even photos are all fine. Don't worry about it being perfect — send what you have.</span></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>어떤 업종도 가능한가요?</span><span data-en>Does it work for any industry?</span></p>
+        <p class="faq-a"><span data-ko>제조, 서비스, F&B, IT, 유통, 의료기기 등 8개 업종을 지원합니다. 업종 벤치마크와 비교한 분석이 포함됩니다.</span><span data-en>Manufacturing, services, F&B, IT, distribution, medical devices and more. The analysis includes comparison against industry benchmarks.</span></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>자료 보안은 어떻게 되나요?</span><span data-en>How is my data kept confidential?</span></p>
+        <p class="faq-a"><span data-ko>제출 자료는 리포트 작성 목적으로만 사용됩니다. 제3자 공유 없습니다. 회사명, 고객사명 익명 처리 가능합니다. NDA 요청 시 별도 제공 가능합니다.</span><span data-en>Data is used solely for report preparation and never shared. Company and client names can be anonymised. NDA available on request.</span></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>1년치 자료밖에 없으면요?</span><span data-en>What if I only have one year of data?</span></p>
+        <p class="faq-a"><span data-ko>보유하신 기간으로 분석합니다. 추이 분석은 제한되지만 현황 진단은 가능합니다. 있는 그대로 보내주세요.</span><span data-en>We work with whatever period you have. Trend analysis will be limited but a current-state diagnostic is still possible.</span></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>무료 진단 마감 후에는요?</span><span data-en>What happens after the free spot is taken?</span></p>
+        <p class="faq-a"><span data-ko>런칭 특가 Track B(₩390,000)로 신청 가능합니다. 이후 정가 ₩690,000으로 복귀합니다.</span><span data-en>Track B at ₩390,000 remains available. After launch pricing, it returns to the full price of ₩690,000.</span></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q"><span data-ko>결과 리포트는 어떻게 받나요?</span><span data-en>How is the report delivered?</span></p>
+        <p class="faq-a"><span data-ko>이메일로 PDF 리포트를 납품합니다. 신청 시 입력하신 이메일 주소로 발송됩니다.</span><span data-en>The PDF report is delivered by email to the address provided at the time of application.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory · info@aap-advisory.com</div>
+</footer>
+
+<!-- FORM MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-type-badge" id="modal-badge">Free</span>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+
+    <!-- Form view -->
+    <div class="modal-body" id="modal-form-view">
+      <h3 id="modal-title"><em>무료 진단</em> 신청</h3>
+      <p class="modal-sub" id="modal-sub">
+        <span data-ko>신청 후 영업일 기준 4시간 이내 연락드립니다. 자료는 이메일로 별도 안내드립니다.</span>
+        <span data-en>We'll be in touch within 4 business hours. Data submission instructions will follow by email.</span>
+      </p>
+
+      <form id="modal-form" onsubmit="submitModal(event)">
+        <input type="hidden" name="_subject" id="m-subject" value="AAP 런칭 이벤트 신청">
+        <input type="hidden" name="신청 유형" id="m-type" value="">
+        <input type="hidden" name="주문 번호" id="m-token" value="">
+        <input type="hidden" name="_replyto" id="m-replyto" value="">
+
+        <div class="f-row">
+          <div class="f-field">
+            <label><span data-ko>이름</span><span data-en>Name</span><span class="req">*</span></label>
+            <input type="text" name="이름" placeholder="홍길동" required>
+          </div>
+          <div class="f-field">
+            <label><span data-ko>연락처</span><span data-en>Phone</span></label>
+            <input type="tel" name="연락처" placeholder="010-0000-0000">
+          </div>
+        </div>
+        <div class="f-field">
+          <label><span data-ko>이메일</span><span data-en>Email</span><span class="req">*</span></label>
+          <input type="email" name="이메일" id="m-email" placeholder="example@company.com" required>
+        </div>
+        <div class="f-row">
+          <div class="f-field">
+            <label><span data-ko>회사명</span><span data-en>Company</span></label>
+            <input type="text" name="회사명" placeholder="(주)OOO 또는 코드명">
+          </div>
+          <div class="f-field">
+            <label><span data-ko>업종</span><span data-en>Industry</span></label>
+            <select name="업종" id="m-industry">
+              <option value="">선택</option>
+              <option value="01">제조업 (일반)</option>
+              <option value="02">의료기기</option>
+              <option value="03">MSO (병·의원)</option>
+              <option value="04">레스토랑 · F&B</option>
+              <option value="05">키즈카페 · 실내체험</option>
+              <option value="06">IT / SaaS</option>
+              <option value="07">도소매 유통</option>
+              <option value="08">서비스업 (전문직 · B2B)</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-field">
+          <label><span data-ko>한 줄 고민 (선택)</span><span data-en>Brief context (optional)</span></label>
+          <textarea name="고민" placeholder="예) 매출은 늘었는데 현금이 없어요 / 투자 전에 재무 상태 파악하고 싶어요"></textarea>
+        </div>
+
+        <div class="f-note" id="free-note">
+          <strong data-ko>무료 진단 조건:</strong>
+          <strong data-en>Free diagnostic condition:</strong>
+          <span data-ko> 리포트 수령 후 솔직한 피드백을 남겨주시면 됩니다.</span>
+          <span data-en> Please share honest feedback after receiving your report.</span>
+        </div>
+        <div class="f-note" id="paid-note" style="display:none;">
+          <strong data-ko>결제 안내:</strong>
+          <strong data-en>Payment:</strong>
+          <span data-ko> 신청 확인 후 카카오페이 또는 계좌이체 링크를 별도로 안내드립니다. 자료 제출 방법도 함께 안내됩니다.</span>
+          <span data-en> Payment instructions (KakaoPay or bank transfer) will follow after confirmation, along with data submission guidance.</span>
+        </div>
+
+        <div class="f-checkbox">
+          <input type="checkbox" id="m-agree" required>
+          <span>
+            <span data-ko>제출 자료는 리포트 작성 목적으로만 사용되며 제3자에 공유하지 않습니다.</span>
+            <span data-en>Submitted data will be used solely for report preparation and not shared with third parties.</span>
+          </span>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span data-ko>진단 시작하기 →</span>
+          <span data-en>Get Started →</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Success view -->
+    <div class="success-view" id="modal-success-view">
+      <div class="success-icon">✓</div>
+      <h3><span data-ko>신청이 <em>완료됐습니다.</em></span><span data-en>Application <em>received.</em></span></h3>
+      <p><span data-ko>영업일 기준 4시간 이내로 연락드립니다.</span><span data-en>We'll be in touch within 4 business hours.</span></p>
+      <p><span data-ko>참조 번호:</span><span data-en>Reference:</span></p>
+      <div class="ref-token" id="ref-token-display">—</div>
+      <p style="font-size:0.75rem;margin-top:0.8rem;">
+        <span data-ko>이 번호를 저장해두세요. 자료 제출 안내는 이메일로 드립니다.</span>
+        <span data-en>Save this reference. Data submission instructions will follow by email.</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── State ─────────────────────────────────────────
+  var currentTrack = 'free';
+  var freeAvailable = true;   // toggle to false when filled
+  var paidCount = 5;          // remaining paid spots
+
+  // ── Init status display ───────────────────────────
+  function updateStatus() {
+    if (!freeAvailable) {
+      var t = document.getElementById('track-free');
+      t.classList.add('sold-out');
+      document.getElementById('free-status').textContent = '마감';
+    }
+  }
+  updateStatus();
+
+  // ── Modal open/close ──────────────────────────────
+  function openModal(track) {
+    if (track === 'free' && !freeAvailable) return;
+    currentTrack = track;
+    var modal = document.getElementById('modal');
+    var badge  = document.getElementById('modal-badge');
+    var title  = document.getElementById('modal-title');
+    var fNote  = document.getElementById('free-note');
+    var pNote  = document.getElementById('paid-note');
+    var mType  = document.getElementById('m-type');
+
+    // Reset to form view
+    document.getElementById('modal-form-view').style.display = 'block';
+    document.getElementById('modal-success-view').classList.remove('show');
+    document.getElementById('modal-form').reset();
+
+    if (track === 'free') {
+      badge.textContent      = document.body.classList.contains('ko') ? '무료 1건' : 'Free · 1 spot';
+      title.innerHTML        = document.body.classList.contains('ko') ? '<em>무료 진단</em> 신청' : 'Free Diagnostic <em>Application</em>';
+      fNote.style.display    = 'block';
+      pNote.style.display    = 'none';
+      mType.value            = '무료 진단 (Track A)';
+    } else {
+      badge.textContent      = document.body.classList.contains('ko') ? '런칭 특가 ₩390,000' : 'Launch Price ₩390,000';
+      title.innerHTML        = document.body.classList.contains('ko') ? '런칭 특가 <em>₩390,000</em>' : 'Launch Special <em>₩390,000</em>';
+      fNote.style.display    = 'none';
+      pNote.style.display    = 'block';
+      mType.value            = '런칭 특가 (Track B) ₩390,000';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ── Form submit → Formspree ───────────────────────
+  function submitModal(e) {
+    e.preventDefault();
+    var email = document.getElementById('m-email').value.trim();
+    var agree = document.getElementById('m-agree').checked;
+    if (!email || !agree) return;
+
+    var token = 'AAP-' +
+      Date.now().toString(36).toUpperCase().slice(-4) + '-' +
+      Math.random().toString(36).toUpperCase().slice(2,6);
+
+    document.getElementById('m-token').value   = token;
+    document.getElementById('m-replyto').value = email;
+    document.getElementById('m-subject').value =
+      '[AAP 런칭] ' + (currentTrack === 'free' ? '무료' : '런칭특가') + ' — ' + token;
+
+    var btn = document.querySelector('#modal-form button[type=submit]');
+    if (btn) { btn.textContent = '제출 중...'; btn.disabled = true; }
+
+    var form = document.getElementById('modal-form');
+    var data = new FormData(form);
+
+    fetch('https://formspree.io/f/xqewqako', {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(res) {
+      if (res.ok) {
+        document.getElementById('modal-form-view').style.display = 'none';
+        document.getElementById('modal-success-view').classList.add('show');
+        document.getElementById('ref-token-display').textContent = token;
+      } else {
+        if (btn) { btn.textContent = '진단 시작하기 →'; btn.disabled = false; }
+        alert('오류가 발생했습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
+      }
+    })
+    .catch(function() {
+      if (btn) { btn.textContent = '진단 시작하기 →'; btn.disabled = false; }
+      alert('네트워크 오류. info@aap-advisory.com 으로 직접 연락 주세요.');
+    });
+  }
+
+  // ── Lang ──────────────────────────────────────────
+  const IND_OPTS_KO = ['선택','제조업 (일반)','의료기기','MSO (병·의원)','레스토랑 · F&B','키즈카페 · 실내체험','IT / SaaS','도소매 유통','서비스업 (전문직 · B2B)','기타'];
+  const IND_OPTS_EN = ['Select','Manufacturing','Medical devices','MSO (clinics)','Restaurant / F&B','Kids cafe / indoor','IT / SaaS','Wholesale / retail','Services (B2B / professional)','Other'];
+
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang==='ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang==='en' ? ' active' : '');
+    var sel = document.getElementById('m-industry');
+    var opts = lang === 'ko' ? IND_OPTS_KO : IND_OPTS_EN;
+    Array.from(sel.options).forEach(function(o,i){ o.text = opts[i] || o.text; });
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
+  }
+
+  // Restore lang
+  (function(){
+    try {
+      var s = sessionStorage.getItem('aap-lang');
+      if (s === 'en') setLang('en');
+    } catch(e) {}
+  })();
+</script>
+</body>
+</html>
