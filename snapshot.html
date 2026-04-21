@@ -368,9 +368,11 @@
     <div class="svc-grid">
 
       <button class="svc-btn active" onclick="selectService('operational', this)" id="btn-operational">
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:0.2rem;">STEP 1</div>
         <div class="svc-btn-tag"><span data-ko>내 사업 현황 파악</span><span data-en>Operational</span></div>
         <div class="svc-btn-name">Operational Scan</div>
         <div class="svc-btn-price">₩690,000</div>
+        <div style="font-size:0.68rem;color:rgba(122,143,168,0.55);margin-top:0.3rem;"><span data-ko>→ Monthly Monitor 베이스라인</span><span data-en>→ Monthly Monitor baseline</span></div>
       </button>
 
       <button class="svc-btn" onclick="selectService('valuation', this)" id="btn-valuation">
@@ -412,9 +414,23 @@
       <div class="detail-left">
         <h2><em>Operational</em> Scan</h2>
         <p class="detail-tagline">
-          <span data-ko>오너의 재무·운영 고민을 숫자로 구조화해, 현재 상태를 보다 정확하고 빠르게 보여드립니다.</span>
-          <span data-en>A quick screening financial report focusing on identifying both financial and operational risks.</span>
+          <span data-ko>오너의 재무·운영 고민을 숫자로 구조화해, 현재 상태를 보다 정확하고 빠르게 보여드립니다.<br><span style="color:var(--teal-lt);">이 진단이 Monthly Monitor의 시작점이 됩니다 —</span> 3개년 자료를 한 번만 제출하면 이후 월별 업데이트로 자연스럽게 이어집니다.</span>
+          <span data-en>A quick screening financial report focusing on identifying both financial and operational risks.<br><span style="color:var(--teal-lt);">This diagnostic is the starting point for Monthly Monitor —</span> submit three years of data once and monthly updates flow naturally from the same baseline.</span>
         </p>
+        <!-- Journey strip -->
+        <div style="display:flex;align-items:stretch;gap:0;margin-bottom:1.8rem;border:1px solid rgba(42,173,173,0.2);overflow:hidden;">
+          <div style="flex:1;padding:0.7rem 1rem;background:rgba(27,122,122,0.18);border-right:1px solid rgba(42,173,173,0.2);">
+            <div style="font-family:var(--mono);font-size:0.58rem;color:var(--teal-lt);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">STEP 1</div>
+            <div style="font-size:0.82rem;font-weight:500;color:var(--off-white);">Operational Scan</div>
+            <div style="font-size:0.72rem;color:var(--gray);margin-top:0.2rem;"><span data-ko>3개년 베이스라인 구축</span><span data-en>3-year baseline</span></div>
+          </div>
+          <div style="display:flex;align-items:center;padding:0 0.6rem;background:rgba(27,122,122,0.08);color:var(--teal-lt);font-size:1rem;">→</div>
+          <div style="flex:1;padding:0.7rem 1rem;background:rgba(27,122,122,0.08);">
+            <div style="font-family:var(--mono);font-size:0.58rem;color:rgba(42,173,173,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">STEP 2</div>
+            <div style="font-size:0.82rem;font-weight:500;color:rgba(248,247,244,0.5);">Monthly Monitor</div>
+            <div style="font-size:0.72rem;color:var(--gray);margin-top:0.2rem;"><span data-ko>월별 업데이트 · 추가 자료 불필요</span><span data-en>Monthly updates · no re-onboarding</span></div>
+          </div>
+        </div>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
         <ul class="detail-includes">
           <li><span data-ko>매출 성장성 및 CAGR 분석</span><span data-en>Revenue growth and CAGR analysis</span></li>
@@ -452,6 +468,20 @@
           </ul>
           <div class="data-note">
             <p><span data-ko>자료가 완벽하게 준비되지 않아도 괜찮습니다. 미제출 항목은 자료 미제공으로 정리하며, 1차 보고서 완료 후 7일 이내 보완 자료를 주시면 <strong>1회 무상 업데이트</strong>를 드립니다. 회사명 및 고객데이터 등은 코드명으로 익명 처리 가능합니다.</span><span data-en>It is okay to submit incomplete data at first request. Missing items will be marked n/a. One free update if supplementary data is provided within 7 days of 1st Report Deliverable provided. Company names can be anonymised.</span></p>
+          </div>
+          <!-- Monthly linkage callout -->
+          <div style="margin-top:1.2rem;padding:1rem 1.1rem;background:rgba(27,122,122,0.1);border:1px solid rgba(42,173,173,0.3);border-left:3px solid var(--teal-lt);">
+            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
+              <span style="background:var(--teal-lt);color:var(--navy);font-family:var(--mono);font-size:0.58rem;font-weight:500;letter-spacing:0.08em;padding:0.15rem 0.45rem;text-transform:uppercase;">STEP 1 → 2</span>
+              <span style="font-family:var(--sans);font-size:0.75rem;font-weight:500;color:var(--teal-lt);">
+                <span data-ko>Monthly Monitor로 이어집니다</span>
+                <span data-en>Continues into Monthly Monitor</span>
+              </span>
+            </div>
+            <p style="font-size:0.8rem;color:var(--gray);line-height:1.65;margin:0;">
+              <span data-ko>지금 제출하시는 3개년 자료가 Monthly Monitor의 <strong style="color:var(--off-white);">베이스라인</strong>이 됩니다. Operational Scan 완료 후 Monthly로 전환하면 온보딩 자료를 다시 제출할 필요 없이 다음 달 업데이트부터 바로 시작됩니다.</span>
+              <span data-en>The 3-year data you submit now becomes the <strong style="color:var(--off-white);">baseline</strong> for Monthly Monitor. Convert after Operational Scan and the next monthly update begins immediately — no re-onboarding required.</span>
+            </p>
           </div>
         </div>
         <div class="detail-meta" style="margin-top:1rem;">
@@ -652,8 +682,22 @@
         <h2><em>Monthly</em> Monitor</h2>
         <p class="detail-tagline">
           <span data-ko>매월 재무 변화와 주요 흐름을 점검하고 의미있는 key risks를 식별합니다. 오너, 경영진, 포트폴리오 투자자를 위한 월별 재무 모니터링 서비스이며, 필요한 경우 후속 자문과 심화 검토로 연결할 수 있습니다.</span>
-          <span data-en>What happened this month, and what pattern does it reveal? Different from a bookkeeper's summary. Detecting change and interpreting patterns through a Big 4 FDD lens.</span>
+          <span data-en>Starting from the 3-year baseline built by Operational Scan, we track MoM, YoY and QoQ movements every month. Different from a bookkeeper's summary — detecting change and reading patterns through a Big 4 FDD lens.</span>
         </p>
+        <!-- Journey strip -->
+        <div style="display:flex;align-items:stretch;gap:0;margin-bottom:1.8rem;border:1px solid rgba(42,173,173,0.2);overflow:hidden;">
+          <div style="flex:1;padding:0.7rem 1rem;background:rgba(27,122,122,0.08);border-right:1px solid rgba(42,173,173,0.2);">
+            <div style="font-family:var(--mono);font-size:0.58rem;color:rgba(42,173,173,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">STEP 1</div>
+            <div style="font-size:0.82rem;font-weight:500;color:rgba(248,247,244,0.5);">Operational Scan</div>
+            <div style="font-size:0.72rem;color:var(--gray);margin-top:0.2rem;"><span data-ko>3개년 베이스라인 구축</span><span data-en>3-year baseline</span></div>
+          </div>
+          <div style="display:flex;align-items:center;padding:0 0.6rem;background:rgba(27,122,122,0.18);color:var(--teal-lt);font-size:1rem;">→</div>
+          <div style="flex:1;padding:0.7rem 1rem;background:rgba(27,122,122,0.18);">
+            <div style="font-family:var(--mono);font-size:0.58rem;color:var(--teal-lt);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.25rem;">STEP 2</div>
+            <div style="font-size:0.82rem;font-weight:500;color:var(--off-white);">Monthly Monitor</div>
+            <div style="font-size:0.72rem;color:var(--gray);margin-top:0.2rem;"><span data-ko>월별 업데이트 · 추가 자료 불필요</span><span data-en>Monthly updates · no re-onboarding</span></div>
+          </div>
+        </div>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Monthly included</span></div>
         <ul class="detail-includes">
           <li><span data-ko>매출 / 매출이익 / 영업이익 분석 및 트렌드 비교</span><span data-en>Revenue / GP / EBITDA trends</span></li>
@@ -683,17 +727,54 @@
       </div>
       <div class="detail-right">
         <div class="data-box">
-          <h3><span data-ko>필요한 자료 — 매달</span><span data-en>Data required — monthly</span></h3>
-          <p><span data-ko>온보딩 시 AAP 표준 월간 템플릿을 제공합니다. 매달 영업일 10일까지 채워서 제출하시면 됩니다.</span><span data-en>At onboarding, AAP provides a standard monthly template. Complete and submit by the 10th working day of each month.</span></p>
-          <ul class="data-list">
-            <li><span data-ko>당월 손익 (Revenue · GP · EBITDA)</span><span data-en>Monthly P&L (Revenue, GP, EBITDA)</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>AR · 재고 · AP 기말 잔액</span><span data-en>AR, inventory, AP closing balances</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>현금 잔액</span><span data-en>Cash balance</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>이달의 포커스 토픽 관련 추가 자료</span><span data-en>Additional data for the month's focus topic</span><span class="data-req opt">선택</span></li>
-            <li><span data-ko>예산 자료 (있는 경우)</span><span data-en>Budget (if available)</span><span class="data-req opt">선택</span></li>
-          </ul>
+          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
+          <p><span data-ko>온보딩과 매달 업데이트, 두 단계로 나뉩니다.</span><span data-en>Two phases: onboarding and monthly updates.</span></p>
+
+          <!-- Phase 1: Onboarding -->
+          <div style="margin-bottom:1rem;">
+            <div style="font-family:var(--sans);font-size:0.72rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.5rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(42,173,173,0.15);">
+              <span data-ko>① 온보딩 (최초 1회) — 베이스라인 구축</span>
+              <span data-en>① Onboarding (once) — baseline setup</span>
+            </div>
+            <ul class="data-list">
+              <li>
+                <span data-ko>손익계산서 · 재무상태표 (최소 3개년치)</span>
+                <span data-en>P&L and balance sheet (3 years+)</span>
+                <span class="data-req must">필수</span>
+              </li>
+              <li>
+                <span data-ko>AR · 재고 · AP · 현금 기말 잔액 (3개년)</span>
+                <span data-en>AR, inventory, AP, cash balances (3 years)</span>
+                <span class="data-req must">필수</span>
+              </li>
+              <li>
+                <span data-ko>업종 · 사업 개요 · 고객 구성</span>
+                <span data-en>Industry, business overview, customer mix</span>
+                <span class="data-req must">필수</span>
+              </li>
+            </ul>
+            <p style="font-size:0.78rem;color:rgba(122,143,168,0.7);margin:0.5rem 0 0;line-height:1.55;">
+              <span data-ko>Operational Scan을 먼저 받으셨다면 별도 제출 불필요 — 해당 자료를 그대로 이어받습니다.</span>
+              <span data-en>If you have completed an Operational Scan, no resubmission needed — we carry the dataset forward.</span>
+            </p>
+          </div>
+
+          <!-- Phase 2: Monthly -->
+          <div>
+            <div style="font-family:var(--sans);font-size:0.72rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:0.5rem;padding-bottom:0.4rem;border-bottom:1px solid rgba(42,173,173,0.15);">
+              <span data-ko>② 매달 업데이트 — AAP 표준 템플릿 제출</span>
+              <span data-en>② Monthly update — standard template</span>
+            </div>
+            <ul class="data-list">
+              <li><span data-ko>당월 손익 (Revenue · GP · EBITDA)</span><span data-en>Monthly P&L (Revenue, GP, EBITDA)</span><span class="data-req must">필수</span></li>
+              <li><span data-ko>AR · 재고 · AP · 현금 기말 잔액</span><span data-en>AR, inventory, AP, cash balances</span><span class="data-req must">필수</span></li>
+              <li><span data-ko>이달의 포커스 토픽 관련 추가 자료</span><span data-en>Additional data for month's focus topic</span><span class="data-req opt">선택</span></li>
+              <li><span data-ko>예산 자료</span><span data-en>Budget (if available)</span><span class="data-req opt">선택</span></li>
+            </ul>
+          </div>
+
           <div class="data-note">
-            <p><span data-ko><strong>운영 캘린더:</strong> 전월말일에 다음 달 토픽과 필요 자료를 안내 드립니다. 매월 영업일 10일 제출 마감 → 72시간이내 리포트 발행. 토픽은 월 1회 변경 요청 가능합니다.</span><span data-en><strong>Calendar:</strong> AAP contacts you on the last working day of the month's topic and any additional data needed for following month's update. Submit by the 10th → report published within 72 working hours. Topic changes accepted once per month.</span></p>
+            <p><span data-ko><strong>운영 캘린더:</strong> 전월 말일에 다음 달 토픽과 필요 자료를 안내드립니다. 매월 영업일 10일 제출 마감 → 72시간 이내 리포트 발행. 토픽은 월 1회 변경 요청 가능합니다.</span><span data-en><strong>Calendar:</strong> AAP notifies you of next month's topic on the last working day of the current month. Submit by the 10th → report within 72 working hours. Topic changes accepted once per month.</span></p>
           </div>
         </div>
         <div class="detail-meta" style="margin-top:1rem;">
