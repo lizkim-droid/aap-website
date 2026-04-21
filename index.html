@@ -66,9 +66,17 @@
     --navy-card: #162038;
     --accent:    #A6A6A6;
     --accent-lt: #C8C8C8;
+    --teal:      #1B7A7A;
+    --teal-lt:   #2A9D9D;
+    --teal-pale: #EBF5F5;
     --off-white: #F8F7F4;
+    --cream:     #F2EFE9;
     --gray:      #7A8FA8;
     --border:    rgba(255,255,255,0.08);
+    --border-lt: #DDE3EC;
+    --text-dk:   #111E35;
+    --text-mid:  #4A5568;
+    --text-lt:   #6B7A8D;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -135,12 +143,12 @@
   .eyebrow {
     font-size: 0.72rem; font-weight: 500;
     letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.4rem;
+    color: var(--teal-lt); margin-bottom: 1.4rem;
     display: flex; align-items: center; gap: 0.8rem;
   }
   .eyebrow::before {
     content: ''; display: block;
-    width: 2rem; height: 1px; background: var(--accent);
+    width: 2rem; height: 1px; background: var(--teal-lt);
   }
   h1 {
     font-family: 'Playfair Display', serif;
@@ -148,7 +156,7 @@
     font-weight: 700; line-height: 1.18;
     margin-bottom: 1.6rem;
   }
-  h1 em { font-style: italic; color: var(--accent-lt); }
+  h1 em { font-style: italic; color: var(--teal-lt); }
   .hero-sub {
     font-size: 0.88rem; font-weight: 300;
     line-height: 1.85; color: var(--gray);
@@ -159,14 +167,14 @@
     display: inline-block;
     padding: 0.85rem 2rem;
     background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent-lt);
+    border: 1px solid var(--teal-lt);
+    color: var(--teal-lt);
     text-decoration: none;
     font-size: 0.8rem; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase;
     transition: background 0.25s, color 0.25s;
   }
-  .btn:hover { background: var(--accent); color: var(--navy); }
+  .btn:hover { background: var(--teal-lt); color: var(--navy); }
   .tagline-block {
     border-left: 1px solid var(--border);
     padding-left: 4rem;
@@ -180,7 +188,7 @@
     transition: opacity 0.6s ease;
     cursor: default;
   }
-  .tw.on { opacity: 1; color: var(--accent-lt); transition: opacity 0.6s ease; }
+  .tw.on { opacity: 1; color: var(--teal-lt); transition: opacity 0.6s ease; }
   .tw:hover { opacity: 0.4; }
 
   /* ─── SHARED ─── */
@@ -226,7 +234,7 @@
   .about-role {
     font-size: 0.78rem; font-weight: 500;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1.6rem;
+    color: var(--teal-lt); margin-bottom: 1.6rem;
   }
   .about-email {
     display: inline-block;
@@ -253,7 +261,7 @@
     display: flex; gap: 0.8rem; align-items: flex-start;
   }
   .cred-list li::before {
-    content: '—'; color: var(--accent);
+    content: '—'; color: var(--teal-lt);
     flex-shrink: 0; margin-top: 0.05rem;
   }
 
@@ -273,7 +281,7 @@
     color: var(--gray); cursor: pointer;
     transition: color 0.2s, border-color 0.2s;
   }
-  .tab-btn.active { color: var(--off-white); border-bottom-color: var(--accent); }
+  .tab-btn.active { color: var(--off-white); border-bottom-color: var(--teal-lt); }
   .tab-btn:hover { color: var(--off-white); }
   .tab-pane { display: none; }
   .tab-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
@@ -283,11 +291,11 @@
     padding: 1.4rem 1.6rem;
     transition: border-color 0.3s;
   }
-  .svc-card:hover { border-color: rgba(166,166,166,0.3); }
+  .svc-card:hover { border-color: rgba(42,157,157,0.35); }
   .svc-phase {
     font-size: 0.68rem; font-weight: 500;
     letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.5rem;
+    color: var(--teal-lt); margin-bottom: 0.5rem;
   }
   .svc-title {
     font-family: 'Playfair Display', serif;
@@ -300,8 +308,8 @@
   }
   .svc-note {
     margin-top: 0; padding: 0.8rem 1.2rem;
-    border-left: 2px solid var(--accent);
-    background: rgba(166,166,166,0.04);
+    border-left: 2px solid var(--teal-lt);
+    background: rgba(27,122,122,0.05);
     font-size: 0.82rem; font-weight: 300;
     color: var(--gray); line-height: 1.7;
     grid-column: 1 / -1;
@@ -339,7 +347,7 @@
   .contact-lbl {
     font-size: 0.68rem; font-weight: 500;
     letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.25rem;
+    color: var(--teal-lt); margin-bottom: 0.25rem;
   }
   .contact-val {
     font-size: 0.98rem; color: var(--off-white);
@@ -380,8 +388,122 @@
   body.ko [data-en] { display: none !important; }
 
   /* ─── RESPONSIVE ─── */
+  .nav-cta-btn {
+    display: inline-block;
+    padding: 0.42rem 1.1rem;
+    background: var(--teal-lt);
+    color: var(--navy);
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer;
+    border: none; transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta-btn:hover { background: #35B0B0; color: var(--navy); }
+
+  /* ─── LIGHT SECTIONS ─── */
+  .light-bg {
+    background: var(--off-white);
+    border-top: 1px solid var(--border-lt);
+    border-bottom: 1px solid var(--border-lt);
+  }
+  .light-bg h2 { color: var(--text-dk); }
+  .light-bg .section-label { color: var(--teal); }
+  .light-bg .section-label::before { background: var(--teal); }
+  .light-bg .about-name { color: var(--text-dk); }
+  .light-bg .about-role { color: var(--teal); }
+  .light-bg .about-bio { color: var(--text-mid); }
+  .light-bg .about-bio strong { color: var(--text-dk); font-weight: 500; }
+  .light-bg .about-email { color: var(--text-mid); border-bottom-color: var(--border-lt); }
+  .light-bg .about-email:hover { color: var(--teal); border-color: var(--teal); }
+  .light-bg .cred-list li { color: var(--text-mid); border-bottom-color: var(--border-lt); }
+  .light-bg .cred-list li::before { color: var(--teal); }
+  .light-bg .btn {
+    border-color: var(--teal); color: var(--teal);
+  }
+  .light-bg .btn:hover { background: var(--teal); color: var(--off-white); }
+
+  /* ─── TEAL EYEBROW for dark sections ─── */
+  .section-label { color: var(--teal-lt); }
+  .section-label::before { background: var(--teal-lt); }
+
+  /* ─── DIAGNOSTIC REPORTS ─── */
+  .diag-bg {
+    background: var(--cream);
+    border-top: 1px solid var(--border-lt);
+    border-bottom: 1px solid var(--border-lt);
+  }
+  .diag-bg h2 { color: var(--text-dk); }
+  .diag-bg .section-label { color: var(--teal); }
+  .diag-bg .section-label::before { background: var(--teal); }
+  .diag-bg .diag-intro-sub { color: var(--text-mid); }
+  .diag-bg .diag-intro-note { color: var(--text-lt); }
+  .diag-bg .btn { border-color: var(--teal); color: var(--teal); }
+  .diag-bg .btn:hover { background: var(--teal); color: var(--off-white); }
+  .diag-grid {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 4rem; align-items: start;
+    margin-top: 2.5rem;
+  }
+  .diag-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.7rem;
+  }
+  .diag-card {
+    background: var(--off-white);
+    border: 1px solid var(--border-lt);
+    padding: 1.2rem 1.4rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-decoration: none; display: block;
+    cursor: pointer;
+  }
+  .diag-card:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgba(27,122,122,0.08); }
+  .diag-card.featured {
+    border-color: var(--teal);
+    background: var(--teal-pale);
+  }
+  .diag-card-tag {
+    font-size: 0.62rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 0.4rem;
+  }
+  .diag-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.0rem; color: var(--text-dk);
+    margin-bottom: 0.3rem; line-height: 1.3;
+  }
+  .diag-card-desc {
+    font-size: 0.75rem; font-weight: 300;
+    color: var(--text-mid); line-height: 1.6;
+    margin-bottom: 0.7rem;
+  }
+  .diag-card-price {
+    font-size: 0.82rem; color: var(--teal);
+    font-weight: 500;
+  }
+  .diag-card-save {
+    font-size: 0.65rem; color: var(--teal);
+    background: rgba(27,122,122,0.1);
+    padding: 0.1rem 0.4rem;
+    margin-left: 0.4rem;
+  }
+  .diag-intro-sub {
+    font-size: 0.9rem; font-weight: 300;
+    line-height: 1.85; color: var(--gray);
+    margin-bottom: 0.6rem;
+  }
+  .diag-intro-note {
+    font-size: 0.78rem; font-weight: 300;
+    color: rgba(122,143,168,0.7); line-height: 1.7;
+    margin-bottom: 1.8rem;
+  }
+
   @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
+    .diag-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .diag-cards { grid-template-columns: 1fr 1fr; }
+  }
     .hero { padding: 6rem 1.5rem 4rem; }
     .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
     .hero h1 { font-size: 2.4rem; }
@@ -428,9 +550,11 @@
     <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
     <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
     <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+    <li><a href="/#diagnostic"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a></li>
     <li><a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
     <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
     </ul>
+    <a href="/#diagnostic" class="nav-cta-btn"><span data-ko>진단 신청</span><span data-en>Get Report</span></a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
     <div class="lang-toggle">
       <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
@@ -443,6 +567,7 @@
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
     <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
     <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
+    <a href="/#diagnostic"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a>
     <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
     <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
 </div>
@@ -458,7 +583,7 @@
       </h1>
       <p class="hero-sub">
         <span data-ko>모든 결정은 결국 숫자로 남습니다. AAP Advisory는 당신이 쌓아온 것의 가치를 알고, 지킬 줄 아는 자문사입니다.</span>
-        <span data-en>Clearer numbers. Better decisions. Long term value uplift.</span>
+        <span data-en>Built for decades. Valued on your terms.</span>
       </p>
     </div>
     <div class="tagline-block">
@@ -472,7 +597,7 @@
 <div class="hr"></div>
 
 <!-- ABOUT -->
-<div class="about-bg" id="about">
+<div class="about-bg light-bg" id="about">
   <div class="wrap">
     <div class="section-label">
       <span data-ko>자문사 소개</span><span data-en>About</span>
@@ -504,64 +629,176 @@
 <div id="services">
   <div class="wrap">
     <div class="section-label">
-      <span data-ko>서비스</span><span data-en>Services</span>
+      <span data-ko>자문 서비스</span><span data-en>Advisory Services</span>
     </div>
     <h2 style="font-size: clamp(1.2rem, 1.8vw, 1.4rem);">
-      <span data-ko>모든 전략적 의사결정 뒤엔 철저히 준비된 숫자가 있어야 합니다.</span>
-      <span data-en>Business decisions run on financial clarity and readiness which leads to long term value uplift.</span>
+      <span data-ko>숫자 뒤에 있는 것. 원인 규명부터 실행까지 함께합니다.</span>
+      <span data-en>Beyond the numbers. Root cause analysis through to execution.</span>
     </h2>
 
     <div class="services-tabs">
       <button class="tab-btn active" onclick="switchTab('caas',this)">
-        <span data-ko>A. 재무 파트너쉽</span><span data-en>A. Business Finance Partnership</span>
+        <span data-ko>A. 재무 파트너십</span><span data-en>A. Business Finance Partnership</span>
       </button>
       <button class="tab-btn" onclick="switchTab('valuation',this)">
-        <span data-ko>B. 가치평가 및 거래 지원</span><span data-en>B. Valuation, Exit &amp; Transaction Support</span>
+        <span data-ko>B. 가치평가 · Exit 지원</span><span data-en>B. Valuation &amp; Exit Support</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('transaction',this)">
+        <span data-ko>C. 거래 자문</span><span data-en>C. Transaction Advisory</span>
       </button>
     </div>
 
     <div class="tab-pane active" id="tab-caas">
       <div class="svc-card fi">
-        <div class="svc-phase">Essential</div>
-        <div class="svc-title"><span data-ko>운영 재무 점검</span><span data-en>Operational Finance Review</span></div>
-        <p class="svc-desc"><span data-ko>매달 손익·현금흐름을 정리하고 핵심 지표를 리포팅합니다. 숫자를 이해하고 의사결정에 쓸 수 있도록 만들어 드립니다.</span><span data-en>We go beyond monthly profit and cash flow reporting to review profitability, working capital, and cost movements in context. The goal is to give owners a clearer financial baseline they can use in everyday business decisions.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase">Growth</div>
-        <div class="svc-title"><span data-ko>경영 재무 파트너쉽</span><span data-en>Strategic Finance Partner</span></div>
-        <p class="svc-desc"><span data-ko>정기적인 재무 점검에 더해, 사업의 개선 포인트와 중요한 의사결정을 함께 봅니다. 제품별 수익성, 현금흐름, 투자 판단, 운영상 비효율과 리스크를 함께 점검하며, 대표와 경영진의 판단에 필요한 재무 관점을 더합니다.</span><span data-en>Alongside regular financial review, we support management in identifying improvement areas and evaluating important decisions. This includes looking at product-level profitability, cash flow, investment decisions, operational inefficiencies, and key risks through a sharper financial lens.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase">Planning &amp; Funding</div>
-        <div class="svc-title"><span data-ko>확장과 투자유치를 준비한다면.</span><span data-en>When growth or funding is on the horizon.</span></div>
-        <p class="svc-desc"><span data-ko>투자유치, 확장, 또는 중요한 재무 결정을 앞두고 현재 재무 상태를 먼저 진단합니다. 재무 모델링, 시나리오 분석, 사업계획서(BP) 작성까지 — corporate finance 관점으로 준비합니다.</span><span data-en>Before investment, expansion, or a significant financial decision, we start with a clear diagnostic of where the business stands. Financial modelling, scenario analysis, and business plan preparation — approached from a corporate finance perspective.</span></p>
+        <div class="svc-phase">월별 재무 파트너</div>
+        <div class="svc-title"><span data-ko>Business Finance Partnership</span><span data-en>Business Finance Partnership</span></div>
+        <p class="svc-desc"><span data-ko>월별 재무 모니터링 · KPI 관리 · 의사결정 지원. 재무담당자 없는 오너 기업의 CFO 역할을 합니다. 숫자가 보여주는 것을 넘어, 왜 그런지 · 어떻게 해야 하는지까지 함께 봅니다.</span><span data-en>Monthly financial monitoring, KPI management and decision support. Acting as the CFO for owner-managed businesses without a finance team. Beyond what the numbers show — into why, and what to do about it.</span></p>
       </div>
       <div class="svc-note fi">
-        <span data-ko><strong>먼저 4주 진단으로 시작해보세요.</strong> 짧은 기간 안에 수익성·현금흐름·운전자본·거버넌스 관점에서 회사를 함께 들여다보고, 어떤 지원이 맞는지 확인하는 유료 진입 서비스입니다.</span>
-        <span data-en><strong>Start with the 4-week diagnostic.</strong> A focused engagement to review profitability, cash flow, working capital and governance — and identify the right path forward.</span>
+        <span data-ko><strong>숫자의 원인을 찾는 것이 AAP의 전문입니다.</strong> Big 4 FDD 경험과 글로벌 기업 FP&amp;A 경험을 바탕으로, 숫자 이면의 인과관계를 규명하고 실행 방향을 함께 설계합니다. 월별 진단 리포트에서 이슈가 감지된 경우 자연스럽게 이어집니다.</span>
+        <span data-en><strong>Finding the cause behind the numbers is AAP's specialism.</strong> Drawing on Big 4 FDD and corporate FP&amp;A experience, AAP identifies the root causes behind movements in the numbers and works alongside you to design the path forward.</span>
       </div>
     </div>
 
     <div class="tab-pane" id="tab-valuation">
       <div class="svc-card fi">
-        <div class="svc-phase">Sell-side Advisory</div>
-        <div class="svc-title"><span data-ko>매각 자문</span><span data-en>Sale Advisory</span></div>
-        <p class="svc-desc"><span data-ko>매각 결정부터 클로징까지 — 밸류에이션, 바이어 발굴, 협상, 실사까지. 오너가 주도권을 갖고 딜을 마무리할 수 있도록 전 과정을 함께합니다.</span><span data-en>From decision to closing — valuation, buyer identification, negotiation and due diligence. Built around the owner's interests.</span></p>
+        <div class="svc-phase">Exit 준비 · 정밀 밸류에이션</div>
+        <div class="svc-title"><span data-ko>Valuation &amp; Exit Support</span><span data-en>Valuation &amp; Exit Support</span></div>
+        <p class="svc-desc"><span data-ko>매각 전 기업가치 정밀 산정 · EBITDA Normalisation · Exit 준비 전략 · VDD 준비 및 딜 협상 지원. 오너가 가장 유리한 조건으로 Exit할 수 있도록 준비합니다.</span><span data-en>Precise enterprise valuation ahead of a sale, EBITDA normalisation, exit strategy, VDD preparation and deal negotiation support. Preparing owners to exit on the best possible terms.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Vendor Due Diligence (VDD)</div>
-        <div class="svc-title"><span data-ko>팔기 전 재무 정비</span><span data-en>Pre-Sale Financial Cleansing</span></div>
-        <p class="svc-desc"><span data-ko>바이어보다 먼저 우리가 들여다봅니다. 오너 개인 비용 분리, 수익구조 정상화, 리스크 선제 제거 — 실사에서 흔들리지 않는 숫자를 만듭니다.</span><span data-en>We look before the buyer does. Owner cost separation, earnings normalisation, risk clean-up — so nothing breaks when it matters.</span></p>
+        <div class="svc-phase">투자유치 · 재무 모델링</div>
+        <div class="svc-title"><span data-ko>Investment Readiness</span><span data-en>Investment Readiness</span></div>
+        <p class="svc-desc"><span data-ko>투자유치 또는 확장을 앞두고 재무 상태를 먼저 점검합니다. 재무 모델링, 시나리오 분석, 사업계획서(BP) 작성까지 — corporate finance 관점으로 준비합니다.</span><span data-en>Before raising investment or scaling, start with a clear picture of where the business stands. Financial modelling, scenario analysis and business plan preparation — from a corporate finance perspective.</span></p>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab-transaction">
+      <div class="svc-card fi">
+        <div class="svc-phase">Sell-side / Buy-side FDD</div>
+        <div class="svc-title"><span data-ko>Transaction Advisory</span><span data-en>Transaction Advisory</span></div>
+        <p class="svc-desc"><span data-ko>Buy-side / Sell-side 재무실사(FDD) · Working Capital peg 협상 · Diligence Q&amp;A 대응 · SPA 검토 지원. 딜이 실제로 진행될 때, 가장 중요한 숫자 싸움을 함께합니다.</span><span data-en>Buy-side and sell-side financial due diligence, working capital peg negotiation, diligence Q&amp;A support and SPA review. When a deal is live, fighting the numbers battle alongside you.</span></p>
       </div>
       <div class="svc-card fi">
-        <div class="svc-phase">Cross-border Exit</div>
-        <div class="svc-title"><span data-ko>크로스보더 매각</span><span data-en>Cross-border Exit</span></div>
+        <div class="svc-phase">크로스보더 매각</div>
+        <div class="svc-title"><span data-ko>Cross-border Exit</span><span data-en>Cross-border Exit</span></div>
         <p class="svc-desc"><span data-ko>국내에 적합한 바이어가 없다면 해외로. 한국·호주·일본 네트워크 기반으로 국경을 넘는 매각을 설계합니다.</span><span data-en>When the right buyer isn't local, we look further. Korea, Australia and Japan networks for cross-border exits.</span></p>
+      </div>
+      <div class="svc-note fi">
+        <span data-ko><strong>모든 자문 서비스는 별도 협의입니다.</strong> 아래 문의 양식을 통해 상황을 간략히 알려주시면 연락드립니다.</span>
+        <span data-en><strong>All advisory services are by arrangement.</strong> Please use the contact form below to outline your situation and we will be in touch.</span>
       </div>
     </div>
   </div>
 </div>
 
+
+<!-- DIAGNOSTIC REPORTS -->
+<div class="diag-bg" id="diagnostic">
+  <div class="wrap">
+    <div class="section-label">AAP 진단 리포트</div>
+    <div class="diag-grid">
+
+      <div>
+        <h2 style="margin-bottom:1rem;">
+          <span data-ko>지금 무엇이<br>필요하신가요?</span>
+          <span data-en>What do you<br>need right now?</span>
+        </h2>
+        <p class="diag-intro-sub">
+          <span data-ko>Big 4 수준의 재무 분석을<br>영업일 기준 48시간 안에.</span>
+          <span data-en>Big 4 quality financial analysis.<br>Delivered within 48 business hours.</span>
+        </p>
+        <p class="diag-intro-note">
+          <span data-ko>있는 그대로의 재무 자료를 주시면 됩니다.<br>별도 템플릿 작성이 필요하지 않습니다.<br><br>일회성 진단이 월별 모니터링보다 비쌉니다.<br>커밋 없는 프리미엄입니다.</span>
+          <span data-en>Submit your financials as-is. No template required.<br><br>One-off scans are priced above the monthly service.<br>A premium for zero commitment.</span>
+        </p>
+        <a href="snapshot.html" class="btn">
+          <span data-ko>진단 리포트 신청하기 →</span>
+          <span data-en>Get Diagnostic Report →</span>
+        </a>
+      </div>
+
+      <div class="diag-cards" style="grid-template-columns:1fr 1fr 1fr;">
+
+        <!-- One-off scans label -->
+        <div style="grid-column:1/-1;padding:0.5rem 0 0.3rem;border-bottom:1px solid var(--border-lt);margin-bottom:0.4rem;">
+          <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-lt);">
+            <span data-ko>— 일회성 진단 (One-off Scans)</span><span data-en>— One-off Scans</span>
+          </span>
+        </div>
+
+        <a class="diag-card" href="snapshot.html#pane-a">
+          <div class="diag-card-tag">
+            <span data-ko>내 사업 현황</span><span data-en>Operational</span>
+          </div>
+          <div class="diag-card-name">Operational<br>Scan</div>
+          <p class="diag-card-desc">
+            <span data-ko>수익성·현금·운전자본 흐름을 딜 현장의 시각으로 스캔합니다.</span>
+            <span data-en>Profitability, cash and working capital — through a deal lens.</span>
+          </p>
+          <div class="diag-card-price">₩690,000</div>
+        </a>
+
+        <a class="diag-card" href="snapshot.html#pane-c">
+          <div class="diag-card-tag">
+            <span data-ko>기업가치 확인</span><span data-en>Valuation</span>
+          </div>
+          <div class="diag-card-name">Valuation<br>Scan</div>
+          <p class="diag-card-desc">
+            <span data-ko>EBITDA 기반 EV 추정 범위와 업종 멀티플 밴드를 산출합니다.</span>
+            <span data-en>EBITDA-based EV range with industry multiple benchmarks.</span>
+          </p>
+          <div class="diag-card-price">₩990,000</div>
+        </a>
+
+        <a class="diag-card" href="snapshot.html#pane-b">
+          <div class="diag-card-tag">
+            <span data-ko>매각 · 투자 준비</span><span data-en>Transaction</span>
+          </div>
+          <div class="diag-card-name">Transaction<br>Scan</div>
+          <p class="diag-card-desc">
+            <span data-ko>바이어 눈에 어떻게 보이나? QoE·WC·DLI 분석.</span>
+            <span data-en>How does a buyer see your business? QoE, WC, DLI.</span>
+          </p>
+          <div class="diag-card-price">₩1,490,000</div>
+        </a>
+
+        <a class="diag-card featured" href="snapshot.html#pane-bundle" style="grid-column:1/3;">
+          <div class="diag-card-tag">
+            <span data-ko>딜 전 완전한 준비</span><span data-en>Full Package</span>
+          </div>
+          <div class="diag-card-name">Transaction + Valuation</div>
+          <p class="diag-card-desc">
+            <span data-ko>Transaction Scan + Valuation Scan 동시 수령.</span>
+            <span data-en>Transaction Scan + Valuation Scan combined.</span>
+          </p>
+          <div class="diag-card-price">₩1,990,000 <span class="diag-card-save">₩490K 절감</span></div>
+        </a>
+
+        <!-- Monthly Monitor label -->
+        <div style="grid-column:1/-1;padding:0.8rem 0 0.3rem;border-bottom:1px solid var(--border-lt);margin-top:0.4rem;">
+          <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-lt);">
+            <span data-ko>— 월별 구독 (Ongoing Monthly)</span><span data-en>— Ongoing Monthly</span>
+          </span>
+        </div>
+
+        <a class="diag-card featured" href="snapshot.html#pane-monthly" style="grid-column:1/-1;border-color:var(--teal);background:var(--teal-pale);">
+          <div class="diag-card-tag" style="color:var(--teal);">
+            <span data-ko>매달 · 오너 / PE 포트폴리오</span><span data-en>Monthly · Owner / PE Portfolio</span>
+          </div>
+          <div class="diag-card-name" style="color:var(--text);">Monthly Monitor</div>
+          <p class="diag-card-desc" style="color:var(--text-mid);">
+            <span data-ko>매달 MoM·YoY·QoQ 분석 + 이달의 포커스 인사이트. Big 4 FDD 렌즈로 변화를 감지하고 패턴을 해석합니다. 일회성보다 저렴하고, 분석은 더 깊습니다.</span>
+            <span data-en>Monthly MoM · YoY · QoQ analysis plus a focused monthly insight. Detecting change and interpreting patterns through a Big 4 FDD lens. Deeper analysis, lower price than a one-off scan.</span>
+          </p>
+          <div class="diag-card-price" style="color:var(--teal);">₩490,000<span style="font-size:0.7rem;font-weight:300;color:var(--text-lt);margin-left:0.3rem;">/월</span>
+          <span class="diag-card-save">일회성보다 저렴</span></div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="hr"></div>
 

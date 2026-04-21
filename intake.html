@@ -11,11 +11,14 @@
   :root {
     --navy: #111E35;
     --navy-mid: #1B2A4A;
-    --gray: #A6A6A6;
-    --off-white: #F8F7F4;
-    --light: #F2F1EE;
-    --accent: #C8B99A;
-    --text: #2A2A2A;
+    --teal: #1B7A7A;
+    --teal-lt: #2AADAD;
+    --teal-pale: #EBF5F5;
+    --gray: #8A95A3;
+    --off-white: #F7F5F0;
+    --light: #F2F0EC;
+    --accent: #1B7A7A;
+    --text: #1C2237;
   }
 
   body {
@@ -179,7 +182,7 @@
     -webkit-appearance: none;
   }
   input:focus, textarea:focus, select:focus {
-    border-color: var(--navy);
+    border-color: var(--teal-lt);
   }
   textarea { resize: vertical; min-height: 100px; }
 
@@ -276,7 +279,7 @@
   }
   .btn-back:hover { color: var(--navy); }
   .btn-next {
-    background: var(--navy);
+    background: var(--teal);
     color: white;
     border: none;
     padding: 0.85rem 2rem;
@@ -290,12 +293,12 @@
     align-items: center;
     gap: 0.5rem;
   }
-  .btn-next:hover { background: var(--navy-mid); }
+  .btn-next:hover { background: var(--teal-lt); }
   .btn-next.accent {
-    background: var(--accent);
-    color: var(--navy);
+    background: var(--teal-lt);
+    color: white;
   }
-  .btn-next.accent:hover { background: #b8a88a; }
+  .btn-next.accent:hover { background: var(--teal); }
 
   /* Thank you */
   .thankyou {
@@ -369,7 +372,7 @@
 <div class="header">
   <div class="header-bar"></div>
   <h1>AAP Advisory<br>문의 설문</h1>
-  <p>약 5분이면 완료됩니다. 작성해 주신 내용을 바탕으로<br>첫 미팅 전 맞춤 안내를 드립니다.</p>
+  <p>약 5분이면 완료됩니다. 작성해 주신 내용을 바탕으로<br>맞춤 안내 또는 첫 미팅 일정을 잡아드립니다.</p>
   <div class="header-meta">
     <span class="badge">Confidential</span>
     <span class="badge">5 min</span>
@@ -477,10 +480,28 @@
     <div class="step-sub">해당되는 것을 모두 선택해 주세요.</div>
 
     <div class="field">
+      <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;font-family:'DM Sans',sans-serif;">— 진단 리포트 (일회성)</div>
       <div class="options" id="opt-service">
-        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">운영/재무 파트너쉽</span></div>
-        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">투자유치 재무 준비</span></div>
-        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">사업 매각 / Exit 준비</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Operational Scan — 내 사업 현황 파악 (₩690,000)</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Valuation Scan — 기업가치 확인 (₩990,000)</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Transaction Scan — 매각·투자 준비 (₩1,490,000)</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Transaction + Valuation Bundle (₩1,990,000)</span></div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:1rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;font-family:'DM Sans',sans-serif;">— 월별 구독 (Ongoing)</div>
+      <div class="options">
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Monthly Monitor — 매달 재무 모니터링 (₩490,000/월)</span></div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:1rem;">
+      <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;font-family:'DM Sans',sans-serif;">— 자문 서비스 (Advisory)</div>
+      <div class="options">
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Business Finance Partnership — 재무 파트너십</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Valuation &amp; Exit Support — Exit 준비</span></div>
+        <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">Transaction Advisory — M&amp;A 거래 자문</span></div>
         <div class="opt" onclick="toggleOpt(this)"><div class="opt-box"></div><span class="opt-label">아직 잘 모르겠어요 — 먼저 이야기해보고 싶어요</span></div>
       </div>
     </div>
@@ -499,7 +520,7 @@
 
     <div class="field" id="f-concern">
       <label>어떤 부분이 가장 걱정되시나요? <span class="req">*</span></label>
-      <textarea id="concern" placeholder="예) 매달 숫자는 나오는데 어떻게 봐야 할지 모르겠다&#10;예) 내년에 투자유치를 준비하는데 재무 자료가 없다&#10;예) 회사를 팔고 싶은데 어디서부터 시작해야 할지 모르겠다"></textarea>
+      <textarea id="concern" placeholder="예) 매출은 늘었는데 현금이 없다. 어디서 새는지 모르겠다&#10;예) 투자를 받고 싶은데 내 재무 상태가 어떤지 파악부터 하고 싶다&#10;예) 3년 안에 회사를 팔고 싶은데 어디서부터 준비해야 할지 모른다&#10;예) 매달 숫자를 누군가 정기적으로 봐줬으면 한다"></textarea>
       <div class="error-msg">내용을 입력해 주세요.</div>
     </div>
 
@@ -554,8 +575,8 @@
     <p>작성해 주신 내용을 확인한 뒤<br>영업일 기준 1~2일 내로 연락드리겠습니다.</p>
     <div class="contact-info">
       <p>직접 연락을 원하신다면</p>
-      <a href="mailto:info@aap-partners.com">info@aap-partners.com</a>
-      <a href="https://www.aap-partners.com">www.aap-partners.com</a>
+      <a href="mailto:info@aap-advisory.com">info@aap-advisory.com</a>
+      <a href="https://www.aap-advisory.com">www.aap-advisory.com</a>
     </div>
   </div>
 
@@ -647,10 +668,10 @@
         document.getElementById('progressText').textContent = '완료';
         document.getElementById('thankyou').classList.add('active');
       } else {
-        alert('제출 중 오류가 발생했습니다.\ninfo@aap-partners.com 으로 연락 주세요.');
+        alert('제출 중 오류가 발생했습니다.\ninfo@aap-advisory.com 으로 연락 주세요.');
       }
     } catch(e) {
-      alert('네트워크 오류가 발생했습니다.\ninfo@aap-partners.com 으로 연락 주세요.');
+      alert('네트워크 오류가 발생했습니다.\ninfo@aap-advisory.com 으로 연락 주세요.');
     }
   }
 
