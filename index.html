@@ -273,6 +273,7 @@
   }
   .tab-btn {
     padding: 0.8rem 1.8rem;
+    flex-shrink: 0;
     background: none; border: none; border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     font-family: 'DM Sans', sans-serif;
@@ -285,6 +286,7 @@
   .tab-btn:hover { color: var(--off-white); }
   .tab-pane { display: none; }
   .tab-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  #tab-caas.active { grid-template-columns: 1fr 1fr; }
   .svc-card {
     background: var(--navy-card);
     border: 1px solid var(--border);
@@ -458,7 +460,10 @@
     transition: border-color 0.2s, box-shadow 0.2s;
     text-decoration: none; display: block;
     cursor: pointer;
+    color: var(--text-dk) !important;
   }
+  .diag-card:visited { color: var(--text-dk) !important; }
+  .diag-card:link { color: var(--text-dk) !important; }
   .diag-card:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgba(27,122,122,0.08); }
   .diag-card.featured {
     border-color: var(--teal);
@@ -514,8 +519,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
     .about-name { font-size: 1.8rem; }
     h2 { font-size: 1.8rem; }
-    .services-tabs { flex-direction: column; gap: 0.5rem; }
-    .tab-btn { width: 100%; text-align: left; padding: 0.7rem 1rem; font-size: 0.8rem; }
+    .tab-btn { font-size: 0.8rem; }
     .tab-pane.active { grid-template-columns: 1fr; }
     .svc-card { padding: 1.5rem; }
     .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -799,37 +803,44 @@
 <!-- CONTACT -->
 <div class="contact-bg" id="contact">
   <div class="wrap">
-    <div class="contact-grid">
+    <div class="section-label">
+      <span data-ko>문의</span><span data-en>Contact</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
       <div>
-        <div class="section-label">
-          <span data-ko>문의</span><span data-en>Contact</span>
-        </div>
-        <h2 class="contact-headline">
-          <span data-ko>AAP Advisory</span>
-          <span data-en>AAP Advisory</span>
+        <h2 class="contact-headline" style="margin-bottom:0.6rem;">
+          <span data-ko>궁금한 게 있으신가요?</span>
+          <span data-en>Have a question?</span>
         </h2>
+        <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;max-width:420px;">
+          <span data-ko>카카오톡 채널로 편하게 문의 주세요. 자주 묻는 질문은 FAQ 페이지에서 먼저 확인하실 수 있습니다.</span>
+          <span data-en>Reach out via KakaoTalk. Common questions are answered on the FAQ page.</span>
+        </p>
       </div>
-      <div class="contact-items">
-        <div>
-          <div class="contact-lbl">Email</div>
-          <a id="contact-email" class="contact-val"></a>
+      <div style="display:flex;flex-direction:column;gap:0.8rem;">
+        <a href="#" onclick="openKakao(event)"
+           style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:#FAE100;color:#3A1D1D;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;text-decoration:none;transition:opacity 0.2s;white-space:nowrap;"
+           onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 2C6.48 2 2 5.92 2 10.76c0 3.04 1.71 5.72 4.32 7.38L5.2 22l5.1-2.72c.55.08 1.12.12 1.7.12 5.52 0 10-3.92 10-8.76C22 5.92 17.52 2 12 2z"/></svg>
+          <span data-ko>카카오톡 채널 문의</span><span data-en>KakaoTalk Channel</span>
+        </a>
+        <a href="/faq.html"
+           style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.6rem;background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:400;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.borderColor='rgba(255,255,255,0.4)';this.style.color='var(--off-white)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.6)'">
+          <span data-ko>자주 묻는 질문 (FAQ) →</span><span data-en>FAQ →</span>
+        </a>
+        <div style="font-size:0.75rem;color:var(--gray);">
+          <a id="contact-email" style="color:var(--gray);text-decoration:none;" onmouseover="this.style.color='var(--teal-lt)'" onmouseout="this.style.color='var(--gray)'"></a>
         </div>
-        <div>
-          <div class="contact-lbl"><span data-ko>문의 설문 (5분)</span><span data-en>Questionnaire (5 min)</span></div>
-          <a href="https://lizkim-droid.github.io/aap-website/intake" class="contact-val" target="_blank">
-            <span data-ko>→ 문의 양식 작성하기</span>
-            <span data-en>→ Go to Questionnaire</span>
-          </a>
-        </div>
-        <div>
-          <span class="contact-val muted" style="font-family:'Playfair Display',serif; font-style:italic; font-size:0.95rem; line-height:1.5;">Financial discipline<br>drives enterprise value.</span>
-        </div>
+      </div>
+      <div style="margin-left:auto;">
+        <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:0.9rem;color:rgba(255,255,255,0.15);line-height:1.5;">Financial discipline<br>drives enterprise value.</span>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
+<footer><footer>
   <div class="footer-logo" style="font-family:'Playfair Display',Georgia,serif; font-size:0.88rem; font-weight:600; letter-spacing:0.1em; color:#A6A6A6;">AAP Advisory</div>
   <div class="footer-copy">© 2026 AAP Advisory · Confidential</div>
 </footer>
@@ -908,6 +919,14 @@
       mm.classList.remove('open');
     }
   });
+
+  // ── KakaoTalk Channel (placeholder) ──────────────
+  function openKakao(e) {
+    if (e) e.preventDefault();
+    // TODO: 카카오 채널 개설 후 아래 URL 교체
+    // window.open('https://pf.kakao.com/YOUR_CHANNEL_ID', '_blank');
+    alert('카카오톡 채널 준비 중입니다.\n문의는 info@aap-advisory.com 으로 보내주세요.');
+  }
 </script>
 </body>
 </html>
