@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — AAP Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --navy:    #111E35;
+    --navy-mid:#1B2A4A;
+    --navy-card:#162038;
+    --teal:    #1B7A7A;
+    --teal-lt: #2A9D9D;
+    --off-white:#F8F7F4;
+    --gray:    #7A8FA8;
+    --border:  rgba(255,255,255,0.08);
+    --serif:   'Playfair Display', serif;
+    --sans:    'DM Sans', sans-serif;
+    --mono:    'DM Mono', monospace;
+  }
+  body { font-family:var(--sans); background:var(--navy); color:var(--off-white); overflow-x:hidden; word-break:keep-all; }
+  body.en [data-ko] { display:none !important; }
+  body.ko [data-en] { display:none !important; }
+
+  /* ── NAV ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;z-index:210;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--off-white);transition:all 0.3s;transform-origin:center;}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:56px;left:0;right:0;background:#111E35;border-bottom:1px solid var(--border);padding:1.2rem 1.5rem;z-index:200;flex-direction:column;gap:0;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{font-size:0.82rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;padding:0.85rem 0;border-bottom:1px solid var(--border);transition:color 0.2s;}
+  .mobile-menu a:hover,.mobile-menu a.active{color:var(--teal-lt);}
+  .nav-right{display:flex;align-items:center;gap:2.5rem;}
+  .lang-toggle{display:flex;border:1px solid rgba(255,255,255,0.12);overflow:hidden;}
+  .lt-btn{padding:0.28rem 0.7rem;background:none;border:none;font-family:var(--sans);font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(166,166,166,0.6);cursor:pointer;transition:all 0.2s;}
+  .lt-btn:first-child{border-right:1px solid rgba(255,255,255,0.12);}
+  .lt-btn.active{background:#A6A6A6;color:#111E35;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid var(--border);}
+  .nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);text-decoration:none;}
+  .nav-logo span{color:var(--teal-lt);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--teal-lt);}
+  .nav-cta-btn{display:inline-block;padding:0.42rem 1.1rem;background:var(--teal-lt);color:var(--navy);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border:none;transition:background 0.2s;white-space:nowrap;}
+  .nav-cta-btn:hover{background:#35B0B0;color:var(--navy);}
+
+  /* ── PAGE ── */
+  .hero{padding:8rem 4rem 4rem;max-width:1200px;margin:0 auto;}
+  .eyebrow{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.8rem;}
+  .eyebrow::before{content:'';display:block;width:1.8rem;height:1px;background:var(--teal-lt);}
+  .hero h1{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:0.8rem;}
+  .hero h1 em{font-style:italic;color:var(--teal-lt);}
+  .hero-sub{font-size:0.92rem;font-weight:300;color:var(--gray);line-height:1.8;max-width:520px;}
+
+  /* ── FAQ CONTENT ── */
+  .faq-wrap{max-width:1200px;margin:0 auto;padding:2rem 4rem 6rem;display:grid;grid-template-columns:200px 1fr;gap:4rem;align-items:start;}
+
+  /* Sticky category nav */
+  .faq-nav{position:sticky;top:90px;}
+  .faq-nav-title{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem;}
+  .faq-nav a{display:block;font-size:0.8rem;color:var(--gray);text-decoration:none;padding:0.4rem 0;border-left:2px solid transparent;padding-left:0.8rem;transition:all 0.2s;line-height:1.4;}
+  .faq-nav a:hover{color:var(--off-white);border-color:rgba(42,157,157,0.4);}
+  .faq-nav a.active{color:var(--teal-lt);border-color:var(--teal-lt);}
+
+  /* FAQ groups */
+  .faq-group{margin-bottom:3.5rem;}
+  .faq-group-title{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.4rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(42,157,157,0.2);}
+
+  /* Accordion items */
+  .faq-item{border-bottom:1px solid var(--border);}
+  .faq-q{width:100%;background:none;border:none;text-align:left;padding:1.1rem 0;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+  .faq-q-text{font-size:0.92rem;font-weight:500;color:var(--off-white);line-height:1.5;}
+  .faq-chevron{flex-shrink:0;width:18px;height:18px;border:1px solid rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all 0.25s;color:var(--gray);font-size:0.65rem;}
+  .faq-item.open .faq-chevron{background:var(--teal-lt);border-color:var(--teal-lt);color:var(--navy);transform:rotate(180deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+  .faq-a-inner{padding:0 0 1.2rem;font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.85;}
+  .faq-a-inner strong{color:var(--off-white);font-weight:500;}
+  .faq-item.open .faq-a{max-height:400px;}
+
+  /* ── CONTACT CTA ── */
+  .contact-cta{background:var(--navy-mid);border-top:1px solid var(--border);padding:4rem;}
+  .contact-cta-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .contact-cta h3{font-family:var(--serif);font-size:1.4rem;font-weight:700;}
+  .contact-cta h3 em{font-style:italic;color:var(--teal-lt);}
+  .contact-cta p{font-size:0.85rem;color:var(--gray);line-height:1.7;margin-top:0.4rem;max-width:380px;}
+  .cta-buttons{display:flex;gap:0.8rem;align-items:center;flex-shrink:0;flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--border);padding:1.6rem 4rem;display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto;}
+  .footer-logo{font-family:var(--serif);font-size:0.88rem;font-weight:600;letter-spacing:0.1em;color:var(--gray);}
+  .footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.18);}
+
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .hamburger{display:flex;}
+    .nav-links{display:none;}
+    .nav-right{gap:1rem;}
+    .hero,.faq-wrap,.contact-cta,.footer{padding-left:1.5rem;padding-right:1.5rem;}
+    .faq-wrap{grid-template-columns:1fr;gap:2rem;}
+    .faq-nav{display:none;}
+  }
+</style>
+</head>
+<body class="ko">
+
+<nav>
+  <a href="/" class="nav-logo">AAP<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+      <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+      <li><a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a></li>
+      <li><a href="/snapshot.html"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a></li>
+      <li><a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+      <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+    </ul>
+    <a href="/snapshot.html" class="nav-cta-btn"><span data-ko>진단 신청</span><span data-en>Get Report</span></a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
+    <div class="lang-toggle">
+      <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+      <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
+  <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+  <a href="/#services"><span data-ko>서비스</span><span data-en>Services</span></a>
+  <a href="/snapshot.html"><span data-ko>진단 리포트</span><span data-en>Diagnostic</span></a>
+  <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
+  <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow"><span data-ko>자주 묻는 질문</span><span data-en>Frequently Asked Questions</span></div>
+  <h1>
+    <span data-ko>궁금한 것이<br><em>있으신가요?</em></span>
+    <span data-en>Looking for<br><em>answers?</em></span>
+  </h1>
+  <p class="hero-sub">
+    <span data-ko>여기서 해결되지 않으면 카카오톡 채널로 직접 문의 주세요. 빠르게 답변드립니다.</span>
+    <span data-en>If you can't find what you need here, reach out via KakaoTalk. We'll get back to you promptly.</span>
+  </p>
+</section>
+
+<!-- FAQ CONTENT -->
+<div class="faq-wrap">
+
+  <!-- Sticky sidebar nav -->
+  <nav class="faq-nav" aria-label="FAQ categories">
+    <div class="faq-nav-title"><span data-ko>카테고리</span><span data-en>Categories</span></div>
+    <a href="#sec-service" class="active"><span data-ko>서비스 일반</span><span data-en>General</span></a>
+    <a href="#sec-data"><span data-ko>자료 제출</span><span data-en>Data</span></a>
+    <a href="#sec-process"><span data-ko>진행 과정</span><span data-en>Process</span></a>
+    <a href="#sec-monthly"><span data-ko>Monthly Monitor</span><span data-en>Monthly Monitor</span></a>
+    <a href="#sec-advisory"><span data-ko>Advisory 자문</span><span data-en>Advisory</span></a>
+    <a href="#sec-security"><span data-ko>보안 · 기밀</span><span data-en>Security</span></a>
+  </nav>
+
+  <!-- FAQ items -->
+  <div>
+
+    <!-- 서비스 일반 -->
+    <div class="faq-group" id="sec-service">
+      <div class="faq-group-title"><span data-ko>서비스 일반</span><span data-en>General</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>어떤 서비스가 있나요?</span><span data-en>What services are available?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>일회성 진단 3종 (Operational Scan · Valuation Scan · Transaction Diligence Scan), 번들 패키지, 월별 구독 (Monthly Monitor), 그리고 Advisory Retainer 자문 서비스로 구성됩니다. 진단 리포트는 별도 양식 없이 있는 그대로의 재무 자료로 시작하며 영업일 기준 48시간 내 납품됩니다.</span>
+          <span data-en>Three one-off diagnostics (Operational Scan, Valuation Scan, Transaction Diligence Scan), a bundle package, Monthly Monitor subscription, and Advisory Retainer services. Diagnostics require no special template and are delivered within 48 business hours.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>어떤 업종도 가능한가요?</span><span data-en>Does it work for any industry?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>제조, 서비스(전문직/B2B), F&B, IT/SaaS, 도소매 유통, 의료기기, MSO(병·의원), 키즈카페/실내체험 등 8개 업종을 지원합니다. 업종별 벤치마크 데이터를 보유하고 있어 비교 분석이 가능합니다.</span>
+          <span data-en>We support 8 industries: manufacturing, professional/B2B services, F&B, IT/SaaS, wholesale/retail, medical devices, MSO (clinics) and kids cafes/indoor experiences. We hold industry benchmark data for comparative analysis.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>Big 4 회계법인과 어떻게 다른가요?</span><span data-en>How is this different from a Big 4 firm?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>Big 4 출신 전문가가 직접 분석한다는 점에서 분석 렌즈는 동일합니다. 차이는 속도, 비용, 접근성입니다. Big 4는 수개월, 수천만원이 들고 자료 요구도 까다롭습니다. AAP Advisory는 48시간, 합리적인 비용으로, 있는 그대로의 자료로 시작합니다.</span>
+          <span data-en>The analytical lens is the same — applied by a Big 4 veteran. The difference is speed, cost and accessibility. Big 4 engagements take months and cost tens of millions of won, with demanding data requirements. AAP Advisory delivers in 48 hours, at accessible pricing, starting from whatever data you have.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>PE 포트폴리오 기업도 가능한가요?</span><span data-en>Available for PE portfolio companies?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>네. PE가 계약 주체로 여러 포트폴리오 기업을 묶어 계약하는 볼륨 구조가 가능합니다. Monthly Monitor의 경우 3개 이상 포트폴리오부터 건당 할인이 적용됩니다. 구체적인 조건은 카카오 채널로 문의해 주세요.</span>
+          <span data-en>Yes. PE firms can contract for multiple portfolio companies. Monthly Monitor offers per-company discounts from 3 or more portfolio companies. Contact us via KakaoTalk for specific terms.</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- 자료 제출 -->
+    <div class="faq-group" id="sec-data">
+      <div class="faq-group-title"><span data-ko>자료 제출</span><span data-en>Data Submission</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>어떤 자료가 필요한가요?</span><span data-en>What data do I need?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko><strong>Operational Scan:</strong> 손익계산서 3개년치, 감가상각비, AR·재고·AP·현금 기말잔액, 업종 및 사업 개요. <strong>Valuation / Transaction Scan:</strong> 위에 더해 재무상태표, 차입금 현황. 자료가 완벽하지 않아도 됩니다 — 있는 것부터 보내주시면 됩니다.</span>
+          <span data-en><strong>Operational Scan:</strong> 3-year P&L, depreciation, AR/inventory/AP/cash closing balances, industry and business overview. <strong>Valuation/Transaction Scan:</strong> Above plus balance sheet and debt schedule. Data doesn't need to be perfect — send what you have.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>어떤 파일 형식으로 보내면 되나요?</span><span data-en>What file formats are accepted?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>Excel, PDF, 이미지(JPG/PNG), HWP, ZIP 압축 파일 모두 가능합니다. 세무사가 보내준 파일 그대로, 심지어 사진도 됩니다. 별도 양식 작성은 필요 없습니다.</span>
+          <span data-en>Excel, PDF, images (JPG/PNG), HWP and ZIP archives are all accepted. Files from your accountant as-is, even photos. No special template required.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>1년치 자료밖에 없으면요?</span><span data-en>What if I only have one year of data?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>보유하신 기간으로 분석합니다. 3개년이 있으면 추이 분석이 가능하지만, 1개년도 현황 진단은 충분히 가능합니다. 기간이 짧은 경우 리포트에 해당 내용을 명시합니다.</span>
+          <span data-en>We work with whatever period you have. 3 years enables trend analysis, but a current-state diagnostic is fully possible with one year. Limitations are noted in the report.</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- 진행 과정 -->
+    <div class="faq-group" id="sec-process">
+      <div class="faq-group-title"><span data-ko>진행 과정</span><span data-en>Process</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>신청 후 어떻게 진행되나요?</span><span data-en>What happens after I apply?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>① 신청서 제출 → ② 영업일 기준 4시간 이내 확인 연락 → ③ 자료 제출 안내 이메일 수신 → ④ 자료 완비 기준 48시간 이내 분석 → ⑤ PDF 리포트 이메일 납품.</span>
+          <span data-en>① Submit application → ② Confirmation within 4 business hours → ③ Data submission instructions by email → ④ Analysis within 48 hours of complete data → ⑤ PDF report delivered by email.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>납기는 정확히 얼마나 걸리나요?</span><span data-en>How long does delivery take exactly?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko><strong>자료 완비 기준</strong> 영업일 48시간입니다. 자료가 불완전한 경우 보완 요청 후 기산합니다. Transaction + Valuation 번들은 48~72시간. 급한 경우 카카오 채널로 문의 주시면 일정을 협의할 수 있습니다.</span>
+          <span data-en><strong>48 business hours from complete data.</strong> If data is incomplete, the clock starts after supplementary data is received. Transaction + Valuation bundle is 48–72 hours. For urgent cases, contact us via KakaoTalk to discuss timing.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>리포트를 받은 후 추가 질문이 생기면요?</span><span data-en>What if I have questions after receiving the report?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>리포트 수령 후 7일 이내 보완 자료를 추가로 주시면 1회 무상 업데이트를 드립니다. 리포트 내용에 대한 간단한 질문은 이메일로 문의 주시면 됩니다. 심층적인 원인 분석이나 후속 조치가 필요한 경우 Advisory Retainer 서비스로 이어갈 수 있습니다.</span>
+          <span data-en>One free update is included if supplementary data is submitted within 7 days of delivery. Simple questions about the report can be directed to us by email. For deeper root cause analysis or follow-up action, Advisory Retainer services are available.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>환불 정책은 어떻게 되나요?</span><span data-en>What is the refund policy?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>자료 제출 전까지는 전액 환불 가능합니다. 자료 제출 후 분석이 시작된 경우 환불이 어렵습니다. 자료 불완전으로 인한 분석 제한은 환불 사유가 되지 않으며, 7일 이내 보완 자료 제출 시 1회 무상 업데이트로 대응합니다.</span>
+          <span data-en>Full refund is available before data submission. Once analysis has begun following data submission, refunds are not available. Analysis limitations due to incomplete data are addressed via one free update within 7 days, not via refund.</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Monthly Monitor -->
+    <div class="faq-group" id="sec-monthly">
+      <div class="faq-group-title">Monthly Monitor</div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>Operational Scan 없이 바로 Monthly Monitor를 시작할 수 있나요?</span><span data-en>Can I start Monthly Monitor without an Operational Scan?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>가능합니다. 다만 Operational Scan을 먼저 받으시면 3개년 베이스라인이 이미 구축된 상태로 Monthly Monitor가 시작되므로, 온보딩 자료를 별도로 제출하지 않아도 됩니다. Operational Scan → Monthly Monitor 전환이 가장 효율적입니다.</span>
+          <span data-en>Yes. However, completing an Operational Scan first means Monthly Monitor starts with a 3-year baseline already in place — no separate onboarding data needed. Operational Scan → Monthly Monitor conversion is the most efficient path.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>매달 어떤 자료를 제출해야 하나요?</span><span data-en>What do I submit each month?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>AAP 표준 월간 템플릿(Google Sheet)에 당월 손익, AR·재고·AP·현금 기말잔액을 입력하시면 됩니다. 매달 10일에 AAP가 먼저 연락드려 이번 달 포커스 토픽과 필요 추가 자료를 안내합니다. 제출 마감은 영업일 10일입니다.</span>
+          <span data-en>Fill in the AAP standard monthly template (Google Sheet) with the month's P&L and AR/inventory/AP/cash closing balances. AAP contacts you on the 10th to advise the month's focus topic and any additional data needed. Submission deadline is the 10th business day.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>이달의 포커스 토픽은 어떻게 정해지나요?</span><span data-en>How is the monthly focus topic determined?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>온보딩 시 연간 토픽 캘린더를 함께 확정합니다. 고객 집중도, 원가 구조, 운전자본, 비용 효율성 등 12개월 로테이션 토픽이 기본입니다. 매달 1회 변경 요청이 가능하며, 10일 전까지 요청하시면 됩니다.</span>
+          <span data-en>An annual topic calendar is agreed at onboarding. A 12-month rotation of topics — customer concentration, cost structure, working capital, cost efficiency, etc. — is the default. One change request per month is accepted if made at least 10 days in advance.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>구독을 중간에 해지할 수 있나요?</span><span data-en>Can I cancel mid-subscription?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>최소 3개월 약정을 권장하지만, 구체적인 해지 조건은 계약 시 협의합니다. 카카오 채널로 문의 주시면 상황에 맞게 안내드립니다.</span>
+          <span data-en>A minimum of 3 months is recommended, but specific cancellation terms are agreed at the time of contract. Contact us via KakaoTalk for guidance based on your situation.</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- Advisory -->
+    <div class="faq-group" id="sec-advisory">
+      <div class="faq-group-title"><span data-ko>Advisory 자문 서비스</span><span data-en>Advisory Services</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>진단 리포트와 Advisory 자문의 차이는 무엇인가요?</span><span data-en>What's the difference between a diagnostic and Advisory?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>진단 리포트는 <strong>숫자가 보여주는 것</strong>까지입니다 — 현상과 패턴 감지. Advisory는 <strong>숫자 뒤에 있는 것</strong>부터입니다 — 원인 규명, 처방, 실행 동행. 진단에서 발견된 이슈를 깊게 파고들거나 개선 방안을 함께 설계하고 싶다면 Advisory로 이어집니다.</span>
+          <span data-en>Diagnostics cover <strong>what the numbers show</strong> — patterns and signals. Advisory covers <strong>what lies behind the numbers</strong> — root cause analysis, recommendations and execution support. Advisory is the natural next step when you want to go deeper on issues identified in a diagnostic.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>Advisory 서비스는 어떻게 시작하나요?</span><span data-en>How do I start with Advisory?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>카카오 채널로 먼저 상황을 공유해 주세요. 어떤 서비스가 적합한지 안내드립니다. 진단 리포트 완료 후 전환하시는 경우 별도 초기 자료 제출 없이 바로 이어집니다.</span>
+          <span data-en>Share your situation via KakaoTalk first — we'll advise which service fits best. If converting from a completed diagnostic, no additional data submission is required.</span>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- 보안 -->
+    <div class="faq-group" id="sec-security">
+      <div class="faq-group-title"><span data-ko>보안 · 기밀</span><span data-en>Security & Confidentiality</span></div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>제출한 자료는 어떻게 관리되나요?</span><span data-en>How is my submitted data managed?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>제출 자료는 리포트 작성 목적으로만 사용됩니다. 제3자에게 공유하지 않습니다. 회사명 및 고객사명을 코드명으로 익명 처리해서 제출하실 수 있습니다.</span>
+          <span data-en>Submitted data is used solely for report preparation and never shared with third parties. You may anonymise company and client names using code names.</span>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggle(this)">
+          <span class="faq-q-text"><span data-ko>NDA 체결이 가능한가요?</span><span data-en>Is an NDA available?</span></span>
+          <span class="faq-chevron">▾</span>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <span data-ko>요청 시 별도 NDA를 체결할 수 있습니다. 카카오 채널 또는 이메일로 요청해 주시면 됩니다.</span>
+          <span data-en>An NDA can be arranged on request. Please contact us via KakaoTalk or email.</span>
+        </div></div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /faq-wrap -->
+
+<!-- CONTACT CTA -->
+<div class="contact-cta">
+  <div class="contact-cta-inner">
+    <div>
+      <h3><span data-ko>더 궁금한 게 있으신가요?</span><span data-en>Still have <em>questions?</em></span></h3>
+      <p><span data-ko>카카오톡 채널로 편하게 문의 주세요. 빠르게 답변드립니다.</span><span data-en>Reach out via KakaoTalk. We'll get back to you promptly.</span></p>
+    </div>
+    <div class="cta-buttons">
+      <a href="#" onclick="openKakao(event)"
+         style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.75rem 1.6rem;background:#FAE100;color:#3A1D1D;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;text-decoration:none;transition:opacity 0.2s;"
+         onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 2C6.48 2 2 5.92 2 10.76c0 3.04 1.71 5.72 4.32 7.38L5.2 22l5.1-2.72c.55.08 1.12.12 1.7.12 5.52 0 10-3.92 10-8.76C22 5.92 17.52 2 12 2z"/></svg>
+        <span data-ko>카카오톡 채널 문의</span><span data-en>KakaoTalk Channel</span>
+      </a>
+      <a href="/snapshot.html"
+         style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.6rem;background:var(--teal-lt);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;text-decoration:none;transition:background 0.2s;"
+         onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
+        <span data-ko>진단 리포트 신청 →</span><span data-en>Get Report →</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div class="footer-copy">© 2026 AAP Advisory</div>
+</footer>
+
+<script>
+  // ── Accordion ─────────────────────────────────────
+  function toggle(btn) {
+    var item = btn.closest('.faq-item');
+    var isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(function(i) {
+      i.classList.remove('open');
+    });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ── Sidebar active state on scroll ────────────────
+  var groups = document.querySelectorAll('.faq-group');
+  var navLinks = document.querySelectorAll('.faq-nav a');
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY + 120;
+    groups.forEach(function(g) {
+      if (g.offsetTop <= scrollY && g.offsetTop + g.offsetHeight > scrollY) {
+        navLinks.forEach(function(a) { a.classList.remove('active'); });
+        var link = document.querySelector('.faq-nav a[href="#' + g.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  });
+
+  // ── KakaoTalk (placeholder) ───────────────────────
+  function openKakao(e) {
+    if (e) e.preventDefault();
+    // TODO: 카카오 채널 개설 후 교체
+    // window.open('https://pf.kakao.com/YOUR_CHANNEL_ID', '_blank');
+    alert('카카오톡 채널 준비 중입니다.\n문의는 info@aap-advisory.com 으로 보내주세요.');
+  }
+
+  // ── Lang ──────────────────────────────────────────
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
+  }
+
+  // ── Mobile menu ───────────────────────────────────
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // ── Init ──────────────────────────────────────────
+  window.addEventListener('DOMContentLoaded', function() {
+    try {
+      var s = sessionStorage.getItem('aap-lang');
+      if (s === 'en') setLang('en');
+    } catch(e) {}
+  });
+</script>
+</body>
+</html>
