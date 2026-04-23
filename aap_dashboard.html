@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AAP Advisory — Monthly Finance Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<title>AAP Advisory — Transaction Intelligence Monitor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 :root {
@@ -15,231 +15,229 @@
   --teal-lt: #2AADAD;
   --teal-pale:#E8F5F5;
   --white:   #FFFFFF;
-  --cream:   #F7F5F0;
+  --cream:   #F4F2ED;
   --border:  #DDE3EC;
   --text:    #111E35;
   --text-mid:#4A5568;
   --text-lt: #8A95A3;
-  --red:     #DC2626;
-  --amber:   #D97706;
-  --green:   #16A34A;
+  --red:     #C0392B;
+  --red-bg:  #FEF2F2;
+  --amber:   #B7770D;
+  --amber-bg:#FFFBEB;
+  --green:   #15803D;
+  --green-bg:#F0FDF4;
   --serif:   'Cormorant Garamond', Georgia, serif;
   --sans:    'DM Sans', sans-serif;
   --mono:    'DM Mono', monospace;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--cream);color:var(--text);overflow-x:hidden;}
+body{font-family:var(--sans);background:var(--cream);color:var(--text);overflow-x:hidden;font-size:13px;}
 
 /* ── TOPBAR ── */
 .topbar{
   background:var(--navy);
-  padding:0.85rem 2rem;
+  padding:0.7rem 2rem;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:100;
-  border-bottom:1px solid rgba(255,255,255,0.06);
+  border-bottom:2px solid var(--teal);
 }
-.topbar-logo{
-  font-family:var(--serif);font-size:1.05rem;font-weight:600;
-  color:#fff;letter-spacing:0.06em;
-}
+.topbar-left{display:flex;align-items:center;gap:1.6rem;}
+.topbar-logo{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:#fff;letter-spacing:0.06em;}
 .topbar-logo span{color:var(--teal-lt);}
-.topbar-company{
-  font-family:var(--mono);font-size:0.72rem;
-  color:rgba(255,255,255,0.5);letter-spacing:0.08em;
-}
+.topbar-divider{width:1px;height:18px;background:rgba(255,255,255,0.12);}
+.topbar-context{display:flex;flex-direction:column;gap:1px;}
+.topbar-company{font-family:var(--mono);font-size:0.65rem;color:rgba(255,255,255,0.75);letter-spacing:0.06em;}
+.topbar-period{font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
 .topbar-right{display:flex;align-items:center;gap:1.2rem;}
-.topbar-date{
-  font-family:var(--mono);font-size:0.68rem;
-  color:rgba(255,255,255,0.4);
+.topbar-badge{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.2rem 0.65rem;border:1px solid rgba(42,173,173,0.5);color:var(--teal-lt);
 }
-.refresh-btn{
-  font-family:var(--mono);font-size:0.65rem;
-  color:var(--teal-lt);background:none;border:1px solid rgba(42,173,173,0.3);
-  padding:0.25rem 0.7rem;cursor:pointer;transition:all 0.2s;
-}
-.refresh-btn:hover{background:rgba(42,173,173,0.1);}
+.topbar-type{font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.3);}
 
-/* ── SLICER RAIL ── */
-.slicer-rail{
-  background:var(--navy2);
-  padding:0.7rem 2rem;
-  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
-  border-bottom:1px solid rgba(255,255,255,0.06);
+/* ── SECTION HEADER ── */
+.sec-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:0.7rem;padding-bottom:0.5rem;
+  border-bottom:1px solid var(--border);
 }
-.slicer-group{display:flex;align-items:center;gap:0.6rem;}
-.slicer-label{
-  font-family:var(--mono);font-size:0.6rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:rgba(255,255,255,0.35);white-space:nowrap;
-}
-.slicer-btns{display:flex;gap:0.3rem;flex-wrap:wrap;}
-.slicer-btn{
-  font-family:var(--mono);font-size:0.65rem;
-  padding:0.22rem 0.65rem;
-  background:none;border:1px solid rgba(255,255,255,0.12);
-  color:rgba(255,255,255,0.45);cursor:pointer;
-  transition:all 0.18s;white-space:nowrap;
-}
-.slicer-btn:hover{border-color:rgba(42,173,173,0.5);color:rgba(255,255,255,0.7);}
-.slicer-btn.active{
-  background:var(--teal);border-color:var(--teal);
-  color:#fff;font-weight:500;
-}
-.slicer-divider{width:1px;height:20px;background:rgba(255,255,255,0.08);}
+.sec-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--navy);}
+.sec-sub{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);}
+.sec-badge{font-family:var(--mono);font-size:0.58rem;padding:0.12rem 0.45rem;border:1px solid var(--border);color:var(--text-lt);}
 
 /* ── MAIN ── */
-.main{max-width:1400px;margin:0 auto;padding:1.5rem 2rem 3rem;}
+.main{max-width:1400px;margin:0 auto;padding:1.2rem 2rem 3rem;}
 
-/* ── SIGNAL BANNER ── */
-.signal-banner{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:0.8rem;margin-bottom:1.5rem;
+/* ── EXECUTIVE SUMMARY STRIP ── */
+.exec-strip{
+  background:var(--navy);
+  border-left:4px solid var(--teal-lt);
+  padding:0.9rem 1.4rem;
+  margin-bottom:1rem;
+  display:flex;align-items:flex-start;gap:2rem;
 }
-.signal-card{
-  background:var(--white);
-  border:1px solid var(--border);
-  border-left:3px solid var(--border);
-  padding:0.9rem 1.1rem;
-  display:flex;align-items:flex-start;gap:0.75rem;
+.exec-label{
+  font-family:var(--mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--teal-lt);margin-bottom:0.3rem;white-space:nowrap;
 }
-.signal-card.green{border-left-color:var(--green);}
-.signal-card.amber{border-left-color:var(--amber);}
-.signal-card.red  {border-left-color:var(--red);}
-.signal-dot{
-  width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;
-}
-.signal-card.green .signal-dot{background:var(--green);}
-.signal-card.amber .signal-dot{background:var(--amber);}
-.signal-card.red   .signal-dot{background:var(--red);}
-.signal-title{font-size:0.75rem;font-weight:500;color:var(--text);margin-bottom:0.2rem;}
-.signal-body{font-size:0.72rem;color:var(--text-mid);line-height:1.5;}
-.signal-metric{
-  font-family:var(--mono);font-size:0.65rem;
-  margin-top:0.3rem;
-}
-.signal-card.green .signal-metric{color:var(--green);}
-.signal-card.amber .signal-metric{color:var(--amber);}
-.signal-card.red   .signal-metric{color:var(--red);}
+.exec-text{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.6;}
+.exec-divider{width:1px;background:rgba(255,255,255,0.08);align-self:stretch;flex-shrink:0;}
+.exec-signal{display:flex;flex-direction:column;align-items:center;gap:0.3rem;flex-shrink:0;}
+.exec-signal-dot{width:12px;height:12px;border-radius:50%;}
+.exec-signal-dot.amber{background:var(--amber);}
+.exec-signal-dot.red{background:var(--red);}
+.exec-signal-dot.green{background:var(--green);}
+.exec-signal-lbl{font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.35);text-align:center;}
 
-/* ── KPI ROW ── */
-.kpi-row{
-  display:grid;grid-template-columns:repeat(5,1fr);
-  gap:0.8rem;margin-bottom:1.5rem;
-}
+/* ── DEAL KPI ROW ── */
+.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0.7rem;margin-bottom:1rem;}
 .kpi-card{
   background:var(--white);border:1px solid var(--border);
-  padding:1rem 1.1rem;position:relative;overflow:hidden;
+  padding:0.9rem 1rem;position:relative;overflow:hidden;
 }
-.kpi-card::before{
+.kpi-card::after{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--border);transition:background 0.3s;
 }
-.kpi-card.up::before  {background:var(--green);}
-.kpi-card.down::before{background:var(--red);}
-.kpi-card.flat::before{background:var(--amber);}
-.kpi-label{
-  font-family:var(--mono);font-size:0.6rem;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--text-lt);margin-bottom:0.4rem;
-}
-.kpi-value{
-  font-family:var(--serif);font-size:1.7rem;font-weight:600;
-  color:var(--navy);line-height:1;margin-bottom:0.3rem;
-}
-.kpi-delta{
-  font-family:var(--mono);font-size:0.65rem;
-  display:flex;align-items:center;gap:0.3rem;
-}
-.kpi-delta.up  {color:var(--green);}
-.kpi-delta.down{color:var(--red);}
-.kpi-delta.flat{color:var(--amber);}
-.kpi-sub{font-size:0.68rem;color:var(--text-lt);margin-top:0.15rem;}
+.kpi-card.red::after{background:var(--red);}
+.kpi-card.amber::after{background:var(--amber);}
+.kpi-card.green::after{background:var(--green);}
+.kpi-card.neutral::after{background:var(--teal);}
+.kpi-label{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.35rem;}
+.kpi-value{font-family:var(--serif);font-size:1.65rem;font-weight:600;color:var(--navy);line-height:1;}
+.kpi-value.red{color:var(--red);}
+.kpi-value.amber{color:var(--amber);}
+.kpi-value.green{color:var(--green);}
+.kpi-delta{font-family:var(--mono);font-size:0.6rem;margin-top:0.3rem;color:var(--text-lt);}
+.kpi-delta b.up{color:var(--green);}
+.kpi-delta b.dn{color:var(--red);}
+.kpi-delta b.fl{color:var(--amber);}
+.kpi-note{font-size:0.62rem;color:var(--text-lt);margin-top:0.15rem;}
 
-/* ── CHART GRID ── */
-.chart-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr;
-  gap:1rem;margin-bottom:1rem;
+/* ── GRID LAYOUTS ── */
+.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
+.grid-1{margin-bottom:0.8rem;}
+
+/* ── CARD ── */
+.card{background:var(--white);border:1px solid var(--border);padding:1.1rem 1.2rem;}
+.card.full{grid-column:1/-1;}
+
+/* ── EBITDA BRIDGE ── */
+.bridge-wrap{overflow-x:auto;}
+.bridge-bars{display:flex;align-items:flex-end;gap:0;min-width:600px;}
+.bridge-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:70px;}
+.bridge-bar-wrap{position:relative;width:100%;display:flex;justify-content:center;margin-bottom:0.3rem;}
+.bridge-bar{width:60%;max-width:52px;position:relative;}
+.bridge-base{background:transparent;}
+.bridge-pos{background:var(--green);opacity:0.85;}
+.bridge-neg{background:var(--red);opacity:0.85;}
+.bridge-total{background:var(--teal);}
+.bridge-reported{background:var(--navy2);}
+.bridge-connector{
+  position:absolute;bottom:0;left:50%;width:200%;height:1px;
+  border-top:1px dashed rgba(0,0,0,0.1);transform:translateX(0);
 }
-.chart-grid-bottom{
-  display:grid;
-  grid-template-columns:1fr 1fr 1fr;
-  gap:1rem;margin-bottom:1rem;
-}
-.chart-card{
-  background:var(--white);border:1px solid var(--border);
-  padding:1.2rem;
-}
-.chart-card.wide{grid-column:1/-1;}
-.chart-header{
-  display:flex;align-items:flex-start;
-  justify-content:space-between;margin-bottom:1rem;
-}
-.chart-title{
-  font-family:var(--serif);font-size:1.0rem;font-weight:600;
-  color:var(--navy);
-}
-.chart-sub{font-size:0.72rem;color:var(--text-lt);margin-top:0.1rem;}
-.chart-badge{
-  font-family:var(--mono);font-size:0.6rem;
-  letter-spacing:0.1em;padding:0.15rem 0.5rem;
-  border:1px solid var(--border);color:var(--text-lt);
-  white-space:nowrap;
-}
-.chart-container{position:relative;}
+.bridge-label{font-family:var(--mono);font-size:0.55rem;text-align:center;color:var(--text-mid);line-height:1.3;margin-top:0.15rem;word-break:keep-all;}
+.bridge-value{font-family:var(--mono);font-size:0.62rem;font-weight:400;text-align:center;margin-bottom:0.2rem;}
+.bridge-value.pos{color:var(--green);}
+.bridge-value.neg{color:var(--red);}
+.bridge-value.total{color:var(--teal);}
+.bridge-value.base{color:var(--navy);}
+.bridge-x-axis{height:1px;background:var(--border);margin:0.5rem 0;position:relative;}
+.bridge-legend{display:flex;gap:1rem;margin-top:0.5rem;flex-wrap:wrap;}
+.bridge-leg-item{display:flex;align-items:center;gap:0.35rem;font-family:var(--mono);font-size:0.57rem;color:var(--text-lt);}
+.bridge-leg-dot{width:8px;height:8px;}
+
+/* ── REVENUE QUALITY ── */
+.rev-quality-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.rev-bar-group{margin-bottom:0.7rem;}
+.rev-bar-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:0.6rem;color:var(--text-mid);margin-bottom:0.25rem;}
+.rev-bar-track{height:6px;background:var(--border);border-radius:0;}
+.rev-bar-fill{height:100%;border-radius:0;transition:width 0.6s;}
+.rev-bar-fill.teal{background:var(--teal-lt);}
+.rev-bar-fill.red{background:var(--red);}
+.rev-bar-fill.amber{background:var(--amber);}
+.rev-bar-fill.green{background:var(--green);}
+
+/* ── WC TABLE ── */
+.wc-table{width:100%;border-collapse:collapse;}
+.wc-table th{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.4rem 0.6rem;text-align:right;border-bottom:1px solid var(--border);font-weight:400;}
+.wc-table th:first-child{text-align:left;}
+.wc-table td{font-family:var(--mono);font-size:0.7rem;padding:0.5rem 0.6rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.5);color:var(--text);}
+.wc-table td:first-child{text-align:left;font-size:0.65rem;color:var(--text-mid);}
+.wc-table tr.highlight td{background:rgba(42,173,173,0.04);font-weight:500;}
+.wc-table tr.alert td{background:var(--red-bg);}
+.wc-pill{display:inline-block;padding:0.05rem 0.4rem;font-size:0.6rem;font-family:var(--mono);}
+.wc-pill.red{background:var(--red-bg);color:var(--red);}
+.wc-pill.amber{background:var(--amber-bg);color:var(--amber);}
+.wc-pill.green{background:var(--green-bg);color:var(--green);}
+
+/* ── EV RANGE ── */
+.ev-bridge-row{display:flex;align-items:center;gap:0;margin-bottom:0.5rem;}
+.ev-bridge-row:last-child{margin-bottom:0;}
+.ev-item-label{font-size:0.72rem;color:var(--text-mid);min-width:180px;}
+.ev-item-value{font-family:var(--mono);font-size:0.75rem;font-weight:500;color:var(--navy);min-width:100px;text-align:right;}
+.ev-item-value.deduct{color:var(--red);}
+.ev-item-value.total{color:var(--teal);font-weight:500;}
+.ev-divider-row{border-top:1px solid var(--border);margin:0.4rem 0;}
+.ev-range-bar{flex:1;margin:0 1rem;position:relative;height:4px;background:var(--border);}
+.ev-range-fill{position:absolute;height:100%;background:var(--teal-lt);}
+.ev-multiple-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.8rem;}
+.ev-mult-card{background:var(--cream);border:1px solid var(--border);padding:0.6rem 0.7rem;text-align:center;}
+.ev-mult-scenario{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;}
+.ev-mult-value{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--navy);}
+.ev-mult-sub{font-family:var(--mono);font-size:0.58rem;color:var(--text-lt);margin-top:0.1rem;}
+.ev-mult-card.mid{border-color:var(--teal);background:rgba(27,122,122,0.04);}
+.ev-mult-card.mid .ev-mult-value{color:var(--teal);}
+
+/* ── QoE ADJUSTMENT TABLE ── */
+.adj-table{width:100%;border-collapse:collapse;}
+.adj-table th{font-family:var(--mono);font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.6rem;text-align:left;border-bottom:1px solid var(--border);font-weight:400;}
+.adj-table th:last-child{text-align:right;}
+.adj-table td{font-size:0.7rem;padding:0.45rem 0.6rem;border-bottom:1px solid rgba(221,227,236,0.4);vertical-align:top;}
+.adj-table td:last-child{font-family:var(--mono);font-size:0.68rem;text-align:right;white-space:nowrap;}
+.adj-type{display:inline-block;font-family:var(--mono);font-size:0.55rem;padding:0.08rem 0.35rem;letter-spacing:0.05em;}
+.adj-type.add{background:var(--green-bg);color:var(--green);}
+.adj-type.remove{background:var(--red-bg);color:var(--red);}
+.adj-type.proforma{background:rgba(42,173,173,0.08);color:var(--teal);}
+.adj-recur{font-family:var(--mono);font-size:0.57rem;padding:0.05rem 0.3rem;border:1px solid var(--border);color:var(--text-lt);}
+.adj-recur.yes{border-color:var(--red);color:var(--red);}
+.adj-pos{color:var(--green);}
+.adj-neg{color:var(--red);}
 
 /* ── FLAG TABLE ── */
-.flag-section{margin-bottom:1rem;}
-.flag-title{
-  font-family:var(--serif);font-size:1.05rem;font-weight:600;
-  color:var(--navy);margin-bottom:0.8rem;
-  padding-bottom:0.5rem;border-bottom:1px solid var(--border);
-}
-.flag-table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--border);}
-.flag-table th{
-  font-family:var(--mono);font-size:0.62rem;
-  letter-spacing:0.1em;text-transform:uppercase;
-  background:var(--navy);color:rgba(255,255,255,0.7);
-  padding:0.55rem 0.8rem;text-align:left;font-weight:400;
-}
-.flag-table td{
-  font-size:0.78rem;padding:0.6rem 0.8rem;
-  border-bottom:1px solid var(--border);color:var(--text-mid);
-}
-.flag-table tr:last-child td{border-bottom:none;}
-.flag-table tr:nth-child(even) td{background:var(--cream);}
-.flag-pill{
-  display:inline-flex;align-items:center;gap:0.3rem;
-  font-family:var(--mono);font-size:0.6rem;
-  padding:0.15rem 0.5rem;border-radius:999px;
-  font-weight:500;white-space:nowrap;
-}
-.flag-pill.red  {background:rgba(220,38,38,0.08);  color:var(--red);  border:1px solid rgba(220,38,38,0.2);}
-.flag-pill.amber{background:rgba(217,119,6,0.08);  color:var(--amber);border:1px solid rgba(217,119,6,0.2);}
-.flag-pill.green{background:rgba(22,163,74,0.08);  color:var(--green);border:1px solid rgba(22,163,74,0.2);}
-.flag-metric{font-family:var(--mono);font-size:0.72rem;color:var(--text);}
+.flag-table{width:100%;border-collapse:collapse;}
+.flag-table th{font-family:var(--mono);font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.4rem 0.8rem;text-align:left;border-bottom:1px solid var(--border);font-weight:400;background:var(--cream);}
+.flag-table td{font-size:0.7rem;padding:0.55rem 0.8rem;border-bottom:1px solid rgba(221,227,236,0.4);vertical-align:top;line-height:1.5;}
+.flag-table tr:hover td{background:rgba(221,227,236,0.2);}
+.flag-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0;margin-top:4px;}
+.flag-dot.red{background:var(--red);}
+.flag-dot.amber{background:var(--amber);}
+.flag-cat{font-family:var(--mono);font-size:0.58rem;padding:0.05rem 0.4rem;border:1px solid var(--border);color:var(--text-lt);}
+.flag-impact{font-family:var(--mono);font-size:0.65rem;}
+.flag-impact.red{color:var(--red);}
+.flag-impact.amber{color:var(--amber);}
+.flag-action{font-size:0.66rem;color:var(--text-mid);margin-top:0.2rem;}
 
-/* ── FOOTER ── */
-.dash-footer{
-  margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.dash-footer-left{font-size:0.7rem;color:var(--text-lt);}
-.dash-footer-right{
-  font-family:var(--mono);font-size:0.65rem;color:var(--text-lt);
-}
+/* ── SECTION SPACING ── */
+.section-block{margin-bottom:1.2rem;}
 
-/* ── CHART OVERRIDE ── */
-canvas{max-height:220px!important;}
-.chart-card.tall canvas{max-height:260px!important;}
+/* ── MINI TAG ── */
+.mini-tag{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.1rem 0.4rem;border:1px solid;display:inline-block;}
+.mini-tag.teal{border-color:var(--teal);color:var(--teal);}
+.mini-tag.gray{border-color:var(--border);color:var(--text-lt);}
 
-@media(max-width:900px){
-  .kpi-row{grid-template-columns:repeat(2,1fr);}
-  .chart-grid{grid-template-columns:1fr;}
-  .chart-grid-bottom{grid-template-columns:1fr;}
-  .signal-banner{grid-template-columns:1fr;}
-  .slicer-rail{gap:1rem;}
+/* ── NOTE ── */
+.note-bar{
+  border-left:2px solid var(--teal-lt);background:rgba(42,173,173,0.04);
+  padding:0.5rem 0.8rem;font-size:0.68rem;color:var(--text-mid);line-height:1.6;
+  margin-top:0.7rem;
+}
+.disclaimer{
+  font-family:var(--mono);font-size:0.57rem;color:var(--text-lt);
+  border-top:1px solid var(--border);padding-top:0.6rem;margin-top:1rem;line-height:1.6;
 }
 </style>
 </head>
@@ -247,590 +245,578 @@ canvas{max-height:220px!important;}
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="topbar-logo">AAP <span>Advisory</span></div>
-  <div class="topbar-company" id="topbar-company">미림소비재 주식회사  ·  Monthly Finance Dashboard</div>
+  <div class="topbar-left">
+    <div class="topbar-logo">AAP<span>.</span></div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-context">
+      <div class="topbar-company">PROJECT ATLAS — [대상법인명]</div>
+      <div class="topbar-period">분석기간: FY22A – LTM Apr 25 &nbsp;|&nbsp; 보고기준일: 2025.04</div>
+    </div>
+  </div>
   <div class="topbar-right">
-    <div class="topbar-date" id="topbar-date"></div>
-    <button class="refresh-btn">↻ Refresh</button>
+    <span class="topbar-badge">Transaction Intelligence</span>
+    <span class="topbar-type">Monthly Monitor · Sell-side</span>
   </div>
 </div>
 
-<!-- SLICER RAIL -->
-<div class="slicer-rail">
-  <div class="slicer-group">
-    <span class="slicer-label">기간</span>
-    <div class="slicer-btns" id="slicer-period">
-      <button class="slicer-btn" data-val="3m" onclick="setSlicer('period','3m',this)">3M</button>
-      <button class="slicer-btn" data-val="6m" onclick="setSlicer('period','6m',this)">6M</button>
-      <button class="slicer-btn active" data-val="12m" onclick="setSlicer('period','12m',this)">12M</button>
-      <button class="slicer-btn" data-val="ytd" onclick="setSlicer('period','ytd',this)">YTD</button>
-    </div>
-  </div>
-  <div class="slicer-divider"></div>
-  <div class="slicer-group">
-    <span class="slicer-label">보기</span>
-    <div class="slicer-btns" id="slicer-view">
-      <button class="slicer-btn active" data-val="monthly" onclick="setSlicer('view','monthly',this)">월별</button>
-      <button class="slicer-btn" data-val="quarterly" onclick="setSlicer('view','quarterly',this)">분기별</button>
-    </div>
-  </div>
-  <div class="slicer-divider"></div>
-  <div class="slicer-group">
-    <span class="slicer-label">비교</span>
-    <div class="slicer-btns" id="slicer-compare">
-      <button class="slicer-btn active" data-val="mom" onclick="setSlicer('compare','mom',this)">전월비</button>
-      <button class="slicer-btn" data-val="yoy" onclick="setSlicer('compare','yoy',this)">전년동기비</button>
-      <button class="slicer-btn" data-val="budget" onclick="setSlicer('compare','budget',this)">예산비</button>
-    </div>
-  </div>
-  <div class="slicer-divider"></div>
-  <div class="slicer-group">
-    <span class="slicer-label">단위</span>
-    <div class="slicer-btns" id="slicer-unit">
-      <button class="slicer-btn active" data-val="000" onclick="setSlicer('unit','000',this)">₩000</button>
-      <button class="slicer-btn" data-val="M" onclick="setSlicer('unit','M',this)">₩M</button>
-    </div>
-  </div>
-</div>
-
-<!-- MAIN -->
 <div class="main">
 
-  <!-- SIGNAL BANNER -->
-  <div class="signal-banner" id="signal-banner">
-    <div class="signal-card green">
-      <div class="signal-dot"></div>
-      <div>
-        <div class="signal-title">✅ 매출 성장세 유지</div>
-        <div class="signal-body">LTM 기준 Revenue CAGR 9.5%로 안정적 성장 지속. 전월 대비 +4.2% 증가.</div>
-        <div class="signal-metric">Revenue ₩12,000 → ₩12,500 (+4.2% MoM)</div>
+  <!-- ── EXECUTIVE SUMMARY ── -->
+  <div class="exec-strip">
+    <div class="exec-signal">
+      <div class="exec-signal-dot amber"></div>
+      <div class="exec-signal-lbl">Deal<br>Readiness</div>
+    </div>
+    <div class="exec-divider"></div>
+    <div style="flex:1;">
+      <div class="exec-label">Key Findings — Apr 2025</div>
+      <div class="exec-text">
+        Normalised EBITDA ₩2.1B (Reported ₩1.6B 대비 +33.8% 조정) — 대표이사 보수 정상화 및 일회성 법률비용·자문수수료 Add-back 반영.
+        Top 1 고객 집중도 <b style="color:#F6AD55;">43%</b>로 YELLOW 유지 중이며 해당 계약 잔여 18개월.
+        DSO 71일로 전월 대비 +8일 악화.
+        Net Debt/EBITDA <b style="color:#FC8181;">4.2x</b> RED 구간 — 레버리지 구조 검토 권고.
       </div>
     </div>
-    <div class="signal-card amber">
-      <div class="signal-dot"></div>
-      <div>
-        <div class="signal-title">⚠ DSO 연장 추세 주의</div>
-        <div class="signal-body">최근 3개월 DSO가 52일 → 58일로 연장 중. 특정 대형 고객 회수 지연 여부 확인 필요.</div>
-        <div class="signal-metric">DSO 52일 → 58일 (+6일, 3개월 누적)</div>
+    <div class="exec-divider"></div>
+    <div style="display:flex;flex-direction:column;gap:0.6rem;flex-shrink:0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="exec-signal-dot" style="width:8px;height:8px;background:var(--amber);"></div>
+        <span style="font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.45);">QoE</span>
       </div>
-    </div>
-    <div class="signal-card red">
-      <div class="signal-dot"></div>
-      <div>
-        <div class="signal-title">🔴 GP Margin 2개월 연속 하락</div>
-        <div class="signal-body">원가율 상승으로 GP Margin이 41.7% → 39.2%로 하락. 원자재 단가 또는 매출 믹스 확인 필요.</div>
-        <div class="signal-metric">GP Margin 41.7% → 39.2% (-2.5%p)</div>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="exec-signal-dot" style="width:8px;height:8px;background:var(--red);"></div>
+        <span style="font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.45);">Leverage</span>
       </div>
-    </div>
-  </div>
-
-  <!-- KPI ROW -->
-  <div class="kpi-row" id="kpi-row"></div>
-
-  <!-- CHART GRID TOP -->
-  <div class="chart-grid">
-    <div class="chart-card">
-      <div class="chart-header">
-        <div>
-          <div class="chart-title">Revenue & EBITDA Margin</div>
-          <div class="chart-sub" id="chart-rev-sub">월별 추이</div>
-        </div>
-        <span class="chart-badge" id="badge-rev">12M</span>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="exec-signal-dot" style="width:8px;height:8px;background:var(--amber);"></div>
+        <span style="font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.45);">Revenue</span>
       </div>
-      <div class="chart-container">
-        <canvas id="chart-rev"></canvas>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-header">
-        <div>
-          <div class="chart-title">Revenue Mix</div>
-          <div class="chart-sub">고객 집중도</div>
-        </div>
-        <span class="chart-badge">Latest</span>
-      </div>
-      <div class="chart-container">
-        <canvas id="chart-mix" style="max-height:200px!important;"></canvas>
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="exec-signal-dot" style="width:8px;height:8px;background:var(--amber);"></div>
+        <span style="font-family:var(--mono);font-size:0.6rem;color:rgba(255,255,255,0.45);">Working Capital</span>
       </div>
     </div>
   </div>
 
-  <!-- CHART GRID BOTTOM -->
-  <div class="chart-grid-bottom">
-    <div class="chart-card">
-      <div class="chart-header">
+  <!-- ── DEAL KPI ROW ── -->
+  <div class="kpi-row" style="margin-bottom:1rem;">
+    <div class="kpi-card neutral">
+      <div class="kpi-label">Normalised EBITDA</div>
+      <div class="kpi-value">₩2.1B</div>
+      <div class="kpi-delta"><b class="up">↑ +33.8%</b> vs Reported</div>
+      <div class="kpi-note">조정 4건 반영 후</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Normalised EBITDA%</div>
+      <div class="kpi-value amber">18.3%</div>
+      <div class="kpi-delta">업종 벤치마크 <b class="fl">20~28%</b></div>
+      <div class="kpi-note">하단 근접 — YELLOW</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Revenue 3Y CAGR</div>
+      <div class="kpi-value green">14.2%</div>
+      <div class="kpi-delta">업종 평균 <b class="up">8%</b> 상회</div>
+      <div class="kpi-note">FY22–LTM25</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Net Debt / EBITDA</div>
+      <div class="kpi-value red">4.2x</div>
+      <div class="kpi-delta">임계값 <b class="dn">3x</b> 초과</div>
+      <div class="kpi-note">RED — 인수금융 재검토</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">FCFF / EBITDA</div>
+      <div class="kpi-value amber">52%</div>
+      <div class="kpi-delta">전월 <b class="dn">↓ -6pp</b></div>
+      <div class="kpi-note">WC 부담 증가 영향</div>
+    </div>
+  </div>
+
+  <!-- ── EBITDA BRIDGE + QoE ADJUSTMENTS ── -->
+  <div class="grid-2-1 section-block">
+
+    <!-- EBITDA Bridge -->
+    <div class="card">
+      <div class="sec-header">
         <div>
-          <div class="chart-title">Margin Trend</div>
-          <div class="chart-sub">GP% & EBITDA%</div>
+          <div class="sec-title">EBITDA Bridge</div>
+          <div class="sec-sub">Reported → Normalised &nbsp;|&nbsp; LTM Apr 2025 (₩M)</div>
         </div>
-        <span class="chart-badge" id="badge-margin">12M</span>
+        <span class="sec-badge">QoE</span>
       </div>
-      <div class="chart-container">
-        <canvas id="chart-margin"></canvas>
+      <div class="bridge-wrap">
+        <canvas id="chart-bridge" height="180"></canvas>
+      </div>
+      <div class="bridge-legend">
+        <div class="bridge-leg-item"><div class="bridge-leg-dot" style="background:var(--navy2);"></div>Base</div>
+        <div class="bridge-leg-item"><div class="bridge-leg-dot" style="background:var(--green);opacity:0.85;"></div>Add-back</div>
+        <div class="bridge-leg-item"><div class="bridge-leg-dot" style="background:var(--red);opacity:0.85;"></div>Remove</div>
+        <div class="bridge-leg-item"><div class="bridge-leg-dot" style="background:var(--teal);"></div>Normalised</div>
+      </div>
+      <div class="note-bar">
+        조정률 +33.8% — YELLOW 구간 (임계값 20%). Add-back 3건 모두 Non-recurring 성격이나 근거 문서화 권고.
       </div>
     </div>
-    <div class="chart-card">
-      <div class="chart-header">
+
+    <!-- QoE Adjustment Table -->
+    <div class="card">
+      <div class="sec-header">
         <div>
-          <div class="chart-title">Working Capital Days</div>
-          <div class="chart-sub">DSO / DIO / DPO</div>
+          <div class="sec-title">조정 내역</div>
+          <div class="sec-sub">EBITDA Adjustments</div>
         </div>
-        <span class="chart-badge" id="badge-wc">12M</span>
       </div>
-      <div class="chart-container">
-        <canvas id="chart-wc"></canvas>
-      </div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-header">
-        <div>
-          <div class="chart-title">Cost Structure</div>
-          <div class="chart-sub">COGS & SG&A 비중</div>
-        </div>
-        <span class="chart-badge" id="badge-cost">12M</span>
-      </div>
-      <div class="chart-container">
-        <canvas id="chart-cost"></canvas>
+      <table class="adj-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>유형</th>
+            <th>Recurring</th>
+            <th style="text-align:right;">금액 (₩M)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              대표이사 보수 정상화<br>
+              <span style="font-size:0.6rem;color:var(--text-lt);">시장 기준 대체 인건비 반영</span>
+            </td>
+            <td><span class="adj-type add">Add-back</span></td>
+            <td><span class="adj-recur">Non-rec</span></td>
+            <td class="adj-pos">+240</td>
+          </tr>
+          <tr>
+            <td>
+              일회성 법률비용<br>
+              <span style="font-size:0.6rem;color:var(--text-lt);">FY24 소송 합의금</span>
+            </td>
+            <td><span class="adj-type add">Add-back</span></td>
+            <td><span class="adj-recur">Non-rec</span></td>
+            <td class="adj-pos">+180</td>
+          </tr>
+          <tr>
+            <td>
+              자문수수료 (Transaction)<br>
+              <span style="font-size:0.6rem;color:var(--text-lt);">Accrued 잔액 → DLI 주의</span>
+            </td>
+            <td><span class="adj-type add">Add-back</span></td>
+            <td><span class="adj-recur">Non-rec</span></td>
+            <td class="adj-pos">+120</td>
+          </tr>
+          <tr style="background:rgba(42,173,173,0.04);font-weight:500;">
+            <td colspan="3" style="font-size:0.72rem;">순 조정 합계</td>
+            <td style="font-family:var(--mono);font-size:0.72rem;text-align:right;color:var(--teal);">+540</td>
+          </tr>
+          <tr style="background:rgba(42,173,173,0.06);">
+            <td colspan="3" style="font-size:0.72rem;font-weight:500;">Normalised EBITDA</td>
+            <td style="font-family:var(--mono);font-size:0.78rem;text-align:right;color:var(--teal);font-weight:500;">2,140</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note-bar" style="margin-top:0.5rem;">
+        ⚠ 자문수수료 accrued 잔액은 DLI 이중반영 주의.
+        보조금 Recurring 여부 확인 필요.
       </div>
     </div>
   </div>
 
-  <!-- FLAG TABLE -->
-  <div class="flag-section">
-    <div class="flag-title">이번 달 Risk & Observation — <span style="font-family:var(--mono);font-size:0.75rem;font-weight:300;" id="flag-period-label">최근 12개월 기준</span></div>
+  <!-- ── REVENUE QUALITY + WC ── -->
+  <div class="grid-2 section-block">
+
+    <!-- Revenue Quality -->
+    <div class="card">
+      <div class="sec-header">
+        <div>
+          <div class="sec-title">Revenue Quality</div>
+          <div class="sec-sub">반복성 · 집중도 · 성장성</div>
+        </div>
+        <span class="sec-badge mini-tag amber" style="font-size:0.58rem;padding:0.1rem 0.4rem;border:1px solid var(--amber);color:var(--amber);">YELLOW</span>
+      </div>
+
+      <!-- Recurring 비중 -->
+      <div style="margin-bottom:1rem;">
+        <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">반복매출 구성 (LTM)</div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label"><span>장기계약 Recurring</span><span style="color:var(--green);">42%</span></div>
+          <div class="rev-bar-track"><div class="rev-bar-fill teal" style="width:42%;background:var(--green);"></div></div>
+        </div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label"><span>반복 구매 (Non-contract)</span><span style="color:var(--teal);">31%</span></div>
+          <div class="rev-bar-track"><div class="rev-bar-fill teal" style="width:31%;"></div></div>
+        </div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label"><span>일회성 · 프로젝트</span><span style="color:var(--amber);">27%</span></div>
+          <div class="rev-bar-track"><div class="rev-bar-fill amber" style="width:27%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 고객 집중도 -->
+      <div>
+        <div style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">고객 집중도</div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label">
+            <span>Top 1 고객 <span style="font-family:var(--mono);font-size:0.58rem;color:var(--text-lt);">[A사] — 잔여 18개월</span></span>
+            <span style="color:var(--amber);">43% ⚠</span>
+          </div>
+          <div class="rev-bar-track"><div class="rev-bar-fill amber" style="width:43%;"></div></div>
+        </div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label"><span>Top 3 고객 합계</span><span style="color:var(--amber);">68%</span></div>
+          <div class="rev-bar-track"><div class="rev-bar-fill amber" style="width:68%;"></div></div>
+        </div>
+        <div class="rev-bar-group">
+          <div class="rev-bar-label"><span>Top 5 고객 합계</span><span>79%</span></div>
+          <div class="rev-bar-track"><div class="rev-bar-fill teal" style="width:79%;opacity:0.5;"></div></div>
+        </div>
+      </div>
+      <div class="note-bar">
+        Top 1 집중도 43% YELLOW (임계값 50%). 계약 갱신 실패 시 Normalised EBITDA 최대 –35% 영향 추정.
+      </div>
+    </div>
+
+    <!-- Working Capital Normalisation -->
+    <div class="card">
+      <div class="sec-header">
+        <div>
+          <div class="sec-title">Working Capital</div>
+          <div class="sec-sub">Normalisation &amp; Target NWC</div>
+        </div>
+        <span style="font-size:0.58rem;font-family:var(--mono);border:1px solid var(--amber);color:var(--amber);padding:0.1rem 0.4rem;">YELLOW</span>
+      </div>
+      <table class="wc-table">
+        <thead>
+          <tr>
+            <th>지표</th>
+            <th>FY23</th>
+            <th>FY24</th>
+            <th>LTM</th>
+            <th>업종 정상</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DSO (일)</td>
+            <td>58</td>
+            <td>63</td>
+            <td><b>71</b> <span class="wc-pill amber">↑+8</span></td>
+            <td>30–60일</td>
+          </tr>
+          <tr>
+            <td>DIO (일)</td>
+            <td>42</td>
+            <td>44</td>
+            <td>45</td>
+            <td>30–60일</td>
+          </tr>
+          <tr>
+            <td>DPO (일)</td>
+            <td>38</td>
+            <td>35</td>
+            <td>33</td>
+            <td>30–50일</td>
+          </tr>
+          <tr class="highlight">
+            <td>CCC (일)</td>
+            <td>62</td>
+            <td>72</td>
+            <td><b>83</b></td>
+            <td>—</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border);">
+            <td>NWC (₩M)</td>
+            <td>820</td>
+            <td>910</td>
+            <td><b>1,050</b></td>
+            <td>—</td>
+          </tr>
+          <tr class="highlight">
+            <td>Target NWC (₩M)</td>
+            <td colspan="3" style="text-align:center;color:var(--teal);font-weight:500;">LTM 평균 기준 <b>920</b></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>WC 클로징 조정 추정</td>
+            <td colspan="3" style="text-align:center;color:var(--red);">실제 – Target = <b>+130</b> (Buyer 유리)</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note-bar">
+        DSO 71일 — 비의료업 기준 YELLOW (임계값 90일이나 전월 대비 +8일 악화 추세). AR aging 분석 필요.
+        Target NWC는 12M 평균 기준. CA 구조 시 클로징 조정 +₩130M Buyer 유리.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EV BRIDGE ── -->
+  <div class="card section-block">
+    <div class="sec-header">
+      <div>
+        <div class="sec-title">Indicative EV to Equity Value Bridge</div>
+        <div class="sec-sub">Normalised EBITDA 기준 · Pre-normalisation Multiple · 업종: 서비스업(B2B) (₩M)</div>
+      </div>
+      <span style="font-family:var(--mono);font-size:0.58rem;color:var(--text-lt);">시산 목적 — 협상 수치 아님</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;">
+      <div>
+        <!-- EV Bridge rows -->
+        <div style="margin-bottom:0.8rem;">
+          <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Step 1. Enterprise Value</div>
+          <div style="display:flex;flex-direction:column;gap:0.3rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.35rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
+              <span style="font-size:0.72rem;color:var(--text-mid);">Normalised EBITDA (LTM)</span>
+              <span style="font-family:var(--mono);font-size:0.72rem;font-weight:500;">2,100</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.35rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
+              <span style="font-size:0.72rem;color:var(--text-mid);">업종 EV/EBITDA Multiple (4.0x – 9.0x)</span>
+              <span style="font-family:var(--mono);font-size:0.7rem;color:var(--text-lt);">Low 4.0x &nbsp;|&nbsp; Mid 6.5x &nbsp;|&nbsp; High 9.0x</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:2px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:500;">= Enterprise Value</span>
+              <span style="font-family:var(--mono);font-size:0.75rem;font-weight:500;color:var(--navy);">8,400 – 18,900</span>
+            </div>
+          </div>
+        </div>
+        <div style="margin-bottom:0.8rem;">
+          <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Step 2. Deductions</div>
+          <div style="display:flex;flex-direction:column;gap:0.3rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.35rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
+              <span style="font-size:0.72rem;color:var(--text-mid);">– Net Debt</span>
+              <span style="font-family:var(--mono);font-size:0.72rem;color:var(--red);">(8,820)</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.35rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
+              <span style="font-size:0.72rem;color:var(--text-mid);">– Debt-like Items (DLI)</span>
+              <span style="font-family:var(--mono);font-size:0.72rem;color:var(--red);">(340) + n.q.</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.35rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
+              <span style="font-size:0.72rem;color:var(--text-mid);">± WC Adjustment (CA 구조 시)</span>
+              <span style="font-family:var(--mono);font-size:0.72rem;color:var(--green);">+130</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy);">
+            <span style="font-size:0.82rem;font-weight:600;">= Indicative Equity Value</span>
+            <span style="font-family:var(--mono);font-size:0.82rem;font-weight:600;color:var(--teal);">–830 – 9,870</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:0.6rem;color:var(--red);margin-top:0.4rem;">
+            ※ Mid 시나리오 기준: EV ₩13.65B → Equity Value ₩4.62B
+          </div>
+        </div>
+      </div>
+
+      <!-- EV Scenarios -->
+      <div style="min-width:200px;">
+        <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Equity Value 시나리오</div>
+        <div class="ev-multiple-grid" style="grid-template-columns:1fr;gap:0.5rem;">
+          <div class="ev-mult-card">
+            <div class="ev-mult-scenario">Low (4.0x)</div>
+            <div class="ev-mult-value" style="font-size:1.1rem;color:var(--red);">n/a</div>
+            <div class="ev-mult-sub">Net Debt 초과</div>
+          </div>
+          <div class="ev-mult-card mid">
+            <div class="ev-mult-scenario">Mid (6.5x)</div>
+            <div class="ev-mult-value" style="font-size:1.1rem;">₩4.62B</div>
+            <div class="ev-mult-sub">기준 시나리오</div>
+          </div>
+          <div class="ev-mult-card">
+            <div class="ev-mult-scenario">High (9.0x)</div>
+            <div class="ev-mult-value" style="font-size:1.1rem;color:var(--green);">₩9.87B</div>
+            <div class="ev-mult-sub">성장 스토리 입증 시</div>
+          </div>
+        </div>
+        <div class="note-bar" style="margin-top:0.6rem;font-size:0.62rem;">
+          Net Debt/EBITDA 4.2x — Low 시나리오에서 Equity Value 음수. 레버리지 축소 선행 필요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NET DEBT & DLI ── -->
+  <div class="card section-block">
+    <div class="sec-header">
+      <div>
+        <div class="sec-title">Net Debt &amp; Debt-like Items</div>
+        <div class="sec-sub">Closing 시점 인수 부채 총액 추정 (₩M)</div>
+      </div>
+      <span style="font-family:var(--mono);font-size:0.58rem;border:1px solid var(--red);color:var(--red);padding:0.1rem 0.4rem;">RED — 4.2x</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div>
+        <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Net Debt</div>
+        <table class="wc-table">
+          <tbody>
+            <tr><td>총 이자부 차입금</td><td style="text-align:right;font-family:var(--mono);">9,980</td></tr>
+            <tr><td>– 현금 및 현금성 자산</td><td style="text-align:right;font-family:var(--mono);color:var(--green);">(1,160)</td></tr>
+            <tr style="border-top:2px solid var(--border);font-weight:500;"><td>Net Debt</td><td style="text-align:right;font-family:var(--mono);color:var(--red);">8,820</td></tr>
+            <tr><td style="color:var(--text-lt);font-size:0.62rem;">Net Debt / Normalised EBITDA</td><td style="text-align:right;font-family:var(--mono);color:var(--red);">4.2x 🔴</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Debt-like Items (DLI)</div>
+        <table class="wc-table">
+          <tbody>
+            <tr><td>퇴직급여 미적립 Gap</td><td style="text-align:right;font-family:var(--mono);">180</td></tr>
+            <tr><td>기타 확정 DLI</td><td style="text-align:right;font-family:var(--mono);">160</td></tr>
+            <tr><td>미산정 항목 (소송 등)</td><td style="text-align:right;font-family:var(--mono);color:var(--text-lt);">n.q.</td></tr>
+            <tr style="border-top:2px solid var(--border);font-weight:500;"><td>DLI 합계</td><td style="text-align:right;font-family:var(--mono);color:var(--red);">340 + n.q.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="note-bar">
+      CoC 조항 존재 여부 확인 필요. 미산정 항목은 SPA Indemnity 협의 대상.
+    </div>
+  </div>
+
+  <!-- ── DEAL FLAG TABLE ── -->
+  <div class="card section-block">
+    <div class="sec-header">
+      <div>
+        <div class="sec-title">Deal Flag Summary</div>
+        <div class="sec-sub">Apr 2025 기준 &nbsp;|&nbsp; RED 3 · YELLOW 4</div>
+      </div>
+      <div style="display:flex;gap:0.5rem;align-items:center;">
+        <span style="font-family:var(--mono);font-size:0.6rem;display:flex;align-items:center;gap:0.3rem;"><span style="width:8px;height:8px;border-radius:50%;background:var(--red);display:inline-block;"></span>3 RED</span>
+        <span style="font-family:var(--mono);font-size:0.6rem;display:flex;align-items:center;gap:0.3rem;"><span style="width:8px;height:8px;border-radius:50%;background:var(--amber);display:inline-block;"></span>4 YELLOW</span>
+      </div>
+    </div>
     <table class="flag-table">
       <thead>
         <tr>
-          <th>등급</th>
-          <th>영역</th>
-          <th>관찰 사항</th>
-          <th>수치</th>
-          <th>전월비</th>
-          <th>AAP 코멘트</th>
+          <th style="width:20px;"></th>
+          <th style="width:80px;">영역</th>
+          <th>플래그 내용</th>
+          <th style="width:160px;">조치 권고</th>
         </tr>
       </thead>
-      <tbody id="flag-tbody"></tbody>
+      <tbody>
+        <tr>
+          <td><span class="flag-dot red"></span></td>
+          <td><span class="flag-cat">Leverage</span></td>
+          <td>Net Debt/EBITDA 4.2x — 임계값(3x) 초과.</td>
+          <td class="flag-action">레버리지 구조 재검토. 매각 전 상환 검토.</td>
+        </tr>
+        <tr>
+          <td><span class="flag-dot red"></span></td>
+          <td><span class="flag-cat">QoE</span></td>
+          <td>EBITDA 조정률 +33.8% — 임계값(20%) 초과. Add-back 근거 문서화 필요.</td>
+          <td class="flag-action">항목별 확인 문서 확보. VDD에 방어 논거 포함.</td>
+        </tr>
+        <tr>
+          <td><span class="flag-dot red"></span></td>
+          <td><span class="flag-cat">EV Bridge</span></td>
+          <td>Low 시나리오 Equity Value 음수 — 레버리지 과다로 협상 범위 제한.</td>
+          <td class="flag-action">성장 스토리 문서화. EBITDA 개선 우선.</td>
+        </tr>
+        <tr>
+          <td><span class="flag-dot amber"></span></td>
+          <td><span class="flag-cat">Revenue</span></td>
+          <td>Top 1 고객 43% — 계약 잔여 18개월. 갱신 실패 시 EBITDA 최대 –35%.</td>
+          <td class="flag-action">갱신 협상 선행 또는 파이프라인 VDD 기술.</td>
+        </tr>
+        <tr>
+          <td><span class="flag-dot amber"></span></td>
+          <td><span class="flag-cat">WC</span></td>
+          <td>DSO 71일, 전월 대비 +8일 악화. AR aging 분석 필요.</td>
+          <td class="flag-action">연체 AR 비중 확인.</td>
+        </tr>
+        <tr>
+          <td><span class="flag-dot amber"></span></td>
+          <td><span class="flag-cat">DLI</span></td>
+          <td>미산정 DLI 항목 존재 (n.q.). SPA 조건 협의 필요.</td>
+          <td class="flag-action">법무 검토. W&I 보험 검토.</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
-  <!-- FOOTER -->
-  <div class="dash-footer">
-    <div class="dash-footer-left">
-      AAP Advisory  ·  Monthly Finance Dashboard  ·  Pre-Normalisation Basis  ·  Confidential
-    </div>
-    <div class="dash-footer-right" id="footer-date"></div>
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    본 자료는 AAP Advisory의 Transaction Intelligence Monthly Monitor입니다. 제공된 재무 데이터를 기반으로 한 시산 목적의 분석이며, 정밀 실사(FDD) 또는 법적 구속력 있는 가치평가를 대체하지 않습니다. 
+    모든 수치는 경영진 제공 자료 기준이며, 독립 검증이 완료되지 않았습니다. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · Confidential
   </div>
 
-</div>
+</div><!-- /main -->
 
 <script>
-// ── DATA ────────────────────────────────────────────
-const MONTHS_12 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-const MONTHS_6  = ['Jul','Aug','Sep','Oct','Nov','Dec'];
-const MONTHS_3  = ['Oct','Nov','Dec'];
-const QUARTERS  = ['Q1 2024','Q2 2024','Q3 2024','Q4 2024'];
+// ── EBITDA BRIDGE CHART ──
+window.addEventListener('DOMContentLoaded', () => {
+  const ctx = document.getElementById('chart-bridge').getContext('2d');
 
-const DATA = {
-  monthly: {
-    labels12: MONTHS_12,
-    labels6:  MONTHS_6,
-    labels3:  MONTHS_3,
-    revenue12:[9800,9950,10200,10100,10450,10600,10800,11000,11200,11500,12000,12500],
-    revenue6: [10800,11000,11200,11500,12000,12500],
-    revenue3: [11500,12000,12500],
-    gp_pct12: [40.5,40.2,40.8,40.1,40.9,41.2,41.5,41.7,41.3,40.8,39.9,39.2],
-    gp_pct6:  [41.5,41.7,41.3,40.8,39.9,39.2],
-    gp_pct3:  [40.8,39.9,39.2],
-    eb_pct12: [19.8,19.5,20.1,19.7,20.3,20.8,21.2,21.5,21.1,20.6,19.8,19.2],
-    eb_pct6:  [21.2,21.5,21.1,20.6,19.8,19.2],
-    eb_pct3:  [20.6,19.8,19.2],
-    dso12:    [50,51,50,52,53,54,53,52,54,55,57,58],
-    dso6:     [53,52,54,55,57,58],
-    dso3:     [55,57,58],
-    dio12:    [60,61,60,62,61,62,63,62,63,63,64,63],
-    dio6:     [63,62,63,63,64,63],
-    dio3:     [63,64,63],
-    dpo12:    [47,48,47,49,48,49,48,47,48,47,46,45],
-    dpo6:     [48,47,48,47,46,45],
-    dpo3:     [47,46,45],
-    cogs12:   [5820,5940,6030,6080,6180,6230,6310,6380,6560,6820,7200,7600],
-    sga12:    [1960,1975,1990,2000,2010,2015,2020,2030,2040,2070,2200,2225],
-  },
-  quarterly: {
-    labels: QUARTERS,
-    revenue:[30050,31150,33000,36000],
-    gp_pct: [40.5,40.8,41.5,39.4],
-    eb_pct: [19.7,20.3,21.3,19.4],
-    dso:    [51,52,53,58],
-    dio:    [61,62,63,63],
-    dpo:    [48,49,48,45],
-    cogs:   [17890,18490,19250,21100],
-    sga:    [5965,6025,6090,6495],
-  }
-};
+  // Waterfall data: Reported → adjustments → Normalised
+  // Each bar: [float_base, value]
+  const labels = ['Reported\nEBITDA', '대표이사\n보수정상화', '일회성\n법률비용', '자문\n수수료', 'Normalised\nEBITDA'];
+  const bases   = [0,    1600, 1840, 2020, 0];
+  const values  = [1600,  240,  180,  120, 2140];
+  const colors  = [
+    '#1B2A4A',
+    'rgba(21,128,61,0.82)',
+    'rgba(21,128,61,0.82)',
+    'rgba(21,128,61,0.82)',
+    '#1B7A7A'
+  ];
 
-const MIX_DATA = {
-  labels:['Customer A','Customer B','Customer C','Others'],
-  values:[35,28,18,19]
-};
-
-const FLAGS = [
-  {grade:'red',  area:'수익성', obs:'GP Margin 2개월 연속 하락',
-   metric:'39.2%',delta:'-2.5%p',
-   comment:'원가율 상승 감지. 원자재 단가 상승 또는 매출 믹스 변화 여부 확인 필요.'},
-  {grade:'amber',area:'운전자본',obs:'DSO 연장 추세 (3개월)',
-   metric:'58일',delta:'+6일',
-   comment:'최근 3개월 DSO 지속 연장. 특정 고객 연체 여부 및 AR aging 확인 권고.'},
-  {grade:'amber',area:'비용',   obs:'SG&A 비중 전월 대비 확대',
-   metric:'17.8%',delta:'+0.4%p',
-   comment:'절대금액 증가 중. 고정비 구조 vs 변동비 구분 분석 필요.'},
-  {grade:'green',area:'매출',   obs:'Revenue 성장세 유지',
-   metric:'₩12,500',delta:'+4.2%',
-   comment:'CAGR 9.5% 수준 성장 지속. 고객 다변화 진전 없어 집중도 리스크 유지.'},
-  {grade:'green',area:'현금',   obs:'현금 잔액 안정',
-   metric:'₩750',delta:'+50',
-   comment:'현금창출 구조 안정적. NWC 증가로 전환율 다소 하락 주시 필요.'},
-];
-
-const KPIS = [
-  {label:'이번 달 Revenue',value:'₩12,500',delta:'+4.2%',dir:'up', sub:'전월 ₩12,000'},
-  {label:'GP Margin',      value:'39.2%',  delta:'-2.5%p',dir:'down',sub:'전월 41.7%'},
-  {label:'EBITDA Margin',  value:'19.2%',  delta:'-0.6%p',dir:'down',sub:'전월 19.8%'},
-  {label:'DSO',            value:'58일',   delta:'+1일',  dir:'down',sub:'전월 57일'},
-  {label:'현금 잔액',      value:'₩750',   delta:'+50',   dir:'up',  sub:'전월 ₩700'},
-];
-
-// ── STATE ─────────────────────────────────────────
-let state = {period:'12m', view:'monthly', compare:'mom', unit:'000'};
-let charts = {};
-
-// ── COLORS ───────────────────────────────────────
-const C = {
-  teal:   '#2AADAD', navy:'#111E35', amber:'#D97706',
-  green:  '#16A34A', red:'#DC2626',  gray:'#94A3B8',
-  border: '#DDE3EC',
-  tealFade: 'rgba(42,173,173,0.12)',
-  navyFade: 'rgba(17,30,53,0.08)',
-};
-const DONUT_COLORS = ['#2AADAD','#111E35','#D97706','#94A3B8'];
-
-// ── CHART DEFAULTS ────────────────────────────────
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.font.size   = 10;
-Chart.defaults.color       = '#8A95A3';
-Chart.defaults.plugins.legend.labels.boxWidth = 10;
-Chart.defaults.plugins.legend.labels.padding  = 12;
-
-const GRID_OPTS = {
-  color: 'rgba(0,0,0,0.04)',
-  drawBorder: false,
-};
-const TICK_OPTS = {color:'#8A95A3', font:{size:9}};
-
-// ── DATA SELECTORS ────────────────────────────────
-function getLabels() {
-  if (state.view === 'quarterly') return DATA.quarterly.labels;
-  if (state.period === '3m') return DATA.monthly.labels3;
-  if (state.period === '6m') return DATA.monthly.labels6;
-  return DATA.monthly.labels12;
-}
-
-function getSuffix() {
-  if (state.view === 'quarterly') return '';
-  return state.period === '12m' ? '12' : state.period === '6m' ? '6' : '3';
-}
-
-function getArr(key) {
-  if (state.view === 'quarterly') return DATA.quarterly[key] || [];
-  const s = getSuffix();
-  return DATA.monthly[key+s] || DATA.monthly[key+'12'] || [];
-}
-
-function fmtVal(v) {
-  if (state.unit === 'M') return (v/1000).toFixed(1) + 'M';
-  return v.toLocaleString();
-}
-
-// ── INIT ──────────────────────────────────────────
-function init() {
-  // Date
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('ko-KR',
-    {year:'numeric',month:'long',day:'numeric'});
-  document.getElementById('topbar-date').textContent = dateStr + ' 기준';
-  document.getElementById('footer-date').textContent =
-    'Last updated: ' + dateStr + '  |  AAP Advisory';
-
-  renderKPIs();
-  renderFlags();
-  buildCharts();
-}
-
-// ── KPI ───────────────────────────────────────────
-function renderKPIs() {
-  const container = document.getElementById('kpi-row');
-  container.innerHTML = KPIS.map(k => `
-    <div class="kpi-card ${k.dir}">
-      <div class="kpi-label">${k.label}</div>
-      <div class="kpi-value">${k.value}</div>
-      <div class="kpi-delta ${k.dir}">
-        ${k.dir==='up'?'↑':k.dir==='down'?'↓':'→'} ${k.delta}
-      </div>
-      <div class="kpi-sub">${k.sub}</div>
-    </div>
-  `).join('');
-}
-
-// ── FLAGS ─────────────────────────────────────────
-function renderFlags() {
-  const tbody = document.getElementById('flag-tbody');
-  tbody.innerHTML = FLAGS.map(f => `
-    <tr>
-      <td><span class="flag-pill ${f.grade}">
-        ${f.grade==='red'?'🔴 위험':f.grade==='amber'?'🟡 주의':'✅ 양호'}
-      </span></td>
-      <td>${f.area}</td>
-      <td>${f.obs}</td>
-      <td class="flag-metric">${f.metric}</td>
-      <td class="flag-metric" style="color:${f.grade==='red'?'#DC2626':f.grade==='amber'?'#D97706':'#16A34A'}">${f.delta}</td>
-      <td style="font-size:0.72rem;color:#4A5568;">${f.comment}</td>
-    </tr>
-  `).join('');
-}
-
-// ── CHARTS ────────────────────────────────────────
-function buildCharts() {
-  buildRevChart();
-  buildMixChart();
-  buildMarginChart();
-  buildWCChart();
-  buildCostChart();
-  updateBadges();
-}
-
-function buildRevChart() {
-  const ctx = document.getElementById('chart-rev').getContext('2d');
-  if (charts.rev) charts.rev.destroy();
-
-  const labels  = getLabels();
-  const revData = getArr('revenue');
-  const ebData  = getArr('eb_pct');
-
-  charts.rev = new Chart(ctx, {
+  new Chart(ctx, {
+    type: 'bar',
     data: {
       labels,
       datasets: [
         {
-          type:'bar', label:'Revenue',
-          data: revData,
-          backgroundColor: C.tealFade,
-          borderColor: C.teal,
-          borderWidth: 1.5,
-          yAxisID:'y',
-          order:2,
+          label: 'Base',
+          data: bases,
+          backgroundColor: 'transparent',
+          borderWidth: 0,
         },
         {
-          type:'line', label:'EBITDA %',
-          data: ebData,
-          borderColor: C.navy,
-          borderWidth: 2,
-          pointRadius: 3,
-          pointBackgroundColor: C.navy,
-          tension: 0.3,
-          yAxisID:'y2',
-          order:1,
+          label: 'Value',
+          data: values.map(v => Math.abs(v)),
+          backgroundColor: colors,
+          borderWidth: 0,
+          borderRadius: 0,
         }
       ]
     },
     options: {
-      responsive:true,
-      maintainAspectRatio:true,
-      interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{position:'top',align:'end'},
-        tooltip:{
-          callbacks:{
-            label(ctx){
-              if(ctx.datasetIndex===0)
-                return ' Revenue: ₩' + fmtVal(ctx.raw);
-              return ' EBITDA: ' + ctx.raw.toFixed(1) + '%';
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              if (ctx.datasetIndex === 0) return null;
+              const raw = values[ctx.dataIndex];
+              const prefix = raw > 0 && ctx.dataIndex > 0 && ctx.dataIndex < 5 ? '+' : '';
+              return `₩${prefix}${raw.toLocaleString()}M`;
             }
           }
         }
       },
-      scales:{
-        y:{
-          grid:GRID_OPTS, ticks:{...TICK_OPTS,
-            callback:v=>'₩'+fmtVal(v)},
-          position:'left',
+      scales: {
+        x: {
+          stacked: true,
+          grid: { display: false },
+          ticks: {
+            font: { family: "'DM Mono', monospace", size: 9 },
+            color: '#8A95A3',
+          }
         },
-        y2:{
-          grid:{drawOnChartArea:false},
-          ticks:{...TICK_OPTS, callback:v=>v+'%'},
-          position:'right',
-          min:15, max:25,
-        },
-        x:{grid:{display:false}, ticks:TICK_OPTS},
+        y: {
+          stacked: true,
+          grid: { color: 'rgba(221,227,236,0.5)', lineWidth: 1 },
+          ticks: {
+            font: { family: "'DM Mono', monospace", size: 9 },
+            color: '#8A95A3',
+            callback: v => `₩${(v/1000).toFixed(1)}B`
+          },
+          min: 0,
+          max: 2400
+        }
       }
     }
   });
-}
-
-function buildMixChart() {
-  const ctx = document.getElementById('chart-mix').getContext('2d');
-  if (charts.mix) charts.mix.destroy();
-  charts.mix = new Chart(ctx, {
-    type:'doughnut',
-    data:{
-      labels: MIX_DATA.labels,
-      datasets:[{
-        data: MIX_DATA.values,
-        backgroundColor: DONUT_COLORS,
-        borderColor: '#fff',
-        borderWidth:2,
-        hoverOffset:4,
-      }]
-    },
-    options:{
-      responsive:true,
-      maintainAspectRatio:true,
-      cutout:'62%',
-      plugins:{
-        legend:{position:'bottom',labels:{padding:8,font:{size:9}}},
-        tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.raw}%`}}
-      }
-    }
-  });
-}
-
-function buildMarginChart() {
-  const ctx = document.getElementById('chart-margin').getContext('2d');
-  if (charts.margin) charts.margin.destroy();
-  const labels  = getLabels();
-  const gpData  = getArr('gp_pct');
-  const ebData  = getArr('eb_pct');
-  charts.margin = new Chart(ctx, {
-    type:'line',
-    data:{
-      labels,
-      datasets:[
-        {label:'GP %', data:gpData, borderColor:C.teal, borderWidth:2,
-         pointRadius:2.5, tension:0.3, fill:false},
-        {label:'EBITDA %', data:ebData, borderColor:C.navy, borderWidth:2,
-         pointRadius:2.5, tension:0.3, fill:false},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{legend:{position:'top',align:'end'}},
-      scales:{
-        y:{grid:GRID_OPTS, ticks:{...TICK_OPTS,callback:v=>v+'%'}},
-        x:{grid:{display:false}, ticks:TICK_OPTS},
-      }
-    }
-  });
-}
-
-function buildWCChart() {
-  const ctx = document.getElementById('chart-wc').getContext('2d');
-  if (charts.wc) charts.wc.destroy();
-  const labels = getLabels();
-  charts.wc = new Chart(ctx, {
-    type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {label:'DSO', data:getArr('dso'),
-         backgroundColor:'rgba(42,173,173,0.7)', borderRadius:1},
-        {label:'DIO', data:getArr('dio'),
-         backgroundColor:'rgba(17,30,53,0.6)',   borderRadius:1},
-        {label:'DPO', data:getArr('dpo'),
-         backgroundColor:'rgba(217,119,6,0.65)', borderRadius:1},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{legend:{position:'top',align:'end'}},
-      scales:{
-        y:{grid:GRID_OPTS, ticks:{...TICK_OPTS,callback:v=>v+'d'},
-           stacked:false},
-        x:{grid:{display:false}, ticks:TICK_OPTS, stacked:false},
-      }
-    }
-  });
-}
-
-function buildCostChart() {
-  const ctx = document.getElementById('chart-cost').getContext('2d');
-  if (charts.cost) charts.cost.destroy();
-  const labels = getLabels();
-  const revData = getArr('revenue');
-  const cogsArr = state.view==='quarterly'
-    ? DATA.quarterly.cogs
-    : DATA.monthly['cogs12'].slice(12-revData.length);
-  const sgaArr = state.view==='quarterly'
-    ? DATA.quarterly.sga
-    : DATA.monthly['sga12'].slice(12-revData.length);
-
-  const cogsPct = revData.map((r,i)=> cogsArr[i] ? +(cogsArr[i]/r*100).toFixed(1) : 0);
-  const sgaPct  = revData.map((r,i)=> sgaArr[i]  ? +(sgaArr[i]/r*100).toFixed(1)  : 0);
-
-  charts.cost = new Chart(ctx, {
-    type:'bar',
-    data:{
-      labels,
-      datasets:[
-        {label:'COGS %', data:cogsPct,
-         backgroundColor:'rgba(42,173,173,0.65)', borderRadius:1},
-        {label:'SG&A %', data:sgaPct,
-         backgroundColor:'rgba(17,30,53,0.55)',   borderRadius:1},
-      ]
-    },
-    options:{
-      responsive:true, maintainAspectRatio:true,
-      plugins:{legend:{position:'top',align:'end'}},
-      scales:{
-        y:{stacked:true, grid:GRID_OPTS,
-           ticks:{...TICK_OPTS,callback:v=>v+'%'}},
-        x:{stacked:true, grid:{display:false}, ticks:TICK_OPTS},
-      }
-    }
-  });
-}
-
-// ── SLICER ────────────────────────────────────────
-function setSlicer(type, val, btn) {
-  state[type] = val;
-  // Update active btn
-  const group = btn.closest('.slicer-btns');
-  group.querySelectorAll('.slicer-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-
-  // Rebuild charts
-  buildRevChart();
-  buildMarginChart();
-  buildWCChart();
-  buildCostChart();
-  updateBadges();
-}
-
-function updateBadges() {
-  const lbl = state.view==='quarterly' ? '분기별'
-    : state.period==='3m' ? '3M'
-    : state.period==='6m' ? '6M' : '12M';
-  ['badge-rev','badge-margin','badge-wc','badge-cost'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.textContent = lbl;
-  });
-  const periodText = state.view==='quarterly' ? '4개 분기 기준'
-    : state.period==='3m' ? '최근 3개월 기준'
-    : state.period==='6m' ? '최근 6개월 기준' : '최근 12개월 기준';
-  const pl = document.getElementById('flag-period-label');
-  if(pl) pl.textContent = periodText;
-}
-
-// ── START ─────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', init);
+});
 </script>
 </body>
 </html>
