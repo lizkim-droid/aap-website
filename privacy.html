@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>개인정보처리방침 — AAP Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --navy: #111E35;
+    --navy-mid: #1B2A4A;
+    --teal-lt: #2A9D9D;
+    --off-white: #F8F7F4;
+    --gray: #7A8FA8;
+    --border: rgba(255,255,255,0.08);
+    --serif: 'Playfair Display', serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--navy); color: var(--off-white); line-height: 1.8; }
+
+  /* NAV */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 1.3rem 4rem;
+    background: var(--navy);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family:var(--serif); font-size:1.2rem; font-weight:700; letter-spacing:0.1em; color:var(--off-white); text-decoration:none; }
+  .nav-logo span { color:var(--teal-lt); }
+  .nav-back { font-family:var(--sans); font-size:0.78rem; color:var(--gray); text-decoration:none; transition:color 0.2s; letter-spacing:0.06em; }
+  .nav-back:hover { color:var(--off-white); }
+
+  /* CONTENT */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 8rem 4rem 6rem; }
+
+  .page-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform:uppercase;
+    color: var(--teal-lt); margin-bottom: 1rem;
+    display:flex; align-items:center; gap:0.7rem;
+  }
+  .page-eyebrow::before { content:''; display:block; width:1.4rem; height:1px; background:var(--teal-lt); }
+
+  h1 { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; margin-bottom:0.5rem; line-height:1.2; }
+
+  .effective-date {
+    font-family: var(--mono);
+    font-size:0.7rem; color:var(--gray); margin-bottom:3rem;
+    padding-bottom:2rem; border-bottom:1px solid var(--border);
+  }
+
+  /* Sections */
+  .section { margin-bottom: 2.8rem; }
+  .section h2 {
+    font-family: var(--sans);
+    font-size: 0.78rem; font-weight:600;
+    letter-spacing: 0.12em; text-transform:uppercase;
+    color: var(--teal-lt);
+    margin-bottom: 1rem;
+    padding-bottom:0.5rem;
+    border-bottom:1px solid rgba(42,157,157,0.2);
+  }
+  .section h3 {
+    font-family: var(--sans);
+    font-size: 0.82rem; font-weight:500;
+    color: rgba(248,247,244,0.7);
+    margin: 1rem 0 0.4rem;
+  }
+  .section p {
+    font-size: 0.88rem; font-weight:300;
+    color: rgba(248,247,244,0.75);
+    line-height: 1.85;
+    margin-bottom: 0.8rem;
+  }
+  .section ul {
+    list-style: none;
+    margin: 0.4rem 0 0.8rem;
+  }
+  .section ul li {
+    font-size:0.88rem; font-weight:300;
+    color: rgba(248,247,244,0.75);
+    padding: 0.25rem 0 0.25rem 1.2rem;
+    position:relative; line-height:1.7;
+  }
+  .section ul li::before {
+    content:'—';
+    position:absolute; left:0;
+    color: rgba(42,157,157,0.5);
+    font-size:0.8rem;
+  }
+
+  .note {
+    font-size:0.78rem; color:var(--gray);
+    padding:0.7rem 1rem;
+    border-left:2px solid rgba(42,157,157,0.3);
+    margin:0.8rem 0;
+    line-height:1.65;
+  }
+
+  /* Table */
+  .info-table {
+    width:100%; border-collapse:collapse;
+    margin: 1rem 0;
+    font-size:0.83rem;
+  }
+  .info-table th {
+    text-align:left; padding:0.6rem 0.8rem;
+    background:rgba(42,157,157,0.08);
+    border:1px solid rgba(255,255,255,0.08);
+    font-weight:500; font-size:0.75rem;
+    color:rgba(248,247,244,0.6);
+    letter-spacing:0.05em;
+  }
+  .info-table td {
+    padding:0.6rem 0.8rem;
+    border:1px solid rgba(255,255,255,0.06);
+    color:rgba(248,247,244,0.75);
+    font-weight:300;
+    vertical-align:top;
+    line-height:1.65;
+  }
+
+  /* Business info box */
+  .biz-box {
+    background:rgba(42,157,157,0.06);
+    border:1px solid rgba(42,157,157,0.2);
+    padding:1.2rem 1.4rem;
+    margin:1rem 0 2rem;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0.6rem 2rem;
+  }
+  .biz-row { display:flex; flex-direction:column; gap:0.1rem; }
+  .biz-label { font-family:var(--mono); font-size:0.6rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); }
+  .biz-value { font-size:0.85rem; color:var(--off-white); font-weight:400; }
+
+  /* Footer */
+  footer {
+    border-top:1px solid var(--border);
+    padding:1.6rem 4rem;
+    display:flex; justify-content:space-between; align-items:center;
+    max-width:760px; margin:0 auto;
+  }
+  .footer-logo { font-family:var(--serif); font-size:0.88rem; font-weight:600; letter-spacing:0.1em; color:var(--gray); }
+  .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.2); font-family:var(--mono); }
+
+  @media(max-width:768px){
+    nav { padding:1rem 1.5rem; }
+    .wrap { padding:7rem 1.5rem 4rem; }
+    .biz-box { grid-template-columns:1fr; }
+    footer { padding:1.2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">AAP<span>.</span></a>
+  <a href="/" class="nav-back">← 홈으로</a>
+</nav>
+
+<div class="wrap">
+
+  <div class="page-eyebrow">법적 고지</div>
+  <h1>개인정보처리방침</h1>
+  <div class="effective-date">시행일: 2026년 __월 __일 &nbsp;·&nbsp; 최종 수정: 2026년 __월 __일</div>
+
+  <!-- 사업자 정보 -->
+  <div class="biz-box">
+    <div class="biz-row"><span class="biz-label">상호</span><span class="biz-value">아름어드바이저리파트너스</span></div>
+    <div class="biz-row"><span class="biz-label">브랜드명</span><span class="biz-value">AAP Advisory</span></div>
+    <div class="biz-row"><span class="biz-label">대표자</span><span class="biz-value">김예슬</span></div>
+    <div class="biz-row"><span class="biz-label">사업자등록번호</span><span class="biz-value">222-20-05976</span></div>
+    <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-advisory.com</span></div>
+    <div class="biz-row"><span class="biz-label">홈페이지</span><span class="biz-value">www.aap-partners.com</span></div>
+  </div>
+
+  <div class="section">
+    <p>아름어드바이저리파트너스(이하 "회사")는 정보주체의 개인정보를 소중하게 생각하며, 「개인정보 보호법」 등 관련 법령을 준수합니다. 회사는 본 개인정보처리방침을 통해 회사가 어떤 개인정보를 수집·이용하는지, 어떤 방식으로 관리하는지 안내드립니다.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section">
+    <h2>1. 개인정보의 처리 목적</h2>
+    <p>회사는 다음의 목적 범위 내에서 개인정보를 처리합니다.</p>
+    <ul>
+      <li>서비스 문의 접수 및 응답</li>
+      <li>상담, 서비스 의뢰, 제안 요청, 협업 문의 대응</li>
+      <li>서비스 제공 관련 커뮤니케이션</li>
+      <li>계약 체결 및 이행 관련 연락</li>
+      <li>고객 요청사항 확인, 분쟁 대응 및 기록 보존</li>
+      <li>법령상 의무 이행</li>
+    </ul>
+  </div>
+
+  <!-- 2 -->
+  <div class="section">
+    <h2>2. 처리하는 개인정보 항목</h2>
+    <p>회사는 서비스 문의 및 응대를 위해 다음과 같은 개인정보를 처리할 수 있습니다.</p>
+
+    <h3>가. 홈페이지 문의 / 이메일 / 카카오채널 문의 시</h3>
+    <ul>
+      <li>성명</li>
+      <li>회사명</li>
+      <li>직책</li>
+      <li>이메일 주소</li>
+      <li>연락처</li>
+      <li>문의 내용</li>
+      <li>첨부파일에 포함된 정보</li>
+    </ul>
+
+    <h3>나. 서비스 진행 또는 계약 체결 시</h3>
+    <ul>
+      <li>성명</li>
+      <li>회사명</li>
+      <li>직책</li>
+      <li>이메일 주소</li>
+      <li>연락처</li>
+      <li>세금계산서 발행 및 거래 처리에 필요한 정보</li>
+      <li>계약 및 프로젝트 수행 과정에서 제공받는 자료 내 정보</li>
+    </ul>
+
+    <div class="note">회사는 원칙적으로 주민등록번호 등 민감하거나 불필요한 개인정보를 요구하지 않습니다. 첨부자료에 개인정보가 포함될 경우, 정보주체 또는 제공자가 적법한 권한과 책임 하에 제출한 것으로 봅니다.</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section">
+    <h2>3. 개인정보의 처리 및 보유 기간</h2>
+    <p>회사는 개인정보 수집·이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 다만, 관계 법령에 따라 일정 기간 보관이 필요한 경우에는 해당 기간 동안 보관합니다.</p>
+    <ul>
+      <li>일반 문의: 문의 종료 후 1년</li>
+      <li>계약 및 서비스 제공 관련 정보: 계약 종료 후 5년</li>
+      <li>세금계산서, 거래기록 등 관련 법령상 보존자료: 관련 법령이 정한 기간</li>
+    </ul>
+    <p>회사는 보유기간 경과, 처리 목적 달성 등 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section">
+    <h2>4. 개인정보의 제3자 제공</h2>
+    <p>회사는 원칙적으로 정보주체의 개인정보를 외부에 제공하지 않습니다. 다만, 다음의 경우에는 예외로 합니다.</p>
+    <ul>
+      <li>정보주체의 별도 동의를 받은 경우</li>
+      <li>법령에 특별한 규정이 있는 경우</li>
+      <li>수사기관 등 법령상 권한 있는 기관의 적법한 요청이 있는 경우</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="section">
+    <h2>5. 개인정보 처리의 위탁</h2>
+    <p>회사는 원활한 홈페이지 운영 및 커뮤니케이션을 위하여 일부 업무를 외부 서비스에 위탁할 수 있습니다. 위탁이 발생하는 경우 관련 법령에 따라 수탁자를 관리·감독합니다.</p>
+
+    <table class="info-table">
+      <thead>
+        <tr>
+          <th>수탁자</th>
+          <th>위탁업무 내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GitHub (Microsoft)</td>
+          <td>홈페이지 호스팅 및 파일 보관</td>
+        </tr>
+        <tr>
+          <td>Squarespace / Google (도메인 관리)</td>
+          <td>도메인 등록 및 관리</td>
+        </tr>
+        <tr>
+          <td>Google Workspace</td>
+          <td>이메일 서비스 제공 및 업무용 파일 보관</td>
+        </tr>
+        <tr>
+          <td>Formspree</td>
+          <td>홈페이지 문의 접수 및 전달</td>
+        </tr>
+        <tr>
+          <td>카카오 (카카오톡 채널)</td>
+          <td>고객 커뮤니케이션 채널 운영</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="note">위 수탁자 목록은 서비스 변경에 따라 업데이트될 수 있습니다.</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="section">
+    <h2>6. 정보주체의 권리와 행사 방법</h2>
+    <p>정보주체는 회사에 대해 언제든지 다음과 같은 권리를 행사할 수 있습니다.</p>
+    <ul>
+      <li>개인정보 열람 요구</li>
+      <li>개인정보 정정·삭제 요구</li>
+      <li>개인정보 처리정지 요구</li>
+    </ul>
+    <p>권리 행사는 아래 연락처(10항)를 통해 요청할 수 있으며, 회사는 관련 법령에 따라 지체 없이 조치하겠습니다.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section">
+    <h2>7. 개인정보의 파기 절차 및 방법</h2>
+    <p>회사는 개인정보 보유기간 경과 또는 처리 목적 달성 시 지체 없이 파기합니다.</p>
+    <ul>
+      <li>전자적 파일 형태: 복구 또는 재생이 불가능한 기술적 방법으로 삭제</li>
+      <li>종이 문서 형태: 분쇄 또는 소각</li>
+    </ul>
+  </div>
+
+  <!-- 8 -->
+  <div class="section">
+    <h2>8. 개인정보의 안전성 확보조치</h2>
+    <p>회사는 개인정보의 안전성 확보를 위해 다음과 같은 조치를 취합니다.</p>
+    <ul>
+      <li>개인정보 접근 권한 최소화</li>
+      <li>비밀번호 등 접근통제 관리</li>
+      <li>개인정보가 포함된 자료의 안전한 보관</li>
+      <li>업무상 필요한 범위 내에서만 개인정보 처리</li>
+      <li>외부 서비스 이용 시 보안 수준 검토</li>
+    </ul>
+  </div>
+
+  <!-- 9 -->
+  <div class="section">
+    <h2>9. 쿠키 및 로그 정보</h2>
+    <p>회사는 홈페이지 운영 과정에서 쿠키(cookie), 접속 로그, 브라우저 정보, 기기 정보 등 비식별성 정보가 자동 생성·수집될 수 있습니다. 이는 서비스 운영, 보안, 방문 통계 확인 등을 위한 목적으로 활용될 수 있습니다.</p>
+    <div class="note">현재 회사 홈페이지는 Google Analytics, Meta Pixel 등 별도 분석도구를 사용하지 않습니다.</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="section">
+    <h2>10. 개인정보 보호책임자 및 문의처</h2>
+    <p>회사는 개인정보 처리에 관한 업무를 총괄하여 책임지고, 개인정보 관련 문의를 처리하기 위해 아래와 같이 연락처를 안내합니다.</p>
+    <div class="biz-box" style="margin-top:1rem;">
+      <div class="biz-row"><span class="biz-label">상호</span><span class="biz-value">아름어드바이저리파트너스</span></div>
+      <div class="biz-row"><span class="biz-label">대외 사용명</span><span class="biz-value">AAP Advisory</span></div>
+      <div class="biz-row"><span class="biz-label">개인정보 보호책임자</span><span class="biz-value">김예슬</span></div>
+      <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-advisory.com</span></div>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="section">
+    <h2>11. 권익침해 구제방법</h2>
+    <p>정보주체는 개인정보 침해에 대한 피해구제, 상담 등을 아래 기관에 문의할 수 있습니다.</p>
+    <ul>
+      <li><a href="https://privacy.kisa.or.kr" target="_blank" style="color:var(--teal-lt);text-decoration:none;">개인정보침해신고센터</a> (privacy.kisa.or.kr / 국번없이 118)</li>
+      <li><a href="https://www.kopico.go.kr" target="_blank" style="color:var(--teal-lt);text-decoration:none;">개인정보 분쟁조정위원회</a> (www.kopico.go.kr / 1833-6972)</li>
+      <li><a href="https://www.spo.go.kr" target="_blank" style="color:var(--teal-lt);text-decoration:none;">대검찰청</a> (www.spo.go.kr / 국번없이 1301)</li>
+      <li><a href="https://www.police.go.kr" target="_blank" style="color:var(--teal-lt);text-decoration:none;">경찰청</a> (www.police.go.kr / 국번없이 182)</li>
+    </ul>
+  </div>
+
+  <!-- 12 -->
+  <div class="section">
+    <h2>12. 개인정보처리방침의 변경</h2>
+    <p>본 개인정보처리방침은 <strong style="color:var(--off-white);">2026년 __월 __일</strong>부터 적용됩니다. 회사는 관련 법령, 서비스 변경 등에 따라 본 방침을 수정할 수 있으며, 변경 시 홈페이지를 통해 공지합니다.</p>
+  </div>
+
+</div><!-- /wrap -->
+
+<footer>
+  <div class="footer-logo">AAP Advisory</div>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.3rem;">
+    <div class="footer-copy">© 2026 아름어드바이저리파트너스 · 사업자등록번호: 222-20-05976</div>
+    <div class="footer-copy"><a href="/" style="color:rgba(255,255,255,0.25);text-decoration:none;">홈으로</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
