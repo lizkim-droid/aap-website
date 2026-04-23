@@ -644,42 +644,31 @@
 
     <div class="services-tabs">
       <button class="tab-btn active" onclick="switchTab('caas',this)">
-        <span data-ko>A. 재무 파트너십</span><span data-en>A. Business Finance Partnership</span>
-      </button>
-      <button class="tab-btn" onclick="switchTab('valuation',this)">
-        <span data-ko>B. 투자유치 지원</span><span data-en>B. Valuation &amp; Exit Support</span>
+        <span data-ko>A. 기업가치 관리</span><span data-en>A. Value Management</span>
       </button>
       <button class="tab-btn" onclick="switchTab('transaction',this)">
-        <span data-ko>C. 거래 자문</span><span data-en>C. Transaction Support</span>
+        <span data-ko>B. 거래 자문</span><span data-en>B. Transaction Advisory</span>
       </button>
     </div>
 
     <div class="tab-pane active" id="tab-caas">
       <div class="svc-card fi">
-        <div class="svc-phase">월별 재무 파트너</div>
-        <div class="svc-title"><span data-ko>Business Finance Partnership</span><span data-en>Business Finance Partnership</span></div>
-        <p class="svc-desc"><span data-ko>월별 재무 모니터링 · KPI 관리 · 의사결정 지원. 재무담당자 없는 오너 기업의 CFO 역할을 합니다. 숫자가 보여주는 것을 넘어, 왜 그런지 · 어떻게 해야 하는지까지 함께 봅니다.</span><span data-en>Monthly financial monitoring, KPI management and decision support. Acting as the CFO for owner-managed businesses without a finance team. Beyond what the numbers show — into why, and what to do about it.</span></p>
+        <div class="svc-phase">월별 구독 · Ongoing</div>
+        <div class="svc-title"><span data-ko>Monthly Monitor</span><span data-en>Monthly Monitor</span></div>
+        <p class="svc-desc"><span data-ko>기업가치에 직접 영향을 미치는 핵심 재무 지표를 매달 추적합니다. 수익구조·운전자본·현금흐름의 변화를 EV 관점에서 해석하고, 오너의 의사결정에 필요한 시각을 제공합니다.</span><span data-en>Monthly tracking of the financial metrics that directly drive enterprise value. P&L trends, working capital movements and cash flow — interpreted through an EV lens, not just accounting.</span></p>
       </div>
       <div class="svc-note fi">
-        <span data-ko>Big 4 재무자문 경험과 글로벌 기업 FP&amp;A 경험을 바탕으로, 숫자 이면의 인과관계를 규명하고 실행 방향을 함께 설계합니다.</span>
-        <span data-en><strong>Finding the cause behind the numbers is AAP's specialism.</strong> Drawing on Big 4 FDD and corporate FP&amp;A experience, AAP identifies the root causes behind movements in the numbers and works alongside you to design the path forward.</span>
-      </div>
-    </div>
-
-    <div class="tab-pane" id="tab-valuation">
-      <div class="svc-card fi">
-        <div class="svc-phase">Exit 준비 · 정밀 밸류에이션</div>
-        <div class="svc-title"><span data-ko>Valuation &amp; Exit Support</span><span data-en>Valuation &amp; Exit Support</span></div>
-        <p class="svc-desc"><span data-ko>매각 전 기업가치 정밀 산정 · EBITDA Normalisation · Exit 준비 전략 · VDD 준비 및 딜 협상 지원 등. </span><span data-en>Precise enterprise valuation ahead of a sale, EBITDA normalisation, exit strategy, VDD preparation and deal negotiation support. Preparing owners to exit on the best possible terms.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase">투자유치 · 재무 모델링</div>
-        <div class="svc-title"><span data-ko>Investment Readiness</span><span data-en>Investment Readiness</span></div>
-        <p class="svc-desc"><span data-ko>투자유치 또는 확장을 앞두고 재무 상태를 먼저 점검합니다. 재무 모델링, 시나리오 분석, 사업계획서(BP) 작성 서비스.</span><span data-en>Before raising investment or scaling, start with a clear picture of where the business stands. Financial modelling, scenario analysis and business plan preparation — from a corporate finance perspective.</span></p>
+        <span data-ko>Snapshot 진단 이후 자연스러운 다음 단계입니다. 진단에서 발견된 이슈를 매달 추적하고, 기업가치 개선 방향을 지속적으로 관리합니다.</span>
+        <span data-en>The natural next step after a Snapshot diagnostic. Tracks issues identified in the report and monitors progress toward a stronger enterprise value over time.</span>
       </div>
     </div>
 
     <div class="tab-pane" id="tab-transaction">
+      <div class="svc-card fi">
+        <div class="svc-phase">프로젝트 · 심층 분석</div>
+        <div class="svc-title"><span data-ko>기업가치 정밀 분석</span><span data-en>Enterprise Value Deep Dive</span></div>
+        <p class="svc-desc"><span data-ko>Reported 기준 진단을 넘어, 원장 수준의 데이터를 기반으로 EBITDA 정상화·리스크 전수 분석·정밀 가치평가를 수행합니다. Buyer 관점의 보수적 시각으로 접근하여, 실제 딜 테이블에서 통하는 숫자를 만들어냅니다.</span><span data-en>Beyond reported financials — EBITDA normalisation, full risk analysis and precise valuation using source-level data. Approached from a buyer's perspective, so the numbers hold up when it matters.</span></p>
+      </div>
       <div class="svc-card fi">
         <div class="svc-phase">인수 / 매각 실사</div>
         <div class="svc-title"><span data-ko>Transaction Advisory</span><span data-en>Transaction Advisory</span></div>
@@ -724,7 +713,7 @@
         </a>
       </div>
 
-      <div class="diag-cards" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="diag-cards" style="grid-template-columns:1fr 1fr;">
 
         <!-- One-off scans label -->
         <div style="grid-column:1/-1;padding:0.5rem 0 0.3rem;border-bottom:1px solid var(--border-lt);margin-bottom:0.4rem;">
@@ -739,8 +728,8 @@
           </div>
           <div class="diag-card-name">Operational<br>Scan</div>
           <p class="diag-card-desc">
-            <span data-ko>오너의 재무·운영 고민을 숫자로 구조화해, 현재 상태를 보다 정확하고 빠르게 보여드립니다.</span>
-            <span data-en>A quick screening financial report focusing on identifying both financial and operational risks.</span>
+            <span data-ko>잠재 인수자의 눈으로 수익구조·운전자본·현금흐름을 진단합니다. 딜 관점에서 먼저 발견해야 할 리스크를 구조화합니다.</span>
+            <span data-en>Diagnose P&L, working capital and cash flow through a potential acquirer's lens. Identify the risks a buyer would find — before they do.</span>
           </p>
         </a>
 
@@ -752,46 +741,6 @@
           <p class="diag-card-desc">
             <span data-ko>현재 기업가치의 대략적인 범위를 확인하는 초기 가치 진단 서비스입니다.</span>
             <span data-en>A high level assessment of your company's indicative value range.</span>
-          </p>
-        </a>
-
-        <a class="diag-card" href="snapshot.html#pane-b">
-          <div class="diag-card-tag">
-            <span data-ko>매각 · 투자 준비</span><span data-en>Transaction</span>
-          </div>
-          <div class="diag-card-name">Transaction<br>Scan</div>
-          <p class="diag-card-desc">
-            <span data-ko>거래 관점에서 핵심 이슈와 Red Flag를 빠르게 점검하는 서비스입니다.</span>
-            <span data-en>A transaction focused screening designed to highlight key risks and quality of financials.</span>
-          </p>
-        </a>
-
-        <a class="diag-card featured" href="snapshot.html#pane-bundle" style="grid-column:1/3;">
-          <div class="diag-card-tag">
-            <span data-ko>딜 전 완전한 준비</span><span data-en>Full Package</span>
-          </div>
-          <div class="diag-card-name">Transaction + Valuation</div>
-          <p class="diag-card-desc">
-            <span data-ko>Transaction Diligence + Valuation Scan 패키지 서비스입니다.</span>
-            <span data-en>Transaction Scan + Valuation Scan combined.</span>
-          </p>
-        </a>
-
-        <!-- Monthly Monitor label -->
-        <div style="grid-column:1/-1;padding:0.8rem 0 0.3rem;border-bottom:1px solid var(--border-lt);margin-top:0.4rem;">
-          <span style="font-family:var(--mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-lt);">
-            <span data-ko>— 월별 구독 (Ongoing Monthly)</span><span data-en>— Ongoing Monthly</span>
-          </span>
-        </div>
-
-        <a class="diag-card featured" href="snapshot.html#pane-monthly" style="grid-column:1/-1;border-color:var(--teal);background:var(--teal-pale);">
-          <div class="diag-card-tag" style="color:var(--teal);">
-            <span data-ko>기업 오너 / PE 포트폴리오 대상</span><span data-en>Owner / PE Portfolio</span>
-          </div>
-          <div class="diag-card-name" style="color:var(--text);">Monthly Monitor</div>
-          <p class="diag-card-desc" style="color:var(--text-mid);">
-            <span data-ko>매월 재무 변화와 주요 흐름을 점검하고 의미있는 key risks를 식별합니다. </span>
-            <span data-en>Review monthly financial changes and key trends, and identify meaningful risks that warrant attention.</span>
           </p>
         </a>
 

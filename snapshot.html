@@ -371,7 +371,7 @@
         <div style="font-family:var(--mono);font-size:0.6rem;color:var(--teal-lt);letter-spacing:0.1em;margin-bottom:0.2rem;">STEP 1</div>
         <div class="svc-btn-tag"><span data-ko>내 사업 현황 파악</span><span data-en>Operational</span></div>
         <div class="svc-btn-name">Operational Scan</div>
-        <div class="svc-btn-price">₩690,000</div>
+        <div class="svc-btn-price">₩590,000</div>
         <div style="font-size:0.68rem;color:rgba(122,143,168,0.55);margin-top:0.3rem;"><span data-ko>→ Monthly Monitor 베이스라인</span><span data-en>→ Monthly Monitor baseline</span></div>
       </button>
 
@@ -379,19 +379,6 @@
         <div class="svc-btn-tag"><span data-ko>기업가치 확인</span><span data-en>Valuation</span></div>
         <div class="svc-btn-name">Valuation Scan</div>
         <div class="svc-btn-price">₩990,000</div>
-      </button>
-
-      <button class="svc-btn" onclick="selectService('transaction', this)" id="btn-transaction">
-        <div class="svc-btn-tag"><span data-ko>매각 · 투자 준비 Diligence</span><span data-en>Transaction</span></div>
-        <div class="svc-btn-name">Transaction Diligence Scan</div>
-        <div class="svc-btn-price">₩1,490,000</div>
-      </button>
-
-      <button class="svc-btn" onclick="selectService('bundle', this)" id="btn-bundle">
-        <div class="svc-btn-tag"><span data-ko>딜 Package</span><span data-en>Deal Package</span></div>
-        <div class="svc-btn-name">Transaction Diligence +<br>Valuation</div>
-        <div class="svc-btn-price">₩1,990,000</div>
-        <div class="svc-btn-badge"><span data-ko>₩490K 절감</span><span data-en>Save ₩490K</span></div>
       </button>
 
       <button class="svc-btn" onclick="selectService('monthly', this)" id="btn-monthly">
@@ -433,22 +420,22 @@
         </div>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
         <ul class="detail-includes">
-          <li><span data-ko>매출 / 매출이익률 / 영업이익률 성장성 및 추이 분석</span><span data-en>Revenue growth and CAGR analysis</span></li>
+          <li><span data-ko>매출 성장성·CAGR·수익구조 추이 — 잠재 인수자 관점 해석</span><span data-en>Revenue growth, CAGR and P&L trends — interpreted through an acquirer's lens</span></li>
           <li><span data-ko>운전자본 효율 — DSO · DIO · DPO · CCC</span><span data-en>Working capital efficiency — DSO, DIO, DPO, CCC</span></li>
-          <li><span data-ko>Red Flag 감지 5~7개 (🔴 · 🟡 구분)</span><span data-en>5–7 red flags identified and graded</span></li>
-          <li><span data-ko>해당시 업종 벤치마크 대비 종합 판정</span><span data-en>Overall position vs industry benchmark if applicable</span></li>
+          <li><span data-ko>현금흐름 전환율 (FCFF/EBITDA) 및 CAPEX 구조</span><span data-en>Cash conversion (FCFF/EBITDA) and CAPEX structure</span></li>
+          <li><span data-ko>Red / Yellow Flag 감지 — 딜 관점 리스크 분류</span><span data-en>Red/yellow flags — deal-perspective risk classification</span></li>
+          <li><span data-ko>업종 벤치마크 대비 종합 판정</span><span data-en>Overall position vs industry benchmark</span></li>
         </ul>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
         <ul class="detail-out">
-          <li><span data-ko>원인 분석 및 개선 방안 — Finance Partnership 서비스</span><span data-en>Root cause analysis and recommendations — Finance Partnership Retainer</span></li>
-          <li><span data-ko>제품별 / 고객별 수익성 분석 - Finance Partnership 서비스</span><span data-en>Product-level or customer-level profitability - Finance Partnership Retainer</span></li>
-          <li><span data-ko>EV 산정 및 영업이익 정상화 도출 — Valuation / Transaction Diligence Scan 서비스</span><span data-en>Enterprise value or normalisation — Valuation / Transaction Diligence Scan</span></li>
+          <li><span data-ko>EV 산정 및 EBITDA 정상화 — Valuation Scan 서비스</span><span data-en>Enterprise value or EBITDA normalisation — Valuation Scan</span></li>
+          <li><span data-ko>월별 추적 및 예산 분석 — Monthly Monitor 서비스</span><span data-en>Monthly tracking and budget analysis — Monthly Monitor</span></li>
         </ul>
         <div class="detail-price-row">
-          <div class="detail-price">₩690,000</div>
+          <div class="detail-price">₩590,000</div>
           <div class="detail-price-note">VAT 별도</div>
         </div>
-        <a href="#order-form" class="btn-order" onclick="setOrderService('Operational Scan', '₩690,000')">
+        <a href="#order-form" class="btn-order" onclick="setOrderService('Operational Scan', '₩590,000')">
           <span data-ko>신청하기 →</span><span data-en>Apply →</span>
         </a>
         </div>
@@ -562,114 +549,6 @@
     </div>
   </div>
 
-  <!-- Transaction -->
-  <div class="detail-pane" id="pane-transaction">
-    <div class="detail-inner">
-      <div class="detail-left">
-        <h2><em>Transaction Diligence</em> Scan</h2>
-        <p class="detail-tagline">
-          <span data-ko>거래 관점에서 핵심 이슈와 Red Flag를 빠르게 점검하는 서비스입니다.</span>
-          <span data-en>A transaction focused screening designed to highlight key risks and quality of financials.</span>
-        </p>
-        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
-        <ul class="detail-includes">
-          <li><span data-ko>Quality of Earnings (QoE) 시그널, 매출분석 포함</span><span data-en>Quality of Earnings (QoE) signals including quality of revenue</span></li>
-          <li><span data-ko>Indicative Normalisation 플래그 (오너 비용 · 비경상 항목 등)</span><span data-en>Indicative normalisation flags (owner costs, non-recurring items)</span></li>
-          <li><span data-ko>운전자본 분석 및 Target 순운전자본 관찰</span><span data-en>Working capital analysis and indicative target NWC</span></li>
-          <li><span data-ko>순차입금 스케쥴 및 부채성 항목 분류</span><span data-en>Net debt schedule and debt-like items classification</span></li>
-          <li><span data-ko>EV Bridge 시산 (Indicative)</span><span data-en>Indicative EV bridge</span></li>
-          <li><span data-ko>Red / Yellow Flag 분류 및 딜 리스크 관찰</span><span data-en>Red/yellow flags and deal risk observations</span></li>
-          <li><span data-ko>Sell-side / Buy-side 관점 분기</span><span data-en>Sell-side / buy-side perspective split</span></li>
-        </ul>
-        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
-        <ul class="detail-out">
-          <li><span data-ko>정밀 Normalisation 수치 · SPA 조건 설계 — 별도 거래 자문 서비스 </span><span data-en>Precise normalisation or SPA terms — Transaction Support</span></li>
-          <li><span data-ko>WC peg 협상 · Diligence Q&A 대응 </span><span data-en>WC peg negotiation or diligence Q&A responses</span></li>
-        </ul>
-        <div class="detail-price-row">
-          <div class="detail-price">₩1,490,000</div>
-          <div class="detail-price-note">VAT 별도</div>
-        </div>
-        <a href="#order-form" class="btn-order" onclick="setOrderService('Transaction Scan', '₩1,490,000')">
-          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
-        </a>
-        </div>
-      <div class="detail-right">
-        <div class="data-box">
-          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
-          <p><span data-ko>손익 + 재무상태표 + 차입금 현황이 기본입니다.</span><span data-en>P&L, balance sheet and debt schedule are the core requirements.</span></p>
-          <ul class="data-list">
-            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L (3 years+)</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>재무상태표</span><span data-en>Balance sheet</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>차입금 현황 (종류 · 금리 · 만기)</span><span data-en>Debt schedule (type, rate, maturity)</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>퇴직급여충당부채 및 외부 적립 현황</span><span data-en>Retirement benefit obligation and funding</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>고객 집중도 (Top 3~5)</span><span data-en>Customer concentration (top 3–5)</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>반복매출 · 계약 기반 매출 비중</span><span data-en>Recurring / contract revenue proportion</span><span class="data-req opt">선택</span></li>
-            <li><span data-ko>소송 · 우발부채 현황</span><span data-en>Litigation and contingent liabilities</span><span class="data-req opt">선택</span></li>
-          </ul>
-          <div class="data-note">
-            <p><span data-ko>Sell-side (매각 준비) 또는 Buy-side (인수 스크리닝) 중 신청 시 선택해 주세요. 관점에 따라 코멘트 방향이 달라집니다.</span><span data-en>Please indicate sell-side (preparing for sale) or buy-side (acquisition screening). The commentary direction differs by perspective.</span></p>
-          </div>
-        </div>
-        <div class="detail-meta" style="margin-top:1rem;">
-          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 기준 48시간</span><span data-en>48 business hours</span></div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>PDF 보고서 (최대 21 슬라이드)</span><span data-en>Report in PDF (max. 21 slides)</span></div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>관점 선택</span><span data-en>Perspective</span></div><div class="meta-value"><span data-ko>Sell-side / Buy-side</span><span data-en>Sell-side / Buy-side</span></div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>분석 기준</span><span data-en>Basis</span></div><div class="meta-value"><span data-ko>Indicative normalisation</span><span data-en>Indicative normalisation</span></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bundle -->
-  <div class="detail-pane" id="pane-bundle">
-    <div class="detail-inner">
-      <div class="detail-left">
-        <h2>Transaction Diligence + <em>Valuation</em></h2>
-        <p class="detail-tagline">
-          <span data-ko>Transaction Diligence + Valuation Scan 패키지 서비스입니다.</span>
-          <span data-en>Transaction diligence and Valuation scans combined. Two analyses from the same data provided.</span>
-        </p>
-        <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Included</span></div>
-        <ul class="detail-includes">
-          <li><span data-ko>Transaction Diligence Scan 포함</span><span data-en>Transaction diligence scan</span></li>
-          <li><span data-ko>Valuation Scan 포함</span><span data-en>Valuation scan</span></li>
-          <li><span data-ko>EV Bridge 통합 분석</span><span data-en>Integrated EV bridge analysis</span></li>
-          <li><span data-ko>딜 준비도 종합 판단</span><span data-en>Overall deal readiness assessment</span></li>
-        </ul>
-        <div class="detail-price-row">
-          <div class="detail-price">₩1,990,000</div>
-          <div class="detail-price-note" style="display:flex;flex-direction:column;gap:2px;">
-            <span>VAT 별도</span>
-         </div>
-        </div>
-        <a href="#order-form" class="btn-order" onclick="setOrderService('Transaction + Valuation Bundle', '₩1,990,000')">
-          <span data-ko>신청하기 →</span><span data-en>Apply →</span>
-        </a>
-        </div>
-      <div class="detail-right">
-        <div class="data-box">
-          <h3><span data-ko>필요한 자료</span><span data-en>Data required</span></h3>
-          <p><span data-ko>Transaction Scan 기준 자료를 주시면 Valuation Scan은 추가 자료 없이 함께 진행됩니다.</span><span data-en>Provide Transaction Scan data and the Valuation Scan will be completed simultaneously without additional data.</span></p>
-          <ul class="data-list">
-            <li><span data-ko>손익계산서 (3개년 이상)</span><span data-en>P&L (3 years+)</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>재무상태표</span><span data-en>Balance sheet</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>차입금 현황</span><span data-en>Debt schedule</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>퇴직급여충당부채 및 외부 적립 현황</span><span data-en>Retirement benefit obligation</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>고객 집중도</span><span data-en>Customer concentration</span><span class="data-req must">필수</span></li>
-            <li><span data-ko>소송 · 우발부채 현황</span><span data-en>Contingent liabilities</span><span class="data-req opt">선택</span></li>
-          </ul>
-         </div>
-        <div class="detail-meta" style="margin-top:1rem;">
-          <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 기준 72시간</span><span data-en>72 business hours</span></div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>보고서 (최대 30 슬라이드) + 백데이터</span><span data-en>Report (max. 30 slides) + Excel backdata</span></div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>패키지 절감</span><span data-en>Saving</span></div><div class="meta-value" style="color:var(--teal-lt);">₩490,000</div></div>
-          <div class="meta-item"><div class="meta-label"><span data-ko>관점 선택</span><span data-en>Perspective</span></div><div class="meta-value"><span data-ko>Sell-side / Buy-side</span><span data-en>Sell-side / Buy-side</span></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Monthly -->
   <div class="detail-pane" id="pane-monthly">
     <div class="detail-inner">
@@ -695,24 +574,20 @@
         </div>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함 분석</span><span data-en>Monthly included</span></div>
         <ul class="detail-includes">
-          <li><span data-ko>매출 / 매출이익 / 영업이익 분석 및 트렌드 비교</span><span data-en>Revenue / GP / EBITDA trends</span></li>
-          <li><span data-ko>운전자본 변화 (DSO · DIO · DPO)</span><span data-en>Working capital changes (DSO, DIO, DPO)</span></li>
-          <li><span data-ko>현금흐름표 작성 및 분석</span><span data-en>Cash flow statement and analysis</span></li> 
-          <li><span data-ko>Key risks 신호등 분석</span><span data-en>3 traffic lights analysis</span></li>
-          <li><span data-ko>이달의 포커스 인사이트 1개 (월별 로테이션 토픽)</span><span data-en>One focused monthly insight (rotating topic)</span></li>
-          <li><span data-ko>Budget vs Actual 숫자 비교 (예산 자료 제공 시)</span><span data-en>Budget vs actual comparison (if budget provided)</span></li>
+          <li><span data-ko>Operational Scan 전 항목 — 매월 갱신 (수익구조·운전자본·현금흐름·Red Flag)</span><span data-en>All Operational Scan items — refreshed monthly (P&L, working capital, cash flow, red flags)</span></li>
+          <li><span data-ko>이달의 포커스 인사이트 — 기업가치평가 관점 심층 분석 1개 (월별 로테이션)</span><span data-en>Monthly focus insight — one deep-dive from an enterprise value perspective (rotating topic)</span></li>
+          <li><span data-ko>Budget vs Actual 분석 — 예산 대비 실적 비교 및 괴리 원인 코멘트</span><span data-en>Budget vs actual — variance analysis with commentary on key deviations</span></li>
+          <li><span data-ko>예산 수립 Support — 연간 예산 작성 및 시나리오 검토 지원 (분기 1회)</span><span data-en>Budget preparation support — annual budget and scenario review (quarterly)</span></li>
         </ul>
         <div class="section-label" style="margin-bottom:0.8rem;"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
         <ul class="detail-out">
-          <li><span data-ko>원인 규명 · 처방 및 실행 — Finance Partnership 서비스</span><span data-en>Root cause analysis and recommendations — Finance Partnership Retainer</span></li>
-          <li><span data-ko>Budget 재작성 및 Forecasting - Finance Partnership 서비스</span><span data-en>Budget reforecasting - Finance Partnership Retainer</span></li>
-          <li><span data-ko>Unit economics 심층 분석 (원장 데이터 필요) - Finance Partnership 서비스</span><span data-en>Deep unit economics (requires ledger-level data)</span></li>
+          <li><span data-ko>EBITDA 정상화 및 정밀 EV 산정 — 기업가치 정밀 분석 서비스</span><span data-en>EBITDA normalisation and precise EV — Enterprise Value Deep Dive</span></li>
+          <li><span data-ko>딜 실사 및 거래 자문 — 거래 자문 서비스</span><span data-en>Deal diligence and transaction advisory — Transaction Advisory service</span></li>
         </ul>
         <div class="detail-price-row">
           <div class="detail-price">₩490,000</div>
           <div class="detail-price-note" style="display:flex;flex-direction:column;gap:2px;">
             <span>/월 · VAT 별도</span>
-            <span style="color:var(--teal-lt);">PE 포트폴리오기업 3개 이상시 패키지 추가 할인</span>
           </div>
         </div>
         <a href="#order-form" class="btn-order" onclick="setOrderService('Monthly Monitor', '₩490,000/월')">
@@ -1194,8 +1069,8 @@
     // Hash-based service selection
     const hash = window.location.hash;
     const map = {
-      '#pane-a': 'operational', '#pane-b': 'transaction',
-      '#pane-c': 'valuation',   '#pane-bundle': 'bundle',
+      '#pane-a': 'operational',
+      '#pane-c': 'valuation',
       '#pane-monthly': 'monthly'
     };
     if (map[hash]) {
