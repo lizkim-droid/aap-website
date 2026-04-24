@@ -1038,6 +1038,35 @@
         <span data-ko>이 번호를 저장해두세요. 자료 제출 안내는 이메일로 드립니다.</span>
         <span data-en>Save this reference. Data submission instructions will follow by email.</span>
       </p>
+      <div id="account-section" style="display:none;margin-top:1.2rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);padding:1rem 1.2rem;text-align:left;">
+        <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:#2AADAD;margin-bottom:0.7rem;">결제 안내</div>
+        <div style="display:flex;flex-direction:column;gap:0.4rem;font-size:0.78rem;">
+          <div style="display:flex;gap:0.8rem;">
+            <span style="color:rgba(255,255,255,0.35);min-width:60px;">은행</span>
+            <span style="color:#F8F7F4;font-weight:500;">국민은행</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;">
+            <span style="color:rgba(255,255,255,0.35);min-width:60px;">계좌번호</span>
+            <span style="color:#F8F7F4;font-weight:500;">445337-04-011913</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;">
+            <span style="color:rgba(255,255,255,0.35);min-width:60px;">예금주</span>
+            <span style="color:#F8F7F4;font-weight:500;">김진경</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;">
+            <span style="color:rgba(255,255,255,0.35);min-width:60px;">금액</span>
+            <span style="color:#F8F7F4;font-weight:500;">₩390,000 (VAT 별도)</span>
+          </div>
+          <div style="display:flex;gap:0.8rem;padding-top:0.3rem;border-top:1px solid rgba(255,255,255,0.08);margin-top:0.3rem;">
+            <span style="color:rgba(255,255,255,0.35);min-width:60px;">입금자명</span>
+            <span style="color:#2AADAD;font-weight:500;">접수번호 (AAP-XXXX)</span>
+          </div>
+        </div>
+        <p style="font-size:0.68rem;color:rgba(255,255,255,0.3);margin-top:0.8rem;line-height:1.6;">
+          입금 확인 후 자료 제출 안내 이메일을 발송드립니다.<br>
+          모든 서비스 금액은 VAT 별도입니다. 세금계산서 발행 시, 공급가액에 VAT 10%를 합산한 금액으로 입금해주시면 됩니다.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -1073,6 +1102,7 @@
     document.getElementById('modal-form-view').style.display = 'block';
     document.getElementById('modal-success-view').classList.remove('show');
     document.getElementById('modal-form').reset();
+    document.getElementById('account-section').style.display = 'none';
 
     if (track === 'free') {
       badge.textContent      = document.body.classList.contains('ko') ? '무료 1건' : 'Free · 1 spot';
@@ -1144,6 +1174,9 @@
         document.getElementById('modal-form-view').style.display = 'none';
         document.getElementById('modal-success-view').classList.add('show');
         document.getElementById('ref-token-display').textContent = token;
+        if (currentTrack === 'paid') {
+          document.getElementById('account-section').style.display = 'block';
+        }
       } else {
         if (btn) { btn.textContent = '신청하기 →'; btn.disabled = false; }
         alert('오류가 발생했습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
