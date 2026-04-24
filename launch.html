@@ -1119,10 +1119,16 @@
     document.getElementById('m-token').value   = token;
     document.getElementById('m-replyto').value = email;
     document.getElementById('m-subject').value =
-      '[AAP Founding Client] ' + (currentTrack === 'free' ? '무료' : '파운딩클라이언트') + ' — ' + token;
+      '[AAP] ' + (currentTrack === 'free' ? '무료 브리핑' : '초기 고객') + ' — ' + token;
 
     var btn = document.querySelector('#modal-form button[type=submit]');
     if (btn) { btn.textContent = '제출 중...'; btn.disabled = true; }
+
+    // Timeout fallback — 8초 후에도 응답 없으면 버튼 복구
+    var timeout = setTimeout(function() {
+      if (btn) { btn.textContent = '신청하기 →'; btn.disabled = false; }
+      alert('응답 시간이 초과됐습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
+    }, 8000);
 
     var form = document.getElementById('modal-form');
     var data = new FormData(form);
@@ -1133,17 +1139,19 @@
       headers: { 'Accept': 'application/json' }
     })
     .then(function(res) {
+      clearTimeout(timeout);
       if (res.ok) {
         document.getElementById('modal-form-view').style.display = 'none';
         document.getElementById('modal-success-view').classList.add('show');
         document.getElementById('ref-token-display').textContent = token;
       } else {
-        if (btn) { btn.textContent = '진단 시작하기 →'; btn.disabled = false; }
+        if (btn) { btn.textContent = '신청하기 →'; btn.disabled = false; }
         alert('오류가 발생했습니다. info@aap-advisory.com 으로 직접 연락 주세요.');
       }
     })
     .catch(function() {
-      if (btn) { btn.textContent = '진단 시작하기 →'; btn.disabled = false; }
+      clearTimeout(timeout);
+      if (btn) { btn.textContent = '신청하기 →'; btn.disabled = false; }
       alert('네트워크 오류. info@aap-advisory.com 으로 직접 연락 주세요.');
     });
   }
