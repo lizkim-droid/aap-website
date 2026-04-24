@@ -693,6 +693,15 @@
     .bio-section { grid-template-columns: 1fr; gap: 1.5rem; }
     .f-row { grid-template-columns: 1fr; }
   }
+
+  .sample-modal{display:none;position:fixed;inset:0;z-index:700;background:rgba(10,16,30,0.92);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem;}
+  .sample-modal.open{display:flex;}
+  .sample-modal-inner{position:relative;width:100%;max-width:1100px;max-height:92vh;display:flex;flex-direction:column;background:#1B2A4A;border:1px solid rgba(42,173,173,0.3);box-shadow:0 24px 60px rgba(0,0,0,0.7);}
+  .sample-modal-hd{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 1.2rem;border-bottom:1px solid rgba(42,173,173,0.2);background:rgba(27,122,122,0.12);flex-shrink:0;}
+  .sample-modal-hd span{font-size:0.72rem;font-weight:500;color:#2AADAD;}
+  .sample-modal-close{background:none;border:none;color:rgba(255,255,255,0.4);font-size:1.3rem;cursor:pointer;line-height:1;padding:0 0.3rem;}
+  .sample-modal-close:hover{color:#fff;}
+  .sample-modal iframe{width:100%;flex:1;min-height:560px;border:none;display:block;}
 </style>
 </head>
 <body class="ko">
@@ -721,6 +730,13 @@
     <span data-en>Big 4 quality financial analysis. Delivered within 3 business days.</span>
   </p>
 </section>
+
+<div style="text-align:center;padding:1.2rem 1.5rem;border-bottom:1px solid rgba(255,255,255,0.06);">
+  <button onclick="openSamplePreview()" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.55rem 1.2rem;background:transparent;border:1px solid rgba(42,173,173,0.35);color:#2AADAD;font-size:0.75rem;font-weight:500;cursor:pointer;transition:all 0.2s;">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M9 9h6M9 13h4"/></svg>
+    <span data-ko>리포트 샘플 미리보기 →</span><span data-en>Preview sample report →</span>
+  </button>
+</div>
 
 <!-- TWO TRACK CARDS -->
 <div class="tracks">
@@ -877,6 +893,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- BIO -->
 <section class="bio-section">
@@ -1210,6 +1227,33 @@
       if (s === 'en') setLang('en');
     } catch(e) {}
   })();
+
+  function openSamplePreview() {
+    var modal = document.getElementById('sample-modal');
+    var iframe = document.getElementById('sample-iframe');
+    if (iframe && !iframe.src.includes('sample_operational')) {
+      iframe.src = iframe.getAttribute('data-src');
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSamplePreview() {
+    document.getElementById('sample-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSamplePreview();
+  });
 </script>
+
+<div class="sample-modal" id="sample-modal" onclick="if(event.target===this)closeSamplePreview()">
+  <div class="sample-modal-inner">
+    <div class="sample-modal-hd">
+      <span>Sample Report — Core Briefing · Operational Scan &nbsp;·&nbsp; <span style="color:rgba(255,255,255,0.25);font-size:0.62rem;">샘플 데이터 기반 · 참고 전용</span></span>
+      <button class="sample-modal-close" onclick="closeSamplePreview()">✕</button>
+    </div>
+    <iframe id="sample-iframe" src="" data-src="sample_operational.html" style="width:100%;flex:1;min-height:560px;border:none;display:block;" loading="lazy"></iframe>
+  </div>
+</div>
 </body>
 </html>
