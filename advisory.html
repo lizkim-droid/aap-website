@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advisory Services — AAP Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:     #111E35;
+    --navy-mid: #1B2A4A;
+    --navy-card:#162038;
+    --teal:     #1B7A7A;
+    --teal-lt:  #2AADAD;
+    --teal-pale:#EBF5F5;
+    --off-white:#F8F7F4;
+    --cream:    #F2EFE9;
+    --gray:     #7A8FA8;
+    --gray-lt:  #94A3B8;
+    --border:   rgba(255,255,255,0.08);
+    --border-lt:#DDE3EC;
+    --text:     #111E35;
+    --text-mid: #4A5568;
+    --red:      #DC2626;
+    --amber:    #D97706;
+    --serif:    'Playfair Display', serif;
+    --sans:     'DM Sans', sans-serif;
+    --mono:     'DM Sans', monospace;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:var(--sans);background:var(--navy);color:var(--off-white);overflow-x:hidden;word-break:keep-all;overflow-wrap:break-word;}
+
+  /* ── NAV ── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.3rem 4rem;background:#111E35;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .nav-logo{font-family:var(--serif);font-size:1.2rem;font-weight:700;letter-spacing:0.1em;color:var(--off-white);}
+  .nav-logo span{color:var(--teal-lt);}
+  .nav-links{display:flex;gap:2.5rem;list-style:none;margin:0;}
+  .nav-links a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--off-white);}
+  .nav-links a.active{color:var(--teal-lt);}
+  .nav-right{display:flex;align-items:center;gap:2.5rem;}
+  .nav-cta-btn{display:inline-block;padding:0.42rem 1.1rem;background:var(--teal-lt);color:var(--navy);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:background 0.2s;white-space:nowrap;}
+  .nav-cta-btn:hover{background:#35B0B0;}
+  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
+  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
+  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
+  .lt-btn.active { background:#A6A6A6; color:#111E35; }
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+  .hamburger span{display:block;width:22px;height:1.5px;background:var(--off-white);}
+  .mobile-menu{display:none;flex-direction:column;gap:0;position:fixed;top:60px;left:0;right:0;background:var(--navy-mid);z-index:199;border-bottom:1px solid var(--border);padding:1rem 0;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:0.75rem 1.5rem;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);text-decoration:none;border-bottom:1px solid var(--border);}
+  @media(max-width:768px){.hamburger{display:flex;}.nav-right{gap:1rem;}.nav-links{display:none;}nav{padding:1rem 1.5rem;}}
+
+  /* ── HERO ── */
+  .hero{padding:8rem 4rem 4rem;border-bottom:1px solid var(--border);}
+  .hero-inner{max-width:1200px;margin:0 auto;}
+  .eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1.4rem;display:flex;align-items:center;gap:0.8rem;}
+  .eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--teal-lt);}
+  .hero h1{font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1rem;}
+  .hero h1 em{font-style:italic;color:var(--teal-lt);}
+  .hero-sub{font-size:0.92rem;font-weight:300;line-height:1.85;color:var(--gray);max-width:640px;}
+
+  /* ── WRAP ── */
+  .wrap{max-width:1200px;margin:0 auto;padding:4rem;}
+
+  /* ── SERVICE TABS ── */
+  .svc-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:0;background:var(--navy);}
+  .svc-tab{padding:1rem 2rem;font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;white-space:nowrap;}
+  .svc-tab.active{color:var(--teal-lt);border-bottom-color:var(--teal-lt);}
+  .svc-tab:hover{color:var(--off-white);}
+
+  /* ── PANE ── */
+  .svc-pane{display:none;background:var(--navy-mid);border-top:1px solid var(--border);}
+  .svc-pane.active{display:block;}
+  .pane-inner{max-width:1200px;margin:0 auto;padding:4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+  .pane-left h2{font-family:var(--serif);font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;line-height:1.2;margin-bottom:1rem;}
+  .pane-left h2 em{font-style:italic;color:var(--teal-lt);}
+  .pane-tagline{font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;margin-bottom:2rem;}
+  .section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem;}
+  .section-label::before{content:'';display:block;width:1.4rem;height:1px;background:var(--teal-lt);}
+  .includes-list{list-style:none;margin-bottom:1.5rem;}
+  .includes-list li{font-size:0.82rem;font-weight:300;color:var(--off-white);line-height:1.6;padding:0.45rem 0;border-bottom:1px solid var(--border);display:flex;gap:0.6rem;}
+  .includes-list li::before{content:'✓';color:var(--teal-lt);font-size:0.7rem;flex-shrink:0;margin-top:3px;}
+  .excludes-list{list-style:none;margin-bottom:1.8rem;}
+  .excludes-list li{font-size:0.78rem;font-weight:300;color:var(--gray);line-height:1.6;padding:0.35rem 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;gap:0.6rem;}
+  .excludes-list li::before{content:'–';color:var(--gray);font-size:0.7rem;flex-shrink:0;}
+
+  /* ── PRICE BOX ── */
+  .price-box{margin-top:1.6rem;padding:1.2rem 1.4rem;border:1px solid rgba(42,173,173,0.25);background:rgba(27,122,122,0.06);}
+  .price-tag-label{font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.5rem;}
+  .price-tag{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--off-white);margin-bottom:0.2rem;}
+  .price-note{font-size:0.68rem;font-weight:300;color:var(--gray);margin-bottom:0.8rem;}
+  .price-desc{font-size:0.75rem;color:var(--gray);line-height:1.6;margin-bottom:1rem;}
+  .contact-btn{display:inline-block;padding:0.65rem 1.6rem;background:var(--teal-lt);color:var(--navy);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:background 0.2s;}
+  .contact-btn:hover{background:#35B0B0;}
+  .contact-row{display:flex;align-items:center;gap:0.6rem;margin-top:1rem;flex-wrap:wrap;}
+  .contact-icon-btn{display:inline-flex;align-items:center;gap:0.45rem;padding:0.45rem 0.9rem;font-size:0.68rem;font-weight:500;letter-spacing:0.06em;text-decoration:none;border:1px solid;transition:all 0.2s;white-space:nowrap;}
+  .contact-icon-btn.email{border-color:rgba(42,173,173,0.4);color:var(--teal-lt);background:rgba(42,173,173,0.06);}
+  .contact-icon-btn.email:hover{background:rgba(42,173,173,0.14);}
+  .contact-icon-btn.kakao{border-color:rgba(254,229,0,0.4);color:#FEE500;background:rgba(254,229,0,0.06);}
+  .contact-icon-btn.kakao:hover{background:rgba(254,229,0,0.12);}
+  .contact-icon-btn svg{flex-shrink:0;}
+
+  /* ── DATA BOX ── */
+  .data-box{background:var(--navy-card);padding:1.8rem;margin-bottom:1rem;}
+  .data-box h3{font-family:var(--serif);font-size:1rem;font-weight:600;margin-bottom:0.3rem;}
+  .data-box p{font-size:0.78rem;font-weight:300;color:var(--gray);line-height:1.6;margin-bottom:1rem;}
+  .data-list{list-style:none;}
+  .data-list li{display:flex;justify-content:space-between;align-items:baseline;gap:0.5rem;font-size:0.78rem;font-weight:300;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--off-white);}
+  .data-req{font-size:0.62rem;font-weight:500;padding:0.1rem 0.4rem;flex-shrink:0;}
+  .data-req.must{background:rgba(27,122,122,0.2);color:var(--teal-lt);}
+  .data-req.opt{background:rgba(255,255,255,0.06);color:var(--gray);}
+  .data-note{background:rgba(27,122,122,0.06);border-left:2px solid var(--teal);padding:0.8rem 1rem;margin-top:1rem;font-size:0.75rem;color:var(--gray);line-height:1.6;}
+
+  /* ── META ── */
+  .detail-meta{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+  .meta-item{background:var(--navy-card);padding:0.7rem 0.9rem;}
+  .meta-label{font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.25rem;}
+  .meta-value{font-size:0.78rem;font-weight:300;color:var(--off-white);}
+
+  /* ── JOURNEY STRIP ── */
+  .journey{display:flex;align-items:stretch;gap:0;margin-bottom:1.8rem;border:1px solid rgba(42,173,173,0.2);overflow:hidden;}
+  .journey-step{flex:1;padding:0.7rem 1rem;}
+  .journey-step.dim{background:rgba(27,122,122,0.08);border-right:1px solid rgba(42,173,173,0.2);}
+  .journey-step.active{background:rgba(27,122,122,0.18);}
+  .journey-arrow{display:flex;align-items:center;padding:0 0.6rem;background:rgba(27,122,122,0.18);color:var(--teal-lt);font-size:1rem;}
+  .journey-num{font-size:0.62rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.25rem;}
+  .journey-name{font-size:0.82rem;font-weight:500;}
+  .journey-sub{font-size:0.72rem;color:var(--gray);margin-top:0.2rem;}
+
+  /* ── TX CARDS ── */
+  .tx-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+  .tx-card{background:var(--navy-card);padding:1.4rem 1.5rem;border:1px solid var(--border);}
+  .tx-card-phase{font-size:0.62rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.5rem;}
+  .tx-card-title{font-family:var(--serif);font-size:1rem;font-weight:600;margin-bottom:0.6rem;}
+  .tx-card-desc{font-size:0.78rem;font-weight:300;color:var(--gray);line-height:1.7;}
+
+  /* ── DISCLAIMER ── */
+  .disclaimer-bar{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);padding:2rem 4rem;}
+  .disclaimer-inner{max-width:1200px;margin:0 auto;font-size:0.68rem;font-weight:300;color:var(--gray);line-height:1.8;}
+
+  /* ── FOOTER ── */
+  .footer{background:var(--navy);border-top:1px solid var(--border);padding:2rem 4rem;}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+  .footer-logo{font-family:var(--serif);font-size:1rem;font-weight:700;letter-spacing:0.1em;}
+  .footer-logo span{color:var(--teal-lt);}
+  .footer-note{font-size:0.68rem;font-weight:300;color:var(--gray);}
+
+  @media(max-width:768px){
+    .hero{padding:6rem 1.5rem 2.5rem;}
+    .wrap{padding:2.5rem 1.5rem;}
+    .pane-inner{grid-template-columns:1fr;gap:2.5rem;padding:2rem 1.5rem;}
+    .tx-grid{grid-template-columns:1fr;}
+    .detail-meta{grid-template-columns:1fr;}
+    .svc-tabs{overflow-x:auto;}
+    .disclaimer-bar,.footer{padding:1.5rem;}
+  }
+
+  /* lang */
+  body.ko [data-en]{display:none;}
+  body.en [data-ko]{display:none;}
+</style>
+</head>
+<body class="ko">
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AAP<span>.</span></div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
+      <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
+      <li><a href="/#services"><span data-ko>자문 서비스</span><span data-en>Services</span></a></li>
+      <li><a href="/snapshot.html"><span data-ko>브리핑 서비스</span><span data-en>Core Briefing</span></a></li>
+      <li><a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
+      <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
+    </ul>
+    <a href="/snapshot.html" class="nav-cta-btn"><span data-ko>브리핑 받기</span><span data-en>Get Briefing</span></a>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
+    <div class="lang-toggle">
+      <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
+      <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
+  <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
+  <a href="/#services"><span data-ko>자문 서비스</span><span data-en>Services</span></a>
+  <a href="/snapshot.html"><span data-ko>브리핑 서비스</span><span data-en>Core Briefing</span></a>
+  <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
+  <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow"><span data-ko>자문 서비스</span><span data-en>Advisory Services</span></div>
+    <h1>
+      <span data-ko>딜 테이블에 앉기 전,<br><em>숫자를 먼저 준비하는 것</em></span>
+      <span data-en>Before the deal table,<br><em>prepare the numbers first</em></span>
+    </h1>
+    <p class="hero-sub">
+      <span data-ko>Snapshot 진단 이후의 단계입니다. 매달 기업가치를 실질적으로 끌어올리거나, 실제 딜이 왔을 때 오너 편에서 싸우는 — 두 가지 자문 서비스를 제공합니다.</span>
+      <span data-en>The step after your Snapshot diagnostic. Two advisory services — one that builds enterprise value month by month, and one that fights your corner when a deal arrives.</span>
+    </p>
+  </div>
+</div>
+
+<!-- SERVICE TABS -->
+<div style="background:var(--navy);position:sticky;top:66px;z-index:100;border-bottom:1px solid var(--border);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 4rem;">
+    <div class="svc-tabs" style="border-bottom:none;">
+      <button class="svc-tab active" onclick="switchTab('monthly', this)">
+        <span data-ko>A. Monthly Monitor</span><span data-en>A. Monthly Monitor</span>
+      </button>
+      <button class="svc-tab" onclick="switchTab('transaction', this)">
+        <span data-ko>B. 거래 자문</span><span data-en>B. Transaction Advisory</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TAB A: MONTHLY MONITOR ── -->
+<div class="svc-pane active" id="tab-monthly">
+  <div class="pane-inner">
+    <div class="pane-left">
+      <h2><em>Monthly</em> Monitor</h2>
+      <p class="pane-tagline">
+        <span data-ko>Snapshot 진단에서 발견한 이슈를 매달 추적하고, 기업가치에 직접 영향을 미치는 지표를 딜 관점에서 지속 관리합니다. 운전자본 개선, 수익구조 정상화, 예산 관리까지 — 언젠가 올 딜을 위해 숫자를 준비하는 서비스입니다.</span>
+        <span data-en>Tracks issues identified in your Snapshot diagnostic every month and manages the metrics that directly drive enterprise value. Working capital, earnings quality, budget discipline — building the numbers that hold up when a deal arrives.</span>
+      </p>
+
+      <!-- Journey -->
+      <div class="journey">
+        <div class="journey-step dim">
+          <div class="journey-num" style="color:rgba(42,173,173,0.5);">STEP 1</div>
+          <div class="journey-name" style="color:rgba(248,247,244,0.4);">Operational Scan</div>
+          <div class="journey-sub"><span data-ko>3개년 베이스라인 구축</span><span data-en>3-year baseline</span></div>
+        </div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step active">
+          <div class="journey-num" style="color:var(--teal-lt);">STEP 2</div>
+          <div class="journey-name">Monthly Monitor</div>
+          <div class="journey-sub"><span data-ko>딜관점 기업가치 지속관리</span><span data-en>EV-focused ongoing management</span></div>
+        </div>
+      </div>
+
+      <div class="section-label"><span data-ko>포함 분석</span><span data-en>Monthly included</span></div>
+      <ul class="includes-list">
+        <li><span data-ko>수익구조·운전자본·현금흐름·Red Flag — 딜관점으로 매월 갱신</span><span data-en>P&L, working capital, cash flow, red flags — refreshed monthly through a deal lens</span></li>
+        <li><span data-ko>이달의 EV 포커스 인사이트 — 기업가치에 영향을 미치는 핵심 지표 심층 분석 (월별 로테이션)</span><span data-en>Monthly EV focus insight — deep-dive on the metric most affecting enterprise value that month</span></li>
+        <li><span data-ko>Budget vs Actual 분석 — 예산 대비 실적 괴리 원인 코멘트</span><span data-en>Budget vs actual — variance analysis with deal-perspective commentary</span></li>
+        <li><span data-ko>예산 수립 Support — 연간 예산 및 시나리오 검토 (분기 1회)</span><span data-en>Budget preparation support — annual budget and scenario review (quarterly)</span></li>
+        <li><span data-ko>누적 EV 트래킹 — 개선 항목별 기업가치 영향 추정 (반기 1회)</span><span data-en>Cumulative EV tracking — estimated EV impact of improvements made (semi-annual)</span></li>
+      </ul>
+
+      <div class="section-label"><span data-ko>포함되지 않는 것</span><span data-en>Not included</span></div>
+      <ul class="excludes-list">
+        <li><span data-ko>EBITDA 정상화 및 정밀 EV 산정 — 기업가치 정밀 분석 서비스</span><span data-en>EBITDA normalisation and precise EV — Enterprise Value Deep Dive</span></li>
+        <li><span data-ko>딜 실사 및 거래 자문 — 거래 자문 서비스</span><span data-en>Deal diligence and transaction advisory — Transaction Advisory</span></li>
+      </ul>
+
+      <div class="price-box">
+        <div class="price-tag-label">Advisory Service · 월별 구독</div>
+        <div class="price-tag">₩1,590,000</div>
+        <div class="price-note"><span data-ko>/월 · VAT 별도 · 최소 3개월 약정</span><span data-en>/month · excl. VAT · 3-month minimum</span></div>
+        <p class="price-desc">
+          <span data-ko>Monthly Monitor는 지속 자문 서비스로, 온라인 신청폼이 아닌 직접 문의를 통해 시작합니다. 첫 상담에서 현재 상황과 목표를 공유해 주시면 진행 방식을 안내드립니다.</span>
+          <span data-en>Monthly Monitor is an ongoing advisory service that begins with a direct consultation. Share your situation and goals in an initial call and we will take it from there.</span>
+        </p>
+        <div class="contact-row">
+          <a href="mailto:info@aap-partners.com?subject=Monthly Monitor 문의" class="contact-icon-btn email">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            <span>info@aap-partners.com</span>
+          </a>
+          <a href="https://open.kakao.com/o/saap" target="_blank" class="contact-icon-btn kakao" onclick="alert('카카오톡 채널 준비 중입니다.\n이메일로 문의 주세요.')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.582 2 11c0 2.75 1.694 5.17 4.272 6.67L5.5 21l4.035-2.153C10.304 18.947 11.138 19 12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+            <span data-ko>카카오 문의</span><span data-en>KakaoTalk</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane-right">
+      <div class="data-box">
+        <h3><span data-ko>어떻게 진행되나요</span><span data-en>How it works</span></h3>
+        <p><span data-ko>Operational Scan을 베이스라인으로, 매달 딜 관점에서 기업가치에 영향을 미치는 지표를 추적합니다.</span><span data-en>Built on your Operational Scan baseline, we track the metrics that move enterprise value — every month, through a deal lens.</span></p>
+
+        <div style="margin-top:1rem;display:flex;flex-direction:column;gap:0.7rem;">
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:1.4rem;height:1.4rem;background:rgba(42,173,173,0.15);display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:500;color:var(--teal-lt);">1</div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.15rem;"><span data-ko>Operational Scan으로 베이스라인 확정</span><span data-en>Establish baseline via Operational Scan</span></div>
+              <div style="font-size:0.72rem;font-weight:300;color:var(--gray);line-height:1.6;"><span data-ko>이미 받으셨다면 바로 시작 가능합니다.</span><span data-en>Already done? We start from there directly.</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:1.4rem;height:1.4rem;background:rgba(42,173,173,0.15);display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:500;color:var(--teal-lt);">2</div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.15rem;"><span data-ko>매월 EV 포커스 인사이트 + 지표 갱신</span><span data-en>Monthly EV focus insight + metric refresh</span></div>
+              <div style="font-size:0.72rem;font-weight:300;color:var(--gray);line-height:1.6;"><span data-ko>이달에 가장 중요한 기업가치 지표를 심층 분석합니다.</span><span data-en>Deep-dive on the metric most affecting EV that month.</span></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:0.8rem;align-items:flex-start;">
+            <div style="flex-shrink:0;width:1.4rem;height:1.4rem;background:rgba(42,173,173,0.15);display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:500;color:var(--teal-lt);">3</div>
+            <div>
+              <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.15rem;"><span data-ko>반기 EV Impact 리뷰</span><span data-en>Semi-annual EV impact review</span></div>
+              <div style="font-size:0.72rem;font-weight:300;color:var(--gray);line-height:1.6;"><span data-ko>6개월간의 개선이 기업가치에 미친 영향을 정량적으로 추정합니다.</span><span data-en>Quantified estimate of how six months of improvements have moved enterprise value.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-note" style="margin-top:1rem;">
+          <span data-ko>딜이 왔을 때 거래 자문으로 자연스럽게 연결됩니다. 누적된 데이터와 관계를 그대로 활용합니다.</span>
+          <span data-en>When a deal arrives, Monthly Monitor flows naturally into Transaction Advisory — using the same accumulated data and relationship.</span>
+        </div>
+      </div>
+
+      <div class="detail-meta">
+        <div class="meta-item"><div class="meta-label"><span data-ko>납기</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>영업일 10일 기준 72시간</span><span data-en>72hrs from 10th each month</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>납품 형태</span><span data-en>Format</span></div><div class="meta-value"><span data-ko>리포트 + 대시보드 링크</span><span data-en>Report + dashboard link</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>약정</span><span data-en>Commitment</span></div><div class="meta-value"><span data-ko>최소 3개월</span><span data-en>3 months minimum</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>EV 트래킹</span><span data-en>EV tracking</span></div><div class="meta-value"><span data-ko>반기 1회</span><span data-en>Semi-annual</span></div></div>
+      </div>
+    </div>
+  </div>
+
+<!-- SAMPLE DASHBOARD — Monthly Monitor -->
+<div style="background:var(--navy);border-top:1px solid var(--border);padding:3rem 4rem;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:center;">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">
+        <span data-ko>Monthly Monitor 샘플 대시보드</span><span data-en>Monthly Monitor Sample Dashboard</span>
+      </div>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.2rem,2vw,1.6rem);font-weight:700;margin-bottom:0.8rem;">
+        <span data-ko>실제로 받아보시는 <em style="font-style:italic;color:var(--teal-lt);">대시보드 샘플</em>입니다.</span>
+        <span data-en>See what the <em style="font-style:italic;color:var(--teal-lt);">dashboard looks like</em></span>
+      </h2>
+      <p style="font-size:0.85rem;font-weight:300;color:var(--gray);line-height:1.8;">
+        <span data-ko>매월 리포트와 함께 제공되는 인터랙티브 대시보드 샘플입니다. 기간·비교 기준을 조정하면서 확인하실 수 있습니다.</span>
+        <span data-en>The interactive dashboard delivered alongside each monthly report. Adjust slicers for period and comparison to explore.</span>
+      </p>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.6rem;flex-shrink:0;">
+      <button onclick="openDashModal()"
+        style="display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--teal-lt);color:var(--navy);font-size:0.85rem;font-weight:500;border:none;cursor:pointer;white-space:nowrap;transition:background 0.2s;"
+        onmouseover="this.style.background='#35BDBD'" onmouseout="this.style.background='var(--teal-lt)'">
+        <span data-ko>▶ Sample Dashboard 열어보기</span>
+        <span data-en>▶ Open Sample Dashboard</span>
+      </button>
+      <p style="font-size:0.72rem;color:rgba(122,143,168,0.45);margin:0;text-align:right;">
+        <span data-ko>*샘플 데이터 기반</span><span data-en>*Sample data only</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD MODAL -->
+<div id="dash-modal"
+     style="display:none;position:fixed;inset:0;z-index:500;background:rgba(10,16,30,0.88);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:2rem;">
+  <div style="position:relative;width:100%;max-width:1100px;max-height:90vh;display:flex;flex-direction:column;background:var(--navy-card);border:1px solid rgba(42,173,173,0.3);box-shadow:0 24px 60px rgba(0,0,0,0.6);">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0.7rem 1.2rem;border-bottom:1px solid rgba(42,173,173,0.2);background:rgba(27,122,122,0.1);flex-shrink:0;">
+      <span style="font-size:0.78rem;font-weight:500;color:var(--teal-lt);letter-spacing:0.04em;">
+        Sample Dashboard — Monthly Monitor
+      </span>
+      <button onclick="closeDashModal()"
+        style="background:none;border:none;color:var(--gray);font-size:1.3rem;cursor:pointer;line-height:1;padding:0 0.3rem;transition:color 0.2s;"
+        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--gray)'">✕</button>
+    </div>
+    <iframe id="dash-iframe" src="" data-src="aap_dashboard.html"
+            style="width:100%;flex:1;min-height:600px;border:none;display:block;"
+            loading="lazy"></iframe>
+  </div>
+</div>
+
+</div><!-- /tab-monthly -->
+
+<!-- ── TAB B: TRANSACTION ADVISORY ── -->
+<div class="svc-pane" id="tab-transaction">
+  <div class="pane-inner">
+    <div class="pane-left">
+      <h2><em>Transaction</em> Advisory</h2>
+      <p class="pane-tagline">
+        <span data-ko>실제 딜이 왔을 때 오너 편에서 싸우는 서비스입니다. Buy-side / Sell-side 재무실사, Working Capital 협상, SPA 검토까지 — EY 출신 FDD 전문가가 직접 수행합니다.</span>
+        <span data-en>When a deal arrives, this is the service that fights your corner. Buy-side and sell-side financial due diligence, working capital negotiation, SPA review — performed directly by an EY FDD specialist.</span>
+      </p>
+
+      <div class="tx-grid">
+        <div class="tx-card">
+          <div class="tx-card-phase"><span data-ko>기업가치 정밀 분석</span><span data-en>EV Deep Dive</span></div>
+          <div class="tx-card-title"><span data-ko>Enterprise Value<br>Deep Dive</span><span data-en>Enterprise Value<br>Deep Dive</span></div>
+          <p class="tx-card-desc">
+            <span data-ko>Reported 기준을 넘어 원장 수준 데이터로 EBITDA 정상화·리스크 전수 분석·정밀 가치평가를 수행합니다. Buyer 관점의 보수적 시각으로 접근합니다.</span>
+            <span data-en>Beyond reported financials — EBITDA normalisation, full risk analysis and precise valuation using source-level data. Approached from a buyer's perspective.</span>
+          </p>
+        </div>
+        <div class="tx-card">
+          <div class="tx-card-phase"><span data-ko>매각 실사</span><span data-en>Sell-side</span></div>
+          <div class="tx-card-title"><span data-ko>Sell-side VDD<br>지원</span><span data-en>Sell-side VDD<br>Support</span></div>
+          <p class="tx-card-desc">
+            <span data-ko>매각 전 VDD 보고서 작성, EBITDA Add-back 방어 논거 구성, WC Target 협상, Disclosure Letter 준비를 지원합니다.</span>
+            <span data-en>VDD report preparation, EBITDA add-back defence, working capital target negotiation and disclosure letter preparation ahead of a sale.</span>
+          </p>
+        </div>
+        <div class="tx-card">
+          <div class="tx-card-phase"><span data-ko>인수 실사</span><span data-en>Buy-side</span></div>
+          <div class="tx-card-title"><span data-ko>Buy-side FDD<br>지원</span><span data-en>Buy-side FDD<br>Support</span></div>
+          <p class="tx-card-desc">
+            <span data-ko>인수 타깃의 수익 품질·운전자본·Net Debt·DLI를 실사합니다. 숨겨진 리스크를 발견하고 가격 조정 논거를 만들어냅니다.</span>
+            <span data-en>Diligence on earnings quality, working capital, net debt and DLIs of an acquisition target. Identifying hidden risks and building the case for price adjustments.</span>
+          </p>
+        </div>
+        <div class="tx-card">
+          <div class="tx-card-phase"><span data-ko>크로스보더</span><span data-en>Cross-border</span></div>
+          <div class="tx-card-title"><span data-ko>Cross-border<br>Exit</span><span data-en>Cross-border<br>Exit</span></div>
+          <p class="tx-card-desc">
+            <span data-ko>국내에 적합한 Buyer가 없다면 해외로. 한국·호주·일본 네트워크 기반으로 국경을 넘는 매각을 설계합니다.</span>
+            <span data-en>When the right buyer isn't local, we look further. Korea, Australia and Japan networks for cross-border exits.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="price-box">
+        <div class="price-tag-label">Advisory Service · 프로젝트</div>
+        <div class="price-tag" style="font-size:1.2rem;"><span data-ko>별도 협의</span><span data-en>By arrangement</span></div>
+        <div class="price-note"><span data-ko>프로젝트 규모 · 범위에 따라 별도 산정</span><span data-en>Scoped and priced by project</span></div>
+        <p class="price-desc">
+          <span data-ko>거래 자문은 딜의 규모와 범위에 따라 달라집니다. 먼저 상황을 공유해 주시면 적합한 서비스 범위와 가격을 안내드립니다.</span>
+          <span data-en>Transaction advisory is scoped to the deal. Share your situation and we will outline the right scope and fee.</span>
+        </p>
+        <div class="contact-row">
+          <a href="mailto:info@aap-partners.com?subject=거래 자문 문의" class="contact-icon-btn email">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+            <span>info@aap-partners.com</span>
+          </a>
+          <a href="https://open.kakao.com/o/saap" target="_blank" class="contact-icon-btn kakao" onclick="alert('카카오톡 채널 준비 중입니다.\n이메일로 문의 주세요.')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.477 3 2 6.582 2 11c0 2.75 1.694 5.17 4.272 6.67L5.5 21l4.035-2.153C10.304 18.947 11.138 19 12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+            <span data-ko>카카오 문의</span><span data-en>KakaoTalk</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pane-right">
+      <div class="detail-meta" style="margin-bottom:1rem;">
+        <div class="meta-item"><div class="meta-label"><span data-ko>서비스 유형</span><span data-en>Type</span></div><div class="meta-value"><span data-ko>Sell-side / Buy-side / EV Deep Dive</span><span data-en>Sell-side / Buy-side / EV Deep Dive</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>수행 방식</span><span data-en>Delivery</span></div><div class="meta-value"><span data-ko>전담 파트너 직접 수행</span><span data-en>Delivered by senior partner</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>기간</span><span data-en>Timeline</span></div><div class="meta-value"><span data-ko>딜 일정에 맞춤</span><span data-en>Aligned to deal timeline</span></div></div>
+        <div class="meta-item"><div class="meta-label"><span data-ko>크로스보더</span><span data-en>Cross-border</span></div><div class="meta-value"><span data-ko>KR · AU · JP 네트워크</span><span data-en>KR · AU · JP networks</span></div></div>
+      </div>
+      <div class="data-note">
+        <span data-ko>Monthly Monitor 구독 중이신 경우, 누적된 데이터와 관계를 그대로 활용하여 거래 자문으로 자연스럽게 이어집니다.</span>
+        <span data-en>Monthly Monitor subscribers move directly into transaction advisory — same data, same relationship, no restart.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer-bar">
+  <div class="disclaimer-inner">
+    <span data-ko>모든 자문 서비스는 별도 협의를 통해 진행되며, 서비스 범위와 보수는 개별 프로젝트에 따라 달라집니다. 본 페이지의 내용은 참고 목적이며 구속력 있는 제안이 아닙니다.</span>
+    <span data-en>All advisory services are subject to separate engagement terms. Scope and fees vary by project. Content on this page is for reference only and does not constitute a binding offer.</span>
+    &nbsp;|&nbsp; AAP Advisory · aap-partners.com · Confidential
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">AAP<span>.</span></div>
+    <div class="footer-note">© 2026 AAP Advisory · <a href="mailto:info@aap-partners.com" style="color:var(--gray);text-decoration:none;">info@aap-partners.com</a></div>
+  </div>
+</div>
+
+<script>
+  // Lang — identical to index.html
+  window.addEventListener('DOMContentLoaded', function() {
+    var saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
+    setLang(saved === 'en' ? 'en' : 'ko');
+  });
+
+  function setLang(lang) {
+    document.body.className = lang;
+    document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
+    document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
+    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
+  }
+
+  // Mobile menu — identical to index.html
+  function toggleMenu() {
+    var hb = document.getElementById('hamburger');
+    var mm = document.getElementById('mobileMenu');
+    if (!hb || !mm) return;
+    hb.classList.toggle('open');
+    mm.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    var hb = document.getElementById('hamburger');
+    var mm = document.getElementById('mobileMenu');
+    if (!mm || !hb) return;
+    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
+      hb.classList.remove('open');
+      mm.classList.remove('open');
+    }
+  });
+
+  // Tab switch
+  function switchTab(id, btn) {
+    document.querySelectorAll('.svc-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.svc-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + id).classList.add('active');
+  }
+
+  // ── Dashboard modal ──
+  function openDashModal() {
+    var modal = document.getElementById('dash-modal');
+    var iframe = document.getElementById('dash-iframe');
+    if (iframe && !iframe.src.includes('aap_dashboard')) {
+      iframe.src = iframe.getAttribute('data-src');
+    }
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDashModal() {
+    document.getElementById('dash-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('click', function(e) {
+    var modal = document.getElementById('dash-modal');
+    if (modal && e.target === modal) closeDashModal();
+  });
+</script>
+</body>
+</html>
