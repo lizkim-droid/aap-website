@@ -651,45 +651,43 @@
       </button>
     </div>
 
-    <div class="tab-pane active" id="tab-caas">
-      <div class="svc-card fi">
-        <div class="svc-phase">Ongoing Value Up</div>
+    <!-- Tab A: Monthly Monitor -->
+    <div class="tab-pane active" id="tab-caas" style="grid-template-columns:1fr 1fr;gap:0.8rem;">
+      <div class="svc-card fi" style="grid-column:1/-1;">
+        <div class="svc-phase">₩1,590,000 / 월 · Ongoing</div>
         <div class="svc-title"><span data-ko>Monthly Monitor</span><span data-en>Monthly Monitor</span></div>
-        <p class="svc-desc"><span data-ko>기업가치에 직접 영향을 미치는 핵심 재무 지표를 매달 추적합니다. 수익구조·운전자본·현금흐름의 변화를 EV 관점에서 해석하고, 오너의 의사결정에 필요한 시각을 제공합니다.</span><span data-en>Monthly tracking of the financial metrics that directly drive enterprise value. P&L trends, working capital movements and cash flow — interpreted through an EV lens, not just accounting.</span></p>
+        <p class="svc-desc"><span data-ko>Snapshot 진단 이후, 기업가치에 영향을 미치는 핵심 지표를 매달 딜 관점에서 추적·관리합니다. 언젠가 올 딜을 위해 숫자를 준비하는 지속 자문 서비스입니다.</span><span data-en>After your Snapshot diagnostic, track the metrics that drive enterprise value every month — through a deal lens. Building the numbers that hold up when a deal arrives.</span></p>
       </div>
-      <div class="svc-note fi">
-        <span data-ko>코어 브리핑 진단 이후 자연스러운 다음 단계입니다. 진단에서 발견된 이슈를 매달 추적하고, 기업가치 개선 방향을 지속적으로 관리합니다.</span>
-        <span data-en>The natural next step after a Snapshot diagnostic. Tracks issues identified in the report and monitors progress toward a stronger enterprise value over time.</span>
-      </div>
-    </div>
-
-    <div class="tab-pane" id="tab-transaction">
-      <div class="svc-card fi">
-        <div class="svc-phase">프로젝트 · 심층 분석</div>
-        <div class="svc-title"><span data-ko>기업가치 정밀 분석</span><span data-en>Enterprise Value Deep Dive</span></div>
-        <p class="svc-desc"><span data-ko>Reported 기준 진단을 넘어, 원장 수준의 데이터를 기반으로 EBITDA 정상화·리스크 전수 분석·정밀 가치평가를 수행합니다. Buyer 관점의 보수적 시각으로 접근하여, 실제 딜 테이블에서 통하는 숫자를 만들어냅니다.</span><span data-en>Beyond reported financials — EBITDA normalisation, full risk analysis and precise valuation using source-level data. Approached from a buyer's perspective, so the numbers hold up when it matters.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase">인수 / 매각 실사</div>
-        <div class="svc-title"><span data-ko>Transaction Advisory</span><span data-en>Transaction Advisory</span></div>
-        <p class="svc-desc"><span data-ko>Buy-side / Sell-side 재무실사(FDD) · Working Capital peg 협상 · Diligence Q&amp;A 대응 · SPA 검토 지원 등.</span><span data-en>Buy-side and sell-side financial due diligence, working capital peg negotiation, diligence Q&amp;A support and SPA review. When a deal is live, fighting the numbers battle alongside you.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase">크로스보더 M&A 자문</div>
-        <div class="svc-title"><span data-ko>Cross-border Exit</span><span data-en>Cross-border Exit</span></div>
-        <p class="svc-desc"><span data-ko>국내에 적합한 바이어가 없다면 해외로. 한국·호주·일본 네트워크 기반으로 국경을 넘는 매각을 설계합니다.</span><span data-en>When the right buyer isn't local, we look further. Korea, Australia and Japan networks for cross-border exits.</span></p>
-      </div>
-      <div class="svc-note fi">
-        <span data-ko><strong>모든 자문 서비스는 별도 협의입니다.</strong>
-        <span data-en><strong>All advisory services are by arrangement.</strong> Please contact us and we will be in touch.</span>
-      </div>
-
-      <div style="grid-column:1/-1;display:flex;justify-content:flex-end;padding-top:0.5rem;">
-        <a href="/advisory.html" style="font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;border-bottom:1px solid rgba(42,173,173,0.3);padding-bottom:2px;transition:border-color 0.2s;">
+      <div style="grid-column:1/-1;display:flex;justify-content:flex-end;padding-top:0.2rem;">
+        <a href="/advisory.html" style="font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;border-bottom:1px solid rgba(42,173,173,0.3);padding-bottom:2px;">
           <span data-ko>자문 서비스 상세 보기 →</span><span data-en>View advisory services →</span>
         </a>
       </div>
+    </div>
 
+    <!-- Tab B: 거래자문 — 3 cards side by side -->
+    <div class="tab-pane" id="tab-transaction" style="grid-template-columns:1fr 1fr 1fr;gap:0.8rem;">
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>심층 분석</span><span data-en>Deep Dive</span></div>
+        <div class="svc-title"><span data-ko>기업가치<br>정밀 분석</span><span data-en>Enterprise Value<br>Deep Dive</span></div>
+        <p class="svc-desc"><span data-ko>원장 수준 데이터 기반 EBITDA 정상화·리스크 전수 분석·정밀 가치평가. Buyer 관점의 보수적 접근.</span><span data-en>EBITDA normalisation, full risk analysis and precise valuation — approached from a buyer's perspective.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>매각 / 인수 실사</span><span data-en>Sell / Buy-side</span></div>
+        <div class="svc-title"><span data-ko>Transaction<br>Advisory</span><span data-en>Transaction<br>Advisory</span></div>
+        <p class="svc-desc"><span data-ko>Sell-side VDD · Buy-side FDD · Working Capital 협상 · SPA 검토 지원. 딜이 왔을 때 오너 편에서.</span><span data-en>Sell-side VDD, buy-side FDD, working capital negotiation, SPA review — fighting your corner when the deal is live.</span></p>
+      </div>
+      <div class="svc-card fi">
+        <div class="svc-phase"><span data-ko>크로스보더</span><span data-en>Cross-border</span></div>
+        <div class="svc-title"><span data-ko>Cross-border<br>Exit</span><span data-en>Cross-border<br>Exit</span></div>
+        <p class="svc-desc"><span data-ko>국내에 적합한 Buyer가 없다면 해외로. 한국·호주·일본 네트워크 기반 매각 설계.</span><span data-en>When the right buyer isn't local — Korea, Australia and Japan networks for cross-border exits.</span></p>
+      </div>
+      <div style="grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:0.4rem;border-top:1px solid var(--border);">
+        <span style="font-size:0.72rem;font-weight:300;color:var(--gray);"><span data-ko>모든 거래 자문은 별도 협의입니다.</span><span data-en>All transaction advisory by arrangement.</span></span>
+        <a href="/advisory.html" style="font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;border-bottom:1px solid rgba(42,173,173,0.3);padding-bottom:2px;flex-shrink:0;">
+          <span data-ko>자문 서비스 상세 보기 →</span><span data-en>View advisory services →</span>
+        </a>
+      </div>
     </div>
   </div>
 </div>
