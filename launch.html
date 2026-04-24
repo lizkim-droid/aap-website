@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Diagnostic — AAP Advisory launch promotion</title>
+<title>Operational Scan — AAP Advisory · Founding Client Program</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
@@ -709,8 +709,8 @@
 <!-- HERO -->
 <section class="hero">
   <div class="event-badge">
-    <span data-ko>런칭 프로모션 — 초기 고객 대상 특별</span>
-    <span data-en>Launch Event — Limited Spots</span>
+    <span data-ko>Founding Client Program — 초기 클라이언트 한정</span>
+    <span data-en>Founding Client Program — Limited Availability</span>
   </div>
   <h1>
     <span data-ko>지금 사업의 현황과 핵심 이슈를<br><em>빠르게</em> 점검 해드립니다.</span>
@@ -765,13 +765,13 @@
   <!-- TRACK B: 유료 -->
   <div class="track paid" id="track-paid">
     <div class="track-eyebrow">
-      <span data-ko>Track B — 유료 런칭가</span>
-      <span data-en>Track B — Launch Price</span>
+      <span data-ko>Track B — 파운딩 클라이언트 특별가</span>
+      <span data-en>Track B — Founding Client Rate</span>
       <span class="track-status open" data-ko>5건 한정</span>
       <span class="track-status open" data-en>5 spots</span>
     </div>
-    <h2 data-ko>런칭 <em>특가</em></h2>
-    <h2 data-en>Launch <em>Special</em></h2>
+    <h2 data-ko>파운딩 클라이언트 <em>특별 혜택</em></h2>
+    <h2 data-en>Founding Client <em>Benefits</em></h2>
     <div class="track-price" data-ko>₩390,000 <span class="original">₩690,000</span></div>
     <div class="track-price" data-en>₩390,000 <span class="original">₩690,000</span></div>
     <div class="track-price-note">
@@ -787,14 +787,14 @@
       <li><span data-ko>7일 이내 보완 자료 제출 시 1회 무상 업데이트</span><span data-en>One free update if supplementary data within 7 days</span></li>
     </ul>
     <div class="track-condition">
-      <strong data-ko>런칭 특가 종료 후 —</strong>
-      <strong data-en>After launch pricing ends —</strong>
+      <strong data-ko>파운딩 클라이언트 프로그램 종료 후 —</strong>
+      <strong data-en>After the founding client program closes —</strong>
       <span data-ko>정가 ₩690,000으로 복귀. 이후에도 AAP Advisory 웹사이트에서 정가로 신청 가능합니다.</span>
       <span data-en>Returns to ₩690,000. Continued availability at full price on the AAP Advisory website.</span>
     </div>
     <button class="btn-track primary" onclick="openModal('paid')">
       <span data-ko>런칭가로 시작하기 →</span>
-      <span data-en>Start at launch price →</span>
+      <span data-en>Join as founding client →</span>
     </button>
   </div>
 
@@ -922,7 +922,7 @@
       </div>
       <div class="faq-item">
         <p class="faq-q"><span data-ko>무료 진단 마감 후에는요?</span><span data-en>What happens after the free spot is taken?</span></p>
-        <p class="faq-a"><span data-ko>런칭 특가 Track B(₩390,000)로 신청 가능합니다. 이후 정가 ₩690,000으로 서비스가 제공 됩니다.</span><span data-en>Track B at ₩390,000 remains available. After launch pricing, it returns to the full price of ₩690,000.</span></p>
+        <p class="faq-a"><span data-ko>파운딩 클라이언트 Track B(₩390,000)로 신청 가능합니다. 이후 정가 ₩690,000으로 서비스가 제공됩니다.</span><span data-en>Track B at ₩390,000 remains available for founding clients. After the program closes, it returns to the full price of ₩690,000.</span></p>
       </div>
       <div class="faq-item">
         <p class="faq-q"><span data-ko>결과 리포트는 어떻게 받나요?</span><span data-en>How is the report delivered?</span></p>
@@ -1081,11 +1081,11 @@
       pNote.style.display    = 'none';
       mType.value            = '무료 진단 (Track A)';
     } else {
-      badge.textContent      = document.body.classList.contains('ko') ? '런칭 특가 ₩390,000' : 'Launch Price ₩390,000';
-      title.innerHTML        = document.body.classList.contains('ko') ? '런칭 특가 <em>₩390,000</em>' : 'Launch Special <em>₩390,000</em>';
+      badge.textContent      = document.body.classList.contains('ko') ? '파운딩 클라이언트 ₩390,000' : 'Founding Client ₩390,000';
+      title.innerHTML        = document.body.classList.contains('ko') ? '파운딩 클라이언트 <em>₩390,000</em>' : 'Founding Client <em>₩390,000</em>';
       fNote.style.display    = 'none';
       pNote.style.display    = 'block';
-      mType.value            = '런칭 특가 (Track B) ₩390,000';
+      mType.value            = '파운딩 클라이언트 (Track B) ₩390,000';
     }
 
     modal.classList.add('open');
@@ -1119,7 +1119,7 @@
     document.getElementById('m-token').value   = token;
     document.getElementById('m-replyto').value = email;
     document.getElementById('m-subject').value =
-      '[AAP 런칭] ' + (currentTrack === 'free' ? '무료' : '런칭특가') + ' — ' + token;
+      '[AAP Founding Client] ' + (currentTrack === 'free' ? '무료' : '파운딩클라이언트') + ' — ' + token;
 
     var btn = document.querySelector('#modal-form button[type=submit]');
     if (btn) { btn.textContent = '제출 중...'; btn.disabled = true; }
