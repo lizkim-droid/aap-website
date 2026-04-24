@@ -19,736 +19,415 @@
   --serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size:13px;}
-
-/* ── TOPBAR ── */
 .topbar{background:var(--navy);padding:0.65rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--teal);}
 .topbar-logo{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.06em;}
 .topbar-logo span{color:var(--teal-lt);}
 .topbar-meta{font-size:0.62rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.topbar-right{display:flex;align-items:center;gap:0.8rem;}
 .topbar-badge{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.6rem;border:1px solid rgba(42,173,173,0.5);color:var(--teal-lt);}
 .sample-ribbon{background:var(--teal);color:#fff;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.22rem 0.8rem;font-weight:500;}
-
-/* ── COVER ── */
-.cover{background:var(--navy);padding:3rem 2.5rem 2.5rem;border-bottom:1px solid var(--border-dk);}
-.cover-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;}
-.cover-eyebrow{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.8rem;}
-.cover h1{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:0.5rem;}
+.cover{background:var(--navy);padding:2.5rem 2.5rem 2rem;border-bottom:1px solid var(--border-dk);}
+.cover-inner{max-width:1100px;margin:0 auto;}
+.cover-eyebrow{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.7rem;}
+.cover h1{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:0.4rem;}
 .cover h1 em{font-style:italic;color:var(--teal-lt);}
-.cover-sub{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;}
-.cover-kpis{display:flex;flex-direction:column;gap:0.5rem;min-width:200px;}
-.cover-kpi{background:rgba(42,173,173,0.1);border:1px solid rgba(42,173,173,0.2);padding:0.7rem 1rem;}
-.cover-kpi-label{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.2rem;}
-.cover-kpi-val{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#fff;}
-.cover-kpi-sub{font-size:0.6rem;color:rgba(255,255,255,0.35);margin-top:0.1rem;}
-.cover-meta-row{max-width:1100px;margin:1.5rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:2rem;flex-wrap:wrap;}
-.cover-meta-item{font-size:0.65rem;color:rgba(255,255,255,0.3);}
-.cover-meta-item b{color:rgba(255,255,255,0.55);font-weight:500;}
-
-/* ── MAIN ── */
+.cover-sub{font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.6;}
+.cover-meta-row{max-width:1100px;margin:1.2rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:2rem;flex-wrap:wrap;}
+.cover-meta-item{font-size:0.63rem;color:rgba(255,255,255,0.28);}
+.cover-meta-item b{color:rgba(255,255,255,0.5);font-weight:500;}
+.summary-strip{background:var(--navy2);border-bottom:3px solid var(--teal);padding:1.3rem 2rem;}
+.summary-inner{max-width:1100px;margin:0 auto;}
+.summary-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.8rem;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;}
+.summary-item-q{font-size:0.63rem;color:rgba(255,255,255,0.35);margin-bottom:0.3rem;}
+.summary-item-a{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;line-height:1.2;}
+.summary-item-a .good{color:var(--teal-lt);}
+.summary-item-a .warn{color:#F6C90E;}
+.summary-item-a .bad{color:#FC8181;}
+.summary-item-sub{font-size:0.63rem;color:rgba(255,255,255,0.35);margin-top:0.2rem;line-height:1.5;}
 .main{max-width:1100px;margin:0 auto;padding:1.2rem 2rem 3rem;}
-
-/* ── SECTION HEADER ── */
+.finding{background:var(--white);border:1px solid var(--border);margin-bottom:0.8rem;overflow:hidden;}
+.finding-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border);}
+.finding-signal{display:flex;align-items:center;gap:0.5rem;}
+.signal-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.signal-dot.red{background:var(--red);}
+.signal-dot.amber{background:var(--amber);}
+.signal-dot.green{background:var(--green);}
+.signal-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.signal-label.red{color:var(--red);}
+.signal-label.amber{color:var(--amber);}
+.signal-label.green{color:var(--green);}
+.finding-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--navy);}
+.finding-area{font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);border:1px solid var(--border);padding:0.1rem 0.4rem;white-space:nowrap;}
+.finding-body{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.finding-block{padding:1rem 1.2rem;border-right:1px solid var(--border);}
+.finding-block:last-child{border-right:none;}
+.finding-block-label{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;}
+.finding-block-text{font-size:0.78rem;color:var(--text-mid);line-height:1.7;}
+.finding-block-text b{color:var(--text);font-weight:500;}
+.finding-block-text .hl{color:var(--teal);font-weight:500;}
+.finding-block-text .warn{color:var(--amber);font-weight:500;}
+.finding-block-text .bad{color:var(--red);font-weight:500;}
+.finding-number{font-family:var(--serif);font-size:1.6rem;font-weight:700;display:block;margin-bottom:0.2rem;}
+.finding-number.bad{color:var(--red);}
+.finding-number.warn{color:var(--amber);}
+.finding-number.good{color:var(--green);}
+.card{background:var(--white);border:1px solid var(--border);padding:1rem 1.2rem;margin-bottom:0.8rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
 .sec-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.7rem;padding-bottom:0.45rem;border-bottom:1px solid var(--border);}
-.sec-title{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--navy);}
+.sec-title{font-family:var(--serif);font-size:0.9rem;font-weight:700;color:var(--navy);}
 .sec-tag{font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);border:1px solid var(--border);padding:0.1rem 0.4rem;}
-.sec-tag.red{border-color:var(--red);color:var(--red);}
-.sec-tag.amber{border-color:var(--amber);color:var(--amber);}
-.sec-tag.green{border-color:var(--green);color:var(--green);}
-
-/* ── CARDS ── */
-.card{background:var(--white);border:1px solid var(--border);padding:1rem 1.1rem;}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-1{margin-bottom:0.7rem;}
-
-/* ── KPI CARDS ── */
-.kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0.6rem;margin-bottom:0.8rem;}
-.kpi{background:var(--white);border:1px solid var(--border);padding:0.8rem 0.9rem;position:relative;overflow:hidden;}
-.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.kpi.red::after{background:var(--red);}
-.kpi.amber::after{background:var(--amber);}
-.kpi.green::after{background:var(--green);}
-.kpi.teal::after{background:var(--teal);}
-.kpi-label{font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;}
-.kpi-val{font-family:var(--serif);font-size:1.5rem;font-weight:700;color:var(--navy);line-height:1;}
-.kpi-val.red{color:var(--red);}
-.kpi-val.amber{color:var(--amber);}
-.kpi-val.green{color:var(--green);}
-.kpi-delta{font-size:0.6rem;color:var(--text-lt);margin-top:0.25rem;}
-.kpi-delta .up{color:var(--green);}
-.kpi-delta .dn{color:var(--red);}
-.kpi-delta .fl{color:var(--amber);}
-
-/* ── FLAG TABLE ── */
-.flag-table{width:100%;border-collapse:collapse;}
-.flag-table th{font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.7rem;text-align:left;border-bottom:1px solid var(--border);font-weight:400;background:var(--cream);}
-.flag-table td{font-size:0.7rem;padding:0.5rem 0.7rem;border-bottom:1px solid rgba(221,227,236,0.4);vertical-align:top;line-height:1.5;}
-.flag-dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
-.flag-dot.red{background:var(--red);}
-.flag-dot.amber{background:var(--amber);}
-.flag-dot.green{background:var(--green);}
-.flag-cat{font-size:0.57rem;padding:0.05rem 0.35rem;border:1px solid var(--border);color:var(--text-lt);}
-.flag-detail{font-size:0.67rem;color:var(--text-mid);margin-top:0.15rem;line-height:1.5;}
-
-/* ── WC TABLE ── */
+.reco-box{background:var(--navy);padding:1.4rem 1.6rem;margin-bottom:0.8rem;}
+.reco-box-title{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1rem;}
+.reco-items{display:flex;flex-direction:column;gap:0.7rem;}
+.reco-item{display:flex;gap:0.8rem;align-items:flex-start;}
+.reco-num{flex-shrink:0;width:1.4rem;height:1.4rem;background:rgba(42,173,173,0.2);color:var(--teal-lt);font-size:0.62rem;font-weight:500;display:flex;align-items:center;justify-content:center;}
+.reco-head{font-size:0.78rem;font-weight:500;color:#fff;margin-bottom:0.2rem;}
+.reco-desc{font-size:0.72rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;}
+.reco-impact{font-size:0.68rem;color:var(--teal-lt);margin-top:0.2rem;}
 .wc-table{width:100%;border-collapse:collapse;}
 .wc-table th{font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.6rem;text-align:right;border-bottom:1px solid var(--border);font-weight:400;}
 .wc-table th:first-child{text-align:left;}
-.wc-table td{font-size:0.7rem;padding:0.45rem 0.6rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.4);}
+.wc-table td{font-size:0.7rem;padding:0.42rem 0.6rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.4);}
 .wc-table td:first-child{text-align:left;color:var(--text-mid);font-size:0.65rem;}
 .wc-table tr.hl td{background:rgba(42,173,173,0.04);font-weight:500;}
-.wc-pill{font-size:0.58rem;padding:0.04rem 0.35rem;}
-.wc-pill.red{background:var(--red-bg);color:var(--red);}
-.wc-pill.amber{background:var(--amber-bg);color:var(--amber);}
-.wc-pill.green{background:var(--green-bg);color:var(--green);}
-
-/* ── NOTE ── */
-.note{border-left:2px solid var(--teal-lt);background:var(--teal-pale);padding:0.5rem 0.8rem;font-size:0.67rem;color:var(--text-mid);line-height:1.6;margin-top:0.6rem;}
-
-/* ── VERDICT ── */
-.verdict-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;margin-top:0.7rem;}
-.verdict-card{border:1px solid var(--border);padding:0.8rem;text-align:center;}
-.verdict-icon{font-size:1.1rem;margin-bottom:0.3rem;}
-.verdict-label{font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;}
-.verdict-status{font-size:0.72rem;font-weight:500;}
-.verdict-status.red{color:var(--red);}
-.verdict-status.amber{color:var(--amber);}
-.verdict-status.green{color:var(--green);}
-
-/* ── RECO BOX ── */
-.reco-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-top:0.7rem;}
-.reco-item{display:flex;gap:0.7rem;align-items:flex-start;padding:0.6rem 0.8rem;background:var(--cream);border:1px solid var(--border);}
-.reco-num{flex-shrink:0;width:1.3rem;height:1.3rem;background:var(--teal);color:#fff;font-size:0.6rem;font-weight:500;display:flex;align-items:center;justify-content:center;}
-.reco-text{font-size:0.72rem;color:var(--text-mid);line-height:1.6;}
-
-/* ── DISCLAIMER ── */
+.pill{font-size:0.58rem;padding:0.04rem 0.35rem;}
+.pill.red{background:var(--red-bg);color:var(--red);}
+.pill.amber{background:var(--amber-bg);color:var(--amber);}
 .disclaimer{font-size:0.58rem;color:var(--text-lt);border-top:1px solid var(--border);padding-top:0.7rem;margin-top:1rem;line-height:1.7;}
-.watermark{text-align:center;padding:1.5rem;background:var(--navy);color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;}
+.watermark{text-align:center;padding:1rem;background:var(--navy);color:rgba(255,255,255,0.15);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:1rem;">
     <div class="topbar-logo">AAP<span>.</span></div>
     <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
-    <div class="topbar-meta">ATLAS MANUFACTURING CO. &nbsp;|&nbsp; Core Briefing · Operational Scan &nbsp;|&nbsp; FY22A–LTM25</div>
+    <div class="topbar-meta">한성정밀산업㈜ &nbsp;|&nbsp; Core Briefing · Operational Scan &nbsp;|&nbsp; FY23A–최근 12개월 Apr 2026</div>
   </div>
-  <div style="display:flex;align-items:center;gap:0.8rem;">
+  <div class="topbar-right">
     <span class="sample-ribbon">Sample Report</span>
     <span class="topbar-badge">Operational Scan</span>
   </div>
 </div>
 
-<!-- COVER -->
 <div class="cover">
   <div class="cover-inner">
-    <div>
-      <div class="cover-eyebrow">AAP Advisory &nbsp;·&nbsp; Core Briefing &nbsp;·&nbsp; Operational Scan</div>
-      <h1>Atlas Manufacturing Co.<br><em>Operational Scan</em></h1>
-      <p class="cover-sub">업종: 제조업 (일반) &nbsp;·&nbsp; 분석기간: FY22A – LTM Apr 2025<br>
-      Reported 기준 진단 &nbsp;·&nbsp; 잠재 인수자 관점 리스크 분류</p>
-    </div>
-    <div class="cover-kpis">
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">Revenue CAGR</div>
-        <div class="cover-kpi-val">13.8%</div>
-        <div class="cover-kpi-sub">FY22–LTM · 업종 평균 8% 상회</div>
-      </div>
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">EBITDA Margin</div>
-        <div class="cover-kpi-val">14.2%</div>
-        <div class="cover-kpi-sub">LTM · 업종 하단 근접</div>
-      </div>
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">CCC</div>
-        <div class="cover-kpi-val">65일</div>
-        <div class="cover-kpi-sub">YoY +18일 악화</div>
-      </div>
-    </div>
+    <div class="cover-eyebrow">AAP Advisory &nbsp;·&nbsp; Core Briefing &nbsp;·&nbsp; Operational Scan</div>
+    <h1>한성정밀산업㈜<br><em>Operational Scan</em></h1>
+    <p class="cover-sub">보고된 재무제표 기준 진단 &nbsp;·&nbsp; 업종: 제조업 (일반) &nbsp;·&nbsp; 분석기간: FY23A–최근 12개월 Apr 2026</p>
   </div>
   <div class="cover-meta-row">
-    <div class="cover-meta-item"><b>보고기준일</b> &nbsp;2025년 4월</div>
-    <div class="cover-meta-item"><b>분석기준</b> &nbsp;Reported (K-GAAP)</div>
-    <div class="cover-meta-item"><b>통화단위</b> &nbsp;KRW ₩M</div>
+    <div class="cover-meta-item"><b>보고기준일</b> &nbsp;2026년 4월</div>
+    <div class="cover-meta-item"><b>회계기준</b> &nbsp;K-GAAP · 별도재무제표</div>
+    <div class="cover-meta-item"><b>분석기준</b> &nbsp;보고된 재무제표 기준</div>
     <div class="cover-meta-item"><b>Prepared by</b> &nbsp;AAP Advisory</div>
-    <div class="cover-meta-item" style="color:rgba(255,255,255,0.18);">Confidential &nbsp;·&nbsp; Sample Data Only</div>
+    <div class="cover-meta-item" style="color:rgba(255,255,255,0.15);">샘플 데이터 기반 · 참고 전용</div>
+  </div>
+</div>
+
+<div class="summary-strip">
+  <div class="summary-inner">
+    <div class="summary-label">한눈에 보는 요약</div>
+    <div class="summary-grid">
+      <div>
+        <div class="summary-item-q">매출 성장성</div>
+        <div class="summary-item-a"><span class="good">잘 성장하고 있음</span></div>
+        <div class="summary-item-sub">3년 평균 14% 성장 · 업종 평균(8%)의 두 배 수준</div>
+      </div>
+      <div>
+        <div class="summary-item-q">핵심 위험 요인</div>
+        <div class="summary-item-a"><span class="bad">현금 회수 지연</span></div>
+        <div class="summary-item-sub">매출 성장에도 현금 회수 3년 연속 악화</div>
+      </div>
+      <div>
+        <div class="summary-item-q">개선 우선순위</div>
+        <div class="summary-item-a"><span class="warn">3가지 핵심 과제</span></div>
+        <div class="summary-item-sub">현금 회수 속도 · 수익성 방어 · 설비 재투자</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- ── S2 BUSINESS OVERVIEW ── -->
-  <div class="grid-2" style="margin-top:0.2rem;">
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">Business Overview</div>
-        <span class="sec-tag">업종 코드 01 · 제조업 (일반)</span>
-      </div>
-      <table style="width:100%;border-collapse:collapse;">
-        <tbody>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;width:38%;letter-spacing:0.04em;text-transform:uppercase;">법인명</td>
-            <td style="font-size:0.72rem;font-weight:500;padding:0.42rem 0;">Atlas Manufacturing Co., Ltd.</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">업종 분류</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">제조업 (일반) · AAP 코드 01</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">주요 제품</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">산업용 정밀 부품 · 금속 가공품</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">사업 연수</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">설립 2008년 · 17년 업력</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">주요 고객</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">자동차 부품사(Top 1 38%) · 전자 OEM · 중공업</td>
-          </tr>
-          <tr style="border-bottom:1px solid rgba(221,227,236,0.5);">
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">주요 지역</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">국내 82% · 수출 18% (동남아 중심)</td>
-          </tr>
-          <tr>
-            <td style="font-size:0.62rem;color:var(--text-lt);padding:0.42rem 0;text-transform:uppercase;">임직원 수</td>
-            <td style="font-size:0.72rem;padding:0.42rem 0;">약 148명 (생산직 110명 포함)</td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot red"></div><span class="signal-label red">즉시 확인 필요</span></div>
+      <div class="finding-title">매출 대비 현금 창출 부진</div>
+      <span class="finding-area">현금 흐름</span>
     </div>
-
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">매출 구성 (LTM)</div>
-      </div>
-      <!-- Revenue mix bars -->
-      <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.6rem;">제품군별</div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1rem;">
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>정밀 부품 (A라인)</span><span style="font-weight:500;">52%</span>
-          </div>
-          <div style="height:5px;background:var(--border);"><div style="width:52%;height:100%;background:var(--teal);"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>금속 가공품 (B라인)</span><span style="font-weight:500;">31%</span>
-          </div>
-          <div style="height:5px;background:var(--border);"><div style="width:31%;height:100%;background:var(--teal-lt);opacity:0.7;"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>기타 (용역·부자재)</span><span style="font-weight:500;">17%</span>
-          </div>
-          <div style="height:5px;background:var(--border);"><div style="width:17%;height:100%;background:rgba(42,173,173,0.3);"></div></div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="bad finding-number">38%</span>
+          영업이익의 38%만 실제 현금으로 전환되는 구조. 동업종 정상 기업 기준 60% 이상임에 비해 크게 하회. 매출은 증가하는 반면 현금이 누적되지 않는 구조적 문제로 파악.
         </div>
       </div>
-
-      <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.6rem;">지역별</div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;">
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>국내</span><span style="font-weight:500;">82%</span>
-          </div>
-          <div style="height:5px;background:var(--border);"><div style="width:82%;height:100%;background:var(--navy2);"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>수출 (동남아)</span><span style="font-weight:500;">18%</span>
-          </div>
-          <div style="height:5px;background:var(--border);"><div style="width:18%;height:100%;background:var(--teal-lt);opacity:0.5;"></div></div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          지금 이 상태로 매출이 계속 늘면, 오히려 <b class="bad">자금이 더 부족</b>해질 수 있음. 매출 증가 시 선납품·후수금 구조로 인해 운전자금 압박이 함께 심화되는 구조. 추가 차입 없는 성장에 제약 요인으로 작용할 가능성 있음.
         </div>
       </div>
-
-      <div class="note" style="margin-top:0.8rem;">
-        정밀 부품 A라인 매출 비중 52% — 단일 제품군 집중도 높음. 대체 제품군 성장 전략 또는 B라인 확대 필요. 수출 비중 18%로 FX 리스크 제한적.
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          주요 거래처 결제 조건을 <b class="hl">30일 앞당길 경우</b> 연간 약 <b class="hl">₩4억</b> 수준의 현금 회수 가능할 것으로 추정. 확보된 현금은 차입금 감축 또는 설비 재투자 재원으로 활용 가능.
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ── DEAL KPI ROW ── -->
-  <div class="kpi-row" style="margin-top:0.2rem;">
-    <div class="kpi teal">
-      <div class="kpi-label">LTM Revenue</div>
-      <div class="kpi-val">₩12.1B</div>
-      <div class="kpi-delta"><span class="up">↑ +6.1%</span> YoY</div>
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot red"></div><span class="signal-label red">즉시 확인 필요</span></div>
+      <div class="finding-title">거래처 돈이 3년째 늦게 들어오고 있음</div>
+      <span class="finding-area">현금 회수</span>
     </div>
-    <div class="kpi green">
-      <div class="kpi-label">Revenue CAGR (3Y)</div>
-      <div class="kpi-val green">13.8%</div>
-      <div class="kpi-delta">업종 평균 <span class="up">8%</span> 상회</div>
-    </div>
-    <div class="kpi amber">
-      <div class="kpi-label">EBITDA Margin</div>
-      <div class="kpi-val amber">14.2%</div>
-      <div class="kpi-delta">업종 하단 <span class="fl">8~18%</span></div>
-    </div>
-    <div class="kpi amber">
-      <div class="kpi-label">CCC (일)</div>
-      <div class="kpi-val amber">65일</div>
-      <div class="kpi-delta">YoY <span class="dn">↑ +18일</span></div>
-    </div>
-    <div class="kpi red">
-      <div class="kpi-label">FCFF/EBITDA</div>
-      <div class="kpi-val red">38%</div>
-      <div class="kpi-delta">임계값 <span class="dn">&lt;40%</span> RED</div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="bad finding-number">76일</span>
+          납품하고 돈 받기까지 평균 76일. 3년 전 48일. 같은 업종은 <b>30~60일</b> 수준이.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          매월 약 <b class="bad">₩3,000만</b> 수준의 자금이 거래처 장부에 체류 중인 것으로 추정. 특정 거래처의 결제 지연이 주요 원인일 가능성 높음. 특정 거래처에서 결제가 계속 밀리고 있을 가능성이 있음.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          60일 이상 미회수 채권이 전체 매출채권에서 차지하는 비중을 우선 파악 필요. 특정 거래처 집중 문제라면 결제 조건 재협의를 통해 단기간 내 개선 가능할 것으로 판단. 특정 거래처가 원인이라면 결제 조건 재협의만으로도 빠른 개선 가능.
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ── S3 REVENUE QUALITY ── -->
-  <div class="grid-2-1">
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">Revenue Quality</div>
-        <span class="sec-tag green">GREEN</span>
-      </div>
-      <canvas id="chart-rev" height="160"></canvas>
-      <div class="note">FY22–LTM CAGR 13.8%로 업종 평균(8%)을 크게 상회. 단, 반복매출 비중 38%로 업종 기대치(50%+) 하회 — 매출 안정성 관리 필요.</div>
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">추이 확인 권고</span></div>
+      <div class="finding-title">수익이 조금씩 줄고 있음</div>
+      <span class="finding-area">수익성</span>
     </div>
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">고객 집중도</div>
-        <span class="sec-tag amber">YELLOW</span>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:0.3rem;">
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>Top 1 고객 [A사]</span><span style="color:var(--amber);font-weight:500;">38%</span>
-          </div>
-          <div style="height:6px;background:var(--border);"><div style="width:38%;height:100%;background:var(--amber);opacity:0.8;"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>Top 3 고객 합계</span><span style="color:var(--amber);font-weight:500;">62%</span>
-          </div>
-          <div style="height:6px;background:var(--border);"><div style="width:62%;height:100%;background:var(--amber);opacity:0.6;"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>반복 매출 비중</span><span style="color:var(--text-mid);font-weight:500;">38%</span>
-          </div>
-          <div style="height:6px;background:var(--border);"><div style="width:38%;height:100%;background:var(--teal-lt);opacity:0.7;"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--text-mid);margin-bottom:0.2rem;">
-            <span>일회성/프로젝트 매출</span><span style="color:var(--text-mid);">62%</span>
-          </div>
-          <div style="height:6px;background:var(--border);"><div style="width:62%;height:100%;background:var(--text-lt);opacity:0.3;"></div></div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="warn finding-number">14.2%</span>
+          매출 100원 중 14.2원이 영업이익으로 남아요. 3년 전 15.8원. 원재료 비용이 조금씩 올라간 게 원인이.
         </div>
       </div>
-      <div class="note" style="margin-top:0.7rem;">Top 1 집중도 38% YELLOW (임계값 50%). 장기계약 여부 및 대체 고객 파이프라인 확인 권고.</div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          지금은 정상 범위 안이. 하지만 원재료가 계속 오르는데 <b class="warn">납품 가격을 그대로 두면</b> 2년 안에 업종 하단을 이탈할 수 있음.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          원재료가 오르면 납품 단가도 올릴 수 있는 <b class="hl">연동 조항</b>이 계약에 있는지 확인 요망. 이번 계약 갱신 때 반영하는 게 중요함.
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ── S4 MARGIN STRUCTURE ── -->
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">추이 확인 권고</span></div>
+      <div class="finding-title">설비 노후화 진행 — 대규모 재투자 시기 임박</div>
+      <span class="finding-area">설비 · 재투자</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="warn finding-number">28%</span>
+          처음 설비를 살 때의 28%만 장부에 남아있음. 설비가 70% 이상 소모됐다는 뜻이.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          설비가 낡으면 <b class="warn">고장 위험</b>이 높아지고, 한꺼번에 큰 돈이 필요한 상황이 올 수 있음. 준비 없이 맞으면 자금 계획 없이 대응 시 급격한 차입 증가 또는 생산 차질로 이어질 수 있음.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          향후 3년 내 교체 필요 설비 목록 및 예상 비용을 사전에 파악하여 자금 계획에 반영 권고. 사전 준비 시 급격한 차입 증가 방지 가능.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot green"></div><span class="signal-label green">강점</span></div>
+      <div class="finding-title">매출은 업종 평균의 두 배로 성장하고 있음</div>
+      <span class="finding-area">매출 성장</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="good finding-number">+14%</span>
+          3년 평균 매출 성장률 14%로 동업종 평균(8%) 대비 약 2배 수준. 시장 내 경쟁력이 유지되고 있는 것으로 판단.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          매출 성장세가 지속되는 것은 시장 내 경쟁력이 유지되고 있음을 시사. 현금 흐름·수익성 이슈는 성장 과정에서 발생한 관리 공백으로 파악되며, 관리 체계 정비를 통해 개선 가능할 것으로 판단.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">후속 과제</div>
+        <div class="finding-block-text">
+          매출의 38%만이 안정적 반복 매출이. 주요 거래처와 <b class="hl">장기 계약</b>으로 전환하면 성장의 질이 높아지고, 나중에 회사 가치를 평가받을 때도 유리함.
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="grid-2">
     <div class="card">
       <div class="sec-hd">
-        <div class="sec-title">Margin Structure (LTM)</div>
-        <span class="sec-tag amber">YELLOW — 하단 근접</span>
+        <div class="sec-title">매출 · 수익성 추이</div>
+        <span class="sec-tag">FY23–최근 12개월</span>
       </div>
-      <canvas id="chart-margin" height="170"></canvas>
-      <div class="note">LTM 기준 Revenue ₩12.1B → 변동비(원재료+직접인건비) 차감 후 GM ₩3,437M(28.4%) → 고정비(SG&A) 차감 후 EBITDA ₩1,718M(14.2%). 업종 벤치마크(GM 15~35%, EBITDA 8~18%) 내이나 EBITDA가 하단에 근접 중. 고정비 비중이 상대적으로 높아 매출 감소 시 마진 급락 리스크 존재.</div>
+      <canvas id="chart-margin" height="160"></canvas>
     </div>
     <div class="card">
       <div class="sec-hd">
-        <div class="sec-title">비용 구성 추이 (Revenue 대비 %)</div>
-        <span class="sec-tag amber">원재료 부담 증가</span>
+        <div class="sec-title">현금 회수 속도 (일수)</div>
+        <span class="sec-tag">낮을수록 좋음</span>
       </div>
-      <canvas id="chart-cost" height="170"></canvas>
-      <div class="note">원재료비/Rev FY22 39% → LTM 42% (+3pp). 직접인건비는 안정적(24%대). SG&A/Rev FY22 16.2% → LTM 18% — YoY 관리비 증가 추세. 원재료 상승이 GM% 하락의 주 원인으로 판단되며 판가 연동 또는 Hedging 구조 확인 필요.</div>
+      <canvas id="chart-wc" height="160"></canvas>
     </div>
   </div>
 
-  <!-- ── S5 WORKING CAPITAL ── -->
-  <div class="grid-2">
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">Working Capital 추이</div>
-        <span class="sec-tag amber">YELLOW — CCC 악화</span>
-      </div>
-      <table class="wc-table">
-        <thead>
-          <tr>
-            <th>지표</th>
-            <th>FY22</th>
-            <th>FY23</th>
-            <th>FY24</th>
-            <th>LTM</th>
-            <th>업종 정상</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>DSO (일)</td>
-            <td>42</td>
-            <td>48</td>
-            <td>55</td>
-            <td><b>58</b> <span class="wc-pill amber">↑</span></td>
-            <td>30–60일</td>
-          </tr>
-          <tr>
-            <td>DIO (일)</td>
-            <td>36</td>
-            <td>40</td>
-            <td>43</td>
-            <td><b>45</b> <span class="wc-pill amber">↑</span></td>
-            <td>30–60일</td>
-          </tr>
-          <tr>
-            <td>DPO (일)</td>
-            <td>42</td>
-            <td>40</td>
-            <td>39</td>
-            <td><b>38</b></td>
-            <td>30–50일</td>
-          </tr>
-          <tr class="hl">
-            <td>CCC (일)</td>
-            <td>36</td>
-            <td>48</td>
-            <td>59</td>
-            <td><b>65</b> <span class="wc-pill red">↑+18</span></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td>NWC (₩M)</td>
-            <td>680</td>
-            <td>890</td>
-            <td>1,080</td>
-            <td><b>1,240</b></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="note">CCC YoY +18일 악화 — YELLOW. 매출 성장 지속 시 WC 소요 급증 가능성. DSO·DIO 동시 상승 원인 파악 필요.</div>
-    </div>
-
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">CCC 추이</div>
-      </div>
-      <canvas id="chart-wc" height="180"></canvas>
-    </div>
-  </div>
-
-  <!-- ── S6 CAPEX & CASH ── -->
-  <div class="grid-3">
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">CAPEX 구성</div>
-        <span class="sec-tag amber">YELLOW</span>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.3rem;">
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(221,227,236,0.5);font-size:0.7rem;">
-          <span style="color:var(--text-mid);">Maintenance CAPEX</span>
-          <span style="font-weight:500;">₩342M</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(221,227,236,0.5);font-size:0.7rem;">
-          <span style="color:var(--text-mid);">Growth CAPEX</span>
-          <span style="font-weight:500;">₩180M</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;border-bottom:1px solid rgba(221,227,236,0.5);font-size:0.7rem;">
-          <span style="color:var(--text-mid);">D&A (LTM)</span>
-          <span style="font-weight:500;">₩580M</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.5rem 0;font-size:0.7rem;">
-          <span style="color:var(--text-mid);">M.CAPEX / D&A</span>
-          <span style="font-weight:500;color:var(--amber);">59% <span style="font-weight:300;font-size:0.6rem;">↓</span></span>
-        </div>
-      </div>
-      <div class="note">Maintenance CAPEX/D&A 59% — YELLOW (임계값 50%). 재투자 수준이 자산 마모에 미치지 못하는 추세. PP&E 잔존율 확인 권고.</div>
-    </div>
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">PP&E 잔존율</div>
-        <span class="sec-tag amber">YELLOW</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;padding:1rem 0;">
-        <div style="font-family:var(--serif);font-size:2.8rem;font-weight:700;color:var(--amber);">28%</div>
-        <div style="font-size:0.65rem;color:var(--text-lt);margin-top:0.3rem;">NBV / 취득원가</div>
-        <div style="font-size:0.65rem;color:var(--text-lt);">임계값 &lt;20% → RED</div>
-      </div>
-      <div style="display:flex;gap:0.5rem;margin-top:0.3rem;">
-        <div style="flex:1;background:var(--amber-bg);border:1px solid var(--amber);padding:0.5rem;text-align:center;">
-          <div style="font-size:0.58rem;color:var(--amber);letter-spacing:0.08em;text-transform:uppercase;">취득원가</div>
-          <div style="font-size:0.82rem;font-weight:500;color:var(--text);">₩4,820M</div>
-        </div>
-        <div style="flex:1;background:var(--cream);border:1px solid var(--border);padding:0.5rem;text-align:center;">
-          <div style="font-size:0.58rem;color:var(--text-lt);letter-spacing:0.08em;text-transform:uppercase;">NBV</div>
-          <div style="font-size:0.82rem;font-weight:500;color:var(--text);">₩1,350M</div>
-        </div>
-      </div>
-      <div class="note">설비 교체 주기 도래 가능성 — 향후 3년 내 대규모 CAPEX 일정 경영진 확인 권고.</div>
-    </div>
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">현금 창출력</div>
-        <span class="sec-tag red">RED — 38%</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0.8rem 0;">
-        <div style="font-family:var(--serif);font-size:2.8rem;font-weight:700;color:var(--red);">38%</div>
-        <div style="font-size:0.65rem;color:var(--text-lt);margin-top:0.3rem;">FCFF / EBITDA</div>
-        <div style="font-size:0.65rem;color:var(--text-lt);">정상범위 &gt;60%</div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0.4rem;font-size:0.7rem;">
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
-          <span style="color:var(--text-mid);">EBITDA (LTM)</span><span style="font-weight:500;">₩1,718M</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
-          <span style="color:var(--text-mid);">– △NWC</span><span style="color:var(--red);">(₩380M)</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;border-bottom:1px solid rgba(221,227,236,0.5);">
-          <span style="color:var(--text-mid);">– CAPEX</span><span style="color:var(--red);">(₩522M)</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;padding:0.3rem 0;font-weight:500;">
-          <span style="color:var(--text-mid);">FCFF (추정)</span><span style="color:var(--red);">₩653M</span>
-        </div>
-      </div>
-      <div class="note">WC 압박 + CAPEX 부담으로 현금 전환율 38% — RED. 매출 성장 시 추가 자금소요 가능성 높음.</div>
-    </div>
-  </div>
-
-  <!-- ── S7 KEY FINDINGS ── -->
-  <div class="card grid-1">
+  <div class="card">
     <div class="sec-hd">
-      <div class="sec-title">Key Findings & Risk Summary</div>
-      <div style="display:flex;gap:0.5rem;">
-        <span style="font-size:0.6rem;display:flex;align-items:center;gap:0.3rem;"><span class="flag-dot red"></span>RED 2</span>
-        <span style="font-size:0.6rem;display:flex;align-items:center;gap:0.3rem;"><span class="flag-dot amber"></span>YELLOW 4</span>
-      </div>
+      <div class="sec-title">비용 구성 추이 — 원재료가 늘고 있음</div>
+      <span class="sec-tag">매출 대비 %</span>
     </div>
+    <canvas id="chart-cost" height="130"></canvas>
+    <div style="margin-top:0.7rem;padding:0.6rem 0.8rem;background:var(--amber-bg);border-left:2px solid var(--amber);font-size:0.68rem;color:var(--amber);line-height:1.6;">
+      원재료 비용이 3년간 39% → 42%로 상승. 원재료비 비중 FY23 39% → 최근 12개월 42%로 상승. 이 추세 지속 시 수익성 추가 하락 가능. 납품 단가 연동 조항 확인 권고.
+    </div>
+  </div>
 
-    <table class="flag-table">
+  <div class="card">
+    <div class="sec-hd">
+      <div class="sec-title">현금 흐름 현황</div>
+    </div>
+    <table class="wc-table">
       <thead>
-        <tr>
-          <th style="width:18px;"></th>
-          <th style="width:90px;">영역</th>
-          <th>발견 사항</th>
-          <th style="width:160px;">조치 권고</th>
-        </tr>
+        <tr><th style="text-align:left;">항목</th><th>FY23</th><th>FY24</th><th>FY25</th><th>최근 12개월</th><th>업종 정상</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td><span class="flag-dot red"></span></td>
-          <td><span class="flag-cat">Cash</span></td>
-          <td>FCFF/EBITDA 38% — WC 압박 + CAPEX 부담으로 현금 창출력 심각 저하. 임계값(40%) 하회.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">WC 개선 및 CAPEX 우선순위 재검토.</td>
-        </tr>
-        <tr>
-          <td><span class="flag-dot red"></span></td>
-          <td><span class="flag-cat">WC</span></td>
-          <td>CCC YoY +18일 악화 (현 65일). DSO·DIO 동시 상승 — 매출 성장 시 자금 소요 급증 구조.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">AR 회수 프로세스 개선. 재고 증가 원인 파악.</td>
-        </tr>
-        <tr>
-          <td><span class="flag-dot amber"></span></td>
-          <td><span class="flag-cat">Margin</span></td>
-          <td>EBITDA Margin 14.2% — 업종 벤치마크(8~18%) 하단 근접. 원재료비 YoY 3.2pp 상승.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">원가 구조 점검. 판가 연동 여부 확인.</td>
-        </tr>
-        <tr>
-          <td><span class="flag-dot amber"></span></td>
-          <td><span class="flag-cat">CAPEX</span></td>
-          <td>M.CAPEX/D&A 59% — 재투자 부족 추세. PP&E 잔존율 28%, 설비 교체 주기 도래 가능.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">향후 3년 CAPEX 일정 경영진 확인.</td>
-        </tr>
-        <tr>
-          <td><span class="flag-dot amber"></span></td>
-          <td><span class="flag-cat">Revenue</span></td>
-          <td>Top 1 고객 집중도 38% — YELLOW. 반복매출 비중 38%로 업종 기대치(50%+) 하회.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">장기계약 체결 및 고객 다변화 전략 필요.</td>
-        </tr>
-        <tr>
-          <td><span class="flag-dot amber"></span></td>
-          <td><span class="flag-cat">Margin</span></td>
-          <td>GM% YoY 1.8pp 하락 (현 28.4%). 원재료 상승 or 매출 믹스 변화 원인 분석 필요.</td>
-          <td style="font-size:0.66rem;color:var(--text-mid);">GM% 하락 원인 분석. 제품 믹스 재검토.</td>
-        </tr>
+        <tr><td>거래처 돈 받는 데 걸리는 시간</td><td>48일</td><td>55일</td><td>62일</td><td><b>76일</b> <span class="pill red">↑ 악화</span></td><td>30–60일</td></tr>
+        <tr><td>재고가 팔리기까지 걸리는 시간</td><td>40일</td><td>43일</td><td>44일</td><td><b>45일</b></td><td>30–60일</td></tr>
+        <tr><td>내가 납품처에 돈 내는 시간</td><td>40일</td><td>39일</td><td>38일</td><td><b>37일</b></td><td>30–50일</td></tr>
+        <tr class="hl"><td>전체 현금 순환 주기</td><td>48일</td><td>59일</td><td>68일</td><td><b>84일</b> <span class="pill red">↑ 심화</span></td><td>—</td></tr>
       </tbody>
     </table>
+  </div>
 
-    <!-- Verdict -->
-    <div class="verdict-grid">
-      <div class="verdict-card">
-        <div class="verdict-icon">📈</div>
-        <div class="verdict-label">Revenue</div>
-        <div class="verdict-status green">양호</div>
-        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">CAGR 13.8%</div>
+  <div class="card" style="margin-bottom:0.8rem;border-top:3px solid var(--navy);">
+    <div class="sec-hd">
+      <div class="sec-title">업종 평균 대비 종합 진단</div>
+      <span class="sec-tag">제조업 (일반) 벤치마크 기준</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.6rem;">
+      <div style="text-align:center;padding:0.8rem 0.5rem;background:var(--white);border-left:3px solid var(--green);">
+        <div style="font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;">매출 성장</div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--green);margin:0.4rem auto 0.4rem;"></div>
+        <div style="font-size:0.72rem;font-weight:500;color:var(--green);">양호</div>
+        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">14% vs 업종 8%</div>
       </div>
-      <div class="verdict-card">
-        <div class="verdict-icon">💰</div>
-        <div class="verdict-label">Margin</div>
-        <div class="verdict-status amber">주의</div>
-        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">하단 근접</div>
+      <div style="text-align:center;padding:0.8rem 0.5rem;background:var(--white);border-left:3px solid var(--amber);">
+        <div style="font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;">수익성</div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);margin:0.4rem auto 0.4rem;"></div>
+        <div style="font-size:0.72rem;font-weight:500;color:var(--amber);">주의</div>
+        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">14.2% · 하단 근접</div>
       </div>
-      <div class="verdict-card">
-        <div class="verdict-icon">⚙️</div>
-        <div class="verdict-label">Working Capital</div>
-        <div class="verdict-status red">요주의</div>
-        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">CCC 악화</div>
+      <div style="text-align:center;padding:0.8rem 0.5rem;background:var(--white);border-left:3px solid var(--red);">
+        <div style="font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;">현금 회수</div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--red);margin:0.4rem auto 0.4rem;"></div>
+        <div style="font-size:0.72rem;font-weight:500;color:var(--red);">요주의</div>
+        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">76일 vs 업종 30~60일</div>
       </div>
-      <div class="verdict-card">
-        <div class="verdict-icon">🏭</div>
-        <div class="verdict-label">Cash / CAPEX</div>
-        <div class="verdict-status red">요주의</div>
-        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">전환율 38%</div>
+      <div style="text-align:center;padding:0.8rem 0.5rem;background:var(--white);border-left:3px solid var(--red);">
+        <div style="font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;">현금 창출력</div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--red);margin:0.4rem auto 0.4rem;"></div>
+        <div style="font-size:0.72rem;font-weight:500;color:var(--red);">요주의</div>
+        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">38% · 정상 60%+</div>
+      </div>
+      <div style="text-align:center;padding:0.8rem 0.5rem;background:var(--white);border-left:3px solid var(--amber);">
+        <div style="font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;">설비 상태</div>
+        <div style="width:10px;height:10px;border-radius:50%;background:var(--amber);margin:0.4rem auto 0.4rem;"></div>
+        <div style="font-size:0.72rem;font-weight:500;color:var(--amber);">주의</div>
+        <div style="font-size:0.6rem;color:var(--text-lt);margin-top:0.2rem;">잔존율 28% · 교체 임박</div>
       </div>
     </div>
+  </div>
 
-    <!-- Recommendations -->
-    <div style="margin-top:1rem;">
-      <div style="font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.5rem;">개선 권고사항 Top 3</div>
-      <ul class="reco-list">
-        <li class="reco-item">
-          <div class="reco-num">1</div>
-          <div class="reco-text"><b>AR 회수 프로세스 개선 — DSO 58일 → 목표 45일.</b> 목표 달성 시 NWC 약 ₩430M 풀리고 FCFF/EBITDA 64%로 RED 해소. 현금 창출력 직접 강화 — 향후 차입금 상환 또는 재투자 여력 확보.</div>
-        </li>
-        <li class="reco-item">
-          <div class="reco-num">2</div>
-          <div class="reco-text"><b>원재료비 구조 점검 및 판가 연동 계약 확보.</b> YoY 3.2pp 상승 원인이 구조적이면 GM% 추가 하락 불가피. 원가 연동 조항 또는 Hedging 도입 검토.</div>
-        </li>
-        <li class="reco-item">
-          <div class="reco-num">3</div>
-          <div class="reco-text"><b>향후 3년 CAPEX 계획 수립 및 Maintenance 투자 확대.</b> PP&E 잔존율 28%, 설비 교체 지연 시 가동률 저하 리스크. M.CAPEX/D&A를 80% 이상으로 점진 회복 필요.</div>
-        </li>
-      </ul>
+  <div class="reco-box">
+    <div class="reco-box-title">지금 당장 시작할 수 있는 3가지</div>
+    <div class="reco-items">
+      <div class="reco-item">
+        <div class="reco-num">1</div>
+        <div>
+          <div class="reco-head">60일 이상 미수금 현황 파악</div>
+          <div class="reco-desc">매출채권 연령 분석(Aging)을 통해 60일 이상 지연 거래처 파악 권고. 특정 거래처 집중 문제라면 결제 조건 재협의를 통해 연간 수억 원 수준의 현금 회수 가능할 것으로 추정.</div>
+          <div class="reco-impact">→ 현금 전환율 38% → 60%대 회복 가능</div>
+        </div>
+      </div>
+      <div class="reco-item">
+        <div class="reco-num">2</div>
+        <div>
+          <div class="reco-head">납품 계약 내 원재료 연동 조항 확인</div>
+          <div class="reco-desc">원재료가 오르면 납품 단가도 올릴 수 있는 조항이 있는지 확인 요망. 없다면 이번 계약 갱신 때 반영하는 게 중요함.</div>
+          <div class="reco-impact">→ 수익성 하락 방어 · 영업이익률 14% 유지</div>
+        </div>
+      </div>
+      <div class="reco-item">
+        <div class="reco-num">3</div>
+        <div>
+          <div class="reco-head">향후 3년 내 설비 교체 계획 수립</div>
+          <div class="reco-desc">어떤 설비를 언제 교체해야 하는지 미리 정리해두면, 갑자기 큰 돈이 필요한 상황을 피할 수 있음.</div>
+          <div class="reco-impact">→ 급작스러운 자금 압박 사전 방지</div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="disclaimer">
-    본 Operational Scan은 보고된 재무제표 기준 진단입니다. 독립 검증이 완료되지 않았으며, 모든 수치는 경영진 제공 자료 기준입니다. 실제 M&A·투자 협상에 직접 사용하려면 전문가의 직접 검토 및 별도 자문이 필요합니다. &nbsp;·&nbsp; 본 리포트는 샘플 데이터 기반입니다. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · Confidential
+    본 Operational Scan은 보고된 재무제표 기준 진단임. 독립 검증 미완료이며 모든 수치는 경영진 제공 자료 기준. 본 리포트는 샘플 데이터 기반. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · 참고 목적 한정
   </div>
-
 </div>
 
-<div class="watermark">SAMPLE REPORT — FOR ILLUSTRATION PURPOSES ONLY · AAP ADVISORY · aap-partners.com</div>
+<div class="watermark">SAMPLE REPORT — FOR ILLUSTRATION PURPOSES ONLY · AAP ADVISORY</div>
 
 <script>
-const LABELS = ['FY22','FY23','FY24','LTM'];
-const chartOpts = {
-  responsive:true,
-  plugins:{legend:{display:false}},
-  scales:{
-    x:{grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}},
-    y:{grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}}
-  }
-};
+const LABELS = ['FY23','FY24','FY25','최근12개월'];
+const base = {responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}},y:{grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}}}};
 
-// Revenue chart
-new Chart(document.getElementById('chart-rev').getContext('2d'),{
-  type:'bar',
-  data:{
-    labels:LABELS,
-    datasets:[{
-      data:[8200,9800,11400,12100],
-      backgroundColor:['rgba(27,122,122,0.4)','rgba(27,122,122,0.5)','rgba(27,122,122,0.65)','rgba(27,122,122,0.85)'],
-      borderRadius:0
-    }]
-  },
-  options:{...chartOpts,plugins:{...chartOpts.plugins},
-    scales:{...chartOpts.scales,
-      y:{...chartOpts.scales.y,ticks:{...chartOpts.scales.y.ticks,callback:v=>`₩${(v/1000).toFixed(1)}B`}}
-    }
-  }
-});
+new Chart(document.getElementById('chart-margin'),{type:'line',data:{labels:LABELS,datasets:[{label:'매출총이익률(%)',data:[29.8,29.0,28.5,28.4],borderColor:'#2AADAD',backgroundColor:'rgba(42,173,173,0.06)',tension:0.35,pointRadius:4,pointBackgroundColor:'#2AADAD'},{label:'영업이익률(%)',data:[15.2,14.8,14.5,14.2],borderColor:'#B7770D',backgroundColor:'rgba(183,119,13,0.04)',tension:0.35,pointRadius:4,pointBackgroundColor:'#B7770D',borderDash:[5,3]}]},options:{...base,plugins:{legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:10},color:'#4A5568',boxWidth:12}}},scales:{...base.scales,y:{...base.scales.y,ticks:{...base.scales.y.ticks,callback:v=>`${v}%`},min:12,max:32}}}});
 
-// Margin Structure waterfall (LTM) — stacked bar showing Revenue → GM → EBITDA structure
-new Chart(document.getElementById('chart-margin').getContext('2d'),{
-  type:'bar',
-  data:{
-    labels:['Revenue\n₩12.1B','Gross Profit\n₩3.44B (28.4%)','EBITDA\n₩1.72B (14.2%)'],
-    datasets:[
-      {
-        label:'변동비 (원재료+직접인건비)',
-        data:[8663, 0, 0],
-        backgroundColor:'rgba(139,92,92,0.55)',
-      },
-      {
-        label:'Gross Profit',
-        data:[3437, 3437, 0],
-        backgroundColor:'rgba(27,122,122,0.5)',
-      },
-      {
-        label:'고정비·SG&A',
-        data:[0, 1719, 0],
-        backgroundColor:'rgba(183,119,13,0.45)',
-      },
-      {
-        label:'EBITDA',
-        data:[0, 0, 1718],
-        backgroundColor:'rgba(27,122,122,0.85)',
-      }
-    ]
-  },
-  options:{
-    responsive:true,
-    plugins:{
-      legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:9},color:'#4A5568',boxWidth:10,padding:6}},
-      tooltip:{callbacks:{label:ctx=>{
-        const v=ctx.raw;
-        if(!v)return null;
-        const pct=(v/12100*100).toFixed(1);
-        return `${ctx.dataset.label}: ₩${v.toLocaleString()}M (${pct}%)`;
-      }}}
-    },
-    scales:{
-      x:{stacked:true,grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3'}},
-      y:{stacked:true,grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3',callback:v=>`₩${(v/1000).toFixed(0)}B`},max:13000}
-    }
-  }
-});
+new Chart(document.getElementById('chart-wc'),{type:'bar',data:{labels:LABELS,datasets:[{label:'현금 순환 주기',data:[48,59,68,84],backgroundColor:['rgba(183,119,13,0.5)','rgba(183,119,13,0.6)','rgba(192,57,43,0.6)','rgba(192,57,43,0.8)'],borderRadius:0}]},options:{...base,scales:{...base.scales,y:{...base.scales.y,ticks:{...base.scales.y.ticks,callback:v=>`${v}일`},min:0,max:100}}}});
 
-// Cost composition TREND — stacked bar % of Revenue, year by year
-new Chart(document.getElementById('chart-cost').getContext('2d'),{
-  type:'bar',
-  data:{
-    labels:['FY22','FY23','FY24','LTM'],
-    datasets:[
-      {label:'원재료비',data:[39,40,41,42],backgroundColor:'rgba(139,92,92,0.65)'},
-      {label:'직접인건비',data:[24,24,23,24],backgroundColor:'rgba(74,85,104,0.5)'},
-      {label:'기타 COGS',data:[6.8,6.2,6.2,5.8],backgroundColor:'rgba(138,149,163,0.4)'},
-      {label:'SG&A',data:[16.2,16.4,17.2,18.0],backgroundColor:'rgba(183,119,13,0.55)'}
-    ]
-  },
-  options:{
-    responsive:true,
-    plugins:{
-      legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:9},color:'#4A5568',boxWidth:10,padding:6}},
-      tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.raw}%`}}
-    },
-    scales:{
-      x:{stacked:true,grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3'}},
-      y:{stacked:true,max:100,grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3',callback:v=>`${v}%`}}
-    }
-  }
-});
-
-// WC CCC chart
-new Chart(document.getElementById('chart-wc').getContext('2d'),{
-  type:'bar',
-  data:{
-    labels:LABELS,
-    datasets:[
-      {label:'DSO',data:[42,48,55,58],backgroundColor:'rgba(183,119,13,0.7)'},
-      {label:'DIO',data:[36,40,43,45],backgroundColor:'rgba(27,122,122,0.6)'},
-      {label:'DPO (–)',data:[-42,-40,-39,-38],backgroundColor:'rgba(21,128,61,0.5)'}
-    ]
-  },
-  options:{...chartOpts,
-    plugins:{legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:10},color:'#4A5568',boxWidth:10}}},
-    scales:{
-      x:{...chartOpts.scales.x,stacked:true},
-      y:{...chartOpts.scales.y,stacked:true,ticks:{...chartOpts.scales.y.ticks,callback:v=>`${Math.abs(v)}일`}}
-    }
-  }
-});
+new Chart(document.getElementById('chart-cost'),{type:'bar',data:{labels:LABELS,datasets:[{label:'원재료비',data:[39,40,41,42],backgroundColor:'rgba(192,57,43,0.65)'},{label:'직접인건비',data:[24,24,23,24],backgroundColor:'rgba(74,85,104,0.5)'},{label:'기타 제조원가',data:[6,6,6,6],backgroundColor:'rgba(138,149,163,0.4)'},{label:'판관비',data:[16,17,17,18],backgroundColor:'rgba(183,119,13,0.5)'}]},options:{...base,plugins:{legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:9},color:'#4A5568',boxWidth:10,padding:6}}},scales:{x:{stacked:true,grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}},y:{stacked:true,max:100,grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3',callback:v=>`${v}%`}}}}});
 </script>
 </body>
 </html>
