@@ -97,6 +97,54 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
 .pill.amber{background:var(--amber-bg);color:var(--amber);}
 .disclaimer{font-size:0.65rem;color:var(--text-lt);border-top:1px solid var(--border);padding-top:0.7rem;margin-top:1rem;line-height:1.7;}
 .watermark{text-align:center;padding:1rem;background:var(--navy);color:rgba(255,255,255,0.15);font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;}
+
+
+  /* ── LOCK GATE ── */
+  .lock-section { position: relative; min-height: 500px; }
+  .lock-section-fade {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(244,242,237,0.82);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .lock-cta-box {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 500;
+    background: #fff;
+    border-top: 2px solid #1B7A7A;
+    padding: 1.1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 -4px 24px rgba(17,30,53,0.12);
+  }
+  .lock-cta-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: #111E35;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .lock-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: #111E35;
+    margin-bottom: 0.25rem;
+  }
+  .lock-cta-sub { font-size: 0.75rem; color: #8A95A3; line-height: 1.55; }
+  .lock-cta-btn {
+    flex-shrink: 0;
+    padding: 0.75rem 1.6rem;
+    background: #1B7A7A; color: #fff;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none; white-space: nowrap;
+  }
+  .lock-cta-btn:hover { background: #2AADAD; }
+
 </style>
 </head>
 <body>
@@ -211,6 +259,17 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
     </div>
   </div>
 
+
+<div class="lock-section">
+  <div class="lock-section-fade"></div>
+  <div class="lock-cta-box">
+    <div class="lock-cta-icon">🔒</div>
+    <div>
+      <div class="lock-cta-title">전체 내용은 Operational Scan 신청 후 확인 가능합니다</div>
+      <div class="lock-cta-sub">실제 리포트는 귀사 데이터 기반으로 작성됩니다. 업종 벤치마크 비교, 개선 권고사항, 종합 판정 포함.</div>
+    </div>
+    <a href="/snapshot.html" class="lock-cta-btn">브리핑 신청하기 →</a>
+  </div>
   <div class="finding">
     <div class="finding-header">
       <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">추이 확인 권고</span></div>
@@ -234,7 +293,8 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
       <div class="finding-block">
         <div class="finding-block-label">개선 방향</div>
         <div class="finding-block-text">
-          원재료가 오르면 납품 단가도 올릴 수 있는 <b class="hl">연동 조항</b>이 계약에 있는지 확인 요망. 이번 계약 갱신 때 반영하는 게 중요함.
+       
+   원재료가 오르면 납품 단가도 올릴 수 있는 <b class="hl">연동 조항</b>이 계약에 있는지 확인 요망. 이번 계약 갱신 때 반영하는 게 중요함.
         </div>
       </div>
     </div>
@@ -415,6 +475,10 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
   <div class="disclaimer">
     본 Operational Scan은 보고된 재무제표 기준 진단임. 독립 검증 미완료이며 모든 수치는 경영진 제공 자료 기준. 본 리포트는 샘플 데이터 기반. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · 참고 목적 한정
   </div>
+</div>
+</div>
+
+</div>
 </div>
 
 <div class="watermark">SAMPLE REPORT — FOR ILLUSTRATION PURPOSES ONLY · AAP ADVISORY</div>

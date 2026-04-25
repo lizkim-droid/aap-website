@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valuation Scan — Core Briefing · AAP Advisory</title>
+<title>가치평가 스캔 — Core Briefing · AAP Advisory</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
@@ -20,114 +20,151 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size:13px;}
-
 .topbar{background:var(--navy);padding:0.65rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--teal);}
 .topbar-logo{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;letter-spacing:0.06em;}
 .topbar-logo span{color:var(--teal-lt);}
-.topbar-meta{font-size:0.62rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.topbar-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);letter-spacing:0.06em;}
+.topbar-right{display:flex;align-items:center;gap:0.8rem;}
 .topbar-badge{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.18rem 0.6rem;border:1px solid rgba(42,173,173,0.5);color:var(--teal-lt);}
 .sample-ribbon{background:var(--teal);color:#fff;font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;padding:0.22rem 0.8rem;font-weight:500;}
-
-/* COVER */
-.cover{background:var(--navy);padding:3rem 2.5rem 2.5rem;border-bottom:1px solid var(--border-dk);}
-.cover-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;}
-.cover-eyebrow{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.8rem;}
-.cover h1{font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:0.5rem;}
+.cover{background:var(--navy);padding:2.5rem 2.5rem 2rem;border-bottom:1px solid var(--border-dk);}
+.cover-inner{max-width:1100px;margin:0 auto;}
+.cover-eyebrow{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.7rem;}
+.cover h1{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:0.4rem;}
 .cover h1 em{font-style:italic;color:var(--teal-lt);}
-.cover-sub{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.7;}
-.cover-kpis{display:flex;flex-direction:column;gap:0.5rem;min-width:220px;}
-.cover-kpi{background:rgba(42,173,173,0.1);border:1px solid rgba(42,173,173,0.2);padding:0.7rem 1rem;}
-.cover-kpi-label{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.2rem;}
-.cover-kpi-val{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:#fff;}
-.cover-kpi-sub{font-size:0.6rem;color:rgba(255,255,255,0.35);margin-top:0.1rem;}
-.cover-meta-row{max-width:1100px;margin:1.5rem auto 0;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:2rem;flex-wrap:wrap;}
-.cover-meta-item{font-size:0.65rem;color:rgba(255,255,255,0.3);}
-.cover-meta-item b{color:rgba(255,255,255,0.55);font-weight:500;}
-
-/* WARN STRIP */
-.warn-strip{background:rgba(183,119,13,0.08);border:1px solid rgba(183,119,13,0.25);padding:0.5rem 1rem;margin-bottom:0.7rem;font-size:0.67rem;color:var(--amber);line-height:1.6;}
-
-/* MAIN */
+.cover-sub{font-size:0.75rem;font-weight:300;color:rgba(255,255,255,0.4);line-height:1.6;}
+.cover-meta-row{max-width:1100px;margin:1.2rem auto 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.08);display:flex;gap:2rem;flex-wrap:wrap;}
+.cover-meta-item{font-size:0.63rem;color:rgba(255,255,255,0.28);}
+.cover-meta-item b{color:rgba(255,255,255,0.5);font-weight:500;}
+.summary-strip{background:var(--navy2);border-bottom:3px solid var(--teal);padding:1.3rem 2rem;}
+.summary-inner{max-width:1100px;margin:0 auto;}
+.summary-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.8rem;}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;}
+.summary-item-q{font-size:0.63rem;color:rgba(255,255,255,0.35);margin-bottom:0.3rem;}
+.summary-item-a{font-family:var(--serif);font-size:1rem;font-weight:700;color:#fff;line-height:1.2;}
+.summary-item-a .good{color:var(--teal-lt);}
+.summary-item-a .warn{color:#F6C90E;}
+.summary-item-a .bad{color:#FC8181;}
+.summary-item-sub{font-size:0.63rem;color:rgba(255,255,255,0.35);margin-top:0.2rem;line-height:1.5;}
 .main{max-width:1100px;margin:0 auto;padding:1.2rem 2rem 3rem;}
+.finding{background:var(--white);border:1px solid var(--border);margin-bottom:0.8rem;overflow:hidden;}
+.finding-header{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1rem 1.2rem;border-bottom:1px solid var(--border);}
+.finding-signal{display:flex;align-items:center;gap:0.5rem;}
+.signal-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.signal-dot.red{background:var(--red);}
+.signal-dot.amber{background:var(--amber);}
+.signal-dot.green{background:var(--green);}
+.signal-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.signal-label.red{color:var(--red);}
+.signal-label.amber{color:var(--amber);}
+.signal-label.green{color:var(--green);}
+.finding-title{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--navy);}
+.finding-area{font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);border:1px solid var(--border);padding:0.1rem 0.4rem;white-space:nowrap;}
+.finding-body{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.finding-block{padding:1rem 1.2rem;border-right:1px solid var(--border);}
+.finding-block:last-child{border-right:none;}
+.finding-block-label{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;} .finding-block-label_DONE{font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;}
+.finding-block-text{font-size:0.78rem;color:var(--text-mid);line-height:1.7;}
+.finding-block-text b{color:var(--text);font-weight:500;}
+.finding-block-text .hl{color:var(--teal);font-weight:500;}
+.finding-block-text .warn{color:var(--amber);font-weight:500;}
+.finding-block-text .bad{color:var(--red);font-weight:500;}
+.finding-number{font-family:var(--serif);font-size:1.6rem;font-weight:700;display:block;margin-bottom:0.2rem;}
+.finding-number.bad{color:var(--red);}
+.finding-number.warn{color:var(--amber);}
+.finding-number.good{color:var(--green);}
+.card{background:var(--white);border:1px solid var(--border);padding:1rem 1.2rem;margin-bottom:0.8rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:0.8rem;}
 .sec-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0.7rem;padding-bottom:0.45rem;border-bottom:1px solid var(--border);}
-.sec-title{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--navy);}
-.sec-tag{font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);border:1px solid var(--border);padding:0.1rem 0.4rem;}
-
-.card{background:var(--white);border:1px solid var(--border);padding:1rem 1.1rem;}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-2-1{display:grid;grid-template-columns:2fr 1fr;gap:0.7rem;margin-bottom:0.7rem;}
-.grid-1{margin-bottom:0.7rem;}
-
-/* KPI */
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;margin-bottom:0.8rem;}
-.kpi{background:var(--white);border:1px solid var(--border);padding:0.8rem 0.9rem;position:relative;overflow:hidden;}
-.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.kpi.red::after{background:var(--red);}
-.kpi.amber::after{background:var(--amber);}
-.kpi.green::after{background:var(--green);}
-.kpi.teal::after{background:var(--teal);}
-.kpi-label{font-size:0.57rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;}
-.kpi-val{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--navy);line-height:1;}
-.kpi-val.teal{color:var(--teal);}
-.kpi-note{font-size:0.6rem;color:var(--text-lt);margin-top:0.25rem;}
-
-/* BRIDGE TABLE */
-.bridge-table{width:100%;border-collapse:collapse;}
-.bridge-table th{font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.7rem;text-align:right;border-bottom:1px solid var(--border);font-weight:400;}
-.bridge-table th:first-child{text-align:left;}
-.bridge-table td{font-size:0.72rem;padding:0.45rem 0.7rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.4);}
-.bridge-table td:first-child{text-align:left;color:var(--text-mid);font-size:0.68rem;}
-.bridge-table tr.hl td{background:rgba(42,173,173,0.05);font-weight:500;}
-.bridge-table tr.total td{background:var(--navy);color:#fff;font-weight:500;}
-.bridge-table .teal{color:var(--teal);}
-.bridge-table .red{color:var(--red);}
-.bridge-table .green{color:var(--green);}
-
-/* MULTIPLE GRID */
-.mult-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin:0.7rem 0;}
-.mult-card{padding:0.8rem;border:1px solid var(--border);text-align:center;background:var(--cream);}
-.mult-card.mid{border-color:var(--teal);background:rgba(42,173,173,0.04);}
-.mult-scenario{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;}
-.mult-ev{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);}
-.mult-card.mid .mult-ev{color:var(--teal);}
-.mult-eq{font-size:0.68rem;color:var(--text-mid);margin-top:0.2rem;}
-.mult-sub{font-size:0.58rem;color:var(--text-lt);margin-top:0.1rem;}
-
-/* ASSUMPTIONS TABLE */
-.assump-table{width:100%;border-collapse:collapse;}
-.assump-table th{font-size:0.57rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.3rem 0.7rem;text-align:left;border-bottom:1px solid var(--border);font-weight:400;background:var(--cream);}
-.assump-table td{font-size:0.68rem;padding:0.42rem 0.7rem;border-bottom:1px solid rgba(221,227,236,0.4);color:var(--text-mid);}
-.assump-table td:first-child{color:var(--text);}
-.assump-table td:last-child{color:var(--text-lt);font-size:0.62rem;}
-
-.note{border-left:2px solid var(--teal-lt);background:var(--teal-pale);padding:0.5rem 0.8rem;font-size:0.67rem;color:var(--text-mid);line-height:1.6;margin-top:0.6rem;}
-.warn-note{border-left:2px solid var(--amber);background:var(--amber-bg);padding:0.5rem 0.8rem;font-size:0.67rem;color:var(--amber);line-height:1.6;margin-top:0.6rem;}
-
-/* DCF TABLE */
-.dcf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
-.dcf-row{display:flex;justify-content:space-between;align-items:baseline;padding:0.38rem 0;border-bottom:1px solid rgba(221,227,236,0.4);font-size:0.7rem;}
-.dcf-row:last-child{border-bottom:none;}
-.dcf-label{color:var(--text-mid);}
-.dcf-val{font-weight:500;color:var(--text);}
-.dcf-val.teal{color:var(--teal);}
-.dcf-val.red{color:var(--red);}
-
-/* SUMMARY VERDICT */
-.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-top:0.7rem;}
-.summary-card{border:1px solid var(--border);padding:1rem;background:var(--cream);}
-.summary-method{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:0.5rem;}
-.summary-range{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--navy);}
-.summary-sub{font-size:0.65rem;color:var(--text-lt);margin-top:0.2rem;}
-.next-steps{background:var(--navy);padding:1rem 1.2rem;margin-top:0.7rem;}
-.next-steps-title{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.6rem;}
-.next-step-item{display:flex;gap:0.6rem;align-items:flex-start;margin-bottom:0.5rem;}
-.next-step-item:last-child{margin-bottom:0;}
-.next-step-arrow{color:var(--teal-lt);font-size:0.7rem;flex-shrink:0;margin-top:2px;}
-.next-step-text{font-size:0.7rem;font-weight:300;color:rgba(255,255,255,0.65);line-height:1.55;}
-
+.sec-title{font-family:var(--serif);font-size:0.9rem;font-weight:700;color:var(--navy);}
+.sec-tag{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);border:1px solid var(--border);padding:0.1rem 0.4rem;}
+.reco-box{background:var(--navy);padding:1.4rem 1.6rem;margin-bottom:0.8rem;}
+.reco-box-title{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:1rem;}
+.reco-items{display:flex;flex-direction:column;gap:0.7rem;}
+.reco-item{display:flex;gap:0.8rem;align-items:flex-start;}
+.reco-num{flex-shrink:0;width:1.4rem;height:1.4rem;background:rgba(42,173,173,0.2);color:var(--teal-lt);font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;}
+.reco-head{font-size:0.78rem;font-weight:500;color:#fff;margin-bottom:0.2rem;}
+.reco-desc{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.5);line-height:1.6;}
+.reco-impact{font-size:0.78rem;color:var(--teal-lt);margin-top:0.2rem;}
+.wc-table{width:100%;border-collapse:collapse;}
+.wc-table th{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.6rem;text-align:right;border-bottom:1px solid var(--border);font-weight:400;}
+.wc-table th:first-child{text-align:left;}
+.wc-table td{font-size:0.78rem;padding:0.42rem 0.6rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.4);}
+.wc-table td:first-child{text-align:left;color:var(--text-mid);font-size:0.78rem;}
+.wc-table tr.hl td{background:rgba(42,173,173,0.04);font-weight:500;}
+.pill{font-size:0.58rem;padding:0.04rem 0.35rem;}
+.pill.red{background:var(--red-bg);color:var(--red);}
+.pill.amber{background:var(--amber-bg);color:var(--amber);}
 .disclaimer{font-size:0.58rem;color:var(--text-lt);border-top:1px solid var(--border);padding-top:0.7rem;margin-top:1rem;line-height:1.7;}
-.watermark{text-align:center;padding:1.5rem;background:var(--navy);color:rgba(255,255,255,0.2);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;}
+.watermark{text-align:center;padding:1rem;background:var(--navy);color:rgba(255,255,255,0.15);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;}
+
+  .ev-bridge{width:100%;border-collapse:collapse;}
+  .ev-bridge th{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-lt);padding:0.35rem 0.8rem;text-align:right;border-bottom:1px solid var(--border);font-weight:400;}
+  .ev-bridge th:first-child{text-align:left;}
+  .ev-bridge td{font-size:0.78rem;padding:0.45rem 0.8rem;text-align:right;border-bottom:1px solid rgba(221,227,236,0.4);}
+  .ev-bridge td:first-child{text-align:left;color:var(--text-mid);}
+  .ev-bridge tr.sub td:first-child{padding-left:1.4rem;font-size:0.78rem;color:var(--text-lt);}
+  .ev-bridge tr.total td{background:var(--navy);color:#fff;font-weight:500;}
+  .ev-bridge tr.total td:first-child{color:var(--teal-lt);}
+  .ev-bridge .plus{color:var(--green);}
+  .ev-bridge .minus{color:var(--red);}
+  .ev-bridge .teal{color:var(--teal);}
+  .scenario-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem;margin-bottom:0.7rem;}
+  .scenario-card{border:1px solid var(--border);padding:0.9rem 1rem;text-align:center;background:var(--white);}
+  .scenario-card.mid{border-color:var(--teal);border-width:2px;background:rgba(42,173,173,0.03);}
+  .scenario-label{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.4rem;}
+  .scenario-ev{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:var(--navy);}
+  .scenario-card.mid .scenario-ev{color:var(--teal);}
+  .scenario-eq{font-size:0.78rem;color:var(--text-mid);margin-top:0.2rem;}
+  .scenario-mult{font-size:0.78rem;color:var(--text-lt);margin-top:0.1rem;}
+
+
+  /* ── LOCK GATE ── */
+  .lock-section { position: relative; min-height: 500px; }
+  .lock-section-fade {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(244,242,237,0.82);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    z-index: 10;
+    pointer-events: none;
+  }
+  .lock-cta-box {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 500;
+    background: #fff;
+    border-top: 2px solid #1B7A7A;
+    padding: 1.1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    box-shadow: 0 -4px 24px rgba(17,30,53,0.12);
+  }
+  .lock-cta-icon {
+    flex-shrink: 0;
+    width: 40px; height: 40px;
+    background: #111E35;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .lock-cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: #111E35;
+    margin-bottom: 0.25rem;
+  }
+  .lock-cta-sub { font-size: 0.75rem; color: #8A95A3; line-height: 1.55; }
+  .lock-cta-btn {
+    flex-shrink: 0;
+    padding: 0.75rem 1.6rem;
+    background: #1B7A7A; color: #fff;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.06em;
+    text-decoration: none; white-space: nowrap;
+  }
+  .lock-cta-btn:hover { background: #2AADAD; }
+
 </style>
 </head>
 <body>
@@ -137,335 +174,395 @@ body{font-family:var(--sans);background:var(--cream);color:var(--text);font-size
   <div style="display:flex;align-items:center;gap:1rem;">
     <div class="topbar-logo">AAP<span>.</span></div>
     <div style="width:1px;height:16px;background:rgba(255,255,255,0.1);"></div>
-    <div class="topbar-meta">ATLAS MANUFACTURING CO. &nbsp;|&nbsp; Core Briefing · Valuation Scan &nbsp;|&nbsp; Reported Basis</div>
+    <div class="topbar-meta">한성정밀산업㈜ &nbsp;|&nbsp; Core Briefing · 가치평가 스캔 &nbsp;|&nbsp; FY23A–최근 12개월 Apr 2026</div>
   </div>
-  <div style="display:flex;align-items:center;gap:0.8rem;">
+  <div class="topbar-right">
     <span class="sample-ribbon">Sample Report</span>
-    <span class="topbar-badge">Valuation Scan</span>
+    <span class="topbar-badge">가치평가 스캔</span>
   </div>
 </div>
 
 <!-- COVER -->
 <div class="cover">
-  <div class="cover-inner">
+  <div class="cover-inner" style="grid-template-columns:1fr;">
     <div>
-      <div class="cover-eyebrow">AAP Advisory &nbsp;·&nbsp; Core Briefing &nbsp;·&nbsp; Valuation Scan</div>
-      <h1>Atlas Manufacturing Co.<br><em>Valuation Scan</em></h1>
-      <p class="cover-sub">업종: 제조업 (일반) &nbsp;·&nbsp; Pre-Normalisation Basis &nbsp;·&nbsp; Reported 데이터 기준<br>
-      분석기간: FY22A – LTM Apr 2025 &nbsp;·&nbsp; 주방법: EV/EBITDA Multiple &nbsp;·&nbsp; DCF: Cross-check 전용</p>
+      <div class="cover-eyebrow">AAP Advisory &nbsp;·&nbsp; Core Briefing &nbsp;·&nbsp; 가치평가 스캔</div>
+      <h1>한성정밀산업㈜<br><em>가치평가 스캔</em></h1>
+      <p class="cover-sub">보고된 재무제표 기준 · 조정 전 &nbsp;·&nbsp; 업종: 제조업 (일반) &nbsp;·&nbsp; 분석기간: FY23A–최근 12개월 Apr 2026</p>
     </div>
-    <div class="cover-kpis">
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">EBITDA 기준 (LTM)</div>
-        <div class="cover-kpi-val">₩1,718M</div>
-        <div class="cover-kpi-sub">Reported · Indicative adj. 후 ₩1,910M</div>
-      </div>
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">EV 추정 범위</div>
-        <div class="cover-kpi-val">₩7.6B~13.4B</div>
-        <div class="cover-kpi-sub">Multiple method · 4.0x~7.0x</div>
-      </div>
-      <div class="cover-kpi">
-        <div class="cover-kpi-label">Equity Value 범위</div>
-        <div class="cover-kpi-val">₩4.8B~10.6B</div>
-        <div class="cover-kpi-sub">Net Debt ₩2,840M 차감 후 (Base)</div>
-      </div>
-    </div>
+
   </div>
   <div class="cover-meta-row">
-    <div class="cover-meta-item"><b>Valuation Date</b> &nbsp;2025년 4월</div>
-    <div class="cover-meta-item"><b>Reporting Basis</b> &nbsp;K-GAAP · Standalone</div>
-    <div class="cover-meta-item"><b>Normalisation</b> &nbsp;Pre-normalisation · Indicative 조정만</div>
+    <div class="cover-meta-item"><b>보고기준일</b> &nbsp;2026년 4월</div>
+    <div class="cover-meta-item"><b>회계기준</b> &nbsp;K-GAAP · 별도재무제표</div>
+    <div class="cover-meta-item"><b>분석기준</b> &nbsp;보고된 재무제표 기준 · 조정 전</div>
     <div class="cover-meta-item"><b>Prepared by</b> &nbsp;AAP Advisory</div>
-    <div class="cover-meta-item" style="color:rgba(255,255,255,0.18);">Reliance Restricted &nbsp;·&nbsp; Sample Data Only</div>
+    <div class="cover-meta-item" style="color:rgba(255,255,255,0.15);">샘플 데이터 기반 · 참고 목적 한정</div>
   </div>
+</div>
+
+<!-- 3줄 요약 -->
+<div class="summary-strip">
+  <div class="summary-inner">
+    <div class="summary-label">한눈에 보는 요약</div>
+    <div class="summary-grid">
+      <div>
+        <div class="summary-item-q">기업가치 추정 범위</div>
+        <div class="summary-item-a"><span class="good">₩76억~127억</span></div>
+        <div class="summary-item-sub">보고된 영업이익 ₩1,718M · 배수 4.0~7.0배 적용 · 중간 기준 오너 수취 약 ₩71억</div>
+      </div>
+      <div>
+        <div class="summary-item-q">핵심 가치 제고 과제</div>
+        <div class="summary-item-a"><span class="warn">3가지 핵심 과제</span></div>
+        <div class="summary-item-sub">현금 회수 · 반복매출 확대 · 원가 구조 안정화</div>
+      </div>
+      <div>
+        <div class="summary-item-q">정밀 분석 필요 항목</div>
+        <div class="summary-item-a"><span class="warn">추가 조정 항목 미반영</span></div>
+        <div class="summary-item-sub">대표 보수 정상화 · 비경상 항목 분석 미반영</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 참고 안내 -->
+<div style="background:rgba(183,119,13,0.07);border-bottom:1px solid rgba(183,119,13,0.2);padding:0.55rem 2rem;font-size:0.78rem;color:var(--amber);line-height:1.6;">
+  ⚠ 본 리포트는 보고된 재무제표 기준 조정 전 추정 범위임. 대표 보수 정상화, 비경상 항목 정밀 분석 등은 미반영. 실제 거래 협상에 활용하려면 별도 자문 필요.
 </div>
 
 <div class="main">
 
-  <div class="warn-strip">
-    ⚠ 본 리포트는 보고된 재무제표 기반 조정전 (pre-normalisation) 추정 범위입니다. 오너 급여·비경상 항목의 정밀 EBITDA 조정사항은 미포함. 실제 M&A·투자 협상에 직접 사용하려면 전문가 검토 및 별도 자문이 필요합니다.
-  </div>
-
-  <!-- KPI ROW -->
-  <div class="kpi-row">
-    <div class="kpi teal">
-      <div class="kpi-label">Reported EBITDA (LTM)</div>
-      <div class="kpi-val teal">₩1,718M</div>
-      <div class="kpi-note">Margin 14.2%</div>
+  <!-- ── FINDING 1: 기업가치 추정 결과 ── -->
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot teal" style="background:var(--teal-lt);"></div><span class="signal-label" style="color:var(--teal-lt);">핵심 산출 결과</span></div>
+      <div class="finding-title">이 회사의 기업가치는 ₩76억~127억 수준으로 추정</div>
+      <span class="finding-area">기업가치 추정</span>
     </div>
-    <div class="kpi teal">
-      <div class="kpi-label">Indicative Adj. EBITDA</div>
-      <div class="kpi-val teal">₩1,910M</div>
-      <div class="kpi-note">Margin 15.8% · Indicative 기준</div>
-    </div>
-    <div class="kpi teal">
-      <div class="kpi-label">EV 범위 (Multiple)</div>
-      <div class="kpi-val" style="font-size:1.1rem;color:var(--teal);">7.6B~13.4B</div>
-      <div class="kpi-note">4.0x~7.0x 적용</div>
-    </div>
-    <div class="kpi teal">
-      <div class="kpi-label">Equity Value (Base)</div>
-      <div class="kpi-val" style="font-size:1.1rem;color:var(--teal);">4.8B~10.6B</div>
-      <div class="kpi-note">Net Debt ₩2,840M 차감</div>
-    </div>
-  </div>
-
-  <!-- EBITDA BASIS + ASSUMPTIONS -->
-  <div class="grid-2-1">
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">EBITDA Basis</div>
-        <span class="sec-tag">Reported → Indicative Adj. · ₩M</span>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="finding-number" style="color:var(--teal);font-size:1.3rem;">₩76억~127억</span>
+          동업종 거래 기준 배수(4.0x~7.0x)를 보고된 영업이익(₩1,718M)에 적용한 추정 범위. 중간 시나리오(5.5배) 기준 기업가치는 약 ₩94억으로 산출.
+        </div>
       </div>
-      <table class="bridge-table">
-        <thead>
-          <tr>
-            <th style="text-align:left;">항목</th>
-            <th>FY22</th><th>FY23</th><th>FY24</th><th>LTM</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Revenue</td><td>8,200</td><td>9,800</td><td>11,400</td><td>12,100</td></tr>
-          <tr><td>EBITDA (Reported)</td><td>1,296</td><td>1,489</td><td>1,687</td><td>1,718</td></tr>
-          <tr><td>EBITDA Margin %</td><td>15.8%</td><td>15.2%</td><td>14.8%</td><td>14.2%</td></tr>
-          <tr><td style="color:var(--text-lt);font-size:0.62rem;padding-top:0.6rem;border-top:1px solid var(--border);" colspan="5">Indicative Adjustments (LTM 기준)</td></tr>
-          <tr><td style="padding-left:1.2rem;">대표이사 보수 정상화</td><td></td><td></td><td></td><td class="green">+145</td></tr>
-          <tr><td style="padding-left:1.2rem;">일회성 법률비용 (Add-back)</td><td></td><td></td><td></td><td class="green">+82</td></tr>
-          <tr><td style="padding-left:1.2rem;">비반복 수익 (Remove)</td><td></td><td></td><td></td><td class="red">(35)</td></tr>
-          <tr class="hl">
-            <td>Indicative Adj. EBITDA</td>
-            <td></td><td></td><td></td>
-            <td class="teal"><b>1,910</b></td>
-          </tr>
-          <tr><td>Adj. EBITDA Margin %</td><td></td><td></td><td></td><td>15.8%</td></tr>
-        </tbody>
-      </table>
-      <div class="warn-note">Indicative 조정은 제한된 정보 기반 추정치. 정밀 EBITDA 정상화 도출을 위해서는 별도 거래 자문 필요.</div>
-    </div>
-
-    <div class="card">
-      <div class="sec-hd">
-        <div class="sec-title">Key Assumptions</div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          기업가치에서 순차입금(₩2,840M)을 차감하면 <b>오너 수취 가치는 중간 기준 약 ₩71억</b>으로 추정. 단, 이는 보고된 재무제표 기준이며, 대표 보수 정상화 및 비경상 항목 조정 시 수치가 달라질 수 있음.
+        </div>
       </div>
-      <table class="assump-table">
-        <thead><tr><th>항목</th><th>가정값</th></tr></thead>
-        <tbody>
-          <tr><td>업종 분류</td><td>제조업 (일반) · Code 01</td></tr>
-          <tr><td>EBITDA 기준</td><td>LTM Apr 2025</td></tr>
-          <tr><td>EV/EBITDA — Low</td><td><b>4.0x</b></td></tr>
-          <tr><td>EV/EBITDA — Mid</td><td><b>5.5x</b></td></tr>
-          <tr><td>EV/EBITDA — High</td><td><b>7.0x</b></td></tr>
-          <tr><td>집중도 Discount</td><td>5% (Top1 38%)</td></tr>
-          <tr><td>Net Debt 기준</td><td>BS 정의 · FY24</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:1rem;">
-        <div style="font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">DCF Cross-check 가정</div>
-        <table class="assump-table">
-          <tbody>
-            <tr><td>WACC</td><td>11.5%</td></tr>
-            <tr><td>Perpetual growth (g)</td><td>2.5%</td></tr>
-            <tr><td>Revenue growth (F)</td><td>8.0% / yr</td></tr>
-            <tr><td>EBITDA Margin (F)</td><td>14.5%</td></tr>
-            <tr><td>Tax rate</td><td>22%</td></tr>
-          </tbody>
-        </table>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          수익성 1%p 개선 시 중간 배수(5.5배) 기준으로 기업가치 약 <b class="hl">₩6~7억 추가 상승</b> 가능할 것으로 추정. 반복매출 비중 확대 시 배수 자체가 상향될 수 있어 복합적 효과 기대 가능.
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- MULTIPLE METHOD + EV BRIDGE -->
+  <!-- ── 시나리오별 추정 ── -->
+  <div class="card">
+    <div class="sec-hd">
+      <div class="sec-title">시나리오별 기업가치 추정</div>
+      <span class="sec-tag">보고된 영업이익 ₩1,718M 기준 · 순차입금 ₩2,840M 차감</span>
+    </div>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <div class="scenario-label">보수적 시나리오 · 배수 4.0배</div>
+        <div class="scenario-ev">₩68억</div>
+        <div class="scenario-eq">오너 수취 약 ₩40억</div>
+        <div class="scenario-mult">고객 집중도 조정 반영 후</div>
+      </div>
+      <div class="scenario-card mid">
+        <div class="scenario-label">기준 시나리오 · 배수 5.5배</div>
+        <div class="scenario-ev">₩94억</div>
+        <div class="scenario-eq">오너 수취 약 ₩71억</div>
+        <div class="scenario-mult">업종 중간 배수 적용</div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-label">낙관 시나리오 · 배수 7.0배</div>
+        <div class="scenario-ev">₩120억</div>
+        <div class="scenario-eq">오너 수취 약 ₩99억</div>
+        <div class="scenario-mult">성장 스토리 입증 시</div>
+      </div>
+    </div>
+    <table class="ev-bridge">
+      <thead>
+        <tr><th style="text-align:left;">항목</th><th>보수적</th><th>기준</th><th>낙관</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>보고된 영업이익 (최근 12개월)</td><td>1,718</td><td>1,718</td><td>1,718</td></tr>
+        <tr><td>× 적용 배수</td><td>4.0배</td><td class="teal">5.5배</td><td>7.0배</td></tr>
+        <tr><td>기업가치 (₩M)</td><td>6,872</td><td class="teal">9,449</td><td>12,026</td></tr>
+        <tr class="sub"><td>– 고객 집중도 조정 (–5%)</td><td class="minus">(344)</td><td class="minus">(472)</td><td class="minus">(601)</td></tr>
+        <tr><td>조정 후 기업가치</td><td>6,528</td><td class="teal"><b>8,977</b></td><td>11,425</td></tr>
+        <tr><td>– 순차입금</td><td class="minus">(2,840)</td><td class="minus">(2,840)</td><td class="minus">(2,840)</td></tr>
+        <tr class="total"><td>오너 수취 가치 (추정)</td><td>3,688</td><td>6,137</td><td>8,585</td></tr>
+      </tbody>
+    </table>
+    <div style="font-size:0.78rem;color:var(--text-lt);margin-top:0.5rem;line-height:1.6;">
+      * 단위: ₩M (백만원) &nbsp;·&nbsp; 고객 집중도 조정: Top 1 거래처 38% 집중에 따른 –5% 조정 반영 &nbsp;·&nbsp; 부채성 항목(소송, 퇴직급여 미적립 등)은 미산정(n.q.)
+    </div>
+  </div>
+  <div class="lock-gate-cta"><div class="lock-icon">🔒</div><div><div class="lock-cta-title">전체 내용은 가치평가 스캔 신청 후 확인 가능합니다</div><div class="lock-cta-sub">실제 리포트는 귀사 데이터 기반으로 작성됩니다. 시나리오별 기업가치, 오너 수취 가치, 가치 제고 과제 포함.</div></div><a href="/snapshot.html" class="lock-cta-btn">브리핑 신청하기 →</a></div>
+
+  <!-- ── FINDING 2: 가치에 영향을 주는 요인들 ── -->
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">가치 할인 요인</span></div>
+      <div class="finding-title">고객 집중도 과도 — 배수 할인 요인으로 작용</div>
+      <span class="finding-area">매출 구조</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="warn finding-number">38%</span>
+          Top 1 거래처가 전체 매출의 38%를 차지. 반복매출(장기계약·구독) 비중은 38%로 동업종 기대치(50%+) 대비 낮은 수준.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          인수자 입장에서는 특정 거래처 의존도가 높은 경우 계약 해지 리스크를 이유로 <b class="warn">배수 하향 조정 또는 가격 인하를 요구</b>하는 경우가 많음. 반복매출 비중이 낮을수록 미래 현금흐름 예측가능성이 낮다는 이유로 가치 할인 요인으로 작용.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          주요 거래처 대상 장기 계약 전환 권고. 반복매출 비중을 50% 수준까지 높일 경우 <b class="hl">배수 상향(4.5→5.5배) 가능성</b>이 있으며, 이 경우 기업가치 약 ₩17억 추가 상승 가능할 것으로 추정.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FINDING 3: 수익성 ── -->
+
+<div class="lock-section">
+  <div class="lock-section-fade"></div>
+  <div class="lock-cta-box">
+    <div class="lock-cta-icon">🔒</div>
+    <div>
+      <div class="lock-cta-title">전체 내용은 가치평가 스캔 신청 후 확인 가능합니다</div>
+      <div class="lock-cta-sub">실제 리포트는 귀사 데이터 기반으로 작성됩니다. 시나리오별 기업가치, 오너 수취 가치, 가치 제고 과제 포함.</div>
+    </div>
+    <a href="/snapshot.html" class="lock-cta-btn">브리핑 신청하기 →</a>
+  </div>
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">가치 할인 요인</span></div>
+      <div class="finding-title">영업이익률 하락 추세 — 인수자 배수 할인 논거로 활용 가능</div>
+      <span class="finding-area">수익성</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="warn finding-number">14.2%</span>
+          영업이익률 FY23(15.2%) 대비 1.0%p 하락. 원재료비 비중이 동기간 39%→42%로 상승한 것이 주요 원인으로 파악.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          3년 연속 수익성 하락 추세는 인수자 입장에서 <b class="warn">구조적 문제</b>로 해석될 가능성 있음. 이 경우 적용 배수 하향 조정 논거로 활용될 수 있으며, Normalisation 조정 전 기준으로는 실제 수익력이 더 낮게 보일 수 있음.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          납품 계약 내 원재료 연동 조항 반영 및 판가 정상화 추진 권고. 영업이익률 1%p 개선(14.2%→15.2%) 시 기준 배수(5.5배) 기준 기업가치 약 <b class="hl">₩6.7억 추가 상승</b> 가능할 것으로 추정.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FINDING 4: 차입금 ── -->
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot amber"></div><span class="signal-label amber">오너 수취 가치 감소 요인</span></div>
+      <div class="finding-title">순차입금 부담 상당 — 오너 수취 가치 직접 축소</div>
+      <span class="finding-area">차입금 구조</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="warn finding-number">₩2,840M</span>
+          총 차입금 ₩3,420M에서 보유 현금 ₩580M을 차감한 순차입금. 기준 시나리오 기업가치(₩8,977M) 대비 31.6% 수준.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          기업가치에서 순차입금을 차감한 금액이 실제 오너에게 돌아오는 금액. 차입금 수준이 높을수록 <b class="warn">오너 수취 가치가 비례 이상으로 줄어드는 구조</b>. 소송·퇴직급여 미적립 등 부채성 항목은 현재 미산정으로, 실사 시 추가 차감 가능성 있음.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">개선 방향</div>
+        <div class="finding-block-text">
+          매출채권 회수 속도 개선을 통한 현금 창출 강화 → 차입금 단계적 감축 권고. 순차입금 ₩500M 감축 시 오너 수취 가치 동일 금액 직접 상승. 소송·퇴직충당 등 잠재 부채성 항목 사전 파악 필요.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FINDING 5: 강점 ── -->
+  <div class="finding">
+    <div class="finding-header">
+      <div class="finding-signal"><div class="signal-dot green"></div><span class="signal-label green">가치 상향 요인</span></div>
+      <div class="finding-title">업종 평균 상회 성장세 — 배수 상향 근거</div>
+      <span class="finding-area">성장성</span>
+    </div>
+    <div class="finding-body">
+      <div class="finding-block">
+        <div class="finding-block-label">발견 사항</div>
+        <div class="finding-block-text">
+          <span class="good finding-number">+14%</span>
+          3년 평균 매출 성장률 14%로 동업종 평균(8%) 대비 약 2배 수준. 매출 기반 자체는 견조하게 확대되는 추세.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">시사점</div>
+        <div class="finding-block-text">
+          성장성이 입증될 경우 인수자 입장에서 <b class="hl">배수 상단 적용 논거</b>로 활용 가능. 다만, 이를 뒷받침하기 위해서는 성장의 원천(특정 거래처 vs 시장 전반)과 지속 가능성에 대한 근거 자료가 필요.
+        </div>
+      </div>
+      <div class="finding-block">
+        <div class="finding-block-label">후속 과제</div>
+        <div class="finding-block-text">
+          성장 스토리의 신뢰도 강화를 위해 주요 거래처 장기계약 현황, 수주 잔고, 신규 고객 파이프라인 등 <b class="hl">정량적 근거 자료 준비</b> 권고.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 업종 배수 벤치마크 차트 ── -->
   <div class="grid-2">
     <div class="card">
       <div class="sec-hd">
-        <div class="sec-title">EV/EBITDA Multiple Method</div>
-        <span class="sec-tag">제조업 (일반) 벤치마크</span>
+        <div class="sec-title">업종별 기업가치 배수 범위</div>
+        <span class="sec-tag">동업종 거래 참고 기준</span>
       </div>
-      <canvas id="chart-multiple" height="140"></canvas>
-      <div class="mult-grid">
-        <div class="mult-card">
-          <div class="mult-scenario">Low · 4.0x</div>
-          <div class="mult-ev">₩7,640M</div>
-          <div class="mult-eq">Equity ₩4,800M</div>
-          <div class="mult-sub">Discount 반영 후</div>
-        </div>
-        <div class="mult-card mid">
-          <div class="mult-scenario">Mid · 5.5x</div>
-          <div class="mult-ev">₩10,505M</div>
-          <div class="mult-eq">Equity ₩7,665M</div>
-          <div class="mult-sub">기준 시나리오</div>
-        </div>
-        <div class="mult-card">
-          <div class="mult-scenario">High · 7.0x</div>
-          <div class="mult-ev">₩13,370M</div>
-          <div class="mult-eq">Equity ₩10,530M</div>
-          <div class="mult-sub">성장 스토리 입증 시</div>
-        </div>
+      <canvas id="chart-multiple" height="170"></canvas>
+      <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:rgba(42,173,173,0.06);border-left:2px solid var(--teal-lt);font-size:0.78rem;color:var(--text-mid);line-height:1.6;">
+        제조업(일반) 기준 4.0x~7.0x 적용. 반복매출 비중·고객 집중도·성장성에 따라 배수 상·하단 결정. 비상장 프리미엄 할인(20~30%)이 이미 반영된 범위.
       </div>
-      <div class="note">집중도 Discount 5% 적용 (Top 1 고객 38%). Adj. EBITDA ₩1,910M 기준. 업종 정상 멀티플 범위 4.0x~7.0x.</div>
     </div>
-
     <div class="card">
       <div class="sec-hd">
-        <div class="sec-title">EV to Equity Value Bridge</div>
-        <span class="sec-tag">₩M · Mid 시나리오 기준</span>
+        <div class="sec-title">기업가치 민감도</div>
+        <span class="sec-tag">영업이익 변화에 따른 기업가치 (기준 배수 5.5배)</span>
       </div>
-      <table class="bridge-table">
-        <thead>
-          <tr><th style="text-align:left;">항목</th><th>Low</th><th>Mid</th><th>High</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>EV (Multiple method)</td><td>8,040</td><td>10,505</td><td>13,370</td></tr>
-          <tr class="hl"><td>– Discount 반영 후 EV</td><td>7,640</td><td class="teal">9,980</td><td>12,702</td></tr>
-          <tr><td>– Net Debt (FY24)</td><td class="red">(2,840)</td><td class="red">(2,840)</td><td class="red">(2,840)</td></tr>
-          <tr><td>– Potential DLI</td><td class="red">(n.q.)</td><td class="red">(n.q.)</td><td class="red">(n.q.)</td></tr>
-          <tr class="hl"><td>Equity Value — Base</td><td>4,800</td><td class="teal"><b>7,140</b></td><td>9,862</td></tr>
-          <tr><td style="font-size:0.62rem;color:var(--text-lt);">Implied EV/EBITDA (check)</td><td>4.0x</td><td>5.2x</td><td>6.7x</td></tr>
-        </tbody>
-      </table>
-      <div class="note">Mid 시나리오 기준 Indicative Equity Value <b>₩7,140M</b>. Net Debt/EBITDA 1.49x — 적정 수준. DLI 정량화 여부에 따라 Conservative 값 달라짐.</div>
-      <div style="margin-top:0.6rem;padding:0.6rem 0.8rem;background:var(--cream);border:1px solid var(--border);">
-        <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;">Net Debt 구성 (FY24)</div>
-        <div style="display:flex;gap:1rem;font-size:0.68rem;">
-          <div>차입금 합계 <b>₩3,420M</b></div>
-          <div>현금 <b style="color:var(--green);">₩580M</b></div>
-          <div>Net Debt <b style="color:var(--red);">₩2,840M</b></div>
+      <canvas id="chart-sensitivity" height="170"></canvas>
+      <div style="margin-top:0.6rem;padding:0.5rem 0.7rem;background:rgba(42,173,173,0.06);border-left:2px solid var(--teal-lt);font-size:0.78rem;color:var(--text-mid);line-height:1.6;">
+        영업이익률 1%p 개선 시 기준 배수(5.5배) 적용 기업가치 약 ₩6.7억 상승. 배수 상향(5.5→6.5배) 효과는 이보다 훨씬 큼 — 약 ₩17억 추가 상승.
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 가치 제고를 위한 핵심 과제 ── -->
+  <div class="reco-box">
+    <div class="reco-box-title">기업가치 제고를 위한 핵심 과제</div>
+    <div class="reco-items">
+      <div class="reco-item">
+        <div class="reco-num">1</div>
+        <div>
+          <div class="reco-head">매출채권 회수 속도 개선 → 순차입금 감축</div>
+          <div class="reco-desc">대금 회수 기간 단축 시 현금이 확보되고, 이를 통한 차입금 감축은 오너 수취 가치에 1:1로 직접 반영됨. 60일 이상 미수금 거래처 파악 및 결제 조건 재협의 권고.</div>
+          <div class="reco-impact">→ 순차입금 ₩500M 감축 시 오너 수취 가치 ₩500M 직접 상승</div>
+        </div>
+      </div>
+      <div class="reco-item">
+        <div class="reco-num">2</div>
+        <div>
+          <div class="reco-head">반복매출 비중 확대 → 배수 상향</div>
+          <div class="reco-desc">주요 거래처 대상 장기 계약 전환 추진. 반복매출 비중이 높아질수록 인수자가 인식하는 사업 안정성이 높아지며 적용 배수 상향 근거로 활용 가능.</div>
+          <div class="reco-impact">→ 배수 4.5→5.5배 전환 시 기업가치 약 ₩17억 추가 상승</div>
+        </div>
+      </div>
+      <div class="reco-item">
+        <div class="reco-num">3</div>
+        <div>
+          <div class="reco-head">원가 연동 구조 확보 → 수익성 방어</div>
+          <div class="reco-desc">납품 계약 내 원재료 연동 조항 반영. 수익성 하락 추세를 반전시키는 것 자체가 인수자의 배수 할인 논거를 약화시키는 효과.</div>
+          <div class="reco-impact">→ 영업이익률 1%p 개선 시 기업가치 약 ₩6.7억 추가 상승</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- DCF CROSS-CHECK -->
-  <div class="card grid-1">
-    <div class="sec-hd">
-      <div class="sec-title">DCF Cross-check</div>
-      <span class="sec-tag">업종 평균 가정 · Cross-check 전용 · 경영진 Projection 미사용</span>
-    </div>
-    <div class="dcf-grid">
-      <div>
-        <div style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">DCF 가정</div>
-        <div class="dcf-row"><span class="dcf-label">WACC</span><span class="dcf-val">11.5%</span></div>
-        <div class="dcf-row"><span class="dcf-label">Perpetual growth (g)</span><span class="dcf-val">2.5%</span></div>
-        <div class="dcf-row"><span class="dcf-label">Forecast period</span><span class="dcf-val">5년</span></div>
-        <div class="dcf-row"><span class="dcf-label">Revenue growth (F)</span><span class="dcf-val">8.0% / yr</span></div>
-        <div class="dcf-row"><span class="dcf-label">EBITDA Margin (F)</span><span class="dcf-val">14.5%</span></div>
-        <div class="dcf-row"><span class="dcf-label">CAPEX / Revenue</span><span class="dcf-val">4.5%</span></div>
-        <div class="dcf-row"><span class="dcf-label">Tax rate</span><span class="dcf-val">22.0%</span></div>
-        <div class="dcf-row"><span class="dcf-label">비상장 프리미엄</span><span class="dcf-val">+2.0%p</span></div>
+  <!-- ── 더 정확한 가치산정을 원하신다면 ── -->
+  <div style="background:var(--navy2);padding:1.2rem 1.4rem;margin-bottom:0.8rem;border-left:3px solid var(--teal-lt);">
+    <div style="font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.6rem;">더 정확한 가치산정을 원하신다면</div>
+    <div style="display:flex;flex-direction:column;gap:0.45rem;">
+      <div style="display:flex;gap:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;">
+        <span style="color:var(--teal-lt);flex-shrink:0;">→</span>
+        본 리포트는 보고된 재무제표 기준임. 실제 거래에서는 대표 보수 정상화, 비경상 항목 분석 등 추가 조정이 기업가치에 직접 영향을 미침.
       </div>
-      <div>
-        <div style="font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">DCF 산출 (₩M)</div>
-        <div class="dcf-row"><span class="dcf-label">EBITDA 기준 (Adj., LTM)</span><span class="dcf-val">1,910</span></div>
-        <div class="dcf-row"><span class="dcf-label">Projected FCFF (5yr avg)</span><span class="dcf-val">1,240</span></div>
-        <div class="dcf-row"><span class="dcf-label">PV of FCFF</span><span class="dcf-val">4,280</span></div>
-        <div class="dcf-row"><span class="dcf-label">Terminal Value (PV)</span><span class="dcf-val">6,850</span></div>
-        <div class="dcf-row"><span class="dcf-label">Operating Value</span><span class="dcf-val">11,130</span></div>
-        <div class="dcf-row"><span class="dcf-label">+ 비영업 자산</span><span class="dcf-val">580</span></div>
-        <div class="dcf-row"><span class="dcf-label">Enterprise Value (DCF)</span><span class="dcf-val teal">11,710</span></div>
-        <div class="dcf-row"><span class="dcf-label">– Net Debt</span><span class="dcf-val red">(2,840)</span></div>
-        <div class="dcf-row" style="border-top:2px solid var(--border);"><span class="dcf-label"><b>Equity Value (DCF)</b></span><span class="dcf-val teal"><b>8,870</b></span></div>
-        <div class="dcf-row"><span class="dcf-label">Implied EV/EBITDA (DCF)</span><span class="dcf-val">6.1x</span></div>
+      <div style="display:flex;gap:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;">
+        <span style="color:var(--teal-lt);flex-shrink:0;">→</span>
+        운전자본 기준 협상, 부채성 항목 확정(법무·세무), 경영진 사업계획 기반 정밀 분석 — AAP Transaction Advisory 문의.
       </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-top:0.7rem;padding-top:0.7rem;border-top:1px solid var(--border);">
-      <div style="background:var(--cream);padding:0.7rem;border:1px solid var(--border);">
-        <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;">수렴 여부</div>
-        <div style="font-size:0.82rem;font-weight:500;color:var(--green);">✓ 수렴</div>
-        <div style="font-size:0.65rem;color:var(--text-mid);margin-top:0.2rem;">DCF EV ₩11,710M vs Multiple Mid ₩9,980M — 괴리 17%. 업종 평균 성장률 가정 합리적 수준.</div>
-      </div>
-      <div class="warn-note" style="margin-top:0;">
-        본 DCF는 업종 평균 가정만 사용한 Cross-check 전용 분석. 경영진 사업계획·독자 Projection에 기반하지 않으며, Multiple method 결과의 합리성 검증 도구로만 해석해야 합니다.
-      </div>
-    </div>
-  </div>
-
-  <!-- VALUATION SUMMARY -->
-  <div class="card grid-1">
-    <div class="sec-hd">
-      <div class="sec-title">Valuation Summary & Observations</div>
-      <span class="sec-tag">Multiple method (주방법) × DCF Cross-check</span>
-    </div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;margin-bottom:0.7rem;">
-      <div style="border:1px solid var(--border);padding:0.8rem;">
-        <div style="font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;">방법</div>
-        <div style="font-size:0.72rem;color:var(--text-mid);">EV/EBITDA Multiple<br>DCF Cross-check</div>
-      </div>
-      <div style="border:1px solid var(--teal);background:rgba(42,173,173,0.04);padding:0.8rem;">
-        <div style="font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);margin-bottom:0.3rem;">EV 범위 (주방법)</div>
-        <div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--teal);">₩7,640 ~ 12,702M</div>
-        <div style="font-size:0.62rem;color:var(--text-lt);margin-top:0.2rem;">Discount 반영 후</div>
-      </div>
-      <div style="border:1px solid var(--border);padding:0.8rem;">
-        <div style="font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.3rem;">Indicative Equity Value</div>
-        <div style="font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--navy);">₩4,800 ~ 9,862M</div>
-        <div style="font-size:0.62rem;color:var(--text-lt);margin-top:0.2rem;">Base · Net Debt 차감</div>
-      </div>
-    </div>
-
-    <div style="font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-lt);margin-bottom:0.5rem;">Valuation Observations</div>
-    <div style="display:flex;flex-direction:column;gap:0.4rem;">
-      <div style="display:flex;gap:0.5rem;font-size:0.72rem;color:var(--text-mid);line-height:1.55;padding:0.4rem 0;border-bottom:1px solid rgba(221,227,236,0.4);">
-        <span style="color:var(--teal-lt);flex-shrink:0;">►</span>
-        Multiple method 기준 EV ₩7,640~12,702M — 업종 Low~Mid 멀티플 범위 적용. 집중도 Discount 5% 반영. Mid 시나리오 기준 Equity Value <b>₩7,140M</b>.
-      </div>
-      <div style="display:flex;gap:0.5rem;font-size:0.72rem;color:var(--text-mid);line-height:1.55;padding:0.4rem 0;border-bottom:1px solid rgba(221,227,236,0.4);">
-        <span style="color:var(--teal-lt);flex-shrink:0;">►</span>
-        DCF 기준 EV ₩11,710M — Multiple Mid 대비 17% 괴리. 업종 평균 성장률 가정(8%) 기준으로 합리적 범위 내.
-      </div>
-      <div style="display:flex;gap:0.5rem;font-size:0.72rem;color:var(--text-mid);line-height:1.55;padding:0.4rem 0;">
-        <span style="color:var(--teal-lt);flex-shrink:0;">►</span>
-        가치 제고 포인트: DSO 개선(WC 압박 해소) + 반복매출 비중 확대(Multiple 상향 요인) + 원가 구조 안정화(EBITDA Margin 개선) — 향후 Mid→High 멀티플 이동 가능성.
-      </div>
-    </div>
-
-    <div class="next-steps">
-      <div class="next-steps-title">Next Steps — 정밀 가치산정을 위한 제언</div>
-      <div class="next-step-item">
-        <span class="next-step-arrow">→</span>
-        <span class="next-step-text">본 리포트는 보고된 재무제 기준 추정 범위. 실제 딜에서는 오너 급여 정상화, 비경상 항목 정밀 분석 등 실사 조정이 EV에 직접 영향.</span>
-      </div>
-      <div class="next-step-item">
-        <span class="next-step-arrow">→</span>
-        <span class="next-step-text">WC peg 협상, DLI 정량화(법무·세무), 경영진 사업계획 기반 Full DCF — AAP Transaction Advisory 문의.</span>
-      </div>
-      <div class="next-step-item" style="margin-bottom:0;">
-        <span class="next-step-arrow">→</span>
-        <span class="next-step-text">기업가치 지속 관리 → Monthly Monitor를 통해 EV에 영향을 미치는 핵심 지표를 매달 딜 관점으로 추적.</span>
+      <div style="display:flex;gap:0.5rem;font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.6;">
+        <span style="color:var(--teal-lt);flex-shrink:0;">→</span>
+        기업가치를 꾸준히 높여가려면 Monthly Management를 통해 핵심 지표를 매달 기업가치 관점으로 추적 가능.
       </div>
     </div>
   </div>
 
   <div class="disclaimer">
-    본 Valuation Scan은 보고된 재무제표 기반 조정전 (pre-normalisation) 추정 범위입니다. 독립 검증이 완료되지 않았으며, 모든 수치는 경영진 제공 자료 기준입니다. DCF는 업종 평균 가정 기반 Cross-check 전용 분석으로 경영진 사업계획에 기반하지 않습니다. 실제 M&A·투자 협상에 직접 사용하려면 전문가의 직접 검토 및 별도 자문이 필요합니다. &nbsp;·&nbsp; 본 리포트는 샘플 데이터 기반입니다. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · Reliance Restricted · Confidential
+    본 가치평가 스캔은 보고된 재무제표 기준 조정 전 추정 범위임. 독립 검증 미완료이며 모든 수치는 경영진 제공 자료 기준. 실제 M&A·투자 협상에 직접 사용하려면 전문가의 검토 및 별도 자문 필요. 본 리포트는 샘플 데이터 기반. &nbsp;|&nbsp; AAP Advisory · aap-partners.com · 참고 목적 한정
   </div>
-
+</div>
 </div>
 
-<div class="watermark">SAMPLE REPORT — FOR ILLUSTRATION PURPOSES ONLY · AAP ADVISORY · aap-partners.com</div>
+</div>
+</div>
+
+<div class="watermark">SAMPLE REPORT — FOR ILLUSTRATION PURPOSES ONLY · AAP ADVISORY</div>
 
 <script>
-// Multiple method bar chart
-new Chart(document.getElementById('chart-multiple').getContext('2d'),{
+const chartBase = {responsive:true,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}},y:{grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:10},color:'#8A95A3'}}}};
+
+// 업종별 배수 차트
+new Chart(document.getElementById('chart-multiple'),{
   type:'bar',
   data:{
-    labels:['제조업(일반)','IT/SaaS','서비스업(B2B)','도소매유통','의료·헬스케어','F&B'],
+    labels:['제조업(일반)','서비스(B2B)','도소매유통','F&B','의료기기','IT/SaaS'],
     datasets:[
-      {label:'Low',data:[4.0,8.0,4.5,4.0,7.0,4.0],backgroundColor:'rgba(27,122,122,0.3)',borderRadius:0},
-      {label:'Mid',data:[5.5,13.0,6.5,5.5,10.5,6.0],backgroundColor:'rgba(27,122,122,0.6)',borderRadius:0},
-      {label:'High',data:[7.0,18.0,9.0,7.5,14.0,8.0],backgroundColor:'rgba(27,122,122,0.85)',borderRadius:0}
+      {label:'하단',data:[4.0,4.5,4.0,4.0,8.0,8.0],backgroundColor:'rgba(27,122,122,0.25)',borderRadius:0},
+      {label:'상단',data:[3.0,4.5,3.0,4.0,7.0,12.0],backgroundColor:'rgba(27,122,122,0.65)',borderRadius:0}
     ]
   },
   options:{
-    responsive:true,
-    plugins:{
-      legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:9},color:'#4A5568',boxWidth:10}},
-      tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.raw}x`}}
-    },
+    ...chartBase,
+    plugins:{legend:{display:true,labels:{font:{family:"'DM Sans',sans-serif",size:9},color:'#4A5568',boxWidth:10}}},
     scales:{
-      x:{grid:{display:false},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3'}},
-      y:{grid:{color:'rgba(221,227,236,0.5)'},ticks:{font:{family:"'DM Sans',sans-serif",size:9},color:'#8A95A3',callback:v=>`${v}x`}}
+      x:{...chartBase.scales.x,stacked:true},
+      y:{...chartBase.scales.y,stacked:true,ticks:{...chartBase.scales.y.ticks,callback:v=>`${v}x`}}
+    }
+  }
+});
+
+// 민감도 차트
+new Chart(document.getElementById('chart-sensitivity'),{
+  type:'bar',
+  data:{
+    labels:['영업이익률\n-2%p','영업이익률\n-1%p','현재 기준','영업이익률\n+1%p','영업이익률\n+2%p'],
+    datasets:[{
+      data:[7,8.3,9.0,9.7,10.3],
+      backgroundColor:['rgba(192,57,43,0.6)','rgba(183,119,13,0.5)','rgba(27,122,122,0.75)','rgba(21,128,61,0.5)','rgba(21,128,61,0.7)'],
+      borderRadius:0
+    }]
+  },
+  options:{
+    ...chartBase,
+    scales:{
+      x:{...chartBase.scales.x},
+      y:{...chartBase.scales.y,min:5,ticks:{...chartBase.scales.y.ticks,callback:v=>`₩${v}0억`}}
     }
   }
 });
