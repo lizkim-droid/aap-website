@@ -550,32 +550,19 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">AAP<span>.</span></div>
-  <div class="nav-right">
-    <ul class="nav-links">
-    <li><a href="/"><span data-ko>홈</span><span data-en>Home</span></a></li>
-    <li><a href="/#about"><span data-ko>소개</span><span data-en>About</span></a></li>
-    <li><a href="/#services"><span data-ko>자문 서비스</span><span data-en>Services</span></a></li>
-    <li><a href="/#diagnostic"><span data-ko>브리핑 서비스</span><span data-en>Core Briefing</span></a></li>
-    <li><a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a></li>
-    <li><a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a></li>
-    </ul>
-    <a href="/snapshot.html" class="nav-cta-btn"><span data-ko>브리핑 받기</span><span data-en>Get Started</span></a>
-    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="메뉴"><span></span><span></span><span></span></button>
-    <div class="lang-toggle">
-      <button id="btn-ko" class="lt-btn active" onclick="setLang('ko')">KO</button>
-      <button id="btn-en" class="lt-btn" onclick="setLang('en')">EN</button>
-    </div>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <div class="nav-logo">AAP<span style="color:var(--teal-lt);">.</span></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="#contact" class="nav-cta-btn">
+      <span data-ko>자문 문의</span><span data-en>Contact</span>
+    </a>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
     <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-    <a href="/#about"><span data-ko>소개</span><span data-en>About</span></a>
-    <a href="/#services"><span data-ko>자문 서비스</span><span data-en>Services</span></a>
-    <a href="/#diagnostic"><span data-ko>브리핑 서비스</span><span data-en>Core Briefing</span></a>
-    <a href="/aap_insights.html"><span data-ko>인사이트</span><span data-en>Insights</span></a>
-    <a href="/#contact"><span data-ko>문의</span><span data-en>Contact</span></a>
+    <a href="/#contact"><span data-ko>자문 문의</span><span data-en>Contact</span></a>
 </div>
 
 <!-- HERO -->
@@ -599,6 +586,18 @@
     </div>
   </div>
 </section>
+
+<!-- NOTICE -->
+<div style="background:rgba(27,122,122,0.06);border-top:1px solid rgba(42,173,173,0.15);border-bottom:1px solid rgba(42,173,173,0.15);padding:1rem 4rem;">
+  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
+    <div style="width:1px;height:32px;background:rgba(42,173,173,0.3);flex-shrink:0;"></div>
+    <p style="font-size:0.8rem;font-weight:300;color:rgba(122,143,168,0.7);line-height:1.8;letter-spacing:0.01em;">
+      <span data-ko>AAP Advisory는 현재 서비스 구성을 재정비하고 있습니다. 상세 서비스와 진행 방식은 개편 후 순차적으로 안내될 예정입니다.</span>
+      <span data-en>AAP Advisory is currently restructuring its service offering. Details will be shared in due course.</span>
+    </p>
+  </div>
+</div>
+
 
 <div class="hr"></div>
 
@@ -631,129 +630,6 @@
   </div>
 </div>
 
-<!-- SERVICES -->
-<div id="services">
-  <div class="wrap">
-    <div class="section-label">
-      <span data-ko>자문 서비스</span><span data-en>End to End Advisory Services</span>
-    </div>
-    <h2 style="font-size: clamp(1.2rem, 1.8vw, 1.4rem);">
-      <span data-ko>모든 전략적 의사결정 뒤엔 철저히 준비된 숫자가 있어야 합니다.</span>
-      <span data-en>Business decisions run on financial clarity and readiness which leads to long term value uplift.</span>
-    </h2>
-
-    <div class="services-tabs">
-      <button class="tab-btn active" onclick="switchTab('caas',this)">
-        <span data-ko>A. 기업가치 관리</span><span data-en>A. Value Management</span>
-      </button>
-      <button class="tab-btn" onclick="switchTab('transaction',this)">
-        <span data-ko>B. 거래 자문</span><span data-en>B. Transaction Advisory</span>
-      </button>
-    </div>
-
-    <!-- Tab A: Monthly Monitor -->
-    <div class="tab-pane active" id="tab-caas" style="grid-template-columns:1fr 1fr;gap:0.8rem;">
-      <div class="svc-card fi" style="grid-column:1/-1;">
-        <div class="svc-phase">Ongoing Value Creation</div>
-        <div class="svc-title"><span data-ko>기업가치 관리</span><span data-en>Value Management</span></div>
-        <p class="svc-desc"><span data-ko>기업가치 제고 관점에서 재무와 운영의 주요 흐름을 <strong>월별로 관리하는 지속 관리형 자문 서비스</strong>입니다. 주요 이슈를 함께 보며 필요한 경우 더 깊은 후속 검토와 딜 실 자문으로 연결됩니다.</span><span data-en>Ongoing monthly advisory includes budget-versus-actual, earnings, cash flow, working capital, and key issues monthly, with deeper support where needed.</span></p>
-      </div>
-      <div style="grid-column:1/-1;display:flex;justify-content:flex-end;padding-top:0.2rem;">
-        <a href="/advisory.html" style="font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;border-bottom:1px solid rgba(42,173,173,0.3);padding-bottom:2px;">
-          <span data-ko>자문 서비스 상세 보기 →</span><span data-en>View advisory services →</span>
-        </a>
-      </div>
-    </div>
-
-    <!-- Tab B: 거래자문 — 3 cards side by side -->
-    <div class="tab-pane" id="tab-transaction" style="grid-template-columns:1fr 1fr 1fr;gap:0.8rem;">
-      <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>심층 분석</span><span data-en>Deep Dive</span></div>
-        <div class="svc-title"><span data-ko>기업가치<br>정밀 분석</span><span data-en>Enterprise Value<br>Deep Dive</span></div>
-        <p class="svc-desc"><span data-ko>원장 수준 데이터 기반 EBITDA 정상화·리스크 전수 분석·정밀 가치평가. Buyer 관점의 보수적 접근.</span><span data-en>EBITDA normalisation, full risk analysis and precise valuation — approached from a buyer's perspective.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>매각 / 인수 실사</span><span data-en>Sell / Buy-side</span></div>
-        <div class="svc-title"><span data-ko>Transaction<br>Advisory</span><span data-en>Transaction<br>Advisory</span></div>
-        <p class="svc-desc"><span data-ko>Sell-side VDD · Buy-side FDD · Working Capital 협상 · SPA 검토 지원. 딜이 왔을 때 오너 편에서.</span><span data-en>Sell-side VDD, buy-side FDD, working capital negotiation, SPA review — fighting your corner when the deal is live.</span></p>
-      </div>
-      <div class="svc-card fi">
-        <div class="svc-phase"><span data-ko>크로스보더</span><span data-en>Cross-border</span></div>
-        <div class="svc-title"><span data-ko>Cross-border<br>Exit</span><span data-en>Cross-border<br>Exit</span></div>
-        <p class="svc-desc"><span data-ko>국내에 적합한 Buyer가 없다면 해외로. 한국·호주·일본 네트워크 기반 매각 설계.</span><span data-en>When the right buyer isn't local — Korea, Australia and Japan networks for cross-border exits.</span></p>
-      </div>
-      <div style="grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;padding-top:0.4rem;border-top:1px solid var(--border);">
-        <span style="font-size:0.75rem;font-weight:300;color:var(--gray);"><span data-ko>모든 거래 자문은 별도 협의입니다.</span><span data-en>All transaction advisory by arrangement.</span></span>
-        <a href="/advisory.html" style="font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-lt);text-decoration:none;border-bottom:1px solid rgba(42,173,173,0.3);padding-bottom:2px;flex-shrink:0;">
-          <span data-ko>자문 서비스 상세 보기 →</span><span data-en>View advisory services →</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- DIAGNOSTIC REPORTS -->
-<div class="diag-bg" id="diagnostic">
-  <div class="wrap">
-   <div class="section-label"><span data-ko>코어 브리핑 서비스</span><span data-en>Core Briefing</span></div>
-    <div class="diag-grid">
-
-      <div>
-        <h2 style="margin-bottom:1rem;">
-          <span data-ko>귀하의 기업에 필요한 진단을 보다 빠르게 점검해 드립니다.</span>
-          <span data-en>What do you<br>need right now?</span>
-        </h2>
-        <p class="diag-intro-sub">
-          <span data-ko>Big 4 수준의 깊이 있는 재무분석을 바탕으로,<br>핵심 재무 이슈를 보다 빠르고 정확하게 진단합니다.</span>
-          <span data-en>Big 4 quality financial analysis.<br>Delivered within 3 business days</span>
-        </p>
-        <p class="diag-intro-note">
-          <span data-ko><br>본 일회성 진단은 귀사의 현재 재무 상태를 효율적으로 신속하게 파악할 수 있는 핵심 이슈 위주의 현황 점검 서비스입니다.<br>브리핑 리포트는 필수 자료가 모두 접수된 시점부터 영업일 기준 3일내 제공됩니다.</span>
-          <span data-en><br>This one off diagnostic focuses on a current status review<br>designed to assess your company's financial position more quickly and efficiently.<br>The report is delivered within 48 business hours once all required data is provided.</span>
-        </p>
-        <a href="snapshot.html" class="btn">
-          <span data-ko>코어 브리핑 받기 →</span>
-          <span data-en>Request Core Briefing →</span>
-        </a>
-      </div>
-
-      <div class="diag-cards" style="grid-template-columns:1fr 1fr;">
-
-        <!-- One-off scans label -->
-        <div style="grid-column:1/-1;padding:0.5rem 0 0.3rem;border-bottom:1px solid var(--border-lt);margin-bottom:0.4rem;">
-          <span style="font-family:var(--mono);font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-lt);">
-            <span data-ko>— 일회성 진단</span><span data-en>— One-off Scans</span>
-          </span>
-        </div>
-
-        <a class="diag-card" href="snapshot.html#pane-a">
-          <div class="diag-card-tag">
-            <span data-ko>내 사업 현황</span><span data-en>Operational</span>
-          </div>
-          <div class="diag-card-name">Operational<br>Scan</div>
-          <p class="diag-card-desc">
-            <span data-ko>잠재 인수자의 눈으로 수익구조·운전자본·현금흐름을 진단합니다. 기업가치제고 관점에서 먼저 발견해야 할 리스크를 식별합니다.</span>
-            <span data-en>Diagnose P&L, working capital and cash flow through an enterprise value lens, identifying what to fix before it costs you.</span>
-          </p>
-        </a>
-
-        <a class="diag-card" href="snapshot.html#pane-c">
-          <div class="diag-card-tag">
-            <span data-ko>기업가치 확인</span><span data-en>Valuation</span>
-          </div>
-          <div class="diag-card-name">Valuation<br>Scan</div>
-          <p class="diag-card-desc">
-            <span data-ko>현재 기업가치의 대략적인 범위를 확인하는 초기 가치 진단 서비스입니다.</span>
-            <span data-en>A high level assessment of your company's indicative value range.</span>
-          </p>
-        </a>
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="hr"></div>
 
 <!-- CONTACT -->
@@ -769,8 +645,8 @@
           <span data-en>Have a question?</span>
         </h2>
         <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;max-width:420px;">
-          <span data-ko>자주 묻는 질문은 FAQ 페이지에서 먼저 확인하실 수 있습니다. 또는 카카오채널로 문의 주시기 바랍니다.</span>
-          <span data-en>Reach out via KakaoTalk. Common questions are answered on the FAQ page.</span>
+          <span data-ko>카카오채널 또는 이메일로 문의 주시기 바랍니다.</span>
+          <span data-en>Reach out via KakaoTalk or email.</span>
         </p>
       </div>
       <div style="display:flex;flex-direction:row;align-items:center;gap:0.8rem;">
@@ -782,11 +658,7 @@
    onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 3C6.477 3 2 6.582 2 11c0 2.75 1.694 5.17 4.272 6.67L5.5 21l4.035-2.153C10.304 18.947 11.138 19 12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
         </a>
-        <a href="/faq.html"
-           style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.6);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:400;text-decoration:none;transition:all 0.2s;"
-           onmouseover="this.style.borderColor='rgba(255,255,255,0.4)';this.style.color='var(--off-white)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='rgba(255,255,255,0.6)'">
-          <span data-ko>FAQ →</span><span data-en>FAQ →</span>
-        </a>
+
         <div style="font-size:0.75rem;color:var(--gray);">
           <a id="contact-email" style="color:var(--gray);text-decoration:none;" onmouseover="this.style.color='var(--teal-lt)'" onmouseout="this.style.color='var(--gray)'"></a>
         </div>
