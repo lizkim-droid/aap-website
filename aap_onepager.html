@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAP Advisory — Value Uplift for Private Owners</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --navy: #0D1E35;
+  --teal: #1B7A7A;
+  --teal-lt: #2AADAD;
+  --gold: #B8922A;
+  --gold-lt: #C9A96E;
+  --border: #DDD9D0;
+  --border-lt: #EDEBE6;
+  --text: #0D1E35;
+  --text-mid: #4A5568;
+  --text-lt: #7A8A9A;
+  --serif: 'Playfair Display', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+html, body { width:100%; max-width:100%; overflow-x:hidden; }
+body { font-family:var(--sans); background:#fff; color:var(--text); }
+
+.page { max-width:900px; margin:0 auto; padding:4rem 3rem 5rem; display:flex; flex-direction:column; }
+
+/* TOP RULE */
+.top-rule { display:flex; align-items:center; gap:1rem; margin-bottom:3.5rem; }
+.top-rule-line { flex:1; height:1px; background:linear-gradient(to right,var(--gold),transparent); }
+.top-rule-logo { font-family:var(--serif); font-size:1.1rem; font-weight:700; letter-spacing:0.2em; color:var(--navy); white-space:nowrap; }
+.top-rule-line-r { flex:3; height:1px; background:linear-gradient(to left,transparent,var(--border-lt)); }
+
+/* HOOK */
+.hook { margin-bottom:3rem; border-left:3px solid var(--gold); padding-left:2rem; }
+.hook-question { font-family:var(--serif); font-size:clamp(1.35rem,2.8vw,1.85rem); font-weight:400; font-style:italic; color:#2D3748; line-height:1.5; margin-bottom:1rem; }
+.hook-question em { color:var(--navy); font-style:italic; }
+.hook-answer { font-family:var(--serif); font-size:clamp(1.6rem,3.2vw,2.4rem); font-weight:700; color:var(--navy); line-height:1.2; }
+.hook-answer span { color:var(--teal); }
+
+.divider { height:1px; background:var(--border-lt); margin:2.5rem 0; }
+
+/* CONTEXT */
+.context { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-bottom:2.5rem; align-items:start; }
+.context-block-label { font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.9rem; font-weight:500; }
+.context-block-text { font-size:0.95rem; font-weight:300; color:#2D3748; line-height:1.85; }
+.context-block-text strong { color:var(--navy); font-weight:500; }
+
+/* WHAT WE DO */
+.what { margin-bottom:2.5rem; }
+.what-title { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; font-weight:500; }
+.what-statement { font-family:var(--serif); font-size:clamp(1.1rem,2.2vw,1.4rem); font-weight:400; color:var(--navy); line-height:1.75; max-width:780px; }
+.what-statement em { font-style:italic; color:var(--teal); }
+
+/* VENN SECTION */
+.venn-section { margin-bottom:2.5rem; }
+.venn-label { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem; font-weight:500; }
+.venn-section svg { overflow:hidden; display:block; }
+
+
+/* FLOW */
+.flow { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:0; margin-bottom:2.5rem; border:1px solid var(--border); }
+.flow-step { padding:1.4rem 1.1rem; border-right:1px solid var(--border); position:relative; background:#FAFAF8; }
+.flow-step:last-child { border-right:none; }
+.flow-step::after { content:'→'; position:absolute; right:-10px; top:50%; transform:translateY(-50%); color:var(--gold); font-size:0.9rem; z-index:1; background:#FAFAF8; padding:0 2px; }
+.flow-step:last-child::after { display:none; }
+.flow-num { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; font-weight:500; }
+.flow-title { font-size:1rem; font-weight:500; color:var(--navy); margin-bottom:0.4rem; }
+.flow-sub { font-size:0.82rem; font-weight:300; color:#4A5568; line-height:1.55; }
+
+/* SERVICES */
+.services { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--border); margin-bottom:2.5rem; }
+.svc { background:#fff; padding:1.5rem 1.3rem; }
+.svc-tag { font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); margin-bottom:0.6rem; font-weight:500; }
+.svc-name { font-family:var(--serif); font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:0.7rem; padding-bottom:0.7rem; border-bottom:1px solid var(--border-lt); }
+.svc-desc { font-size:0.85rem; font-weight:300; color:#2D3748; line-height:1.75; }
+
+/* SCOPE */
+.scope { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-bottom:2.5rem; }
+.scope-col-title { font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.9rem; font-weight:500; }
+.scope-col-title.inc { color:var(--teal); }
+.scope-col-title.exc { color:#4A5568; }
+.scope-items { display:flex; flex-direction:column; gap:0.5rem; }
+.scope-item { font-size:0.85rem; font-weight:300; line-height:1.55; display:flex; gap:0.6rem; align-items:flex-start; }
+.scope-item.inc { color:#2D3748; }
+.scope-item.exc { color:#4A5568; }
+.scope-bullet { flex-shrink:0; margin-top:2px; }
+.scope-item.inc .scope-bullet { color:var(--teal); }
+.scope-item.exc .scope-bullet { color:#C0BDB5; }
+
+/* BOTTOM */
+.bottom-rule { display:flex; align-items:center; gap:1.5rem; padding-top:2rem; border-top:1px solid var(--border); }
+.bottom-left { font-size:0.75rem; font-weight:300; color:#4A5568; line-height:1.8; flex:1; }
+.bottom-right { font-family:var(--serif); font-size:0.85rem; font-style:italic; color:#4A5568; text-align:right; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- TOP RULE -->
+  <div class="top-rule">
+    <div class="top-rule-line"></div>
+    <div class="top-rule-logo">AAP ADVISORY</div>
+    <div class="top-rule-line-r"></div>
+  </div>
+
+  <!-- HOOK -->
+  <div class="hook">
+    <div class="hook-question">상장기업은 거래소가 밸류업을 요구하는 시대입니다.<br><em>비상장 기업 오너는 — 누가 함께 하나요?</em></div>
+    <div class="hook-answer">숫자를 계산하는 것이 아니라,<br>숫자가 말하는 <span>결정을 정리합니다.</span></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CONTEXT -->
+  <div class="context">
+    <div>
+      <div class="context-block-label">지금 이 시대의 맥락</div>
+      <div class="context-block-text">
+        KRX는 상장기업이 <strong>현황진단 → 목표설정 → 계획수립 → 이행·소통</strong>의 프레임으로 스스로 기업가치를 제고하도록 요구하고 있습니다. 주주가치를 존중하는 기업이 시장의 선택을 받는 구조입니다.<br><br>
+        비상장 기업에는 이 프레임이 없습니다. 의무도, 지원 체계도, 함께할 파트너도 없습니다.
+      </div>
+    </div>
+    <div>
+      <div class="context-block-label">AAP Advisory의 역할</div>
+      <div class="context-block-text">
+        AAP Advisory는 비상장 기업 오너가 <strong>확장, 투자, 승계, 매각</strong>과 같은 중요한 결정을 앞두고, 회사의 숫자가 말하는 핵심 이슈와 가치 개선 포인트를 정리하는 <strong>Principal-led Advisory</strong>입니다.<br><br>
+        Big 4 FDD 출신 Principal이 오너 편에서, 인수자의 언어로 먼저 봅니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT WE DO -->
+  <div class="what">
+    <div class="what-title">AAP Advisory가 하는 일</div>
+    <div class="what-statement">
+      지금 이 회사가 <em>얼마짜리인지</em>, 왜 그런지, 어떻게 올릴 수 있는지.<br>
+      오너가 원하는 가치까지 — 그 거리를 줄여가는 과정을 함께 설계합니다.
+    </div>
+  </div>
+
+
+  <!-- VENN POSITIONING -->
+  <div class="venn-section">
+    <div class="venn-label">AAP가 채우는 자리</div>
+    <svg width="100%" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="display:block;max-width:100%;overflow:hidden;">
+
+      <!-- Left circle: cx=210 r=140 → x:70-350 all within 640 -->
+      <circle cx="210" cy="160" r="140" fill="rgba(10,100,100,0.08)" stroke="#0A7272" stroke-width="2"/>
+      <!-- Right circle: cx=430 r=140 → x:290-570 all within 640 -->
+      <circle cx="430" cy="160" r="140" fill="rgba(120,85,0,0.08)" stroke="#8B6914" stroke-width="2"/>
+
+      <!-- Lens intersection: x=320, top=73, bot=247 -->
+      <path d="M 320,73 A 140,140 0 0,1 320,247 A 140,140 0 0,0 320,73 Z"
+            fill="rgba(13,30,53,0.05)" stroke="#0D1E35" stroke-width="1" stroke-opacity="0.15"/>
+
+      <!-- Left labels: x=155 -->
+      <text font-family="'DM Sans',sans-serif" font-size="16" font-weight="600" fill="#0A6868" x="155" y="82" text-anchor="middle">오너와의</text>
+      <text font-family="'DM Sans',sans-serif" font-size="16" font-weight="600" fill="#0A6868" x="155" y="100" text-anchor="middle">신뢰 관계</text>
+      <text font-family="'DM Sans',sans-serif" font-size="14" font-weight="500" fill="#0D5858" x="155" y="170" text-anchor="middle">세무사</text>
+      <text font-family="'DM Sans',sans-serif" font-size="14" font-weight="500" fill="#0D5858" x="155" y="190" text-anchor="middle">회계사</text>
+      <text font-family="'DM Sans',sans-serif" font-size="11" fill="#2A6A6A" x="155" y="218" text-anchor="middle">일상 운영 · 장부 중심</text>
+      <text font-family="'DM Sans',sans-serif" font-size="11" fill="#2A6A6A" x="155" y="234" text-anchor="middle">딜 판단 범위 밖</text>
+
+      <!-- Right labels: x=478 (center of 320→570) — max text edge ~540 < 640 -->
+      <text font-family="'DM Sans',sans-serif" font-size="16" font-weight="600" fill="#7A4F10" x="478" y="82" text-anchor="middle">딜 · 가치 관점의</text>
+      <text font-family="'DM Sans',sans-serif" font-size="16" font-weight="600" fill="#7A4F10" x="478" y="100" text-anchor="middle">재무 판단력</text>
+      <text font-family="'DM Sans',sans-serif" font-size="14" font-weight="500" fill="#6A4010" x="478" y="166" text-anchor="middle">회계법인 FDD팀</text>
+      <text font-family="'DM Sans',sans-serif" font-size="14" font-weight="500" fill="#6A4010" x="478" y="186" text-anchor="middle">IB · M&A 자문사</text>
+      <text font-family="'DM Sans',sans-serif" font-size="11" fill="#8A6020" x="478" y="216" text-anchor="middle">딜 확정 후 진입</text>
+      <text font-family="'DM Sans',sans-serif" font-size="11" fill="#8A6020" x="478" y="232" text-anchor="middle">인수자 중심 관점</text>
+
+      <!-- AAP Advisory: x=320 (intersection center) -->
+      <text font-family="'Playfair Display',serif" font-size="18" font-weight="700" fill="#0D1E35" x="320" y="152" text-anchor="middle">AAP</text>
+      <text font-family="'Playfair Display',serif" font-size="18" font-weight="700" fill="#0D1E35" x="320" y="174" text-anchor="middle">Advisory</text>
+
+    </svg>
+  </div>
+
+  <!-- FLOW -->
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <div class="flow-title">현황 진단</div>
+      <div class="flow-sub">지금 이 회사 얼마짜리인가. 인수자 눈으로 먼저 본다.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <div class="flow-title">목표 설정</div>
+      <div class="flow-sub">오너가 원하는 가치와 현실의 Gap, 그 원인을 특정한다.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <div class="flow-title">로드맵 수립</div>
+      <div class="flow-sub">Gap을 메울 우선순위. 빠른 것과 시간이 걸리는 것을 구분한다.</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <div class="flow-title">이행 · 준비</div>
+      <div class="flow-sub">분기 추적 관리. 딜이 오기 전 준비된 상태로 만든다.</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="services">
+    <div class="svc">
+      <div class="svc-tag">A · One-off</div>
+      <div class="svc-name">Value Diagnostic</div>
+      <div class="svc-desc">현재 기업가치 범위 추정 및 목표 가치와의 Gap 파악. 인수자 시각으로 지금 이 회사의 핵심 이슈를 정리합니다. 브리프 + 설명 미팅.</div>
+    </div>
+    <div class="svc">
+      <div class="svc-tag">B · Ongoing</div>
+      <div class="svc-name">Value Uplift</div>
+      <div class="svc-desc">Gap을 메우는 가치 제고 로드맵 설계 및 분기별 추적 관리. 인수자의 할인 논거를 하나씩 제거하며 목표 가치로 만들어갑니다.</div>
+    </div>
+    <div class="svc">
+      <div class="svc-tag">C · Project</div>
+      <div class="svc-name">Deal Readiness</div>
+      <div class="svc-desc">딜 프로세스 진입 전 오너 준비. FDD 예상 이슈 사전 정리, 인수자 예상 질문 대응, 협상 전략 수립. 준비된 상태에서 딜 테이블에 앉도록 합니다.</div>
+    </div>
+  </div>
+
+  <!-- SCOPE -->
+  <div class="scope">
+    <div>
+      <div class="scope-col-title inc">자문 범위 — 포함</div>
+      <div class="scope-items">
+        <div class="scope-item inc"><span class="scope-bullet">↗</span><span>경영진 제공 자료 기반 재무 흐름 검토</span></div>
+        <div class="scope-item inc"><span class="scope-bullet">↗</span><span>기업가치 관점 이슈 식별 및 우선순위 정리</span></div>
+        <div class="scope-item inc"><span class="scope-bullet">↗</span><span>오너 의사결정 포인트 및 후속 검토 과제 제시</span></div>
+        <div class="scope-item inc"><span class="scope-bullet">↗</span><span>인수자 시각 가치 할인 요인 사전 파악</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="scope-col-title exc">자문 범위 — 제외</div>
+      <div class="scope-items">
+        <div class="scope-item exc"><span class="scope-bullet">—</span><span>원장 검증 및 계정별 상세 확인</span></div>
+        <div class="scope-item exc"><span class="scope-bullet">—</span><span>확정 가치평가 의견 및 FDD 수준 실사</span></div>
+        <div class="scope-item exc"><span class="scope-bullet">—</span><span>세무·법률·감사 검토</span></div>
+        <div class="scope-item exc"><span class="scope-bullet">—</span><span>SPA 협상 및 법률 문서 작성</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="bottom-rule">
+    <div class="bottom-left">
+      본 자문은 경영진 제공 자료를 기반으로 오너의 의사결정에 필요한 주요 흐름과 이슈를 식별하는 자문입니다.<br>
+      자료의 정확성 검증이나 감사 의견 제공은 포함되지 않습니다.<br>
+      aap-partners.com &nbsp;·&nbsp; info@aap-partners.com
+    </div>
+    <div class="bottom-right">
+      Principal-led Advisory<br>for Private Business Owners
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
