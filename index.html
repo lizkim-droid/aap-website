@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AAP Advisory</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 html { background: #FBFAF7; }
 body {
@@ -23,17 +23,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 88px;
+  margin-bottom: 60px;
   position: sticky;
   top: 0;
   background: #FBFAF7;
   z-index: 200;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  margin-left: -56px;
-  margin-right: -56px;
-  padding-left: 56px;
-  padding-right: 56px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   border-bottom: 1px solid #E6E1D8;
 }
 .logo {
@@ -108,6 +104,7 @@ h1 {
   line-height: 1.45;
 }
 .cards {
+  scroll-margin-top: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -137,6 +134,7 @@ h1 {
 
 /* Founder */
 .founder {
+  scroll-margin-top: 60px;
   border-top: 1px solid #D8D3C8;
   padding: 48px 0 54px;
   display: grid;
@@ -194,72 +192,68 @@ h1 {
   text-decoration: none;
   border-bottom: 1px solid #C9C3B8;
 }
-</style>
-</head>
 
-<body>
-
-<style>
-html { background: #FBFAF7; }
 @media(max-width:768px){
-  .page { padding: 0; }
-  .nav {
-    margin-left: 0 !important; margin-right: 0 !important;
-    padding-left: 24px !important; padding-right: 24px !important;
-    background: #FBFAF7 !important;
-  }
+  .page { padding: 28px 20px 24px; }
+  .nav { margin-bottom: 40px; }
   .nav-links a:not(.nav-cta-btn) { display: none; }
   .hamburger { display: flex !important; }
   .nav-cta-btn { display: none !important; }
-  .hero { grid-template-columns: 1fr; gap: 28px; margin-bottom: 44px; padding: 0 24px; }
-  h1 { font-size: 38px; }
-  .hero-copy { font-size: 15px; padding: 0 24px; }
-  .cta { margin: 0 24px; }
-  .statement { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; margin: 0 0 40px; }
-  .statement-text { font-size: 22px; }
-  .cards { grid-template-columns: 1fr; margin: 0 0 48px; }
-  .founder { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px 40px; }
+  .hero { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+  h1 { font-size: 36px; }
+  .hero-copy { font-size: 15px; }
+  .statement { grid-template-columns: 1fr; gap: 18px; padding: 24px 0; margin-bottom: 40px; }
+  .statement-text { font-size: 20px; }
+  .cards { grid-template-columns: 1fr; margin-bottom: 48px; }
+  .founder { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 40px; }
   .founder-name { font-size: 26px; }
   .founder-points { grid-template-columns: 1fr; }
-  .legal { padding: 20px 24px; font-size: 10px; }
+  .contact-section { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .legal { font-size: 10px; line-height: 1.7; }
 }
 .mob-menu {
   display: none; position: fixed; top: 0; left: 0; right: 0;
   background: #FBFAF7; border-bottom: 1px solid #D8D3C8;
-  padding: 70px 24px 20px; flex-direction: column; z-index: 499;
+  padding: 64px 24px 20px; flex-direction: column; z-index: 499;
 }
 .mob-menu.open { display: flex; }
 .mob-menu a {
   font-size: 15px; color: #0C182C; text-decoration: none;
-  padding: 14px 0; border-bottom: 1px solid #E6E1D8; display: block;
+  padding: 13px 0; border-bottom: 1px solid #E6E1D8; display: block;
 }
 .mob-menu a:last-child { border-bottom: none; }
+.mob-close {
+  position: absolute; top: 18px; right: 20px;
+  background: none; border: none; font-size: 1.4rem;
+  cursor: pointer; color: #0C182C; line-height: 1;
+}
 </style>
-<div class="mob-menu" id="mobMenu">
-  <a href="#approach" onclick="document.getElementById('mobMenu').classList.remove('open')">서비스</a>
-  <a href="#founder" onclick="document.getElementById('mobMenu').classList.remove('open')">소개</a>
-  <a href="/aap_insights.html">인사이트</a>
-  <a href="#contact" onclick="document.getElementById('mobMenu').classList.remove('open')">자문 문의</a>
-</div>
+</head>
 
+<body>
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">×</button>
+  <a href="#founder" onclick="closeMob()">소개</a>
+  <a href="/aap_insights.html">인사이트</a>
+  <a href="#contact" onclick="closeMob()">자문 문의</a>
+</div>
 <div class="page">
 
   <div class="nav">
     <div class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;">AAP<span style="color:#B8922A;">.</span></div>
-    <div class="nav-links" style="display:flex;align-items:center;gap:24px;">
-      <a href="#approach" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">서비스</a>
+    <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
       <a href="#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">소개</a>
       <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">인사이트</a>
       <a href="#contact" class="nav-cta-btn"
-        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
+        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
         onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
         onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
-      <button class="hamburger"
-        onclick="document.getElementById('mobMenu').classList.toggle('open')"
+      <button class="hamburger" id="hamBtn"
+        onclick="toggleMob()"
         style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
       </button>
     </div>
   </div>
@@ -330,11 +324,9 @@ html { background: #FBFAF7; }
         <div class="founder-point">CPA Australia</div>
         <div class="founder-point">누적 딜 가치 A$3bn+ · Buy-side &amp; Sell-side</div>
       </div>
-      <div style="margin-top:24px;">
+      <div style="margin-top:22px;">
         <button onclick="document.getElementById('credModal').style.display='flex'"
-          style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
-            padding:10px 22px;border:1px solid #0C182C;background:transparent;
-            color:#0C182C;cursor:pointer;font-family:inherit;"
+          style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border:1px solid #0C182C;background:transparent;color:#0C182C;cursor:pointer;font-family:inherit;"
           onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
           onmouseout="this.style.background='transparent';this.style.color='#0C182C'">
           Selected Experience →
@@ -342,6 +334,28 @@ html { background: #FBFAF7; }
       </div>
     </div>
   </div>
+
+  <!-- CONTACT -->
+  <div id="contact" class="contact-section" style="border-top:1px solid #D8D3C8;padding:48px 0 44px;display:grid;grid-template-columns:0.75fr 1.25fr;gap:64px;">
+    <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;">Contact</div>
+    <div>
+      <div style="font-family:Georgia,'Times New Roman',serif;font-size:26px;line-height:1.3;color:#0C182C;margin-bottom:28px;">먼저 들여다봤습니다.<br>한 번 같이 보시겠습니까.</div>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:5px;">이메일</div>
+          <a href="mailto:info@aap-partners.com" style="font-size:14px;color:#0C182C;text-decoration:none;border-bottom:1px solid #C9C3B8;">info@aap-partners.com</a>
+        </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:5px;">카카오 채널</div>
+          <a href="http://pf.kakao.com/_iXxfjX/chat" target="_blank" style="font-size:14px;color:#0C182C;text-decoration:none;border-bottom:1px solid #C9C3B8;">@AAP Advisory</a>
+        </div>
+        <div style="margin-top:4px;font-size:12px;color:#7A8A9A;line-height:1.7;font-style:italic;">
+          서비스 상세 페이지는 개편 중입니다. 자문 문의는 직접 연락해 주세요.
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <div class="legal" id="contact">
     상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="#">Privacy Policy</a>
@@ -354,62 +368,47 @@ html { background: #FBFAF7; }
 <!-- CREDENTIAL MODAL -->
 <div id="credModal"
   onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;inset:0;background:rgba(12,24,44,0.55);
-    z-index:1000;align-items:center;justify-content:center;padding:1.2rem;">
-  <div style="background:#FBFAF7;max-width:580px;width:100%;
-    max-height:86vh;overflow-y:auto;padding:2.2rem 2.4rem;">
-
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6rem;">
+  style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,24,44,0.55);z-index:1000;align-items:center;justify-content:center;padding:1.2rem;">
+  <div style="background:#FBFAF7;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:2rem 2.2rem;position:relative;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;">Selected Experience</div>
-      <button onclick="document.getElementById('credModal').style.display='none'"
-        style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#7A8A9A;line-height:1;padding:0;">×</button>
+      <button onclick="document.getElementById('credModal').style.display='none'" style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#7A8A9A;padding:0;line-height:1;">×</button>
     </div>
-
-    <div style="font-family:Georgia,serif;font-size:20px;line-height:1.3;color:#0C182C;margin-bottom:0.3rem;">약 7조 원+ 누적 거래 경험</div>
-    <div style="font-size:12px;color:#7A8A9A;margin-bottom:1.8rem;letter-spacing:0.3px;">글로벌 PE 및 전략적 투자자 대상 M&A 실사 · EY Transaction Diligence</div>
-
-    <div style="border-top:1px solid #D8D3C8;padding-top:1.3rem;margin-bottom:1.6rem;">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:1rem;">대표 거래</div>
-      <div style="display:flex;flex-direction:column;">
-        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">헬스케어·재활 서비스</div>
-          <div style="font-size:12px;color:#7A8A9A;">약 2.1조 원 · APAC 6개 법인 · 글로벌 PE · Sell-side VDD</div>
-        </div>
-        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">산업가스·제조</div>
-          <div style="font-size:12px;color:#7A8A9A;">약 4.6조 원 · 글로벌 전략적 투자자 · Buy-side DD</div>
-        </div>
-        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">교육 플랫폼</div>
-          <div style="font-size:12px;color:#7A8A9A;">약 1,300억 원 · 영국 200개+ 사이트 · 글로벌 PE · Buy-side DD</div>
-        </div>
-        <div style="padding:0.8rem 0;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">소비재 공개매수</div>
-          <div style="font-size:12px;color:#7A8A9A;">전략적 투자자 · Buy-side DD</div>
-        </div>
-      </div>
+    <div style="font-family:Georgia,serif;font-size:20px;color:#0C182C;margin-bottom:4px;">약 7조 원+ 누적 거래 경험</div>
+    <div style="font-size:12px;color:#7A8A9A;margin-bottom:1.6rem;">글로벌 PE 및 전략적 투자자 대상 M&A 실사 · EY Transaction Diligence</div>
+    <div style="border-top:1px solid #D8D3C8;padding-top:1.2rem;margin-bottom:1.4rem;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:0.9rem;">대표 거래</div>
+      <div style="padding:0.75rem 0;border-bottom:1px solid #EDE9E1;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">헬스케어·재활 서비스</div><div style="font-size:12px;color:#7A8A9A;">약 2.1조 원 · APAC 6개 법인 · 글로벌 PE · Sell-side VDD</div></div>
+      <div style="padding:0.75rem 0;border-bottom:1px solid #EDE9E1;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">산업가스·제조</div><div style="font-size:12px;color:#7A8A9A;">약 4.6조 원 · 글로벌 전략적 투자자 · Buy-side DD</div></div>
+      <div style="padding:0.75rem 0;border-bottom:1px solid #EDE9E1;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">교육 플랫폼</div><div style="font-size:12px;color:#7A8A9A;">약 1,300억 원 · 영국 200개+ 사이트 · 글로벌 PE · Buy-side DD</div></div>
+      <div style="padding:0.75rem 0;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">소비재 공개매수</div><div style="font-size:12px;color:#7A8A9A;">전략적 투자자 · Buy-side DD</div></div>
     </div>
-
-    <div style="border-top:1px solid #D8D3C8;padding-top:1.3rem;">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:1rem;">운영 경험</div>
-      <div style="display:flex;flex-direction:column;">
-        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">글로벌 IT 대기업 FP&amp;A</div>
-          <div style="font-size:12px;color:#7A8A9A;">연간 A$200m 규모 마케팅 투자비 관리 · 경영진 보고 및 사업부 성과 리뷰</div>
-        </div>
-        <div style="padding:0.8rem 0;">
-          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">CPA Australia · 서울·시드니·오클랜드·멜버른</div>
-          <div style="font-size:12px;color:#7A8A9A;">한국·호주 크로스보더 M&amp;A 실사 경험</div>
-        </div>
-      </div>
+    <div style="border-top:1px solid #D8D3C8;padding-top:1.2rem;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:0.9rem;">운영 경험</div>
+      <div style="padding:0.75rem 0;border-bottom:1px solid #EDE9E1;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">글로벌 IT 대기업 FP&amp;A</div><div style="font-size:12px;color:#7A8A9A;">연간 A$200m 규모 마케팅 투자비 관리 · 경영진 보고 및 사업부 성과 리뷰</div></div>
+      <div style="padding:0.75rem 0;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">CPA Australia</div><div style="font-size:12px;color:#7A8A9A;">서울·시드니·오클랜드·멜버른 · 한-호주 크로스보더 M&amp;A 실사</div></div>
     </div>
-
   </div>
 </div>
 
 <script>
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') document.getElementById('credModal').style.display = 'none';
+function toggleMob(){
+  var m=document.getElementById('mobMenu');
+  var b=document.getElementById('hamBtn');
+  m.classList.toggle('open');
+  b.innerHTML=m.classList.contains('open')
+    ?'<span style="font-size:1.2rem;color:#0C182C;line-height:1;">×</span>'
+    :'<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
+}
+function closeMob(){
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('hamBtn').innerHTML='<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    document.getElementById('credModal').style.display='none';
+    closeMob();
+  }
 });
 </script>
 
