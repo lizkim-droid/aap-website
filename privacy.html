@@ -2,195 +2,85 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Privacy Policy — AAP Advisory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  :root {
-    --navy: #111E35;
-    --navy-mid: #1B2A4A;
-    --teal-lt: #2A9D9D;
-    --off-white: #F8F7F4;
-    --gray: #7A8FA8;
-    --border: rgba(255,255,255,0.08);
-    --serif: 'Playfair Display', serif;
-    --sans: 'DM Sans', sans-serif;
-    --mono: 'DM Mono', monospace;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--sans), 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; background: #FBFAF7; color: #0C182C; line-height: 1.8; }
-
-  /* NAV */
-  nav {
-    position: fixed; top:0; left:0; right:0; z-index:200;
-    display:flex; align-items:center; justify-content:space-between;
-    padding: 1.3rem 4rem;
-    background: #FBFAF7;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family:var(--serif); font-size:1.2rem; font-weight:700; letter-spacing:0.1em; color:#0C182C; text-decoration:none; }
-  .nav-logo span { color:#2AADAD; }
-  .nav-back { font-family:var(--sans); font-size:0.78rem; color:var(--gray); text-decoration:none; transition:color 0.2s; letter-spacing:0.06em; }
-  .nav-back:hover { color:#0C182C; }
-
-  /* CONTENT */
-  .wrap { max-width: 760px; margin: 0 auto; padding: 8rem 4rem 6rem; }
-
-  .page-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform:uppercase;
-    color: #2AADAD; margin-bottom: 1rem;
-    display:flex; align-items:center; gap:0.7rem;
-  }
-  .page-eyebrow::before { content:''; display:block; width:1.4rem; height:1px; background:var(--teal-lt); }
-
-  h1 { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; margin-bottom:0.5rem; line-height:1.2; }
-
-  .effective-date {
-    font-family: var(--mono);
-    font-size:0.7rem; color:var(--gray); margin-bottom:3rem;
-    padding-bottom:2rem; border-bottom:1px solid #E6E1D8;
-  }
-
-  /* Sections */
-  .section { margin-bottom: 2.8rem; }
-  .section h2 {
-    font-family: var(--sans);
-    font-size: 0.78rem; font-weight:600;
-    letter-spacing: 0.12em; text-transform:uppercase;
-    color: #2AADAD;
-    margin-bottom: 1rem;
-    padding-bottom:0.5rem;
-    border-bottom:1px solid rgba(42,157,157,0.2);
-  }
-  .section h3 {
-    font-family: var(--sans);
-    font-size: 0.82rem; font-weight:500;
-    color: rgba(248,247,244,0.7);
-    margin: 1rem 0 0.4rem;
-  }
-  .section p {
-    font-size: 0.88rem; font-weight:300;
-    color: rgba(248,247,244,0.75);
-    line-height: 1.85;
-    margin-bottom: 0.8rem;
-  }
-  .section ul {
-    list-style: none;
-    margin: 0.4rem 0 0.8rem;
-  }
-  .section ul li {
-    font-size:0.88rem; font-weight:300;
-    color: rgba(248,247,244,0.75);
-    padding: 0.25rem 0 0.25rem 1.2rem;
-    position:relative; line-height:1.7;
-  }
-  .section ul li::before {
-    content:'—';
-    position:absolute; left:0;
-    color: rgba(42,157,157,0.5);
-    font-size:0.8rem;
-  }
-
-  .note {
-    font-size:0.78rem; color:var(--gray);
-    padding:0.7rem 1rem;
-    border-left:2px solid rgba(42,157,157,0.3);
-    margin:0.8rem 0;
-    line-height:1.65;
-  }
-
-  /* Table */
-  .info-table {
-    width:100%; border-collapse:collapse;
-    margin: 1rem 0;
-    font-size:0.83rem;
-  }
-  .info-table th {
-    text-align:left; padding:0.6rem 0.8rem;
-    background:rgba(42,157,157,0.08);
-    border:1px solid #E6E1D8;
-    font-weight:500; font-size:0.75rem;
-    color:rgba(248,247,244,0.6);
-    letter-spacing:0.05em;
-  }
-  .info-table td {
-    padding:0.6rem 0.8rem;
-    border:1px solid rgba(255,255,255,0.06);
-    color:rgba(248,247,244,0.75);
-    font-weight:300;
-    vertical-align:top;
-    line-height:1.65;
-  }
-
-  /* Business info box */
-  .biz-box {
-    background:rgba(42,157,157,0.06);
-    border:1px solid rgba(42,157,157,0.2);
-    padding:1.2rem 1.4rem;
-    margin:1rem 0 2rem;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0.6rem 2rem;
-  }
-  .biz-row { display:flex; flex-direction:column; gap:0.1rem; }
-  .biz-label { font-family:var(--mono); font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray); }
-  .biz-value { font-size:0.85rem; color:#0C182C; font-weight:400; }
-
-  /* Footer */
-  footer {
-    border-top:1px solid #E6E1D8;
-    padding:1.6rem 4rem;
-    display:flex; justify-content:space-between; align-items:center;
-    max-width:760px; margin:0 auto;
-  }
-  .footer-logo { font-family:var(--serif); font-size:0.88rem; font-weight:600; letter-spacing:0.1em; color:var(--gray); }
-  .footer-copy { font-size:0.68rem; color:rgba(255,255,255,0.2); font-family:var(--mono); }
-
-  @media(max-width:768px){
-    nav { padding:1rem 1.5rem; }
-    .wrap { padding:7rem 1.5rem 4rem; }
-    .biz-box { grid-template-columns:1fr; }
-    footer { padding:1.2rem 1.5rem; }
-  }
-</style>
-<style>
+html { background:#FBFAF7; scroll-behavior:smooth; }
+body { margin:0; background:#FBFAF7; color:#0C182C; font-family:"Helvetica Neue", Arial, sans-serif; min-height:100vh; overflow-x:hidden; word-break:keep-all; line-height:1.8; }
+*,*::before,*::after { box-sizing:border-box; }
+.page { max-width:1120px; margin:0 auto; padding:42px 56px 36px; }
+.nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:60px; position:sticky; top:0; background:#FBFAF7; z-index:200; padding-top:14px; padding-bottom:14px; border-bottom:1px solid #E6E1D8; }
+.logo { font-size:13px; letter-spacing:3px; font-weight:600; }
+.nav-links { display:flex; gap:28px; font-size:13px; }
+.nav-links a { text-decoration:none; color:#0C182C; }
+.wrap { max-width:760px; margin:0 auto; padding:0 0 4rem; }
+.page-eyebrow { font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:#B8922A; margin-bottom:1rem; display:flex; align-items:center; gap:0.7rem; }
+.page-eyebrow::before { content:''; display:block; width:1.4rem; height:1px; background:#B8922A; }
+h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(1.8rem,3vw,2.4rem); font-weight:700; margin:0 0 0.5rem; line-height:1.2; }
+.effective-date { font-size:0.72rem; color:#7A8FA8; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid #E6E1D8; }
+.section { margin-bottom:2.8rem; }
+.section h2 { font-size:0.78rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#B8922A; margin:0 0 1rem; padding-bottom:0.5rem; border-bottom:1px solid rgba(184,146,42,0.22); }
+.section h3 { font-size:0.92rem; font-weight:600; color:#0C182C; margin:1rem 0 0.4rem; }
+.section p { font-size:0.9rem; font-weight:300; color:#475569; line-height:1.85; margin:0 0 0.8rem; }
+.section ul { list-style:none; margin:0.4rem 0 0.8rem; padding:0; }
+.section ul li { font-size:0.9rem; font-weight:300; color:#475569; padding:0.25rem 0 0.25rem 1.2rem; position:relative; line-height:1.7; }
+.section ul li::before { content:'—'; position:absolute; left:0; color:#B8922A; font-size:0.8rem; }
+.section a { color:#B8922A !important; text-decoration:none; border-bottom:1px solid rgba(184,146,42,0.35); }
+.note { font-size:0.8rem; color:#475569; padding:0.8rem 1rem; border-left:2px solid rgba(184,146,42,0.45); background:#EDEBE6; margin:0.8rem 0; line-height:1.65; }
+.info-table { width:100%; border-collapse:collapse; margin:1rem 0; font-size:0.83rem; }
+.info-table th { text-align:left; padding:0.6rem 0.8rem; background:#EDEBE6; border:1px solid #E6E1D8; font-weight:600; font-size:0.75rem; color:#0C182C; letter-spacing:0.05em; }
+.info-table td { padding:0.6rem 0.8rem; border:1px solid #E6E1D8; color:#475569; font-weight:300; vertical-align:top; line-height:1.65; }
+.biz-box { background:#EDEBE6; border:1px solid #E6E1D8; padding:1.2rem 1.4rem; margin:1rem 0 2rem; display:grid; grid-template-columns:1fr 1fr; gap:0.6rem 2rem; }
+.biz-row { display:flex; flex-direction:column; gap:0.1rem; }
+.biz-label { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:#7A8FA8; }
+.biz-value { font-size:0.88rem; color:#0C182C; font-weight:400; }
+.legal { border-top:1px solid #D8D3C8; padding-top:22px; font-size:11px; line-height:1.8; color:#7A8FA8; }
+.legal a { color:#7A8FA8; text-decoration:none; border-bottom:1px solid #C9C3B8; }
+.mob-menu { display:none; position:fixed; top:0; left:0; right:0; background:#FBFAF7; border-bottom:1px solid #D8D3C8; padding:64px 24px 20px; flex-direction:column; z-index:499; }
+.mob-menu.open { display:flex; }
+.mob-menu a { font-size:15px; color:#0C182C; text-decoration:none; padding:13px 0; border-bottom:1px solid #E6E1D8; display:block; }
+.mob-menu a:last-child { border-bottom:none; }
+.mob-close { position:absolute; top:18px; right:20px; background:none; border:none; font-size:1.4rem; cursor:pointer; color:#0C182C; line-height:1; }
 @media(max-width:768px){
-  nav > div > a:not([style*="text-transform"]),
-  nav > div > a[style*="opacity"] { display:none !important; }
-  #hamBtn { display:flex !important; }
+  .page { padding:28px 20px 24px; }
+  .nav { margin-bottom:40px; }
+  .nav-links a:not(.nav-cta-btn) { display:none; }
+  .hamburger { display:flex !important; }
+  .nav-cta-btn { display:none !important; }
+  .wrap { padding-bottom:3rem; }
+  .biz-box { grid-template-columns:1fr; }
+  .legal { font-size:10px; line-height:1.7; }
 }
 </style>
 </head>
 <body>
 
-<nav style="position:sticky;top:0;z-index:200;background:#FBFAF7;border-bottom:1px solid #E6E1D8;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;">
-  <a href="/" style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;text-decoration:none;">AAP<span style="color:#B8922A;">.</span></a>
-  <div style="display:flex;align-items:center;gap:22px;">
-    <a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">소개</a>
-    <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">인사이트</a>
-    <a href="/#contact"
-      style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
-      onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
-      onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
-    <button id="hamBtn" onclick="toggleMob()"
-      style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
-      <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
-      <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
-      <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
-    </button>
-  </div>
-</nav>
-<div id="mobMenu" style="display:none;position:fixed;top:0;left:0;right:0;background:#FBFAF7;border-bottom:1px solid #E6E1D8;padding:64px 24px 20px;flex-direction:column;z-index:499;">
-  <button onclick="closeMob()" style="position:absolute;top:18px;right:20px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#0C182C;line-height:1;">×</button>
-  <a href="/#founder" onclick="closeMob()" style="font-size:15px;color:#0C182C;text-decoration:none;padding:13px 0;border-bottom:1px solid #E6E1D8;display:block;">소개</a>
-  <a href="/aap_insights.html" style="font-size:15px;color:#0C182C;text-decoration:none;padding:13px 0;border-bottom:1px solid #E6E1D8;display:block;">인사이트</a>
-  <a href="/#contact" onclick="closeMob()" style="font-size:15px;color:#0C182C;text-decoration:none;padding:13px 0;display:block;">자문 문의</a>
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">×</button>
+  <a href="/#founder" onclick="closeMob()">소개</a>
+  <a href="/aap_insights.html" onclick="closeMob()">인사이트</a>
+  <a href="/#contact" onclick="closeMob()">자문 문의</a>
 </div>
+<div class="page">
+  <div class="nav">
+    <a href="/" class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;text-decoration:none;">AAP<span style="color:#B8922A;">.</span></a>
+    <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
+      <a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">소개</a>
+      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">인사이트</a>
+      <a href="/#contact" class="nav-cta-btn" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;" onmouseover="this.style.background='#0C182C';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
+      <button class="hamburger" id="hamBtn" onclick="toggleMob()" style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+      </button>
+    </div>
+  </div>
 
-<div class="wrap">
+  <div class="wrap">
+
 
   <div class="page-eyebrow">법적 고지</div>
   <h1>개인정보처리방침</h1>
@@ -200,9 +90,9 @@
   <div class="biz-box">
     <div class="biz-row"><span class="biz-label">상호</span><span class="biz-value">아름어드바이저리파트너스</span></div>
     <div class="biz-row"><span class="biz-label">브랜드명</span><span class="biz-value">AAP Advisory</span></div>
-    <div class="biz-row"><span class="biz-label">대표자</span><span class="biz-value">김예슬</span></div>
+    <div class="biz-row"><span class="biz-label">대표자</span><span class="biz-value">김진경</span></div>
     <div class="biz-row"><span class="biz-label">사업자등록번호</span><span class="biz-value">222-20-05976</span></div>
-    <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-advisory.com</span></div>
+    <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-partners.com</span></div>
     <div class="biz-row"><span class="biz-label">홈페이지</span><span class="biz-value">www.aap-partners.com</span></div>
   </div>
 
@@ -364,8 +254,8 @@
     <div class="biz-box" style="margin-top:1rem;">
       <div class="biz-row"><span class="biz-label">상호</span><span class="biz-value">아름어드바이저리파트너스</span></div>
       <div class="biz-row"><span class="biz-label">대외 사용명</span><span class="biz-value">AAP Advisory</span></div>
-      <div class="biz-row"><span class="biz-label">개인정보 보호책임자</span><span class="biz-value">김예슬</span></div>
-      <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-advisory.com</span></div>
+      <div class="biz-row"><span class="biz-label">개인정보 보호책임자</span><span class="biz-value">김진경</span></div>
+      <div class="biz-row"><span class="biz-label">이메일</span><span class="biz-value">info@aap-partners.com</span></div>
     </div>
   </div>
 
@@ -387,26 +277,30 @@
     <p>본 개인정보처리방침은 <strong style="color:#0C182C;">2026년 4월 23일</strong>부터 적용됩니다. 회사는 관련 법령, 서비스 변경 등에 따라 본 방침을 수정할 수 있으며, 변경 시 홈페이지를 통해 공지합니다.</p>
   </div>
 
-</div><!-- /wrap -->
 
-<footer style="border-top:1px solid #E6E1D8;padding:16px 48px;display:flex;flex-direction:column;gap:6px;background:#FBFAF7;">
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-    <div style="font-family:'Playfair Display',serif;font-size:0.85rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;">AAP<span style="color:#B8922A;">.</span></div>
-    <div style="font-size:11px;color:#7A8A9A;">© 2026 AAP Advisory · aap-partners.com</div>
   </div>
-  <div style="font-size:10px;color:#B0A898;line-height:1.6;">
-    상호: 아름어드바이저리파트너스 &nbsp;|&nbsp; 브랜드명: AAP Advisory &nbsp;|&nbsp; 대표자: 김진경 &nbsp;|&nbsp; 사업자등록번호: 222-20-05976 &nbsp;|&nbsp; <a href="/privacy.html" style="color:#B0A898;text-decoration:underline;">Privacy Policy</a>
-  </div>
-</footer>
 
+  <div class="legal">
+    상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="/privacy.html">Privacy Policy</a>
+    <br>
+    Contact: info@aap-partners.com
+  </div>
+</div>
 <script>
 function toggleMob(){
   var m=document.getElementById('mobMenu');
-  m.style.display=m.style.display==='flex'?'none':'flex';
+  var b=document.getElementById('hamBtn');
+  m.classList.toggle('open');
+  b.innerHTML=m.classList.contains('open')
+    ?'<span style="font-size:1.2rem;color:#0C182C;line-height:1;">×</span>'
+    :'<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
 }
 function closeMob(){
-  document.getElementById('mobMenu').style.display='none';
+  document.getElementById('mobMenu').classList.remove('open');
+  document.getElementById('hamBtn').innerHTML='<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
 }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMob(); });
 </script>
 </body>
 </html>
+
