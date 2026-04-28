@@ -2,760 +2,416 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AAP Advisory</title>
-<style>html,body{background:#111E35;}
-  /* ── 햄버거 메뉴 ── */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    z-index: 210;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--off-white, #F8F7F4);
-    transition: all 0.3s;
-    transform-origin: center;
-  }
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 56px;
-    left: 0; right: 0;
-    background: #111E35;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 1.2rem 1.5rem;
-    z-index: 200;
-    flex-direction: column;
-    gap: 0;
-  }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray, #7A8FA8);
-    text-decoration: none;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: color 0.2s;
-  }
-  .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--off-white, #F8F7F4); }
-  .mobile-menu a.active { color: var(--gold, #C9A96E); }
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:      #111E35;
-    --navy-mid:  #1B2A4A;
-    --navy-card: #162038;
-    --accent:    #A6A6A6;
-    --accent-lt: #C8C8C8;
-    --teal:      #1B7A7A;
-    --teal-lt:   #2A9D9D;
-    --teal-pale: #EBF5F5;
-    --off-white: #F8F7F4;
-    --cream:     #F2EFE9;
-    --gray:      #7A8FA8;
-    --border:    rgba(255,255,255,0.08);
-    --border-lt: #DDE3EC;
-    --text-dk:   #111E35;
-    --text-mid:  #4A5568;
-    --text-lt:   #6B7A8D;
-  }
-
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy);
-    color: var(--off-white);
-    overflow-x: hidden;
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  }
-
-  .nav-right { display:flex; align-items:center; gap:2.5rem; }
-  .lang-toggle { display:flex; border:1px solid rgba(255,255,255,0.12); overflow:hidden; }
-  .lt-btn { padding:0.28rem 0.7rem; background:none; border:none; font-family:'DM Sans',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:rgba(166,166,166,0.6); cursor:pointer; transition:all 0.2s; }
-  .lt-btn:first-child { border-right:1px solid rgba(255,255,255,0.12); }
-  .lt-btn.active { background:#A6A6A6; color:#111E35; }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.3rem 4rem;
-    background: #111E35;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; font-weight: 700;
-    letter-spacing: 0.1em; color: var(--off-white);
-  }
-  .nav-logo span { color: var(--teal-lt); }
-  .nav-links {
-    display: flex; gap: 2.5rem; list-style: none; margin: 0;
-  }
-  .nav-links a {
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gray); text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--off-white); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 8rem 4rem 6rem;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 55% 65% at 75% 55%, rgba(166,166,166,0.05) 0%, transparent 65%);
-  }
-  .hero-inner {
-    max-width: 1200px; margin: 0 auto; width: 100%;
-    display: grid; grid-template-columns: 1.1fr 0.9fr;
-    gap: 6rem; align-items: center;
-    position: relative; z-index: 1;
-  }
-  .eyebrow {
-    font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--teal-lt); margin-bottom: 1.4rem;
-    display: flex; align-items: center; gap: 0.8rem;
-  }
-  .eyebrow::before {
-    content: ''; display: block;
-    width: 2rem; height: 1px; background: var(--teal-lt);
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 3.5vw, 3.4rem);
-    font-weight: 700; line-height: 1.18;
-    margin-bottom: 1.6rem;
-  }
-  h1 em { font-style: italic; color: var(--teal-lt); }
-  .hero-sub {
-    font-size: 0.88rem; font-weight: 300;
-    line-height: 1.85; color: var(--gray);
-    margin-bottom: 2.2rem; max-width: 580px;
-    white-space: nowrap;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.85rem 2rem;
-    background: transparent;
-    border: 1px solid var(--teal-lt);
-    color: var(--teal-lt);
-    text-decoration: none;
-    font-size: 0.8rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    transition: background 0.25s, color 0.25s;
-  }
-  .btn:hover { background: var(--teal-lt); color: var(--navy); }
-  .tagline-block {
-    border-left: 1px solid var(--border);
-    padding-left: 4rem;
-  }
-  .tw {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.6rem, 4vw, 4.4rem);
-    font-weight: 700; line-height: 1.1;
-    opacity: 0.05; letter-spacing: -0.02em;
-    transition: opacity 0.6s ease;
-    cursor: default;
-  }
-  .tw.on { opacity: 1; color: var(--teal-lt); transition: opacity 0.6s ease; }
-  .tw:hover { opacity: 0.4; }
-
-  /* ─── SHARED ─── */
-  .wrap {
-    max-width: 1200px; margin: 0 auto;
-    padding: 6rem 4rem;
-  }
-  .section-label {
-    font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 0.8rem;
-    display: flex; align-items: center; gap: 0.7rem;
-  }
-  .section-label::before {
-    content: ''; display: block;
-    width: 1.4rem; height: 1px; background: var(--accent);
-  }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.7rem, 2.8vw, 2.5rem);
-    font-weight: 600; line-height: 1.25;
-    margin-bottom: 0.6rem;
-  }
-  .hr { width: 100%; height: 1px; background: var(--border); }
-
-  /* ─── ABOUT ─── */
-  .about-bg {
-    background: var(--navy-mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 5rem; align-items: start;
-    margin-top: 2.8rem;
-  }
-  .about-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 600;
-    line-height: 1.2; margin-bottom: 0.4rem;
-  }
-  .about-role {
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--teal-lt); margin-bottom: 1.6rem;
-  }
-  .about-email {
-    display: inline-block;
-    font-size: 0.85rem; color: var(--gray);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    padding-bottom: 0.2rem;
-    transition: color 0.2s, border-color 0.2s;
-    margin-bottom: 2rem;
-  }
-  .about-email:hover { color: var(--accent-lt); border-color: var(--accent); }
-  .about-bio {
-    font-size: 0.98rem; font-weight: 300;
-    line-height: 1.9; color: var(--gray);
-    margin-bottom: 2.2rem;
-  }
-  .about-bio strong { color: var(--off-white); font-weight: 400; }
-  .cred-list { list-style: none; }
-  .cred-list li {
-    font-size: 0.85rem; font-weight: 300;
-    color: var(--gray); line-height: 1.6;
-    padding: 0.55rem 0;
-    border-bottom: 1px solid var(--border);
-    display: flex; gap: 0.8rem; align-items: flex-start;
-  }
-  .cred-list li::before {
-    content: '—'; color: var(--teal-lt);
-    flex-shrink: 0; margin-top: 0.05rem;
-  }
-
-  /* ─── SERVICES ─── */
-  .services-tabs {
-    display: flex; flex-direction: row; gap: 0; margin-bottom: 2.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-top: 2.8rem; flex-wrap: nowrap;
-  }
-  .tab-btn {
-    padding: 0.8rem 1.8rem;
-    flex-shrink: 0;
-    background: none; border: none; border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.78rem; font-weight: 500;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--gray); cursor: pointer;
-    transition: color 0.2s, border-color 0.2s;
-  }
-  .tab-btn.active { color: var(--off-white); border-bottom-color: var(--teal-lt); }
-  .tab-btn:hover { color: var(--off-white); }
-  .tab-pane { display: none; }
-  .tab-pane.active { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
-  #tab-caas.active {
-  grid-template-columns: 1fr;
+html { background: #FBFAF7; }
+body {
+  margin: 0;
+  background: #FBFAF7;
+  color: #0C182C;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
 }
-  .svc-card {
-    background: var(--navy-card);
-    border: 1px solid var(--border);
-    padding: 1.4rem 1.6rem;
-    transition: border-color 0.3s;
-  }
-  .svc-card:hover { border-color: rgba(42,157,157,0.35); }
-  .svc-phase {
-    font-size: 0.68rem; font-weight: 500;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--teal-lt); margin-bottom: 0.5rem;
-  }
-  .svc-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem; margin-bottom: 0.4rem;
-  }
-  .svc-desc {
-    font-size: 0.88rem; font-weight: 300;
-    color: var(--gray); line-height: 1.75;
-    margin-top: 0.6rem;
-  }
-  .svc-note {
-    margin-top: 0; padding: 0.8rem 1.2rem;
-    border-left: 2px solid var(--teal-lt);
-    background: rgba(27,122,122,0.05);
-    font-size: 0.82rem; font-weight: 300;
-    color: var(--gray); line-height: 1.7;
-    grid-column: 1 / -1;
-  }
-  .svc-tagline {
-    grid-column: 1 / -1;
-    font-size: 1.0rem; font-weight: 500;
-    color: var(--off-white);
-    letter-spacing: -0.01em;
-    line-height: 1.5;
-    padding: 0.2rem 0 0.8rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    margin-bottom: 0.2rem;
-  }
+.page {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 42px 56px 36px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 88px;
+  position: sticky;
+  top: 0;
+  background: #FBFAF7;
+  z-index: 200;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-left: -56px;
+  margin-right: -56px;
+  padding-left: 56px;
+  padding-right: 56px;
+  border-bottom: 1px solid #E6E1D8;
+}
+.logo {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 600;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+  font-size: 13px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: #0C182C;
+}
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 64px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+.kicker {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1B7A7A;
+  margin-bottom: 24px;
+}
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 68px;
+  line-height: 0.98;
+  font-weight: 400;
+  margin: 0;
+}
+.hero-copy {
+  font-size: 18px;
+  line-height: 1.85;
+  color: #334155;
+  margin-bottom: 32px;
+}
+.cta {
+  display: inline-block;
+  padding: 14px 26px;
+  border: 1px solid #0C182C;
+  color: #0C182C;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.statement {
+  border-top: 1px solid #D8D3C8;
+  border-bottom: 1px solid #D8D3C8;
+  padding: 36px 0;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 56px;
+  margin-bottom: 54px;
+}
+.statement-title {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #B8922A;
+}
+.statement-text {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  line-height: 1.45;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #D8D3C8;
+  margin-bottom: 70px;
+}
+.card {
+  background: #FBFAF7;
+  padding: 30px 26px;
+  min-height: 170px;
+}
+.card-num {
+  font-size: 12px;
+  color: #1B7A7A;
+  margin-bottom: 18px;
+}
+.card-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+.card-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: #475569;
+}
 
-  /* ─── CONTACT ─── */
-  .contact-bg {
-    background: var(--navy-mid);
-    border-top: 1px solid var(--border);
-  }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6rem; align-items: center;
-  }
-  .contact-headline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 2.4vw, 2.2rem);
-    line-height: 1.35; margin-bottom: 1rem;
-  }
-  .contact-sub {
-    font-size: 0.92rem; font-weight: 300;
-    color: var(--gray); line-height: 1.8;
-  }
-  .contact-items { display: flex; flex-direction: column; gap: 1.4rem; }
-  .contact-lbl {
-    font-size: 0.68rem; font-weight: 500;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--teal-lt); margin-bottom: 0.25rem;
-  }
-  .contact-val {
-    font-size: 0.98rem; color: var(--off-white);
-    text-decoration: none; transition: color 0.2s; display: block;
-  }
-  .contact-val:hover { color: var(--accent-lt); }
-  .contact-val.muted { color: var(--gray); font-style: italic; }
+/* Founder */
+.founder {
+  border-top: 1px solid #D8D3C8;
+  padding: 48px 0 54px;
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 64px;
+}
+.founder-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #B8922A;
+}
+.founder-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.founder-title {
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #1B7A7A;
+  margin-bottom: 26px;
+}
+.founder-copy {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #334155;
+  max-width: 660px;
+}
+.founder-points {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 28px;
+}
+.founder-point {
+  font-size: 13px;
+  color: #475569;
+  border-top: 1px solid #E6E1D8;
+  padding-top: 12px;
+}
 
-  /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 1.6rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1200px; margin: 0 auto;
-  }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.88rem; font-weight: 600;
-    letter-spacing: 0.1em; color: var(--gray);
-  }
-  .footer-copy { font-size: 0.75rem; color: rgba(255,255,255,0.18); }
-
-  /* ─── FADE IN ─── */
-  .fi {
-    opacity: 1; transform: translateY(0);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-  .fi.ready {
-    opacity: 0; transform: translateY(20px);
-  }
-  .fi.ready.vis { opacity: 1; transform: translateY(0); }
-  .fi.ready:nth-child(2) { transition-delay: 0.08s; }
-  .fi.ready:nth-child(3) { transition-delay: 0.16s; }
-  .fi.ready:nth-child(4) { transition-delay: 0.24s; }
-
-  /* ─── BILINGUAL ─── */
-  body.en [data-ko] { display: none !important; }
-  body.ko [data-en] { display: none !important; }
-
-  /* ─── RESPONSIVE ─── */
-  .nav-cta-btn {
-    display: inline-block;
-    padding: 0.42rem 1.1rem;
-    background: var(--teal-lt);
-    color: var(--navy);
-    font-size: 0.72rem; font-weight: 500;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; cursor: pointer;
-    border: none; transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .nav-cta-btn:hover { background: #35B0B0; color: var(--navy); }
-
-  /* ─── LIGHT SECTIONS ─── */
-  .light-bg {
-    background: var(--off-white);
-    border-top: 1px solid var(--border-lt);
-    border-bottom: 1px solid var(--border-lt);
-  }
-  .light-bg h2 { color: var(--text-dk); }
-  .light-bg .section-label { color: var(--teal); }
-  .light-bg .section-label::before { background: var(--teal); }
-  .light-bg .about-name { color: var(--text-dk); }
-  .light-bg .about-role { color: var(--teal); }
-  .light-bg .about-bio { color: var(--text-mid); }
-  .light-bg .about-bio strong { color: var(--text-dk); font-weight: 500; }
-  .light-bg .about-email { color: var(--text-mid); border-bottom-color: var(--border-lt); }
-  .light-bg .about-email:hover { color: var(--teal); border-color: var(--teal); }
-  .light-bg .cred-list li { color: var(--text-mid); border-bottom-color: var(--border-lt); }
-  .light-bg .cred-list li::before { color: var(--teal); }
-  .light-bg .btn {
-    border-color: var(--teal); color: var(--teal);
-  }
-  .light-bg .btn:hover { background: var(--teal); color: var(--off-white); }
-
-  /* ─── TEAL EYEBROW for dark sections ─── */
-  .section-label { color: var(--teal-lt); }
-  .section-label::before { background: var(--teal-lt); }
-
-  /* ─── DIAGNOSTIC REPORTS ─── */
-  .diag-bg {
-    background: var(--cream);
-    border-top: 1px solid var(--border-lt);
-    border-bottom: 1px solid var(--border-lt);
-  }
-  .diag-bg h2 { color: var(--text-dk); }
-  .diag-bg .section-label { color: var(--teal); }
-  .diag-bg .section-label::before { background: var(--teal); }
-  .diag-bg .diag-intro-sub { color: var(--text-mid); }
-  .diag-bg .diag-intro-note { color: var(--text-lt); }
-  .diag-bg .btn { border-color: var(--teal); color: var(--teal); }
-  .diag-bg .btn:hover { background: var(--teal); color: var(--off-white); }
-  .diag-grid {
-    display: grid;
-    grid-template-columns: 0.75fr 1.25fr;
-    gap: 4rem; align-items: start;
-    margin-top: 2.5rem;
-  }
-  .diag-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.7rem;
-  }
-  .diag-card {
-    background: var(--off-white);
-    border: 1px solid var(--border-lt);
-    padding: 1.2rem 1.4rem;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    text-decoration: none; display: block;
-    cursor: pointer;
-    color: var(--text-dk) !important;
-  }
-  .diag-card:visited { color: var(--text-dk) !important; }
-  .diag-card:link { color: var(--text-dk) !important; }
-  .diag-card:hover { border-color: var(--teal); box-shadow: 0 2px 12px rgba(27,122,122,0.08); }
-  .diag-card.featured {
-    border-color: var(--teal);
-    background: var(--teal-pale);
-  }
-  .diag-card-tag {
-    font-size: 0.62rem; font-weight: 500;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--teal); margin-bottom: 0.4rem;
-  }
-  .diag-card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.0rem; color: var(--text-dk);
-    margin-bottom: 0.3rem; line-height: 1.3;
-  }
-  .diag-card-desc {
-    font-size: 0.75rem; font-weight: 300;
-    color: var(--text-mid); line-height: 1.6;
-    margin-bottom: 0.7rem;
-  }
-  .diag-card-price {
-    font-size: 0.82rem; color: var(--teal);
-    font-weight: 500;
-  }
-  .diag-card-save {
-    font-size: 0.65rem; color: var(--teal);
-    background: rgba(27,122,122,0.1);
-    padding: 0.1rem 0.4rem;
-    margin-left: 0.4rem;
-  }
-  .diag-intro-sub {
-    font-size: 0.9rem; font-weight: 300;
-    line-height: 1.85; color: var(--gray);
-    margin-bottom: 0.6rem;
-  }
-  .diag-intro-note {
-    font-size: 0.78rem; font-weight: 300;
-    color: rgba(122,143,168,0.7); line-height: 1.7;
-    margin-bottom: 1.8rem;
-  }
-
-  @media (max-width: 900px) {
-    .diag-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .diag-cards { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 768px) {
-    .hero { padding: 6rem 1.5rem 4rem; }
-    .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .hero h1 { font-size: 2.4rem; }
-    .tagline-block { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2rem; }
-    .tagline-block .tw { font-size: 2.8rem; }
-    .hero-sub { white-space: normal; font-size: 0.85rem; }
-    .wrap { padding: 3rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .about-name { font-size: 1.8rem; }
-    h2 { font-size: 1.8rem; }
-    .tab-btn { font-size: 0.8rem; }
-    .tab-pane.active { grid-template-columns: 1fr; }
-    .svc-card { padding: 1.5rem; }
-    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-headline { font-size: 1.8rem; }
-    .contact-items { gap: 1.2rem; }
-    footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
-    .hamburger { display: flex; }
-    .nav-right { gap: 1rem; }
-    .nav-links { display: none; }
-    nav { padding: 1rem 1.5rem; }
-  }
-
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 1.9rem; }
-    .tagline-block .tw { font-size: 2.2rem; }
-    h2 { font-size: 1.5rem; }
-    .about-name { font-size: 1.5rem; }
-    .btn { font-size: 0.75rem; padding: 0.85rem 1.8rem; }
-    .wrap { padding: 2.5rem 1.2rem; }
-  }
+/* Legal footer */
+.legal {
+  border-top: 1px solid #D8D3C8;
+  padding-top: 22px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #7A8A9A;
+}
+.legal a {
+  color: #7A8A9A;
+  text-decoration: none;
+  border-bottom: 1px solid #C9C3B8;
+}
 </style>
 </head>
-<body class="ko">
 
-<!-- NAV -->
-<nav>
-  <div style="display:flex;align-items:center;gap:1.5rem;">
-    <div class="nav-logo">AAP<span style="color:var(--teal-lt);">.</span></div>
-  </div>
-  <div style="display:flex;align-items:center;gap:1rem;">
-    <a href="#contact" class="nav-cta-btn">
-      <span data-ko>자문 문의</span><span data-en>Contact</span>
-    </a>
-  </div>
-</nav>
+<body>
 
-<div class="mobile-menu" id="mobileMenu">
-    <a href="/"><span data-ko>홈</span><span data-en>Home</span></a>
-    <a href="/#contact"><span data-ko>자문 문의</span><span data-en>Contact</span></a>
+<style>
+html { background: #FBFAF7; }
+@media(max-width:768px){
+  .page { padding: 0; }
+  .nav {
+    margin-left: 0 !important; margin-right: 0 !important;
+    padding-left: 24px !important; padding-right: 24px !important;
+    background: #FBFAF7 !important;
+  }
+  .nav-links a:not(.nav-cta-btn) { display: none; }
+  .hamburger { display: flex !important; }
+  .nav-cta-btn { display: none !important; }
+  .hero { grid-template-columns: 1fr; gap: 28px; margin-bottom: 44px; padding: 0 24px; }
+  h1 { font-size: 38px; }
+  .hero-copy { font-size: 15px; padding: 0 24px; }
+  .cta { margin: 0 24px; }
+  .statement { grid-template-columns: 1fr; gap: 20px; padding: 28px 24px; margin: 0 0 40px; }
+  .statement-text { font-size: 22px; }
+  .cards { grid-template-columns: 1fr; margin: 0 0 48px; }
+  .founder { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px 40px; }
+  .founder-name { font-size: 26px; }
+  .founder-points { grid-template-columns: 1fr; }
+  .legal { padding: 20px 24px; font-size: 10px; }
+}
+.mob-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0;
+  background: #FBFAF7; border-bottom: 1px solid #D8D3C8;
+  padding: 70px 24px 20px; flex-direction: column; z-index: 499;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-size: 15px; color: #0C182C; text-decoration: none;
+  padding: 14px 0; border-bottom: 1px solid #E6E1D8; display: block;
+}
+.mob-menu a:last-child { border-bottom: none; }
+</style>
+<div class="mob-menu" id="mobMenu">
+  <a href="#approach" onclick="document.getElementById('mobMenu').classList.remove('open')">서비스</a>
+  <a href="#founder" onclick="document.getElementById('mobMenu').classList.remove('open')">소개</a>
+  <a href="/aap_insights.html">인사이트</a>
+  <a href="#contact" onclick="document.getElementById('mobMenu').classList.remove('open')">자문 문의</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
+<div class="page">
+
+  <div class="nav">
+    <div class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;">AAP<span style="color:#B8922A;">.</span></div>
+    <div class="nav-links" style="display:flex;align-items:center;gap:24px;">
+      <a href="#approach" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">서비스</a>
+      <a href="#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">소개</a>
+      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">인사이트</a>
+      <a href="#contact" class="nav-cta-btn"
+        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:9px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
+        onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
+        onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
+      <button class="hamburger"
+        onclick="document.getElementById('mobMenu').classList.toggle('open')"
+        style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
+        <span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="hero">
     <div>
-      <div class="eyebrow">AAP Advisory</div>
-      <h1>
-        <span data-ko>평생의 업, 가치를 높이는 Decision.<br><em>쌓아온 것을 지키는 것도 전략이 필요합니다.</em></span>
-        <span data-en>A lifetime of work.<br><em>You need a decision that honours it.</em></span>
-      </h1>
-      <p class="hero-sub">
-        <span data-ko>모든 결정은 결국 내 기업의 가치로 남습니다.<br>AAP Advisory는 당신이 쌓아온 것의 가치를 알고, 지킬 줄 아는 자문사입니다.</span>
-        <span data-en>Built for decades. Valued on your terms.</span>
-      </p>
+      <div class="kicker">Value Uplift Advisory</div>
+      <h1>Value is not given.<br>It is prepared.</h1>
     </div>
-    <div class="tagline-block">
-      <span class="tw" id="tw0">Financial<br>discipline</span>
-      <span class="tw" id="tw1">drives</span>
-      <span class="tw" id="tw2">enterprise<br>value.</span>
+    <div>
+      <div class="hero-copy">
+        AAP Advisory는 비상장 기업이 제값을 인정받을 수 있도록
+        딜 이전의 구조, 메시지, 실행 우선순위를 정리합니다.
+      </div>
+      <a class="cta" href="#contact">Start a conversation</a>
     </div>
   </div>
-</section>
 
-<!-- NOTICE -->
-<div style="background:rgba(27,122,122,0.06);border-top:1px solid rgba(42,173,173,0.15);border-bottom:1px solid rgba(42,173,173,0.15);padding:1rem 4rem;">
-  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:1rem;">
-    <div style="width:1px;height:32px;background:rgba(42,173,173,0.3);flex-shrink:0;"></div>
-    <p style="font-size:0.8rem;font-weight:300;color:rgba(122,143,168,0.7);line-height:1.8;letter-spacing:0.01em;">
-      <span data-ko>AAP Advisory는 현재 서비스 구성을 재정비하고 있습니다. 상세 서비스와 진행 방식은 개편 후 순차적으로 안내될 예정입니다.</span>
-      <span data-en>AAP Advisory is currently restructuring its service offering. Details will be shared in due course.</span>
-    </p>
+  <div class="statement">
+    <div class="statement-title">Our Position</div>
+    <div class="statement-text">
+      팔릴 수 있는 회사를 찾는 것이 아니라,<br>
+      제값 받을 수 있는 상태를 만듭니다.
+    </div>
   </div>
+
+  <div class="cards" id="approach">
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">Find</div>
+      <div class="card-text">
+        가치가 눌려 있는 회사를 먼저 발굴하고, 공개자료 기반으로 가능성을 읽습니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">Shape</div>
+      <div class="card-text">
+        오너 편에서 현재 위치와 가치 훼손 요인, 개선 가능성을 정리합니다.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Prepare</div>
+      <div class="card-text">
+        딜이 시작되기 전, 제값 받을 수 있는 구조와 시나리오를 준비합니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="founder" id="founder">
+    <div class="founder-label">Founder Profile</div>
+    <div>
+      <div class="founder-name">김진경</div>
+      <div class="founder-title">Founder | Principal</div>
+      <div class="founder-copy">
+        Big 4 M&A 실사와 기업 재무관리 경험을 바탕으로,
+        비상장 기업 오너가 딜 이전에 회사의 현재 위치와 가치 훼손 요인을 정리하고
+        제값 받을 수 있는 상태를 준비하도록 돕습니다.
+        <br><br>
+        AAP Advisory는 분석표를 만드는 데서 끝나지 않습니다.
+        오너의 관점에서 회사를 다시 읽고, 외부 평가에서 불리하게 작용할 수 있는 요소를 먼저 정리합니다.
+      </div>
+
+      <div class="founder-points">
+        <div class="founder-point">EY Transaction Diligence — Seoul · Sydney · Auckland</div>
+        <div class="founder-point">Samsung Electronics Australia — Senior Finance Manager</div>
+        <div class="founder-point">CPA Australia</div>
+        <div class="founder-point">누적 딜 가치 A$3bn+ · Buy-side &amp; Sell-side</div>
+      </div>
+      <div style="margin-top:24px;">
+        <button onclick="document.getElementById('credModal').style.display='flex'"
+          style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;
+            padding:10px 22px;border:1px solid #0C182C;background:transparent;
+            color:#0C182C;cursor:pointer;font-family:inherit;"
+          onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
+          onmouseout="this.style.background='transparent';this.style.color='#0C182C'">
+          Selected Experience →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal" id="contact">
+    상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="#">Privacy Policy</a>
+    <br>
+    Contact: info@aap-partners.com
+  </div>
+
 </div>
 
+<!-- CREDENTIAL MODAL -->
+<div id="credModal"
+  onclick="if(event.target===this)this.style.display='none'"
+  style="display:none;position:fixed;inset:0;background:rgba(12,24,44,0.55);
+    z-index:1000;align-items:center;justify-content:center;padding:1.2rem;">
+  <div style="background:#FBFAF7;max-width:580px;width:100%;
+    max-height:86vh;overflow-y:auto;padding:2.2rem 2.4rem;">
 
-<div class="hr"></div>
-
-<!-- ABOUT -->
-<div class="about-bg light-bg" id="about">
-  <div class="wrap">
-    <div class="section-label">
-      <span data-ko>자문사 소개</span><span data-en>About</span>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6rem;">
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;">Selected Experience</div>
+      <button onclick="document.getElementById('credModal').style.display='none'"
+        style="background:none;border:none;font-size:1.3rem;cursor:pointer;color:#7A8A9A;line-height:1;padding:0;">×</button>
     </div>
-    <h2>AAP Advisory</h2>
-    <div class="about-grid">
-      <div>
-        <div class="about-name">Liz Kim</div>
-        <div class="about-role">Founder &amp; Principal</div>
-        <p class="about-bio">
-          <span data-ko><strong>Big 4 재무실사(FDD)</strong>와 <strong>글로벌 기업 FP&amp;A</strong>를 거치며 수 건의 딜에서 숫자를 들여다봤습니다.<br><br>많은 중견기업들은 중요한 순간에 숫자를 제대로 갖추지 못한채 결정을 내립니다.<br>전략적 판단, 재무 정비, 그리고 가치있는 Exit까지.<br>AAP Advisory는 대표의 의사결정을 뒷받침하고, 회사가 어디로든 갈 수 있도록 준비합니다.</span>
-          <span data-en>AAP's background spans <strong>Big 4 financial due diligence</strong> and <strong>corporate FP&amp;A</strong> — hundreds of deals, across industries and borders.<br><br>Too many business owners make critical decisions without financial clarity to back it up. Strategic clarity, financial readiness and a value-driven exit when the time comes. AAP Advisory supports the decisions that matter; and prepares your business for wherever it goes.</span>
-        </p>
-      </div>
-      <div>
-        <ul class="cred-list">
-          <li><span data-ko>글로벌 M&amp;A 및 기업 재무 분야 13년 이상의 경력</span><span data-en>13+ years in global M&amp;A and corporate finance</span></li>
-          <li><span data-ko>Big 4 재무자문 출신 — 재무실사(FDD) 및 가치평가 전문</span><span data-en>Big 4 financial advisory background — specialist in FDD and valuation</span></li>
-          <li><span data-ko>글로벌 기업 FP&amp;A — 사업부 단위 재무 계획·분석 경험</span><span data-en>Corporate FP&amp;A — business unit financial planning and analysis</span></li>
-          <li><span data-ko>실제 수익구조 재정리 및 운영 리스크 분석 전문</span><span data-en>Specialist in earnings normalisation and operational risk analysis</span></li>
-          <li><span data-ko>기업 인수·매각 및 지분 승계 자문 다수</span><span data-en>Extensive M&amp;A, disposal and ownership transition experience</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="hr"></div>
+    <div style="font-family:Georgia,serif;font-size:20px;line-height:1.3;color:#0C182C;margin-bottom:0.3rem;">약 7조 원+ 누적 거래 경험</div>
+    <div style="font-size:12px;color:#7A8A9A;margin-bottom:1.8rem;letter-spacing:0.3px;">글로벌 PE 및 전략적 투자자 대상 M&A 실사 · EY Transaction Diligence</div>
 
-<!-- CONTACT -->
-<div class="contact-bg" id="contact">
-  <div class="wrap">
-    <div class="section-label">
-      <span data-ko>문의</span><span data-en>Contact</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:3rem;flex-wrap:wrap;">
-      <div>
-        <h2 class="contact-headline" style="margin-bottom:0.6rem;">
-          <span data-ko>궁금한 게 있으신가요?</span>
-          <span data-en>Have a question?</span>
-        </h2>
-        <p style="font-size:0.88rem;font-weight:300;color:var(--gray);line-height:1.8;max-width:420px;">
-          <span data-ko>카카오채널 또는 이메일로 문의 주시기 바랍니다.</span>
-          <span data-en>Reach out via KakaoTalk or email.</span>
-        </p>
-      </div>
-      <div style="display:flex;flex-direction:row;align-items:center;gap:0.8rem;">
-        <a href="http://pf.kakao.com/_iXxfjX/chat"
-   style="display:inline-flex;align-items:center;justify-content:center;
-          width:38px;height:38px;border-radius:50%;
-          background:#FAE100;text-decoration:none;
-          transition:opacity 0.2s;"
-   onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="#3A1D1D"><path d="M12 3C6.477 3 2 6.582 2 11c0 2.75 1.694 5.17 4.272 6.67L5.5 21l4.035-2.153C10.304 18.947 11.138 19 12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
-        </a>
-
-        <div style="font-size:0.75rem;color:var(--gray);">
-          <a id="contact-email" style="color:var(--gray);text-decoration:none;" onmouseover="this.style.color='var(--teal-lt)'" onmouseout="this.style.color='var(--gray)'"></a>
+    <div style="border-top:1px solid #D8D3C8;padding-top:1.3rem;margin-bottom:1.6rem;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:1rem;">대표 거래</div>
+      <div style="display:flex;flex-direction:column;">
+        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">헬스케어·재활 서비스</div>
+          <div style="font-size:12px;color:#7A8A9A;">약 2.1조 원 · APAC 6개 법인 · 글로벌 PE · Sell-side VDD</div>
+        </div>
+        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">산업가스·제조</div>
+          <div style="font-size:12px;color:#7A8A9A;">약 4.6조 원 · 글로벌 전략적 투자자 · Buy-side DD</div>
+        </div>
+        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">교육 플랫폼</div>
+          <div style="font-size:12px;color:#7A8A9A;">약 1,300억 원 · 영국 200개+ 사이트 · 글로벌 PE · Buy-side DD</div>
+        </div>
+        <div style="padding:0.8rem 0;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">소비재 공개매수</div>
+          <div style="font-size:12px;color:#7A8A9A;">전략적 투자자 · Buy-side DD</div>
         </div>
       </div>
-      <div style="margin-left:auto;">
-        <span style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.0rem;color:rgba(255,255,255,0.15);line-height:1.5;">Financial discipline<br>drives enterprise value.</span>
+    </div>
+
+    <div style="border-top:1px solid #D8D3C8;padding-top:1.3rem;">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:1rem;">운영 경험</div>
+      <div style="display:flex;flex-direction:column;">
+        <div style="padding:0.8rem 0;border-bottom:1px solid #EDE9E1;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">글로벌 IT 대기업 FP&amp;A</div>
+          <div style="font-size:12px;color:#7A8A9A;">연간 A$200m 규모 마케팅 투자비 관리 · 경영진 보고 및 사업부 성과 리뷰</div>
+        </div>
+        <div style="padding:0.8rem 0;">
+          <div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:0.2rem;">CPA Australia · 서울·시드니·오클랜드·멜버른</div>
+          <div style="font-size:12px;color:#7A8A9A;">한국·호주 크로스보더 M&amp;A 실사 경험</div>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 
-<footer><footer>
-  <div class="footer-copy">© 2026 AAP Advisory · Confidential | 상호: 아름어드바이저리파트너스 | 브랜드명: AAP Advisory | 대표자: 김진경 | 사업자등록번호: 222-20-05976 | <a href="/privacy.html" style="color:inherit; text-decoration:underline;">Privacy Policy</a></div>
-</footer>
-
 <script>
-  // Email bypass
-  var em = ["info", "aap-partners.com"].join("@");
-  window.addEventListener("DOMContentLoaded", function() {
-    var saved = (function(){ try{ return sessionStorage.getItem('aap-lang'); }catch(e){ return null; } })();
-    setLang(saved === 'en' ? 'en' : 'ko');
-    document.querySelectorAll("#about-email, #contact-email").forEach(function(el) {
-      el.href = "mailto:" + em;
-      el.textContent = em;
-    });
-    var hb = document.getElementById("hero-btn");
-    if (hb) hb.href = "mailto:" + em;
-  });
-
-  function setLang(lang) {
-    document.body.className = lang;
-    document.getElementById('btn-ko').className = 'lt-btn' + (lang === 'ko' ? ' active' : '');
-    document.getElementById('btn-en').className = 'lt-btn' + (lang === 'en' ? ' active' : '');
-    try { sessionStorage.setItem('aap-lang', lang); } catch(e) {}
-  }
-
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  // 태그라인: 단어별 쌓이기 → 전체 완성 → 리셋
-  (function() {
-    const words = ['tw0','tw1','tw2'];
-    let phase = 0;
-
-    function nextPhase() {
-      if (phase < words.length) {
-        document.getElementById(words[phase]).classList.add('on');
-        phase++;
-        setTimeout(nextPhase, 900);
-      } else {
-        // 완성 후 2초 대기 → 리셋
-        setTimeout(() => {
-          words.forEach(id => document.getElementById(id).classList.remove('on'));
-          phase = 0;
-          setTimeout(nextPhase, 400);
-        }, 2200);
-      }
-    }
-    nextPhase();
-  })();
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fi').forEach(el => {
-    el.classList.add('ready');
-    io.observe(el);
-  });
-
-  function toggleMenu() {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!hb || !mm) return;
-    hb.classList.toggle('open');
-    mm.classList.toggle('open');
-  }
-  document.addEventListener('click', function(e) {
-    var hb = document.getElementById('hamburger');
-    var mm = document.getElementById('mobileMenu');
-    if (!mm || !hb) return;
-    if (mm.classList.contains('open') && !mm.contains(e.target) && !hb.contains(e.target)) {
-      hb.classList.remove('open');
-      mm.classList.remove('open');
-    }
-  });
-
-  // ── KakaoTalk Channel (placeholder) ──────────────
-  function openKakao(e) {
-    if (e) e.preventDefault();
-    // TODO: 카카오 채널 개설 후 아래 URL 교체
-    // window.open('https://pf.kakao.com/_iXxfjX/chat', '_blank');
-    alert('카카오톡 채널 준비 중입니다.\n문의는 info@aap-advisory.com 으로 보내주세요.');
-  }
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') document.getElementById('credModal').style.display = 'none';
+});
 </script>
+
 </body>
 </html>
