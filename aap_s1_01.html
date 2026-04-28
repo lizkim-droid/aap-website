@@ -7,64 +7,60 @@
 <title>Growing revenue, shrinking profit — why? — AAP Advisory</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-<style>
-html { background:#FBFAF7; scroll-behavior:smooth; }
-body { margin:0; background:#FBFAF7; color:#0C182C; font-family:"Helvetica Neue", Arial, sans-serif; min-height:100vh; overflow-x:hidden; word-break:keep-all; }
+<style>html { background: #FBFAF7; }
+body {
+  margin: 0;
+  background: #FBFAF7;
+  color: #0C182C;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  word-break: keep-all;
+}
 body.ko [data-en] { display:none; }
 body.en [data-ko] { display:none; }
-*,*::before,*::after { box-sizing:border-box; }
-.page { max-width:1120px; margin:0 auto; padding:42px 56px 36px; }
+.page { max-width: 1120px; margin: 0 auto; padding: 42px 56px 36px; }
 .nav { display:flex; justify-content:space-between; align-items:center; margin-bottom:60px; position:sticky; top:0; background:#FBFAF7; z-index:200; padding-top:14px; padding-bottom:14px; border-bottom:1px solid #E6E1D8; }
 .logo { font-size:13px; letter-spacing:3px; font-weight:600; }
 .nav-links { display:flex; gap:28px; font-size:13px; }
 .nav-links a { text-decoration:none; color:#0C182C; }
-.hero { background:#FBFAF7; padding:0 0 48px; border-bottom:1px solid rgba(184,146,42,0.18); margin-bottom:0; }
-.hero-inner { max-width:720px; margin:0 auto; }
-.back-link { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A8FA8; text-decoration:none; margin-bottom:1.8rem; transition:color 0.2s; }
-.back-link:hover { color:#B8922A; }
-.back-link::before { content:'←'; }
-.series-label { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:rgba(184,146,42,0.78); margin-bottom:0.4rem; }
-.eyebrow { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#B8922A; margin-bottom:1rem; }
-.hero h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; line-height:1.2; color:#0C182C; margin:0 0 1rem; }
-.hero h1 em { font-style:italic; color:#B8922A; }
-.hero-meta { font-size:0.75rem; color:#7A8FA8; letter-spacing:0.08em; margin-bottom:1.2rem; }
-.hero-lead { font-size:1rem; font-weight:300; line-height:1.8; color:#7A8FA8; margin:0; }
-.article { max-width:720px; margin:0 auto; padding:3.5rem 0 4rem; }
-.section { margin-bottom:2.8rem; }
-.sec-title { font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:600; color:#0C182C; margin:0 0 1rem; padding-bottom:0.6rem; border-bottom:1px solid #E6E1D8; }
-.sec-body { font-size:0.92rem; font-weight:300; line-height:1.9; color:#475569; }
-.sec-body p { margin:0 0 1.1rem; }
-.sec-body strong { color:#0C182C; font-weight:500; }
-.callout { background:#EDEBE6; border-left:3px solid #B8922A; padding:1.2rem 1.5rem; margin:1.4rem 0; border-radius:0 4px 4px 0; }
-.callout p { font-size:0.88rem; color:#334155; line-height:1.75; margin:0; }
-.callout strong { color:#B8922A; }
-.next-box { background:#EDEBE6; border:1px solid #E6E1D8; border-radius:4px; padding:1.4rem 1.8rem; margin-top:3rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
-.next-label { font-size:0.65rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:#B8922A; margin-bottom:0.3rem; }
-.next-title { font-family:'Playfair Display', Georgia, serif; font-size:0.95rem; font-weight:600; color:#0C182C; }
-.next-btn { display:inline-block; padding:0.65rem 1.4rem; border:1px solid #0C182C; color:#0C182C; font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-decoration:none; border-radius:2px; white-space:nowrap; transition:all 0.2s; flex-shrink:0; }
-.next-btn:hover { background:#0C182C; color:#fff; }
-.divider { height:1px; background:#E6E1D8; margin:2.5rem 0; }
-.legal { border-top:1px solid #D8D3C8; padding-top:22px; font-size:11px; line-height:1.8; color:#7A8A9A; text-align:center;}
-.legal a { color:#7A8A9A; text-decoration:none; border-bottom:1px solid #C9C3B8; }
 .mob-menu { display:none; position:fixed; top:0; left:0; right:0; background:#FBFAF7; border-bottom:1px solid #D8D3C8; padding:64px 24px 20px; flex-direction:column; z-index:499; }
 .mob-menu.open { display:flex; }
 .mob-menu a { font-size:15px; color:#0C182C; text-decoration:none; padding:13px 0; border-bottom:1px solid #E6E1D8; display:block; }
 .mob-menu a:last-child { border-bottom:none; }
 .mob-close { position:absolute; top:18px; right:20px; background:none; border:none; font-size:1.4rem; cursor:pointer; color:#0C182C; line-height:1; }
-@media(max-width:768px){
-  .page { padding:28px 20px 24px; }
-  .nav { margin-bottom:40px; }
-  .nav-links a:not(.nav-cta-btn) { display:none; }
-  .hamburger { display:flex !important; }
-  .nav-cta-btn { display:none !important; }
-  .hero { padding:0 0 36px; }
-  .article { padding:2.5rem 0 3rem; }
-  .legal { font-size:10px; line-height:1.7; }
-}
+.legal { border-top:1px solid #D8D3C8; padding-top:22px; font-size:11px; line-height:1.8; color:#7A8FA8; text-align:center; }
+.legal a { color:#7A8FA8; text-decoration:none; border-bottom:1px solid #C9C3B8; }
+.article-hero { max-width:760px; margin:0 auto; padding:0 0 3rem; border-bottom:1px solid rgba(184,146,42,0.18); }
+.article-hero-inner { max-width:720px; margin:0 auto; }
+.back-link { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.72rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:#7A8FA8; text-decoration:none; margin-bottom:1.8rem; transition:color 0.2s; }
+.back-link:hover { color:#B8922A; }
+.back-link::before { content:'←'; }
+.series-label { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:rgba(184,146,42,0.72); margin-bottom:0.4rem; }
+.eyebrow { font-size:0.65rem; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; color:#B8922A; margin-bottom:1rem; }
+.article-hero h1 { font-family:'Playfair Display', Georgia, serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; line-height:1.2; color:#0C182C; margin:0 0 1rem; }
+.article-hero h1 em { font-style:italic; color:#B8922A; }
+.hero-meta { font-size:0.75rem; color:#9AA4B2; letter-spacing:0.08em; margin-bottom:1.2rem; }
+.hero-lead { font-size:1rem; font-weight:300; line-height:1.8; color:#7A8FA8; margin:0; }
+.article-body { max-width:720px; margin:0 auto; padding:3.5rem 0 4rem; }
+.article-body .section { margin-bottom:2.8rem; }
+.article-body .sec-title { font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:600; color:#0C182C; margin:0 0 1rem; padding-bottom:0.6rem; border-bottom:1px solid #E6E1D8; }
+.article-body .sec-body { font-size:0.92rem; font-weight:300; line-height:1.9; color:#475569; }
+.article-body .sec-body p { margin:0 0 1.1rem; }
+.article-body .sec-body strong { color:#0C182C; font-weight:600; }
+.callout { background:#EDEBE6; border-left:3px solid #B8922A; padding:1.2rem 1.5rem; margin:1.4rem 0; border-radius:0 4px 4px 0; }
+.callout p { font-size:0.88rem; color:#475569; line-height:1.75; margin:0; }
+.callout strong { color:#0C182C; }
+.next-box { background:#EDEBE6; border:1px solid #E6E1D8; border-radius:4px; padding:1.4rem 1.8rem; margin-top:3rem; display:flex; align-items:center; justify-content:space-between; gap:1.5rem; flex-wrap:wrap; }
+.next-label { font-size:0.65rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; color:rgba(184,146,42,0.75); margin-bottom:0.3rem; }
+.next-title { font-family:'Playfair Display', Georgia, serif; font-size:0.95rem; font-weight:600; color:#0C182C; }
+.next-btn { display:inline-block; padding:0.65rem 1.4rem; border:1px solid #B8922A; color:#B8922A; font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-decoration:none; border-radius:2px; white-space:nowrap; transition:all 0.2s; flex-shrink:0; }
+.next-btn:hover { background:#B8922A; color:#FBFAF7; }
+.divider { height:1px; background:#E6E1D8; margin:2.5rem 0; }
+@media(max-width:768px){ .page { padding:28px 20px 24px; } .nav { margin-bottom:40px; } .nav-links a:not(.nav-cta-btn) { display:none; } .hamburger { display:flex !important; } .nav-cta-btn { display:none !important; } .article-hero { padding-bottom:2.4rem; } .article-body { padding:2.5rem 0 3rem; } .article-hero h1 { font-size:2rem; } .legal { font-size:10px; line-height:1.7; } }
 </style>
 </head>
 <body class="ko">
-
 <div class="mob-menu" id="mobMenu">
   <button class="mob-close" onclick="closeMob()">×</button>
   <a href="/#founder" onclick="closeMob()">소개</a>
@@ -76,7 +72,7 @@ body.en [data-ko] { display:none; }
     <a href="/" class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;text-decoration:none;">AAP<span style="color:#B8922A;">.</span></a>
     <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
       <a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">소개</a>
-      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:1;font-weight:500;">인사이트</a>
+      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">인사이트</a>
       <a href="/#contact" class="nav-cta-btn" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;" onmouseover="this.style.background='#0C182C';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
       <button class="hamburger" id="hamBtn" onclick="toggleMob()" style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
         <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
@@ -86,7 +82,7 @@ body.en [data-ko] { display:none; }
     </div>
   </div>
 
-<section class="hero">
+<section class="article-hero">
   <div class="hero-inner">
     <a href="/aap_insights.html" class="back-link">
       <span data-ko>인사이트로 돌아가기</span><span data-en>Back to insights</span>
@@ -108,8 +104,7 @@ body.en [data-ko] { display:none; }
     </p>
   </div>
 </section>
-
-<div class="article">
+<div class="article-body">
   <div data-lang="ko">
       <div class="section">
         <h2 class="sec-title">매출과 이익은 다른 이야기입니다</h2>
@@ -173,10 +168,10 @@ body.en [data-ko] { display:none; }
         </a>
       </div>
 </div>
-
-
   <div class="legal">
     상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="/privacy.html">Privacy Policy</a>
+    <br>
+    Contact: info@aap-partners.com
   </div>
 </div>
 <script>
