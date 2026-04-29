@@ -37,39 +37,38 @@ p { margin: 0; }
   max-width: 1120px;
   margin: 0 auto;
   padding: 42px 56px 36px;
+  box-sizing: content-box;
 }
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 34px;
+  margin-bottom: 60px;
   position: sticky;
   top: 0;
-  background: rgba(251, 250, 247, 0.94);
+  background: #FBFAF7;
   z-index: 200;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line-soft);
-  backdrop-filter: blur(12px);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #E6E1D8;
+  backdrop-filter: none;
 }
 .logo {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 600;
   text-decoration: none;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--navy);
+  color: #0C182C;
 }
 .logo span { color: var(--gold); }
 .nav-links {
   display: flex;
-  align-items: center;
-  gap: 22px;
+  gap: 28px;
+  font-size: 13px;
 }
 .nav-links a {
-  font-size: 13px;
   text-decoration: none;
-  color: var(--navy);
-  opacity: 0.62;
+  color: #0C182C;
 }
 .nav-links a:hover { opacity: 1; }
 .nav-cta-btn {
@@ -77,8 +76,8 @@ p { margin: 0; }
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 8px 18px;
-  border: 1px solid var(--navy);
-  color: var(--navy) !important;
+  border: 1px solid #0C182C;
+  color: #0C182C !important;
   opacity: 1 !important;
 }
 .nav-cta-btn:hover {
@@ -789,11 +788,6 @@ h2 {
 .reliance-note p + p { margin-top: 8px; }
 
 @media(max-width: 900px){
-  .page { padding: 28px 20px 24px; }
-  .nav { margin-bottom: 28px; }
-  .nav-links a:not(.nav-cta-btn) { display: none; }
-  .hamburger { display: flex !important; }
-  .nav-cta-btn { display: none !important; }
   .hero-panel { padding: 38px 26px 30px; }
   .hero,
   .statement,
@@ -851,24 +845,38 @@ h2 {
   .info-modal-body { padding: 20px; }
   .info-list li { grid-template-columns: 1fr; gap: 7px; }
 }
+
+
+@media(max-width:768px){
+  .page { padding: 28px 20px 24px; box-sizing: border-box; }
+  .nav { margin-bottom: 40px; }
+  .nav-links a:not(.nav-cta-btn) { display: none; }
+  .hamburger { display: flex !important; }
+  .nav-cta-btn { display: none !important; }
+}
 </style>
 </head>
 
 <body>
 <div class="mob-menu" id="mobMenu">
   <button class="mob-close" onclick="closeMob()">×</button>
-  <a href="#memo" onclick="closeMob()">Service</a>
-  <a href="#sample" onclick="closeMob()">Preview</a>
-  <a href="#contact" onclick="closeMob()">문의</a>
+  <a href="/#founder" onclick="closeMob()">ABOUT</a>
+  <a href="/launch.html" onclick="closeMob()">SERVICES</a>
+  <a href="/aap_insights.html">INSIGHTS</a>
+  <a href="/#contact" onclick="closeMob()">자문 문의</a>
 </div>
 
 <div class="page">
   <div class="nav">
-    <a href="/" class="logo">AAP<span>.</span></a>
-    <div class="nav-links">
-      <a href="#memo">Service</a>
-      <a href="#sample">Preview</a>
-      <a href="#contact" class="nav-cta-btn">자문 문의</a>
+    <a href="/" class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;">AAP<span style="color:#B8922A;">.</span></a>
+    <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
+      <a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">ABOUT</a>
+      <a href="/launch.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">SERVICES</a>
+      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">INSIGHTS</a>
+      <a href="/#contact" class="nav-cta-btn"
+        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
+        onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
+        onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
       <button class="hamburger" id="hamBtn"
         onclick="toggleMob()"
         style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
