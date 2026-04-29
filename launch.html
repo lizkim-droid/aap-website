@@ -400,7 +400,7 @@ h2 {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 800;
+  z-index: 9999;
   background: rgba(12, 24, 44, 0.76);
   backdrop-filter: blur(5px);
   align-items: center;
@@ -808,13 +808,13 @@ h2 {
         <div class="sample-card-kicker">Operational View</div>
         <div class="sample-card-title">운영 흐름과 현금 창출력을 봅니다.</div>
         <div class="sample-card-text">수익성, 운전자본, 현금 회수, CAPEX, 업종 기준 red flag를 오너 관점에서 정리한 샘플입니다.</div>
-        <button class="sample-btn" type="button" onclick="openSampleModal('operational')">샘플 보기 →</button>
+        <button class="sample-btn" type="button" data-sample="operational">샘플 보기 →</button>
       </div>
       <div class="sample-card">
         <div class="sample-card-kicker">Valuation View</div>
         <div class="sample-card-title">가치 범위와 할인 요인을 봅니다.</div>
         <div class="sample-card-text">보고된 실적 기준의 EV 범위, 순차입금 반영 후 오너 수취 가치, 가치 제고 과제를 정리한 샘플입니다.</div>
-        <button class="sample-btn" type="button" onclick="openSampleModal('valuation')">샘플 보기 →</button>
+        <button class="sample-btn" type="button" data-sample="valuation">샘플 보기 →</button>
       </div>
     </div>
   </div>
@@ -933,20 +933,37 @@ function closeMob(){
 function openSampleModal(type){
   var modal = document.getElementById('modal-' + type);
   var iframe = document.getElementById('iframe-' + type);
-  if (iframe && !iframe.src) {
-    iframe.src = iframe.getAttribute('data-src');
+  if (!modal) {
+    console.error('Sample modal not found:', type);
+    return;
+  }
+  if (iframe) {
+    var currentSrc = iframe.getAttribute('src');
+    var nextSrc = iframe.getAttribute('data-src');
+    if (!currentSrc && nextSrc) iframe.setAttribute('src', nextSrc);
   }
   modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
 }
 function closeSampleModal(type){
   var modal = document.getElementById('modal-' + type);
-  if (modal) modal.classList.remove('open');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
   document.body.style.overflow = '';
 }
 function closeAllSampleModals(){
   ['operational','valuation'].forEach(function(type){ closeSampleModal(type); });
 }
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('[data-sample]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      openSampleModal(btn.getAttribute('data-sample'));
+    });
+  });
+});
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     closeMob();
@@ -955,23 +972,23 @@ document.addEventListener('keydown',function(e){
 });
 </script>
 
-<div class="sample-modal" id="modal-operational" onclick="if(event.target===this)closeSampleModal('operational')">
+<div class="sample-modal" id="modal-operational" aria-hidden="true" onclick="if(event.target===this)closeSampleModal('operational')">
   <div class="sample-modal-inner">
     <div class="sample-modal-header">
       <span class="sample-modal-title">Sample Report — Owner Value Memo · Operational View</span>
       <button class="sample-modal-close" type="button" onclick="closeSampleModal('operational')">×</button>
     </div>
-    <iframe id="iframe-operational" src="" data-src="sample_operational.html" loading="lazy" title="Operational View sample report"></iframe>
+    <iframe id="iframe-operational" data-src="./sample_operational.html" loading="lazy" title="Operational View sample report"></iframe>
   </div>
 </div>
 
-<div class="sample-modal" id="modal-valuation" onclick="if(event.target===this)closeSampleModal('valuation')">
+<div class="sample-modal" id="modal-valuation" aria-hidden="true" onclick="if(event.target===this)closeSampleModal('valuation')">
   <div class="sample-modal-inner">
     <div class="sample-modal-header">
       <span class="sample-modal-title">Sample Report — Owner Value Memo · Valuation View</span>
       <button class="sample-modal-close" type="button" onclick="closeSampleModal('valuation')">×</button>
     </div>
-    <iframe id="iframe-valuation" src="" data-src="sample_valuation.html" loading="lazy" title="Valuation View sample report"></iframe>
+    <iframe id="iframe-valuation" data-src="./sample_valuation.html" loading="lazy" title="Valuation View sample report"></iframe>
   </div>
 </div>
 </body>
