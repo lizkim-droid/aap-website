@@ -343,55 +343,117 @@ h2 {
   padding: 12px 0;
 }
 
-.sample-panel {
+.sample-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
-.sample-toolbar {
-  display: flex;
-  justify-content: space-between;
+.sample-card {
+  padding: 34px 30px;
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+}
+.sample-card:last-child { border-right: none; }
+.sample-card-kicker {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+.sample-card-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  line-height: 1.12;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.sample-card-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.sample-btn {
+  display: inline-flex;
   align-items: center;
-  gap: 18px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.tab {
-  border: 1px solid var(--line);
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: 1px solid var(--navy);
   background: transparent;
   color: var(--navy);
-  padding: 10px 16px;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
 }
-.tab.active,
-.tab:hover {
-  border-color: var(--navy);
+.sample-btn:hover {
   background: var(--navy);
   color: #fff;
 }
-.sample-open {
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--navy);
-  text-decoration: none;
-  border-bottom: 1px solid #C9C3B8;
-  white-space: nowrap;
+.sample-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  background: rgba(12, 24, 44, 0.76);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
 }
-.sample-window { padding: 22px 0 0; }
-.sample-frame {
+.sample-modal.open { display: flex; }
+.sample-modal-inner {
+  width: min(1160px, 100%);
+  height: min(88vh, 900px);
+  background: #FBFAF7;
+  border: 1px solid rgba(216, 211, 200, 0.52);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.42);
+  display: flex;
+  flex-direction: column;
+}
+.sample-modal-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 18px;
+  background: var(--navy);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+.sample-modal-title {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sample-modal-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.sample-modal-close:hover { color: #fff; }
+.sample-modal iframe {
   width: 100%;
-  height: 720px;
-  border: 1px solid var(--line);
+  flex: 1;
+  min-height: 0;
+  border: none;
   background: #fff;
+  display: block;
 }
 
 .data-grid {
@@ -610,8 +672,12 @@ h2 {
   .statement { padding: 24px 0; margin-bottom: 40px; }
   .statement-text { font-size: 20px; }
   .section { padding: 36px 0 42px; }
-  .sample-toolbar { align-items: flex-start; flex-direction: column; }
-  .sample-frame { height: 560px; }
+  .sample-grid { grid-template-columns: 1fr; }
+  .sample-card { border-right: none; border-bottom: 1px solid var(--line); }
+  .sample-card:last-child { border-bottom: none; }
+  .sample-modal { padding: 10px; }
+  .sample-modal-inner { height: 88vh; }
+  .sample-modal-title { font-size: 11px; }
   .price-section { padding: 34px 26px; }
   .price-row { display: block; }
   .price-note { margin-top: 10px; }
@@ -737,16 +803,18 @@ h2 {
   <div class="section" id="sample">
     <div class="section-label standalone">Sample Report</div>
 
-    <div class="sample-panel">
-      <div class="sample-toolbar">
-        <div class="tabs">
-          <button class="tab active" type="button" data-src="/sample_operational.html" data-link="/sample_operational.html">Operational View</button>
-          <button class="tab" type="button" data-src="/sample_valuation.html" data-link="/sample_valuation.html">Valuation View</button>
-        </div>
-        <a id="sampleOpen" class="sample-open" href="/sample_operational.html" target="_blank" rel="noopener">새 창으로 보기 →</a>
+    <div class="sample-grid">
+      <div class="sample-card">
+        <div class="sample-card-kicker">Operational View</div>
+        <div class="sample-card-title">운영 흐름과 현금 창출력을 봅니다.</div>
+        <div class="sample-card-text">수익성, 운전자본, 현금 회수, CAPEX, 업종 기준 red flag를 오너 관점에서 정리한 샘플입니다.</div>
+        <button class="sample-btn" type="button" onclick="openSampleModal('operational')">샘플 보기 →</button>
       </div>
-      <div class="sample-window">
-        <iframe id="sampleFrame" class="sample-frame" src="/sample_operational.html" title="Owner Value Memo sample report preview"></iframe>
+      <div class="sample-card">
+        <div class="sample-card-kicker">Valuation View</div>
+        <div class="sample-card-title">가치 범위와 할인 요인을 봅니다.</div>
+        <div class="sample-card-text">보고된 실적 기준의 EV 범위, 순차입금 반영 후 오너 수취 가치, 가치 제고 과제를 정리한 샘플입니다.</div>
+        <button class="sample-btn" type="button" onclick="openSampleModal('valuation')">샘플 보기 →</button>
       </div>
     </div>
   </div>
@@ -862,19 +930,49 @@ function closeMob(){
   document.getElementById('mobMenu').classList.remove('open');
   document.getElementById('hamBtn').innerHTML='<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
 }
+function openSampleModal(type){
+  var modal = document.getElementById('modal-' + type);
+  var iframe = document.getElementById('iframe-' + type);
+  if (iframe && !iframe.src) {
+    iframe.src = iframe.getAttribute('data-src');
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSampleModal(type){
+  var modal = document.getElementById('modal-' + type);
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeAllSampleModals(){
+  ['operational','valuation'].forEach(function(type){ closeSampleModal(type); });
+}
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){ closeMob(); }
-});
-document.querySelectorAll('.tab').forEach(function(tab){
-  tab.addEventListener('click', function(){
-    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
-    tab.classList.add('active');
-    var frame=document.getElementById('sampleFrame');
-    var open=document.getElementById('sampleOpen');
-    frame.src=tab.dataset.src;
-    open.href=tab.dataset.link;
-  });
+  if(e.key==='Escape'){
+    closeMob();
+    closeAllSampleModals();
+  }
 });
 </script>
+
+<div class="sample-modal" id="modal-operational" onclick="if(event.target===this)closeSampleModal('operational')">
+  <div class="sample-modal-inner">
+    <div class="sample-modal-header">
+      <span class="sample-modal-title">Sample Report — Owner Value Memo · Operational View</span>
+      <button class="sample-modal-close" type="button" onclick="closeSampleModal('operational')">×</button>
+    </div>
+    <iframe id="iframe-operational" src="" data-src="sample_operational.html" loading="lazy" title="Operational View sample report"></iframe>
+  </div>
+</div>
+
+<div class="sample-modal" id="modal-valuation" onclick="if(event.target===this)closeSampleModal('valuation')">
+  <div class="sample-modal-inner">
+    <div class="sample-modal-header">
+      <span class="sample-modal-title">Sample Report — Owner Value Memo · Valuation View</span>
+      <button class="sample-modal-close" type="button" onclick="closeSampleModal('valuation')">×</button>
+    </div>
+    <iframe id="iframe-valuation" src="" data-src="sample_valuation.html" loading="lazy" title="Valuation View sample report"></iframe>
+  </div>
+</div>
 </body>
 </html>
