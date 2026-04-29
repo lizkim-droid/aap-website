@@ -617,6 +617,27 @@ h2 {
   text-decoration: none;
   border-bottom: 1px solid #C9C3B8;
 }
+.notice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.notice-buttons button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--navy);
+  padding: 8px 12px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.notice-buttons button:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
 .legal {
   border-top: 1px solid var(--line);
   padding-top: 22px;
@@ -757,23 +778,15 @@ h2 {
   font-size: 11px;
   line-height: 1.8;
   color: #7A8A9A;
-  text-align: center;
+  text-align: left;
 }
 .reliance-note strong {
+  display: block;
   color: var(--navy);
   font-weight: 600;
+  margin-bottom: 8px;
 }
-.reliance-note button {
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0 4px;
-  color: #7A8A9A;
-  border-bottom: 1px solid #C9C3B8;
-  font: inherit;
-  cursor: pointer;
-}
-.reliance-note button:hover { color: var(--navy); }
+.reliance-note p + p { margin-top: 8px; }
 
 @media(max-width: 900px){
   .page { padding: 28px 20px 24px; }
@@ -896,27 +909,6 @@ h2 {
     </div>
   </div>
   <div class="section" id="memo">
-    <div class="section-label standalone">Purpose</div>
-    <div class="cards">
-      <div class="card">
-        <div class="card-num">01</div>
-        <div class="card-title">Discover</div>
-        <div class="card-text">아직 드러나지 않은 잠재 밸류업 가능성을 발굴 합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">02</div>
-        <div class="card-title">Build</div>
-        <div class="card-text">그 가치가 실현될 수 있도록 현황 진단, 운영 개선 로드맵 및 딜 시나리오까지 설계 합니다.</div>
-      </div>
-      <div class="card">
-        <div class="card-num">03</div>
-        <div class="card-title">Uphold</div>
-        <div class="card-text">매각 준비부터 seller diligence, 딜의 전과정에서 기업가치가 끝까지 지켜지도록 함께 합니다.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
     <div class="section-label standalone">Two Focus Views</div>
 
     <div class="views">
@@ -994,37 +986,6 @@ h2 {
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-label standalone">Process</div>
-
-    <div class="process">
-      <div class="step"><div class="step-num">01</div><div class="step-title">Kick off</div><div class="step-text">이슈 리스트, 의사결정 목적, 필요한 범위를 확인합니다.</div></div>
-      <div class="step"><div class="step-num">02</div><div class="step-title">Data Review</div><div class="step-text">보유 자료를 기준으로 분석 가능 범위와 추가 요청 자료를 정리합니다.</div></div>
-      <div class="step"><div class="step-num">03</div><div class="step-title">Analysis</div><div class="step-text">Operational View와 Valuation View를 함께 구성합니다.</div></div>
-      <div class="step"><div class="step-num">04</div><div class="step-title">Memo Delivery</div><div class="step-text">오너 판단용 Owner Value Memo를 전달합니다.</div></div>
-      <div class="step"><div class="step-num">05</div><div class="step-title">Next Move</div><div class="step-text">Monthly Management 또는 Value Uplift Advisory로 이어질 수 있습니다.</div></div>
-    </div>
-  </div>
-
-  <div class="section" id="scope">
-    <div class="section-label standalone">Service Scope</div>
-
-    <div class="scope-grid">
-      <button class="scope-card" type="button" data-info="scope">
-        <div class="scope-kicker">Scope & Limitations</div>
-        <div class="scope-title">서비스 범위 및 제한</div>
-        <div class="scope-text">제출 자료 기준, 활용 목적, 포함되지 않는 자문 범위를 확인합니다.</div>
-        <span class="scope-link">자세히 보기 →</span>
-      </button>
-      <button class="scope-card" type="button" data-info="nda">
-        <div class="scope-kicker">Data & NDA</div>
-        <div class="scope-title">자료 수령 및 NDA</div>
-        <div class="scope-text">자료 제출 방식, 기밀 처리, NDA 체결 가능 범위를 확인합니다.</div>
-        <span class="scope-link">자세히 보기 →</span>
-      </button>
-    </div>
-  </div>
-
   <div id="contact" class="contact-section">
     <div class="contact-label">Contact</div>
     <div>
@@ -1037,14 +998,21 @@ h2 {
           <div class="contact-item-label">Home</div>
           <a href="/" target="_blank" rel="noopener">AAP Advisory</a>
         </div>
+        <div class="contact-item notice-item">
+          <div class="contact-item-label">Notice</div>
+          <div class="notice-buttons">
+            <button type="button" data-info="scope">서비스 범위 및 제한</button>
+            <button type="button" data-info="nda">자료 수령 및 NDA</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="reliance-note">
-    <strong>Reliance Restricted.</strong> 본 페이지 및 Preview Memo는 내부 참고용 안내 자료입니다. 제3자 배포 또는 의존 목적으로 작성되지 않았으며, 실제 투자·대출·M&A 의사결정에는 별도 검토가 필요합니다.
-    <button type="button" data-info="scope">서비스 범위 및 제한</button>
-    <button type="button" data-info="nda">자료 수령 및 NDA</button>
+    <strong>Reliance Restricted — Important Notice</strong>
+    <p>본 리포트는 AAP Advisory가 클라이언트의 요청에 따라, 클라이언트가 제공한 자료를 기반으로 작성한 내부 참고용 자료입니다. 본 리포트는 제3자에 대한 공개 또는 배포를 목적으로 작성되지 않았으며, 클라이언트 이외의 제3자가 본 리포트를 신뢰하거나 이를 근거로 어떠한 행위를 하더라도 AAP Advisory는 이에 대한 어떠한 책임도 지지 않습니다.</p>
+    <p>본 리포트에 포함된 기업가치 추정치는 보고된 재무제표 기준의 추정 범위이며, 실제 거래 가격, 투자 가치 또는 자산 가치를 보증하는 것이 아닙니다. 모든 수치는 제출 자료의 정확성을 전제로 하며, 독립적 검증 없이 작성되었습니다.</p>
   </div>
 
   <div class="legal">
