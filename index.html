@@ -14,11 +14,18 @@ body {
   color: #0C182C;
   font-family: "Helvetica Neue", Arial, sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
+* { box-sizing: border-box; }
+a { color: inherit; }
 .page {
   max-width: 1120px;
   margin: 0 auto;
   padding: 42px 56px 36px;
+  box-sizing: content-box;
+}
+.nav, .nav * {
+  box-sizing: content-box;
 }
 .nav {
   display: flex;
@@ -37,6 +44,8 @@ body {
   font-size: 13px;
   letter-spacing: 3px;
   font-weight: 600;
+  text-decoration: none;
+  color: #0C182C;
 }
 .nav-links {
   display: flex;
@@ -74,24 +83,17 @@ h1 {
   color: #334155;
   margin-bottom: 32px;
 }
-.cta {
-  display: inline-block;
-  padding: 14px 26px;
-  border: 1px solid #0C182C;
-  color: #0C182C;
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
 .statement {
   border-top: 1px solid #D8D3C8;
-  border-bottom: 1px solid #D8D3C8;
-  padding: 36px 0;
+  border-bottom: none;
+  padding: 36px 0 46px;
+  margin-bottom: 0;
+}
+.statement-intro {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 56px;
-  margin-bottom: 54px;
+  margin-bottom: 28px;
 }
 .statement-title {
   font-size: 13px;
@@ -104,40 +106,106 @@ h1 {
   font-size: 20px;
   line-height: 1.45;
 }
-.cards {
-  scroll-margin-top: 60px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0px;
-  background: transparent;
-  margin-bottom: 70px;
-}
-.card {
-  background: #FBFAF7;
-  padding: 30px 26px;
-  min-height: 170px;
-  border-right: 1px solid #D8D3C8;
-}
-.card:last-child {
-  border-right: none;
-}
-.card-num {
-  font-size: 14px;
+.section-label.standalone {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
   color: #B8922A;
-  margin-bottom: 18px;
+  font-weight: 500;
 }
-.card-title {
+.visual-map {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  min-height: 330px;
+  padding: 42px 36px;
+  border: 1px solid #D8D3C8;
+  background:
+    radial-gradient(circle at 14% 20%, rgba(184,146,42,0.18), transparent 24%),
+    radial-gradient(circle at 80% 30%, rgba(12,24,44,0.08), transparent 30%),
+    radial-gradient(circle at 48% 78%, rgba(184,146,42,0.13), transparent 26%),
+    linear-gradient(135deg, #FBFAF7 0%, #F7F2E9 48%, #FBFAF7 100%);
+  overflow: hidden;
+}
+.visual-map::before {
+  content: "";
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,146,42,0.55), rgba(12,24,44,0.18), rgba(184,146,42,0.55), transparent);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.visual-map::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 210px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px dashed rgba(184,146,42,0.28);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.visual-svg { display: none; }
+.visual-node {
+  position: relative;
+  width: auto;
+  top: auto;
+  left: auto;
+  right: auto;
+  transform: none;
+  z-index: 1;
+  padding: 24px 24px 22px;
+  background: rgba(255,255,255,0.66);
+  border: 1px solid rgba(216,211,200,0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 40px rgba(12,24,44,0.07);
+}
+.visual-node.node-center {
+  width: auto;
+  transform: translateY(34px);
+}
+.visual-node.node-left,
+.visual-node.node-right {
+  transform: translateY(-28px);
+}
+.node-num {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #B8922A;
+  margin-bottom: 10px;
+}
+.node-title {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
+  color: #0C182C;
+  font-size: 26px;
+  line-height: 1.08;
+  margin-bottom: 8px;
+}
+.node-sub {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #B8922A;
   margin-bottom: 14px;
 }
-.card-text {
-  font-size: 16px;
+.node-text {
+  font-size: 14px;
   line-height: 1.75;
   color: #475569;
 }
-
-/* Founder */
+.node-core {
+  background:
+    radial-gradient(circle at 86% 20%, rgba(184,146,42,0.15), transparent 34%),
+    linear-gradient(135deg, rgba(12,24,44,0.06) 0%, rgba(255,255,255,0.78) 100%);
+}
 .founder {
   scroll-margin-top: 60px;
   border-top: 1px solid #D8D3C8;
@@ -179,23 +247,6 @@ h1 {
   color: #334155;
   max-width: 660px;
 }
-.founder-points {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px 28px;
-}
-.founder-point {
-  font-size: 13px;
-  color: #475569;
-  border-top: 1px solid #E6E1D8;
-  padding-top: 12px;
-}
-.logo {
-  text-decoration: none;
-  color: #0C182C;
-}
-/* Legal footer */
 .legal {
   border-top: 1px solid #D8D3C8;
   padding-top: 22px;
@@ -208,25 +259,6 @@ h1 {
   color: #7A8A9A;
   text-decoration: none;
   border-bottom: 1px solid #C9C3B8;
-}
-
-@media(max-width:768px){
-  .page { padding: 28px 20px 24px; }
-  .nav { margin-bottom: 40px; }
-  .nav-links a:not(.nav-cta-btn) { display: none; }
-  .hamburger { display: flex !important; }
-  .nav-cta-btn { display: none !important; }
-  .hero { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
-  h1 { font-size: 36px; }
-  .hero-copy { font-size: 15px; }
-  .statement { grid-template-columns: 1fr; gap: 18px; padding: 24px 0; margin-bottom: 40px; }
-  .statement-text { font-size: 20px; }
-  .cards { grid-template-columns: 1fr; margin-bottom: 48px; }
-  .founder { grid-template-columns: 1fr; gap: 24px; padding: 32px 0 40px; }
-  .founder-name { font-size: 26px; }
-  .founder-points { grid-template-columns: 1fr; }
-  .contact-section { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .legal { font-size: 10px; line-height: 1.7; }
 }
 .mob-menu {
   display: none; position: fixed; top: 0; left: 0; right: 0;
@@ -244,32 +276,62 @@ h1 {
   background: none; border: none; font-size: 1.4rem;
   cursor: pointer; color: #0C182C; line-height: 1;
 }
+@media(max-width: 900px) {
+  .founder { grid-template-columns: 1fr; gap: 24px; }
+  .visual-map {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 22px 16px;
+  }
+  .visual-map::before,
+  .visual-map::after { display: none; }
+  .visual-node,
+  .visual-node.node-left,
+  .visual-node.node-center,
+  .visual-node.node-right {
+    transform: none !important;
+    width: auto !important;
+    margin-bottom: 12px;
+  }
+  .visual-node:last-child { margin-bottom: 0; }
+}
+@media(max-width:768px){
+  .page { padding: 28px 20px 24px; }
+  .nav { margin-bottom: 40px; }
+  .nav-links a:not(.nav-cta-btn) { display: none; }
+  .hamburger { display: flex !important; }
+  .nav-cta-btn { display: none !important; }
+  .hero { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+  h1 { font-size: 36px; }
+  .hero-copy { font-size: 15px; }
+  .statement { padding: 24px 0 34px; }
+  .statement-intro { grid-template-columns: 1fr; gap: 18px; margin-bottom: 22px; }
+  .statement-text { font-size: 20px; }
+  .founder-name { font-size: 26px; }
+  .founder { padding: 32px 0 40px; }
+  .contact-section { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .legal { font-size: 10px; line-height: 1.7; }
+}
 </style>
 </head>
-
 <body>
 <div class="mob-menu" id="mobMenu">
   <button class="mob-close" onclick="closeMob()">×</button>
   <a href="#founder" onclick="closeMob()">ABOUT</a>
-  <a href="/launch.html">SERVICES</a>
+  <a href="/services.html" onclick="closeMob()">SERVICES</a>
   <a href="/aap_insights.html">INSIGHTS</a>
   <a href="#contact" onclick="closeMob()">자문 문의</a>
 </div>
 <div class="page">
-
   <div class="nav">
     <a href="/" class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;">AAP<span style="color:#B8922A;">.</span></a>
     <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
       <a href="#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">ABOUT</a>
-      <a href="/launch.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">SERVICES</a>
+      <a href="/services.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">SERVICES</a>
       <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">INSIGHTS</a>
-      <a href="#contact" class="nav-cta-btn"
-        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
-        onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
-        onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
-      <button class="hamburger" id="hamBtn"
-        onclick="toggleMob()"
-        style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
+      <a href="#contact" class="nav-cta-btn" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;" onmouseover="this.style.background='#0C182C';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
+      <button class="hamburger" id="hamBtn" onclick="toggleMob()" style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
         <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
         <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
         <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
@@ -283,42 +345,37 @@ h1 {
       <h1>A lifetime's work.<br>Valued on your terms.</h1>
     </div>
     <div>
-      <div class="hero-copy">
-         
-      </div>
-      </div>
-  </div>
-
-  <div class="statement">
-    <div class="statement-title">Our Position</div>
-    <div class="statement-text">
-      AAP는 아직 시장에 충분히 설명되지 않은 기업가치를 찾아냅니다.<br>
-가치 발굴부터 실현까지 ㅡ 오너 중심 End-to-End 재무자문을 제공합니다.
+      <div class="hero-copy"></div>
     </div>
   </div>
 
-  <div class="cards" id="approach">
-    <div class="card">
-      <div class="card-num">01</div>
-      <div class="card-title">Discover</div>
-      <div class="card-text">
-        아직 드러나지 않은 잠재 밸류업 가능성을 발굴 합니다.
+  <div class="statement" id="services">
+    <div class="statement-intro">
+      <div class="statement-title">Our Position</div>
+      <div class="statement-text">
+        AAP는 아직 시장에 충분히 설명되지 않은 기업가치를 찾아냅니다.<br>
+        가치 발굴부터 실현까지 ㅡ 오너 중심 End-to-End 재무자문을 제공합니다.
       </div>
     </div>
-    <div class="card">
-      <div class="card-num">02</div>
-      <div class="card-title">Build</div>
-      <div class="card-text">
-        그 가치가 실현될 수 있도록 현황 진단, 운영 개선 로드맵 및 딜 시나리오까지 설계 합니다.
-
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-num">03</div>
-      <div class="card-title">Uphold</div>
-      <div class="card-text">
-        매각 준비부터 seller diligence, 딜의 전과정에서 기업가치가 끝까지 지켜지도록 함께 합니다.
-      </div>
+    <div class="visual-map">
+        <div class="visual-node node-left">
+          <div class="node-num">01</div>
+          <div class="node-title">Owner Value Memo</div>
+          <div class="node-sub">Value Discovery</div>
+          <div class="node-text">현재 운영 흐름과 가치 관점을 연결해, 오너가 먼저 알아야 할 가치 포인트와 과제를 정리합니다.</div>
+        </div>
+        <div class="visual-node node-center node-core">
+          <div class="node-num">02</div>
+          <div class="node-title">Ongoing Value Creation</div>
+          <div class="node-sub">Monthly Management</div>
+          <div class="node-text">월별 흐름과 실행 과제를 관리해, 좋은 성과가 실제 가치로 쌓이고 설명될 수 있도록 만듭니다.</div>
+        </div>
+        <div class="visual-node node-right">
+          <div class="node-num">03</div>
+          <div class="node-title">Value Uplift Advisory</div>
+          <div class="node-sub">Seller Support</div>
+          <div class="node-text">전략적 선택이 현실화되는 시점에 가치 설명, 외부 대응, 딜 준비를 오너 편에서 지원합니다.</div>
+        </div>
     </div>
   </div>
 
@@ -328,13 +385,13 @@ h1 {
       <div class="founder-name">김진경 <span>Liz Kim</span></div>
       <div class="founder-title">Founder | Principal | CPA Aust.</div>
       <div class="founder-copy">
-Big 4 재무실사와 글로벌 IT기업 FP&A를 거치며, 수조 원 규모의 거래와 경영진 의사결정 현장을 경험 했습니다.
-그 과정에서 많은 기업들이 좋은 사업을 가지고도 중요한 순간에 자신의 가치를 충분히 설명하지 못한 채 평가받는 것을 보았습니다.<br><br>
-AAP Advisory는 그 문제의식에서 시작되었습니다. 오너가 제값을 인정받고 더 넓은 선택지를 가질 수 있도록,
-아직 시장에 충분히 설명되지 않은 기업가치를 발굴하고, 가치 제고부터 매각 준비와 딜 과정까지 함께합니다.
-             </div>
+        Big 4 재무실사와 글로벌 IT기업 FP&amp;A를 거치며, 수조 원 규모의 거래와 경영진 의사결정 현장을 경험 했습니다.
+        그 과정에서 많은 기업들이 좋은 사업을 가지고도 중요한 순간에 자신의 가치를 충분히 설명하지 못한 채 평가받는 것을 보았습니다.<br><br>
+        AAP Advisory는 그 문제의식에서 시작되었습니다. 오너가 제값을 인정받고 더 넓은 선택지를 가질 수 있도록,
+        아직 시장에 충분히 설명되지 않은 기업가치를 발굴하고, 가치 제고부터 매각 준비와 딜 과정까지 함께합니다.
+      </div>
 
-       <div style="margin-top:22px;">
+      <div style="margin-top:22px;">
         <button onclick="document.getElementById('credModal').style.display='flex'"
           style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 20px;border:1px solid #0C182C;background:transparent;color:#0C182C;cursor:pointer;font-family:inherit;"
           onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
@@ -345,7 +402,6 @@ AAP Advisory는 그 문제의식에서 시작되었습니다. 오너가 제값�
     </div>
   </div>
 
-  <!-- CONTACT -->
   <div id="contact" class="contact-section" style="border-top:1px solid #D8D3C8;padding:48px 0 44px;display:grid;grid-template-columns:0.75fr 1.25fr;gap:64px;">
     <div style="font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;">Contact</div>
     <div>
@@ -359,21 +415,25 @@ AAP Advisory는 그 문제의식에서 시작되었습니다. 오너가 제값�
           <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;margin-bottom:5px;">Kakao Channel</div>
           <a href="http://pf.kakao.com/_iXxfjX/chat" target="_blank" style="font-size:14px;color:#0C182C;text-decoration:none;border-bottom:1px solid #C9C3B8;">@AAP Advisory</a>
         </div>
-             </div>
+        <div>
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;margin-bottom:5px;">LinkedIn</div>
+          <a href="https://www.linkedin.com/in/aap-advisory-global-8890173a4/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:7px;font-size:14px;color:#0C182C;text-decoration:none;border-bottom:1px solid #C9C3B8;">
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="display:block;flex-shrink:0;">
+              <path fill="#0C182C" d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.1 20.45H3.54V9H7.1v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.21 0 22.23 0z"/>
+            </svg>
+            AAP Advisory
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 
-
-  <div class="legal" id="contact">
+  <div class="legal">
     상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="https://www.aap-partners.com/privacy.html">Privacy Policy</a>
   </div>
-
 </div>
 
-<!-- CREDENTIAL MODAL -->
-<div id="credModal"
-  onclick="if(event.target===this)this.style.display='none'"
-  style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,24,44,0.55);z-index:1000;align-items:center;justify-content:center;padding:1.2rem;">
+<div id="credModal" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,24,44,0.55);z-index:1000;align-items:center;justify-content:center;padding:1.2rem;">
   <div style="background:#FBFAF7;max-width:560px;width:100%;max-height:86vh;overflow-y:auto;padding:2rem 2.2rem;position:relative;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem;">
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#B8922A;">Selected Experience</div>
@@ -389,9 +449,8 @@ AAP Advisory는 그 문제의식에서 시작되었습니다. 오너가 제값�
       <div style="padding:0.75rem 0;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">소비재 공개매수</div><div style="font-size:12px;color:#7A8A9A;">전략적 투자자 · Buy-side DD</div></div>
     </div>
     <div style="border-top:1px solid #D8D3C8;padding-top:1.2rem;">
-      <div style="font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:0.9rem;">기업 FP&A</div>
+      <div style="font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#1B7A7A;margin-bottom:0.9rem;">기업 FP&amp;A</div>
       <div style="padding:0.75rem 0;border-bottom:1px solid #EDE9E1;"><div style="font-size:13px;font-weight:600;color:#0C182C;margin-bottom:2px;">글로벌 IT 대기업 FP&amp;A</div><div style="font-size:12px;color:#7A8A9A;">연간 A$200m 규모 마케팅 투자비 관리 · 경영진 보고, 의사결정 및 사업부 성과 리뷰</div></div>
-      </div>
     </div>
   </div>
 </div>
@@ -416,6 +475,5 @@ document.addEventListener('keydown',function(e){
   }
 });
 </script>
-
 </body>
 </html>
