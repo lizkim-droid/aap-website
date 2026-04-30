@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230E1C30' rx='12'/><text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'>A</text></svg>">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<link href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;rect width='100' height='100' fill='%230E1C30' rx='12'/&gt;&lt;text x='50' y='72' font-family='Georgia,serif' font-size='62' font-weight='700' fill='%23C9A96E' text-anchor='middle'&gt;A&lt;/text&gt;&lt;/svg&gt;" rel="icon"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>AAP Advisory | Insights</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 html { background: #FBFAF7; scroll-behavior:smooth; }
 body {
@@ -349,6 +350,91 @@ body.en [data-ko] { display:none; }
   line-height: 1;
 }
 
+
+/* Article modal */
+.article-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(12, 24, 44, 0.72);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+.article-modal.open { display: flex; }
+.article-modal-inner {
+  width: min(920px, 100%);
+  height: min(88vh, 900px);
+  background: #FBFAF7;
+  border: 1px solid rgba(216, 211, 200, 0.72);
+  box-shadow: 0 26px 80px rgba(0,0,0,0.38);
+  display: flex;
+  flex-direction: column;
+}
+.article-modal-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 18px;
+  background: #0C182C;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+.article-modal-title {
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #D6BE82;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.article-modal-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.62);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.article-modal-close:hover { color: #fff; }
+.article-modal-scroll {
+  overflow-y: auto;
+  flex: 1;
+  padding: 42px 42px 48px;
+}
+.article-modal-scroll .article-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 0 2.4rem;
+  border-bottom: 1px solid rgba(184,146,42,0.18);
+}
+.article-modal-scroll .article-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 0 0;
+}
+.article-modal-scroll .article-body .section:last-child { margin-bottom: 0; }
+.card { cursor: pointer; }
+.card button {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+@media(max-width:768px){
+  .article-modal { padding: 10px; }
+  .article-modal-inner { height: 90vh; }
+  .article-modal-scroll { padding: 28px 20px 34px; }
+}
+
 @media(max-width:768px){
   .page { padding: 28px 20px 24px; }
   .nav { margin-bottom: 40px; }
@@ -364,195 +450,396 @@ body.en [data-ko] { display:none; }
 }
 </style>
 </head>
-
 <body class="ko">
 <div class="mob-menu" id="mobMenu">
-  <button class="mob-close" onclick="closeMob()">×</button>
-  <a href="/#founder" onclick="closeMob()">FOUNDER</a>
-  <a href="/services.html">SERVICES</a>
-  <a href="/aap_insights.html" onclick="closeMob()">INSIGHTS</a>
-  <a href="/#contact" onclick="closeMob()">자문 문의</a>
+<button class="mob-close" onclick="closeMob()">×</button>
+<a href="/#founder" onclick="closeMob()">FOUNDER</a>
+<a href="/services.html">SERVICES</a>
+<a href="/aap_insights.html" onclick="closeMob()">INSIGHTS</a>
+<a href="/#contact" onclick="closeMob()">자문 문의</a>
 </div>
-
 <div class="page">
-
-  <div class="nav">
-    <a href="/" class="logo" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;text-decoration:none;">AAP<span style="color:#B8922A;">.</span></a>
-    <div class="nav-links" style="display:flex;align-items:center;gap:22px;">
-      <a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">FOUNDER</a>
-      <a href="/services.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">SERVICES</a>
-      <a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:1;font-weight:500;">INSIGHTS</a>
-      <a href="/#contact" class="nav-cta-btn"
-        style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;"
-        onmouseover="this.style.background='#0C182C';this.style.color='#fff'"
-        onmouseout="this.style.background='transparent';this.style.color='#0C182C'">자문 문의</a>
-      <button class="hamburger" id="hamBtn"
-        onclick="toggleMob()"
-        style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
-        <span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
-      </button>
-    </div>
-  </div>
-
-  <section class="hero">
-  <div class="hero-inner">
-    <div class="eyebrow">
-      <span data-ko>오너를 위한 실무 인사이트</span>
-      <span data-en>Practical insights for owners</span>
-    </div>
-    <h1>
-      <span data-ko>가치를 높이는 판단의 힌트<br>오너가 알아야 할<em>핵심 포인트</em></span>
-      <span data-en>Key things every owner<br>should know <em>with every key business decision</em></span>
-    </h1>
-    <p class="hero-sub">
-      <span data-ko>사업의 현재와 다음을 준비하기 위한 인사이트를 전합니다.</span>
-      <span data-en>Insights to help you understand where your business stands — and where it needs to go next.</span>
-    </p>
-  </div>
-</section>
-
-  <div class="content-wrap">
-  <div class="content-inner">
-
-    <!-- ── 시리즈 1: 내 회사 재무, 제대로 보기 ── -->
-    <div class="series-block">
-      <div class="series-header">
-        <span class="series-num">
-          <span data-ko>시리즈 1</span><span data-en>Series 1</span>
-        </span>
-        <span class="series-title">
-          <span data-ko>내 회사 재무, 제대로 보기</span><span data-en>Understanding your own financials</span>
-        </span>
-        <span class="series-desc">
-          <span data-ko>3편</span><span data-en>3 articles</span>
-        </span>
-      </div>
-      <div class="card-grid">
-        <a class="card" href="/aap_s1_01.html">
-          <div class="card-top gold"></div>
-          <div class="card-inner">
-            <div class="card-num">01</div>
-            <h3><span data-ko>매출은 느는데 왜 이익이 안 남지</span><span data-en>Growing revenue, shrinking profit — why?</span></h3>
-            <p><span data-ko>매출 성장이 이익을 보장하지 않는 이유.</span><span data-en>Why revenue growth does not guarantee profit.</span></p>
-            <span class="card-cta"><span data-ko>읽기</span><span data-en>Read</span></span>
-          </div>
-        </a>
-        <a class="card" href="/aap_s1_02.html">
-          <div class="card-top"></div>
-          <div class="card-inner">
-            <div class="card-num">02</div>
-            <h3><span data-ko>현금이 다 어디로 간 걸까</span><span data-en>Where does all the cash go?</span></h3>
-            <p><span data-ko>흑자인데 통장이 빈 이유, 운전자본과 현금흐름.</span><span data-en>Profitable but cash-poor — working capital and cash flow explained.</span></p>
-            <span class="card-cta"><span data-ko>읽기</span><span data-en>Read</span></span>
-          </div>
-        </a>
-        <a class="card" href="/aap_s1_03.html">
-          <div class="card-top"></div>
-          <div class="card-inner">
-            <div class="card-num">03</div>
-            <h3><span data-ko>오너가 흔히 놓치는 숫자들</span><span data-en>Numbers most owners overlook</span></h3>
-            <p><span data-ko>투자자와 바이어가 가장 먼저 보는 지표들.</span><span data-en>The metrics investors and buyers look at first.</span></p>
-            <span class="card-cta"><span data-ko>읽기</span><span data-en>Read</span></span>
-          </div>
-        </a>
-      </div>
-    </div>
-
-    <!-- ── 시리즈 2: 성장과 투자 준비 ── -->
-    <div class="series-block">
-      <div class="series-header">
-        <span class="series-num">
-          <span data-ko>시리즈 2</span><span data-en>Series 2</span>
-        </span>
-        <span class="series-title">
-          <span data-ko>성장과 투자 준비</span><span data-en>Planning for Growth &amp; Investment</span>
-        </span>
-        <span class="series-desc">
-          <span data-ko>준비 중</span><span data-en>Coming soon</span>
-        </span>
-      </div>
-      <div class="series-coming">
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>확장을 결정하기 전에 먼저 봐야 할 숫자</span><span data-en>The numbers to check before committing to growth</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>사업계획서(BP)에서 투자자가 진짜 보는 것</span><span data-en>What investors actually look for in a business plan</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>재무 예측(Forecast), 어디서부터 틀리는가</span><span data-en>Financial forecasts — where most go wrong</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── 시리즈 3: 숫자 밖의 것들 ── -->
-    <div class="series-block">
-      <div class="series-header">
-        <span class="series-num">
-          <span data-ko>시리즈 3</span><span data-en>Series 3</span>
-        </span>
-        <span class="series-title">
-          <span data-ko>숫자 밖의 것들</span><span data-en>Beyond the numbers</span>
-        </span>
-        <span class="series-desc">
-          <span data-ko>준비 중</span><span data-en>Coming soon</span>
-        </span>
-      </div>
-      <div class="series-coming">
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>오너가 없어도 돌아가는 회사를 만든다는 것</span><span data-en>Building a business that runs without you</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>타이밍 — 언제 결정해야 하는가</span><span data-en>Timing — when to make the move</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>바이어가 숫자 다음으로 보는 것들</span><span data-en>What buyers look at after the numbers</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── 시리즈 4: 사업을 넘긴다는 것 ── -->
-    <div class="series-block">
-      <div class="series-header">
-        <span class="series-num">
-          <span data-ko>시리즈 4</span><span data-en>Series 4</span>
-        </span>
-        <span class="series-title">
-          <span data-ko>사업을 넘긴다는 것</span><span data-en>Passing the business on</span>
-        </span>
-        <span class="series-desc">
-          <span data-ko>준비 중</span><span data-en>Coming soon</span>
-        </span>
-      </div>
-      <div class="series-coming">
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>매각만이 답은 아닙니다</span><span data-en>A sale is not the only option</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>가족 승계, 임직원 인수, 제3자 매각 — 무엇이 다른가</span><span data-en>Family succession, MBO, third-party sale — what changes</span></div>
-        </div>
-        <div class="card-soon">
-          <div class="soon-label"><span data-ko>준비 중</span><span data-en>Coming soon</span></div>
-          <div class="soon-title"><span data-ko>어떤 방식이든, 준비된 재무가 먼저입니다</span><span data-en>Whatever the route, clean financials come first</span></div>
-        </div>
-      </div>
-    </div>
-
-      <div class="legal">
-    상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="/privacy.html">Privacy Policy</a>
-    </div>
+<div class="nav">
+<a class="logo" href="/" style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;letter-spacing:0.12em;color:#0C182C;text-decoration:none;">AAP<span style="color:#B8922A;">.</span></a>
+<div class="nav-links" style="display:flex;align-items:center;gap:22px;">
+<a href="/#founder" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">FOUNDER</a>
+<a href="/services.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:0.6;">SERVICES</a>
+<a href="/aap_insights.html" style="font-size:13px;text-decoration:none;color:#0C182C;opacity:1;font-weight:500;">INSIGHTS</a>
+<a class="nav-cta-btn" href="/#contact" onmouseout="this.style.background='transparent';this.style.color='#0C182C'" onmouseover="this.style.background='#0C182C';this.style.color='#fff'" style="font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:8px 18px;border:1px solid #0C182C;color:#0C182C;text-decoration:none;">자문 문의</a>
+<button class="hamburger" id="hamBtn" onclick="toggleMob()" style="display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
+<span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+<span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+<span style="display:block;width:20px;height:1.5px;background:#0C182C;transition:all 0.2s;"></span>
+</button>
 </div>
-
-<script>
+</div>
+<section class="hero">
+<div class="hero-inner">
+<div class="eyebrow">
+<span data-ko="">오너를 위한 실무 인사이트</span>
+<span data-en="">Practical insights for owners</span>
+</div>
+<h1>
+<span data-ko="">가치를 높이는 판단의 힌트<br/>오너가 알아야 할<em>핵심 포인트</em></span>
+<span data-en="">Key things every owner<br/>should know <em>with every key business decision</em></span>
+</h1>
+<p class="hero-sub">
+<span data-ko="">사업의 현재와 다음을 준비하기 위한 인사이트를 전합니다.</span>
+<span data-en="">Insights to help you understand where your business stands — and where it needs to go next.</span>
+</p>
+</div>
+</section>
+<div class="content-wrap">
+<div class="content-inner">
+<!-- ── 시리즈 1: 내 회사 재무, 제대로 보기 ── -->
+<div class="series-block">
+<div class="series-header">
+<span class="series-num">
+<span data-ko="">시리즈 1</span><span data-en="">Series 1</span>
+</span>
+<span class="series-title">
+<span data-ko="">내 회사 재무, 제대로 보기</span><span data-en="">Understanding your own financials</span>
+</span>
+<span class="series-desc">
+<span data-ko="">3편</span><span data-en="">3 articles</span>
+</span>
+</div>
+<div class="card-grid">
+<div aria-label="Open article 1" class="card" data-article="s1-01" role="button" tabindex="0">
+<div class="card-top gold"></div>
+<div class="card-inner">
+<div class="card-num">01</div>
+<h3><span data-ko="">매출은 느는데 왜 이익이 안 남지</span><span data-en="">Growing revenue, shrinking profit — why?</span></h3>
+<p><span data-ko="">매출 성장이 이익을 보장하지 않는 이유.</span><span data-en="">Why revenue growth does not guarantee profit.</span></p>
+<span class="card-cta"><span data-ko="">읽기</span><span data-en="">Read</span></span>
+</div>
+</div>
+<div aria-label="Open article 2" class="card" data-article="s1-02" role="button" tabindex="0">
+<div class="card-top"></div>
+<div class="card-inner">
+<div class="card-num">02</div>
+<h3><span data-ko="">현금이 다 어디로 간 걸까</span><span data-en="">Where does all the cash go?</span></h3>
+<p><span data-ko="">흑자인데 통장이 빈 이유, 운전자본과 현금흐름.</span><span data-en="">Profitable but cash-poor — working capital and cash flow explained.</span></p>
+<span class="card-cta"><span data-ko="">읽기</span><span data-en="">Read</span></span>
+</div>
+</div>
+<div aria-label="Open article 3" class="card" data-article="s1-03" role="button" tabindex="0">
+<div class="card-top"></div>
+<div class="card-inner">
+<div class="card-num">03</div>
+<h3><span data-ko="">오너가 흔히 놓치는 숫자들</span><span data-en="">Numbers most owners overlook</span></h3>
+<p><span data-ko="">투자자와 바이어가 가장 먼저 보는 지표들.</span><span data-en="">The metrics investors and buyers look at first.</span></p>
+<span class="card-cta"><span data-ko="">읽기</span><span data-en="">Read</span></span>
+</div>
+</div>
+</div>
+</div>
+<!-- ── 시리즈 2: 성장과 투자 준비 ── -->
+<div class="series-block">
+<div class="series-header">
+<span class="series-num">
+<span data-ko="">시리즈 2</span><span data-en="">Series 2</span>
+</span>
+<span class="series-title">
+<span data-ko="">성장과 투자 준비</span><span data-en="">Planning for Growth &amp; Investment</span>
+</span>
+<span class="series-desc">
+<span data-ko="">준비 중</span><span data-en="">Coming soon</span>
+</span>
+</div>
+<div class="series-coming">
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">확장을 결정하기 전에 먼저 봐야 할 숫자</span><span data-en="">The numbers to check before committing to growth</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">사업계획서(BP)에서 투자자가 진짜 보는 것</span><span data-en="">What investors actually look for in a business plan</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">재무 예측(Forecast), 어디서부터 틀리는가</span><span data-en="">Financial forecasts — where most go wrong</span></div>
+</div>
+</div>
+</div>
+<!-- ── 시리즈 3: 숫자 밖의 것들 ── -->
+<div class="series-block">
+<div class="series-header">
+<span class="series-num">
+<span data-ko="">시리즈 3</span><span data-en="">Series 3</span>
+</span>
+<span class="series-title">
+<span data-ko="">숫자 밖의 것들</span><span data-en="">Beyond the numbers</span>
+</span>
+<span class="series-desc">
+<span data-ko="">준비 중</span><span data-en="">Coming soon</span>
+</span>
+</div>
+<div class="series-coming">
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">오너가 없어도 돌아가는 회사를 만든다는 것</span><span data-en="">Building a business that runs without you</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">타이밍 — 언제 결정해야 하는가</span><span data-en="">Timing — when to make the move</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">바이어가 숫자 다음으로 보는 것들</span><span data-en="">What buyers look at after the numbers</span></div>
+</div>
+</div>
+</div>
+<!-- ── 시리즈 4: 사업을 넘긴다는 것 ── -->
+<div class="series-block">
+<div class="series-header">
+<span class="series-num">
+<span data-ko="">시리즈 4</span><span data-en="">Series 4</span>
+</span>
+<span class="series-title">
+<span data-ko="">사업을 넘긴다는 것</span><span data-en="">Passing the business on</span>
+</span>
+<span class="series-desc">
+<span data-ko="">준비 중</span><span data-en="">Coming soon</span>
+</span>
+</div>
+<div class="series-coming">
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">매각만이 답은 아닙니다</span><span data-en="">A sale is not the only option</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">가족 승계, 임직원 인수, 제3자 매각 — 무엇이 다른가</span><span data-en="">Family succession, MBO, third-party sale — what changes</span></div>
+</div>
+<div class="card-soon">
+<div class="soon-label"><span data-ko="">준비 중</span><span data-en="">Coming soon</span></div>
+<div class="soon-title"><span data-ko="">어떤 방식이든, 준비된 재무가 먼저입니다</span><span data-en="">Whatever the route, clean financials come first</span></div>
+</div>
+</div>
+</div>
+<div class="legal">
+    상호: 아름어드바이저리파트너스  |  브랜드명: AAP Advisory  |  대표자: 김진경  |  사업자등록번호: 222-20-05976  |  <a href="/privacy.html">Privacy Policy</a>
+</div>
+</div>
+<div aria-hidden="true" class="article-modal" id="articleModal" onclick="if(event.target===this)closeArticleModal()">
+<div class="article-modal-inner">
+<div class="article-modal-header">
+<span class="article-modal-title" id="articleModalTitle">AAP Advisory Insight</span>
+<button class="article-modal-close" onclick="closeArticleModal()" type="button">×</button>
+</div>
+<div class="article-modal-scroll" id="articleModalBody"></div>
+</div>
+<template data-title-en="Growing revenue, shrinking profit — why?" data-title-ko="매출은 느는데 왜 이익이 안 남지" id="tpl-s1-01"><section class="article-hero">
+<div class="hero-inner">
+<div class="series-label">
+<span data-ko="">시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en="">Series 1 · Understanding your own financials</span>
+</div>
+<div class="eyebrow">
+<span data-ko="">오너 가이드</span><span data-en="">Owner guide</span>
+</div>
+<h1>
+<span data-ko="">매출은 느는데 왜 이익이 안 남지</span>
+<span data-en="">Growing revenue, shrinking profit — why?</span>
+</h1>
+<div class="hero-meta">AAP Advisory · 2026. 04</div>
+<p class="hero-lead">
+<span data-ko="">매출이 오르는데 통장은 늘 빠듯합니다. 장사는 되는 것 같은데 이익이 남질 않습니다. 이 문제는 숫자를 제대로 들여다보지 않으면 원인을 찾기 어렵습니다.</span>
+<span data-en="">Revenue is climbing, but the bank account always feels tight. Business seems to be going well, yet profit never quite shows up. Without looking at the right numbers, the cause stays hidden.</span>
+</p>
+</div>
+</section><div class="article-body">
+<div data-lang="ko">
+<div class="section">
+<h2 class="sec-title">매출과 이익은 다른 이야기입니다</h2>
+<div class="sec-body"><p>많은 대표들이 매출을 기준으로 사업의 건강을 판단합니다. 그런데 매출이 오른다는 것과 이익이 남는다는 것은 전혀 다른 이야기입니다.</p>
+<p>매출이 늘어도 이익이 줄어드는 이유는 대부분 두 가지입니다. <strong>원가 구조가 바뀌었거나, 고정비가 매출보다 빠르게 늘었기 때문</strong>입니다. 사람을 뽑고, 공간을 늘리고, 마케팅을 확대하는 과정에서 비용이 매출 성장 속도를 앞질러버리는 경우가 많습니다.</p>
+<div class="callout"><p><strong>핵심 질문 —</strong> 지난 1년간 매출이 20% 올랐다면, 이익도 같은 비율로 올랐습니까? 그렇지 않다면 어디서 새고 있는지 들여다볼 필요가 있습니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">제품·서비스별로 마진이 다릅니다</h2>
+<div class="sec-body"><p>회사 전체 이익을 보면 괜찮아 보여도, 제품별·고객별로 뜯어보면 실제로 돈을 버는 곳과 잃는 곳이 나뉩니다. 마진이 낮은 제품에 자원을 쏟고 있을 수 있습니다.</p>
+<p>예를 들어 매출의 40%를 차지하는 주력 제품의 마진이 5%이고, 나머지 60%에서 마진이 25%라면 — 사실상 주력 제품이 이익을 갉아먹고 있는 구조입니다.</p>
+<div class="callout"><p><strong>실무 포인트 —</strong> 제품별 매출 원가(COGS)를 분리해서 보는 것이 시작입니다. 원가를 명확히 배분하지 않으면 어디서 이익이 나고 어디서 손해가 나는지 알 수 없습니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">고정비 레버리지를 이해해야 합니다</h2>
+<div class="sec-body"><p>임대료, 인건비, 감가상각처럼 매출에 관계없이 나가는 비용이 고정비입니다. 고정비는 매출이 늘수록 단위당 부담이 줄어드는 구조입니다. 그래서 매출이 어느 수준을 넘으면 이익이 급격히 올라가지만, 그 이하에서는 매출이 조금만 줄어도 이익이 크게 빠집니다.</p>
+<p>현재 고정비 수준에서 손익분기점(BEP)이 어디인지 아는 것은 경영의 기본입니다. 그리고 그 BEP가 현재 매출 대비 얼마나 여유가 있는지가 사업의 안전마진입니다.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">숫자를 보는 구조가 먼저입니다</h2>
+<div class="sec-body"><p>위 문제들을 파악하려면 단순한 손익계산서 하나로는 부족합니다. 제품별, 사업부별로 매출과 원가가 분리된 관리 회계 구조가 필요합니다.</p>
+<p>많은 중소기업은 세금 신고용 재무제표만 갖추고 있어서 실제 경영 판단에 쓸 수 있는 숫자가 없습니다. 대표가 매달 들여다볼 수 있는 숫자 체계를 만드는 것, 그것이 시작입니다.</p>
+<div class="callout"><p><strong>AAP Advisory가 하는 일 —</strong> 지금 갖고 있는 숫자에서 출발해서, 제품별 수익성과 비용 구조를 분리하고 대표가 의사결정에 쓸 수 있는 형태로 정리합니다.</p></div></div>
+</div>
+</div>
+<div data-lang="en" style="display:none">
+<div class="section">
+<h2 class="sec-title">Revenue and profit are different stories</h2>
+<div class="sec-body"><p>Many business owners measure the health of their business by revenue. But revenue growth and profit are entirely separate things.</p>
+<p>When revenue rises but profit does not, the cause is usually one of two things: <strong>the cost structure has changed, or fixed costs have grown faster than revenue</strong>. Hiring, expanding space, scaling marketing — these expenses often outpace revenue growth.</p>
+<div class="callout"><p><strong>The key question —</strong> If revenue grew 20% last year, did profit grow at the same rate? If not, something is leaking. That is worth understanding.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Margins differ by product and service line</h2>
+<div class="sec-body"><p>The company's overall profit might look acceptable, but at the product or customer level, there are always areas that make money and areas that lose it. Resources may be going into low-margin products without anyone realising.</p>
+<p>If the flagship product accounts for 40% of revenue but carries a 5% margin, while the remaining 60% earns 25% margins — the flagship is effectively eroding the overall profit.</p>
+<div class="callout"><p><strong>Practical point —</strong> Separating cost of goods sold (COGS) by product line is the starting point. Without clear cost allocation, it is impossible to know where profit is being made and where it is being lost.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Understanding fixed cost leverage matters</h2>
+<div class="sec-body"><p>Rent, payroll, and depreciation are fixed costs — they go out regardless of revenue. Fixed costs decrease in unit terms as revenue grows. This means profit accelerates sharply once revenue exceeds a certain level, but a small drop in revenue below that level can hit profit hard.</p>
+<p>Knowing the breakeven point at the current fixed cost base is a management fundamental. And the gap between that breakeven and current revenue is the business's safety margin.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">The right reporting structure comes first</h2>
+<div class="sec-body"><p>Understanding these issues requires more than a single profit-and-loss statement. Management accounting that separates revenue and costs by product or business unit is needed.</p>
+<p>Many smaller businesses have only tax-filing financials — no numbers structured for actual management decisions. Building a monthly reporting framework that an owner can actually use is where this work starts.</p>
+<div class="callout"><p><strong>What AAP Advisory does —</strong> Starting from the numbers you already have, we separate product-level profitability and cost structures — and put them in a form management can actually use to make decisions.</p></div></div>
+</div>
+</div>
+</div></template><template data-title-en="Where does all the cash go?" data-title-ko="현금이 다 어디로 간 걸까" id="tpl-s1-02"><section class="article-hero">
+<div class="hero-inner">
+<div class="series-label">
+<span data-ko="">시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en="">Series 1 · Understanding your own financials</span>
+</div>
+<div class="eyebrow">
+<span data-ko="">오너 가이드</span><span data-en="">Owner guide</span>
+</div>
+<h1>
+<span data-ko="">현금이 다 어디로 간 걸까</span>
+<span data-en="">Where does all the cash go?</span>
+</h1>
+<div class="hero-meta">AAP Advisory · 2026. 04</div>
+<p class="hero-lead">
+<span data-ko="">이익이 나는데 현금이 없습니다. 손익계산서는 흑자인데 통장이 빕니다. 이 현상을 이해하지 못하면, 좋은 사업도 유동성 위기로 무너질 수 있습니다.</span>
+<span data-en="">The business is profitable, but cash is always tight. The P&amp;L shows a surplus, yet the bank account runs dry. Without understanding this, even a good business can collapse under a liquidity crisis.</span>
+</p>
+</div>
+</section><div class="article-body">
+<div data-lang="ko">
+<div class="section">
+<h2 class="sec-title">이익과 현금흐름은 왜 다른가</h2>
+<div class="sec-body"><p>이익은 회계적 개념입니다. 매출이 발생하면 아직 돈을 못 받아도 이익에 잡힙니다. 반대로 현금흐름은 실제로 통장에 들어오고 나가는 돈입니다.</p>
+<p>대표가 느끼는 "현금이 없다"는 감각은 손익계산서가 아니라 현금흐름표를 봐야 설명됩니다. 매출채권이 늘었거나, 재고가 쌓였거나, 설비에 투자했거나 — 이런 것들이 이익이 있어도 현금을 마르게 합니다.</p>
+<div class="callout"><p><strong>흔한 패턴 —</strong> 매출이 급성장하는 회사일수록 이 문제가 심합니다. 매출은 늘지만 외상 매출이 쌓이고 재고가 늘면서 현금이 사업에 묶입니다. 이를 운전자본 함정이라고 합니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">운전자본이 현금을 잡아먹습니다</h2>
+<div class="sec-body"><p>운전자본(Working Capital)은 사업을 운영하는 데 묶여있는 돈입니다. 외상으로 판 돈(매출채권), 아직 안 팔린 재고, 미리 낸 비용 등이 여기 해당합니다.</p>
+<p>매출채권 회수가 60일인데 매입채무 지급이 30일이라면, 사업을 하면 할수록 현금이 부족해지는 구조입니다. 이 갭이 운전자본 부담이고, 매출이 클수록 더 많은 현금이 필요합니다.</p>
+<p>운전자본 관리는 단순히 현금을 아끼는 것이 아닙니다. 고객에게 외상을 얼마나 줄지, 재고를 얼마나 쌓을지, 대금은 언제 받고 언제 낼지 — 이것이 모두 경영 전략입니다.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Capex와 현금의 관계</h2>
+<div class="sec-body"><p>설비 투자(Capex)는 손익계산서에서 한 번에 비용으로 잡히지 않고 감가상각을 통해 나눠집니다. 그래서 큰 설비를 구입해도 이익은 별로 줄지 않지만 현금은 한번에 빠집니다.</p>
+<p>반대로 감가상각은 현금이 나가지 않는 비용이라서 이익에서 빠지지만 현금흐름에는 영향이 없습니다. 이런 특성 때문에 EBITDA(이자·세금·감가상각 전 이익)가 실제 현금 창출력을 보는 지표로 쓰입니다.</p>
+<div class="callout"><p><strong>대표가 알아야 할 것 —</strong> 올해 이익이 얼마인지와 올해 현금이 얼마나 생겼는지는 다릅니다. 투자자나 바이어는 이 둘을 모두 봅니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">현금흐름을 예측할 수 있어야 합니다</h2>
+<div class="sec-body"><p>현금이 어디서 들어오고 어디로 나가는지 구조를 이해하면, 앞으로 몇 달 뒤 현금이 얼마나 될지 예측할 수 있습니다. 이것이 현금흐름 예측(Cash Flow Forecast)입니다.</p>
+<p>계절성이 있는 사업이라면 특정 시기에 현금이 마르는 패턴을 미리 알 수 있고, 차입이나 투자 시점을 조율할 수 있습니다. 현금이 없어서 급하게 대출을 받는 것과 미리 알고 준비하는 것은 조건이 완전히 다릅니다.</p></div>
+</div>
+</div>
+<div data-lang="en" style="display:none">
+<div class="section">
+<h2 class="sec-title">Why profit and cash flow diverge</h2>
+<div class="sec-body"><p>Profit is an accounting concept. Revenue is recognised when a sale occurs, even if cash has not been received. Cash flow, on the other hand, is what actually moves in and out of the bank account.</p>
+<p>The feeling that "there's no cash" is explained by the cash flow statement, not the P&amp;L. Growing receivables, accumulating inventory, capital expenditure — these drain cash even when profit is positive.</p>
+<div class="callout"><p><strong>A common pattern —</strong> Fast-growing businesses often feel this most acutely. Revenue grows, but receivables pile up and inventory builds, locking cash inside the business. This is the working capital trap.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Working capital absorbs cash</h2>
+<div class="sec-body"><p>Working capital is the money tied up in running the business day to day: receivables from customers, unsold inventory, prepaid expenses.</p>
+<p>If receivables take 60 days to collect but payables are due in 30 days, the business structure means more trading generates more cash shortfall. This gap is the working capital burden, and it grows with revenue.</p>
+<p>Managing working capital is not simply about conserving cash. How much credit to extend to customers, how much inventory to hold, when to collect and when to pay — these are all strategic decisions.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Capex and its effect on cash</h2>
+<div class="sec-body"><p>Capital expenditure is not fully expensed on the P&amp;L in the year it is incurred — it is spread through depreciation over time. So a large equipment purchase barely moves the profit figure, but hits cash immediately.</p>
+<p>Conversely, depreciation is a non-cash expense: it reduces profit but does not affect cash. This is why EBITDA (earnings before interest, tax, depreciation and amortisation) is used as a proxy for cash generation capacity.</p>
+<div class="callout"><p><strong>What owners need to know —</strong> How much profit was made this year and how much cash was generated this year are two different numbers. Investors and buyers look at both.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Cash flow should be forecastable</h2>
+<div class="sec-body"><p>Understanding where cash comes from and where it goes makes it possible to project what the cash position will look like months ahead. That is cash flow forecasting.</p>
+<p>For businesses with seasonality, the pattern of cash shortfalls at certain times can be identified in advance — and borrowing or investment timing can be planned accordingly. Taking out an emergency loan when cash runs dry is very different from arranging finance ahead of time on your own terms.</p></div>
+</div>
+</div>
+</div></template><template data-title-en="Numbers most owners overlook" data-title-ko="오너가 흔히 놓치는 숫자들" id="tpl-s1-03"><section class="article-hero">
+<div class="hero-inner">
+<div class="series-label">
+<span data-ko="">시리즈 1 · 내 회사 재무, 제대로 보기</span><span data-en="">Series 1 · Understanding your own financials</span>
+</div>
+<div class="eyebrow">
+<span data-ko="">오너 가이드</span><span data-en="">Owner guide</span>
+</div>
+<h1>
+<span data-ko="">오너가 흔히 놓치는 숫자들</span>
+<span data-en="">Numbers most owners overlook</span>
+</h1>
+<div class="hero-meta">AAP Advisory · 2026. 04</div>
+<p class="hero-lead">
+<span data-ko="">매출과 영업이익은 챙기지만, 정작 경영에서 더 중요한 숫자들을 놓치는 경우가 많습니다. 투자자와 바이어가 가장 먼저 들여다보는 것들입니다.</span>
+<span data-en="">Revenue and operating profit get attention. But the numbers that matter most for running the business — and that investors and buyers look at first — are often the ones that get overlooked.</span>
+</p>
+</div>
+</section><div class="article-body">
+<div data-lang="ko">
+<div class="section">
+<h2 class="sec-title">EBITDA — 현금 창출력의 척도</h2>
+<div class="sec-body"><p>EBITDA는 이자, 세금, 감가상각을 빼기 전 이익입니다. 왜 이게 중요하냐면, 재무구조나 세금 환경이 다른 회사들 사이에서 <strong>실제 영업 현금 창출력</strong>을 비교할 수 있는 지표이기 때문입니다.</p>
+<p>M&amp;A에서 기업가치는 대부분 EBITDA의 몇 배수(멀티플)로 계산됩니다. 대표가 EBITDA를 모른다면, 내 회사가 얼마짜리인지 논의 자체가 불가능합니다.</p>
+<div class="callout"><p><strong>그리고 Normalised EBITDA —</strong> 오너 급여가 시장 수준보다 낮거나 높다면, 개인 비용이 법인으로 처리됐다면 — 이런 것들을 조정한 것이 Normalised EBITDA입니다. 실사에서 가장 치열하게 다퉈지는 숫자입니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">매출채권 회수 기간(DSO)과 재고 회전율</h2>
+<div class="sec-body"><p>매출채권 회수 기간(Days Sales Outstanding)은 외상 매출이 현금으로 바뀌는 데 걸리는 평균 시간입니다. 이 숫자가 길수록 현금이 더 오래 묶입니다.</p>
+<p>재고 회전율은 재고가 얼마나 빨리 팔리는지입니다. 회전율이 낮으면 현금이 창고에 쌓여있는 것이고, 재고가 오래될수록 가치도 떨어집니다.</p>
+<p>이 두 숫자는 운전자본 효율성을 보는 핵심 지표입니다. 바이어 실사에서 반드시 확인하는 항목이기도 합니다.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">고객 집중도</h2>
+<div class="sec-body"><p>상위 1개 고객이 전체 매출의 40%를 차지한다면, 그 고객이 떠났을 때 회사는 어떻게 됩니까? 이것이 고객 집중도 리스크입니다.</p>
+<p>고객 집중도가 높으면 바이어는 그 고객과의 계약 내용, 관계 유지 여부, 오너가 빠졌을 때 유지 가능성 등을 집중적으로 들여다봅니다. 그리고 그 리스크만큼 가격을 낮춥니다.</p>
+<div class="callout"><p><strong>오너가 할 수 있는 것 —</strong> 매출 다각화는 단기에 되지 않습니다. 하지만 지금부터 어떤 고객 구조를 만들어가고 있는지 인식하는 것이 시작입니다.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">오너 의존도</h2>
+<div class="sec-body"><p>회사의 핵심 고객 관계, 주요 공급사 협상, 중요한 의사결정이 모두 오너 한 명에게 집중되어 있다면 — 오너가 빠졌을 때 이 사업은 어떻게 돌아갑니까?</p>
+<p>이것이 오너 의존도 리스크입니다. 바이어는 오너 없이도 사업이 돌아가는지를 봅니다. 오너 의존도가 높을수록 가치평가 멀티플이 낮아집니다.</p>
+<p>지금 팔 생각이 없어도, 경영진에게 권한을 이양하고 시스템을 만드는 것은 좋은 경영입니다. 그리고 그것이 나중에 회사의 가치를 높이는 일이기도 합니다.</p></div>
+</div>
+</div>
+<div data-lang="en" style="display:none">
+<div class="section">
+<h2 class="sec-title">EBITDA — the measure of cash generation</h2>
+<div class="sec-body"><p>EBITDA is earnings before interest, tax, depreciation and amortisation. It matters because it provides a way to compare the <strong>underlying cash generation of businesses</strong> with different financing structures and tax environments.</p>
+<p>In M&amp;A, enterprise value is almost always expressed as a multiple of EBITDA. If an owner does not know their own EBITDA, a meaningful valuation conversation is not possible.</p>
+<div class="callout"><p><strong>And normalised EBITDA —</strong> If owner salary is above or below market rate, or personal expenses run through the company, these need to be adjusted out. The result is normalised EBITDA — the number that gets debated most intensely in due diligence.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Days sales outstanding and inventory turnover</h2>
+<div class="sec-body"><p>Days Sales Outstanding (DSO) is the average time it takes for a credit sale to convert to cash. The longer this period, the more cash is tied up waiting to be collected.</p>
+<p>Inventory turnover measures how quickly stock moves out. Low turnover means cash is sitting in a warehouse, and stock that ages often loses value.</p>
+<p>Both are key efficiency metrics for working capital management — and both are items due diligence teams check as a matter of course.</p></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Customer concentration</h2>
+<div class="sec-body"><p>If a single customer accounts for 40% of total revenue — what happens to the business when that customer leaves? This is customer concentration risk.</p>
+<p>High customer concentration prompts buyers to scrutinise the contract terms, the relationship history, and whether it survives without the owner. The risk is priced into the valuation accordingly.</p>
+<div class="callout"><p><strong>What owners can do —</strong> Revenue diversification does not happen quickly. But being aware of what customer structure you are building towards is where it starts.</p></div></div>
+</div>
+<div class="section">
+<h2 class="sec-title">Owner dependency</h2>
+<div class="sec-body"><p>If key customer relationships, major supplier negotiations, and important decisions all sit with one person — how does this business operate when that person is gone?</p>
+<p>This is owner dependency risk. Buyers ask whether the business runs without the owner. High owner dependency compresses valuation multiples.</p>
+<p>Even without any intention to sell, delegating authority and building systems is simply good management. And it is also what increases the value of the business over time.</p></div>
+</div>
+</div>
+</div></template></div><script>
 function toggleMob(){
   var m=document.getElementById('mobMenu');
   var b=document.getElementById('hamBtn');
@@ -565,9 +852,40 @@ function closeMob(){
   document.getElementById('mobMenu').classList.remove('open');
   document.getElementById('hamBtn').innerHTML='<span style="display:block;width:20px;height:1.5px;background:#0C182C;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span><span style="display:block;width:20px;height:1.5px;background:#0C182C;margin-top:5px;"></span>';
 }
+function currentLang(){
+  return document.body.classList.contains('en') ? 'en' : 'ko';
+}
+function openArticleModal(id){
+  var tpl = document.getElementById('tpl-' + id);
+  var modal = document.getElementById('articleModal');
+  var body = document.getElementById('articleModalBody');
+  var title = document.getElementById('articleModalTitle');
+  if(!tpl || !modal || !body) return;
+  body.innerHTML = tpl.innerHTML;
+  title.textContent = currentLang()==='en' ? (tpl.dataset.titleEn || 'AAP Insight') : (tpl.dataset.titleKo || 'AAP Insight');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  body.scrollTop = 0;
+}
+function closeArticleModal(){
+  var modal = document.getElementById('articleModal');
+  if(modal){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+  }
+  document.body.style.overflow='';
+}
+document.querySelectorAll('[data-article]').forEach(function(card){
+  card.addEventListener('click', function(){ openArticleModal(card.getAttribute('data-article')); });
+  card.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openArticleModal(card.getAttribute('data-article')); } });
+});
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape') closeMob();
+  if(e.key==='Escape'){
+    closeMob();
+    closeArticleModal();
+  }
 });
 </script>
-</body>
+</div></div></body>
 </html>
