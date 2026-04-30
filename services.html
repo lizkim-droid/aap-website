@@ -495,6 +495,125 @@ em { font-style: italic; color: var(--gold); }
   text-align: center;
 }
 .legal a { color: #7A8A9A; text-decoration: none; border-bottom: 1px solid #C9C3B8; }
+
+.notice-row {
+  border-top: 1px solid var(--line);
+  padding: 18px 0 10px;
+  margin-top: 0;
+}
+.notice-row-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.notice-copy {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 580px;
+}
+.notice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.notice-buttons button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--navy);
+  padding: 8px 12px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.notice-buttons button:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.info-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(12, 24, 44, 0.72);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+.info-modal.open { display: flex; }
+.info-modal-inner {
+  width: min(760px, 100%);
+  max-height: 86vh;
+  overflow-y: auto;
+  background: var(--bg);
+  border: 1px solid rgba(216, 211, 200, 0.82);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.38);
+}
+.info-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+}
+.info-modal-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--navy);
+}
+.info-modal-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: #7A8A9A;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.info-modal-close:hover { color: var(--navy); }
+.info-modal-body { padding: 24px 26px 28px; }
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.info-list li {
+  display: grid;
+  grid-template-columns: 0.42fr 1fr;
+  gap: 22px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.info-list li:first-child { border-top: none; padding-top: 0; }
+.info-label {
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.info-copy {
+  font-size: 14px;
+  line-height: 1.82;
+  color: var(--muted);
+}
+.info-copy strong { color: var(--navy); font-weight: 600; }
+@media(max-width:900px){
+  .notice-row-inner { align-items: flex-start; }
+  .info-modal { padding: 10px; }
+  .info-modal-title { font-size: 21px; }
+  .info-modal-body { padding: 20px; }
+  .info-list li { grid-template-columns: 1fr; gap: 7px; }
+}
+
 .reliance-note {
   border-top: 1px solid var(--line);
   padding: 12px 0 0;
@@ -689,38 +808,25 @@ em { font-style: italic; color: var(--gold); }
       </div>
     </div>
 
-    <div class="section" id="memo-data">
-      <div class="section-label standalone">Data Required</div>
-      <div class="data-grid">
-        <div class="data-card">
-          <h3>기본 필수 자료</h3>
-          <ul class="data-list">
-            <li><span class="badge">필수</span><span>최근 3개년 손익계산서</span></li>
-            <li><span class="badge">필수</span><span>최근 3개년 재무상태표</span></li>
-            <li><span class="badge">필수</span><span>현금 및 차입금 현황 — 금융기관, 리스, 주주 차입 포함</span></li>
-            <li><span class="badge">필수</span><span>매출채권, 재고, 매입채무 기말 잔액</span></li>
-            <li><span class="badge">필수</span><span>감가상각비, 주요 설비투자 내역</span></li>
-            <li><span class="badge">필수</span><span>업종, 주요 제품 / 서비스, 매출 구조 설명</span></li>
-          </ul>
+    <div class="section notice-row" id="memo-notice">
+      <div class="notice-row-inner">
+        <div>
+          <div class="section-label standalone" style="margin-bottom:10px;">Additional Information</div>
+          <p class="notice-copy">필요 자료, 서비스 범위, NDA 관련 사항은 별도 안내로 확인하실 수 있습니다.</p>
         </div>
-        <div class="data-card">
-          <h3>선택 자료</h3>
-          <ul class="data-list">
-            <li><span class="badge">선택</span><span>월별 매출 및 비용 자료</span></li>
-            <li><span class="badge">선택</span><span>고객 집중도 — Top 3~5 고객 비중</span></li>
-            <li><span class="badge">선택</span><span>제품 / 채널 / 지점별 매출 및 마진</span></li>
-            <li><span class="badge">선택</span><span>최근 예산, 사업계획, 내부 KPI 자료</span></li>
-            <li><span class="badge">선택</span><span>투자유치, 대출, 매각 등 검토 중인 의사결정 배경</span></li>
-            <li><span class="badge">선택</span><span>오너가 현재 가장 답답하게 느끼는 이슈 3가지</span></li>
-          </ul>
+        <div class="notice-buttons">
+          <button type="button" data-info="data">필요 자료</button>
+          <button type="button" data-info="scope">서비스 범위 및 제한</button>
+          <button type="button" data-info="nda">자료 수령 및 NDA</button>
         </div>
       </div>
-      <div class="reliance-note">
+    </div>
+
+    <div class="reliance-note">
         <strong>Reliance Restricted — Important Notice</strong>
         <p>본 리포트는 AAP Advisory가 클라이언트의 요청에 따라, 클라이언트가 제공한 자료를 기반으로 작성한 내부 참고용 자료입니다. 본 리포트는 제3자에 대한 공개 또는 배포를 목적으로 작성되지 않았으며, 클라이언트 이외의 제3자가 본 리포트를 신뢰하거나 이를 근거로 어떠한 행위를 하더라도 AAP Advisory는 이에 대한 어떠한 책임도 지지 않습니다.</p>
         <p>본 리포트에 포함된 기업가치 추정치는 보고된 재무제표 기준의 추정 범위이며, 실제 거래 가격, 투자 가치 또는 자산 가치를 보증하는 것이 아닙니다. 모든 수치는 제출 자료의 정확성을 전제로 하며, 독립적 검증 없이 작성되었습니다.</p>
       </div>
-    </div>
   </div>
 
   <div class="service-panel" id="panel-ongoing">
@@ -866,6 +972,86 @@ em { font-style: italic; color: var(--gold); }
   </div>
 </div>
 
+
+<div class="info-modal" id="info-data" aria-hidden="true" onclick="if(event.target===this)closeInfoModal('data')">
+  <div class="info-modal-inner">
+    <div class="info-modal-header">
+      <div class="info-modal-title">필요 자료</div>
+      <button class="info-modal-close" type="button" onclick="closeInfoModal('data')">×</button>
+    </div>
+    <div class="info-modal-body">
+      <ul class="info-list">
+        <li><div class="info-label">기본</div><div class="info-copy">최근 3개년 손익계산서 및 재무상태표</div></li>
+        <li><div class="info-label">기본</div><div class="info-copy">현금 및 차입금 현황 — 금융기관, 리스, 주주 차입 포함</div></li>
+        <li><div class="info-label">기본</div><div class="info-copy">매출채권, 재고, 매입채무 기말 잔액</div></li>
+        <li><div class="info-label">기본</div><div class="info-copy">감가상각비, 주요 설비투자 내역</div></li>
+        <li><div class="info-label">기본</div><div class="info-copy">업종, 주요 제품 / 서비스, 매출 구조 설명</div></li>
+        <li><div class="info-label">선택</div><div class="info-copy">월별 매출 및 비용, 고객 집중도, 제품 / 채널 / 지점별 매출 및 마진</div></li>
+        <li><div class="info-label">선택</div><div class="info-copy">최근 예산, 사업계획, 내부 KPI 자료, 투자유치·대출·매각 등 검토 중인 의사결정 배경</div></li>
+        <li><div class="info-label">Note</div><div class="info-copy">자료가 완벽히 정리되어 있지 않아도 상담 가능합니다. 실제 요청 자료는 서비스 범위와 회사 상황에 따라 조정됩니다.</div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="info-modal" id="info-scope" aria-hidden="true" onclick="if(event.target===this)closeInfoModal('scope')">
+  <div class="info-modal-inner">
+    <div class="info-modal-header">
+      <div class="info-modal-title">서비스 범위 및 제한</div>
+      <button class="info-modal-close" type="button" onclick="closeInfoModal('scope')">×</button>
+    </div>
+    <div class="info-modal-body">
+      <ul class="info-list">
+        <li>
+          <div class="info-label">Data basis</div>
+          <div class="info-copy">모든 분석은 <strong>클라이언트가 제출한 자료</strong>를 기준으로 작성됩니다. AAP Advisory는 제출 자료의 정확성과 완전성을 독립적으로 검증하지 않습니다.</div>
+        </li>
+        <li>
+          <div class="info-label">Purpose</div>
+          <div class="info-copy">본 서비스는 오너의 의사결정을 돕는 <strong>내부 참고용 자문 및 브리핑</strong>입니다. 정식 감정평가, 공정가치 의견, 투자 권유 자료가 아닙니다.</div>
+        </li>
+        <li>
+          <div class="info-label">Analysis</div>
+          <div class="info-copy">제출 자료 기준으로 운영 흐름, 가치 범위, 주요 위험 신호와 개선 과제를 정리합니다. 회계감사, 세무 자문, 법무 자문, 실사 수준의 독립 검증은 포함되지 않습니다.</div>
+        </li>
+        <li>
+          <div class="info-label">Use</div>
+          <div class="info-copy">실제 투자유치, 대출, M&amp;A 협상, 세무·법무 판단에 직접 활용하려면 별도 전문가 검토 및 후속 자문이 필요합니다.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="info-modal" id="info-nda" aria-hidden="true" onclick="if(event.target===this)closeInfoModal('nda')">
+  <div class="info-modal-inner">
+    <div class="info-modal-header">
+      <div class="info-modal-title">자료 수령 및 NDA</div>
+      <button class="info-modal-close" type="button" onclick="closeInfoModal('nda')">×</button>
+    </div>
+    <div class="info-modal-body">
+      <ul class="info-list">
+        <li>
+          <div class="info-label">Submission</div>
+          <div class="info-copy">자료는 상담 후 안내되는 이메일 또는 별도 링크를 통해 수령합니다. Excel, PDF, 이미지, ZIP 파일 형태 모두 가능합니다.</div>
+        </li>
+        <li>
+          <div class="info-label">NDA</div>
+          <div class="info-copy"><strong>NDA가 필요한 경우 자료 제출 전 선체결</strong>할 수 있습니다. 요청 시 AAP Advisory 표준 NDA 또는 고객사 양식 검토 방식으로 진행합니다.</div>
+        </li>
+        <li>
+          <div class="info-label">Confidentiality</div>
+          <div class="info-copy">제출 자료와 분석 결과는 서비스 수행 목적으로만 사용되며, 클라이언트 동의 없이 제3자에게 공유하지 않습니다.</div>
+        </li>
+        <li>
+          <div class="info-label">Anonymisation</div>
+          <div class="info-copy">회사명, 고객사명, 거래처명 등은 필요 시 코드명으로 익명 처리할 수 있습니다. 민감 자료는 분석에 필요한 범위 내에서만 요청합니다.</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <script>
 function toggleMob(){
   var m=document.getElementById('mobMenu');
@@ -904,12 +1090,34 @@ function closeSampleModal(type){
   document.body.style.overflow = '';
 }
 function closeAllSampleModals(){ ['operational','valuation'].forEach(function(type){ closeSampleModal(type); }); }
+
+function openInfoModal(type){
+  var modal = document.getElementById('info-' + type);
+  if (!modal) {
+    console.error('Info modal not found:', type);
+    return;
+  }
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+function closeInfoModal(type){
+  var modal = document.getElementById('info-' + type);
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+  document.body.style.overflow = '';
+}
+function closeAllInfoModals(){ ['data','scope','nda'].forEach(function(type){ closeInfoModal(type); }); }
+
 document.querySelectorAll('.service-tab').forEach(function(t){ t.addEventListener('click', function(){ openService(t.dataset.tab); }); });
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('[data-sample]').forEach(function(btn){ btn.addEventListener('click', function(){ openSampleModal(btn.getAttribute('data-sample')); }); });
+  document.querySelectorAll('[data-info]').forEach(function(btn){ btn.addEventListener('click', function(){ openInfoModal(btn.getAttribute('data-info')); }); });
   var h=location.hash.replace('#',''); if(['memo','ongoing','uplift'].includes(h)) { document.querySelectorAll('.service-tab').forEach(function(t){ t.classList.toggle('active', t.dataset.tab===h); }); document.querySelectorAll('.service-panel').forEach(function(p){ p.classList.toggle('active', p.id==='panel-'+h); }); }
 });
-document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeMob(); closeAllSampleModals(); } });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeMob(); closeAllSampleModals(); closeAllInfoModals(); } });
 </script>
 </body>
 </html>
