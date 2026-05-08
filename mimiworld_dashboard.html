@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Flower — Owner Value Observation | AAP Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D1E35;--navy2:#162030;--gold:#B8922A;--gold-l:#C9A96E;--white:#FFFFFF;--bg:#FAFAF8;--bg2:#F4F3F0;--rule:#DDD9D3;--text:#1A1A1A;--muted:#6B6B6B;--red:#C0392B;--amber:#B7770D;--blue:#2B5FA6;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;font-weight:300;color:var(--text);background:var(--bg);line-height:1.55;}
+.shell{display:flex;min-height:100vh;}
+.sidebar{width:210px;flex-shrink:0;position:sticky;top:0;height:100vh;background:var(--navy);display:flex;flex-direction:column;padding:28px 0 20px;overflow-y:auto;}
+.sidebar-logo{padding:0 20px 22px;border-bottom:1px solid rgba(255,255,255,0.08);}
+.mark{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);letter-spacing:0.05em;}
+.mark span{color:var(--gold);}
+.sub{font-size:0.80rem;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;}
+.nav-section{padding:16px 20px 4px;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-weight:500;}
+.nav-item{display:block;padding:7px 20px;font-size:0.92rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.15s,background 0.15s;border-left:2px solid transparent;margin-bottom:1px;}
+.nav-item:hover,.nav-item.active{color:var(--white);background:rgba(255,255,255,0.05);border-left-color:var(--gold);}
+.sidebar-footer{margin-top:auto;padding:16px 20px 0;border-top:1px solid rgba(255,255,255,0.08);font-size:0.78rem;color:rgba(255,255,255,0.2);line-height:1.5;}
+.main{flex:1;min-width:0;display:flex;flex-direction:column;}
+.topbar{background:var(--white);border-bottom:1px solid var(--rule);padding:11px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.topbar-project{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy);}
+.topbar-meta{display:flex;align-items:center;gap:16px;font-size:0.87rem;color:var(--muted);}
+.badge{background:#FEF3CD;color:var(--amber);border:1px solid #F0D070;padding:2px 9px;font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;}
+.content{padding:32px 36px 60px;max-width:940px;}
+.section{margin-bottom:44px;scroll-margin-top:52px;}
+.section-header{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--rule);}
+.section-num{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--gold);letter-spacing:0.1em;flex-shrink:0;}
+.section-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:600;color:var(--navy);}
+.section-sub{font-size:0.87rem;color:var(--muted);margin-left:auto;}
+.intro-note{font-size:0.96rem;color:var(--muted);background:var(--bg2);border-left:2px solid var(--gold);padding:9px 13px;margin-bottom:16px;line-height:1.6;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+table{width:100%;border-collapse:collapse;font-size:0.96rem;}
+th{background:var(--navy);color:var(--white);font-weight:500;font-size:0.87rem;padding:8px 10px;text-align:left;letter-spacing:0.03em;}
+th.r{text-align:right;}
+td{padding:7px 10px;border-bottom:1px solid var(--rule);color:var(--text);font-weight:300;vertical-align:middle;}
+td.r{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:0.92rem;}
+td.label{color:var(--muted);font-size:0.90rem;}
+td.bold{font-weight:500;color:var(--navy);}
+td.gold-num{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--gold);text-align:right;}
+td.red-num{font-family:'IBM Plex Mono',monospace;color:var(--red);text-align:right;}
+td.sub-row{background:var(--navy);color:var(--white);font-weight:500;}
+td.sub-row.gold-num{color:var(--gold-l);}
+td.sub-row.label-muted{color:rgba(255,255,255,0.4);font-size:0.88rem;}
+tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
+tr:hover td:not(.sub-row){background:#EEECEA;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
+.kpi-card{background:var(--white);border:1px solid var(--rule);padding:13px 13px 9px;}
+.kpi-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--navy);line-height:1.1;}
+.kpi-val.red{color:var(--red);}
+.kpi-val.gold{color:var(--gold);}
+.kpi-val.blue{color:var(--blue);}
+.kpi-label{font-size:0.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;margin-top:6px;}
+.kpi-change{font-size:0.85rem;color:var(--muted);margin-top:2px;font-family:'IBM Plex Mono',monospace;}
+.chart-wrap{background:var(--white);border:1px solid var(--rule);padding:16px 16px 12px;}
+.chart-title{font-size:0.87rem;font-weight:500;color:var(--navy);margin-bottom:12px;letter-spacing:0.04em;text-transform:uppercase;}
+.chart-legend{display:flex;gap:14px;margin-top:9px;font-size:0.84rem;color:var(--muted);}
+.legend-dot{display:inline-block;width:8px;height:8px;margin-right:4px;position:relative;top:1px;}
+.obs-block{background:var(--white);border:1px solid var(--rule);padding:13px 15px;margin-bottom:9px;}
+.obs-block-head{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.obs-tag{font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;color:var(--white);}
+.obs-tag.obs{background:var(--navy);}
+.obs-tag.chk{background:var(--amber);}
+.obs-block-title{font-size:0.96rem;font-weight:500;color:var(--navy);}
+.obs-block-body{font-size:0.94rem;color:var(--muted);line-height:1.6;}
+.ownership-wrap{background:var(--white);border:1px solid var(--rule);padding:22px;display:grid;grid-template-columns:1fr 260px;gap:20px;}
+.ownership-obs{background:var(--bg2);padding:14px 15px;}
+.obs-title{font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--navy);margin-bottom:10px;}
+.obs-item{display:flex;gap:7px;margin-bottom:8px;font-size:0.92rem;color:var(--muted);line-height:1.5;}
+.obs-item .dot{color:var(--gold);flex-shrink:0;}
+.obs-item.primary{color:var(--navy);font-weight:500;}
+.obs-item.primary .dot{color:var(--navy);}
+.val-split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:14px;}
+.sub-label{font-size:0.82rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.limit-box{background:#FAF7F2;border:1px solid #E8DCC8;padding:11px 15px;font-size:0.92rem;color:var(--muted);line-height:1.6;margin-top:12px;}
+.source{font-size:0.80rem;color:var(--muted);font-style:italic;margin-top:11px;padding-top:9px;border-top:1px solid var(--rule);line-height:1.5;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.diff-item{margin-bottom:13px;}
+.diff-head{font-size:0.96rem;font-weight:600;color:var(--navy);margin-bottom:3px;display:flex;align-items:center;gap:7px;}
+.diff-head::before{content:'';display:block;width:3px;height:13px;background:var(--gold);flex-shrink:0;}
+.diff-body{font-size:0.92rem;color:var(--muted);line-height:1.55;}
+.sc-row td:first-child{font-family:'IBM Plex Mono',monospace;font-size:0.85rem;color:var(--gold);font-weight:500;width:36px;}
+.sc-row td:nth-child(2){width:165px;font-weight:500;color:var(--navy);}
+.sc-check{font-size:0.90rem;color:var(--muted);font-style:italic;}
+.disclaimer{background:var(--navy);padding:16px 36px;font-size:0.80rem;color:rgba(255,255,255,0.3);line-height:1.6;}
+@media print{.sidebar{display:none;}.topbar{position:static;}.content{padding:18px 28px;max-width:none;}.section{break-inside:avoid;}body{font-size:13px;background:white;}}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="mark">AAP<span>.</span></div>
+    <div class="sub">Advisory</div>
+  </div>
+  <div class="nav-section">Document</div>
+  <a class="nav-item active" href="#overview">01 &nbsp; Company Overview</a>
+  <a class="nav-item" href="#ownership">02 &nbsp; Ownership Structure</a>
+  <a class="nav-item" href="#financials">03 &nbsp; Financial Summary</a>
+  <a class="nav-item" href="#assets">04 &nbsp; Asset Reference Value</a>
+  <div class="nav-section">Analysis</div>
+  <a class="nav-item" href="#scenarios">05 &nbsp; Owner Scenarios</a>
+  <a class="nav-item" href="#about">06 &nbsp; About AAP Advisory</a>
+  <a class="nav-item" href="#next">07 &nbsp; Discussion Proposal</a>
+  <div class="sidebar-footer">공개 재무자료 기준<br>확정 가치평가 아님<br>May 2026</div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-project">Project Flower &nbsp;&middot;&nbsp; <span style="font-family:'DM Sans';font-weight:300;font-size:1.00rem;color:var(--muted)">Owner Value Observation</span></div>
+    <div class="topbar-meta">
+      <span class="badge">For Discussion Only</span>
+      <span>K-GAAP 별도 기준</span>
+      <span>May 2026</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- 01 COMPANY OVERVIEW -->
+    <div class="section" id="overview">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <span class="section-title">Company Overview &nbsp;&middot;&nbsp; 미미월드(주)</span>
+        <span class="section-sub">공개 자료 기준</span>
+      </div>
+      <div class="two-col" style="margin-bottom:18px;">
+        <div>
+          <table>
+            <tbody>
+              <tr><td class="label">기업명</td><td class="bold">미미월드(주)</td></tr>
+              <tr><td class="label">설립</td><td>1973년 &nbsp;(업력 50년+)</td></tr>
+              <tr><td class="label">업종</td><td>완구 제조·판매 (인형·패션돌·소꿉·교육완구)</td></tr>
+              <tr><td class="label">본사·공장</td><td>경기도 안양시 동안구 관양동</td></tr>
+              <tr><td class="label">물류창고</td><td>경기도 화성시</td></tr>
+              <tr><td class="label">대표이사</td><td>이종열</td></tr>
+              <tr><td class="label">대표 브랜드</td><td>미미 인형 &middot; 똘똘이 &middot; 월드카</td></tr>
+              <tr><td class="label">라이선스</td><td>뽀로로·타요 등 (계약 조건 미확인)</td></tr>
+              <tr><td class="label">재무 기준</td><td>K-GAAP 별도재무제표 &middot; 단위: 억원</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="chart-wrap">
+          <div class="chart-title">Revenue &amp; EBITDA Trend (단위: 억원)</div>
+          <svg viewBox="0 0 300 120" style="width:100%;height:118px;">
+            <line x1="38" y1="8" x2="295" y2="8" stroke="#EEE" stroke-width="0.5"/>
+            <line x1="38" y1="35" x2="295" y2="35" stroke="#EEE" stroke-width="0.5"/>
+            <line x1="38" y1="62" x2="295" y2="62" stroke="#EEE" stroke-width="0.5"/>
+            <line x1="38" y1="90" x2="295" y2="90" stroke="#CCCCCC" stroke-width="1"/>
+            <text x="34" y="11" text-anchor="end" font-size="11" fill="#999">600</text>
+            <text x="34" y="38" text-anchor="end" font-size="11" fill="#999">400</text>
+            <text x="34" y="65" text-anchor="end" font-size="11" fill="#999">200</text>
+            <text x="34" y="93" text-anchor="end" font-size="11" fill="#999">0</text>
+            <rect x="48" y="15" width="16" height="75" fill="#C9A96E" opacity="0.85"/>
+            <text x="56" y="11" text-anchor="middle" font-size="6.5" fill="#555">548</text>
+            <rect x="66" y="90" width="8" height="2" fill="#C0392B" opacity="0.7"/>
+            <rect x="108" y="22" width="16" height="68" fill="#C9A96E" opacity="0.85"/>
+            <text x="116" y="18" text-anchor="middle" font-size="6.5" fill="#555">499</text>
+            <rect x="126" y="90" width="8" height="6" fill="#C0392B" opacity="0.7"/>
+            <text x="130" y="104" text-anchor="middle" font-size="10" fill="#C0392B">-38</text>
+            <rect x="168" y="23.5" width="16" height="66.5" fill="#C9A96E" opacity="0.85"/>
+            <text x="176" y="20" text-anchor="middle" font-size="6.5" fill="#555">486</text>
+            <rect x="186" y="88.7" width="8" height="1.3" fill="#B8922A" opacity="0.8"/>
+            <text x="190" y="84" text-anchor="middle" font-size="10" fill="#B8922A">8</text>
+            <rect x="228" y="31.5" width="16" height="58.5" fill="#C0392B" opacity="0.75"/>
+            <text x="236" y="27" text-anchor="middle" font-size="6.5" fill="#555">428</text>
+            <rect x="246" y="89.8" width="8" height="0.2" fill="#B8922A" opacity="0.8"/>
+            <text x="56" y="110" text-anchor="middle" font-size="11" fill="#777">FY22</text>
+            <text x="116" y="110" text-anchor="middle" font-size="11" fill="#777">FY23</text>
+            <text x="176" y="110" text-anchor="middle" font-size="11" fill="#777">FY24</text>
+            <text x="236" y="110" text-anchor="middle" font-size="11" fill="#777">FY25</text>
+          </svg>
+          <div class="chart-legend">
+            <span><span class="legend-dot" style="background:#C9A96E"></span>매출액</span>
+            <span><span class="legend-dot" style="background:#C0392B"></span>EBITDA</span>
+          </div>
+        </div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-card"><div class="kpi-val red">428억</div><div class="kpi-label">FY25 매출</div><div class="kpi-change">FY22 548억 대비 &#9660;22%</div></div>
+        <div class="kpi-card"><div class="kpi-val blue">+57억</div><div class="kpi-label">순현금</div><div class="kpi-change">현금 76억 &middot; 차입금 20억</div></div>
+        <div class="kpi-card"><div class="kpi-val gold">134억</div><div class="kpi-label">보유 토지 (장부가)</div><div class="kpi-change">관양동 공장 부지</div></div>
+        <div class="kpi-card"><div class="kpi-val">404억</div><div class="kpi-label">자본총계</div><div class="kpi-change">K-GAAP 별도 기준</div></div>
+      </div>
+      <p class="source">Source: 공개 재무자료 (K-GAAP 별도재무제표) 기준. 확정 가치평가 아님.</p>
+    </div>
+
+    <!-- 02 OWNERSHIP -->
+    <div class="section" id="ownership">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <span class="section-title">Ownership Structure &nbsp;&middot;&nbsp; 주주 구조</span>
+        <span class="section-sub">공개 재무자료 기준</span>
+      </div>
+      <div class="ownership-wrap">
+        <div>
+          <svg viewBox="0 0 420 200" style="width:100%;max-height:200px;">
+            <!-- 상단 메인 박스: 너비 180, x=110 (중앙 x=200) -->
+            <rect x="110" y="15" width="200" height="50" fill="white" stroke="#0D1E35" stroke-width="1.2"/>
+            <text x="210" y="36" text-anchor="middle" font-size="13" font-weight="600" fill="#0D1E35" font-family="Playfair Display,serif">미미월드(주)</text>
+            <text x="210" y="51" text-anchor="middle" font-size="10" fill="#888">자본금 40억원 · 발행주식 800,000주</text>
+            <!-- 수직선 -->
+            <line x1="210" y1="65" x2="210" y2="96" stroke="#0D1E35" stroke-width="1"/>
+            <!-- 수평선 -->
+            <line x1="80" y1="96" x2="340" y2="96" stroke="#0D1E35" stroke-width="1"/>
+            <line x1="80" y1="96" x2="80" y2="118" stroke="#0D1E35" stroke-width="1"/>
+            <line x1="340" y1="96" x2="340" y2="118" stroke="#0D1E35" stroke-width="1"/>
+            <!-- 지분율 -->
+            <text x="80" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#B8922A" font-family="IBM Plex Mono,monospace">87.73%</text>
+            <text x="340" y="114" text-anchor="middle" font-size="12" font-weight="700" fill="#6B6B6B" font-family="IBM Plex Mono,monospace">12.27%</text>
+            <!-- 왼쪽 박스 -->
+            <rect x="10" y="122" width="140" height="44" fill="#F4F3F0" stroke="#DDD9D3" stroke-width="0.8"/>
+            <text x="80" y="140" text-anchor="middle" font-size="13" font-weight="600" fill="#0D1E35" font-family="Playfair Display,serif">이종열</text>
+            <text x="80" y="155" text-anchor="middle" font-size="11" fill="#6B6B6B">대표이사 · 보통주</text>
+            <!-- 오른쪽 박스 -->
+            <rect x="268" y="122" width="150" height="44" fill="#F4F3F0" stroke="#DDD9D3" stroke-width="0.8"/>
+            <text x="343" y="140" text-anchor="middle" font-size="13" font-weight="500" fill="#6B6B6B">기타 주주 2인</text>
+            <text x="343" y="155" text-anchor="middle" font-size="10" fill="#999">신원 및 특수관계 미확인</text>
+          </svg>
+        </div>
+        <div class="ownership-obs">
+          <div class="obs-title">Key Observations</div>
+          <div class="obs-item primary"><span class="dot">&#9679;</span><span>이종열 대표이사 단독 최대주주 (87.73%). 경영권·의사결정 집중 구조.</span></div>
+          <div class="obs-item"><span class="dot">&#9675;</span><span>기타 주주 2인의 신원 및 특수관계인 여부 미확인. 주주명부 확인 필요.</span></div>
+          <div class="obs-item"><span class="dot">&#9675;</span><span>Control stake 일부 매각 vs. 100% clean exit 구조에 따라 거래 조건·세금 부담이 달라질 수 있음.</span></div>
+          <div class="obs-item"><span class="dot">&#9675;</span><span>주주간계약 또는 동반매각권(tag-along) 약정 존재 여부 확인 필요.</span></div>
+        </div>
+      </div>
+      <p class="source">Source: 공개 재무자료 기준. 주주 신원·특수관계·주주간계약은 내부자료 확인 없이 파악 불가.</p>
+    </div>
+
+    <!-- 03 FINANCIAL SUMMARY -->
+    <div class="section" id="financials">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <span class="section-title">Financial Summary &nbsp;&middot;&nbsp; 재무 현황</span>
+        <span class="section-sub">FY22&#8211;FY25</span>
+      </div>
+      <div class="intro-note">공개자료 기준 관찰사항. 수익력은 낮아졌지만 현금·토지·자본 여력이 남아 있는 구조로 판단됨.</div>
+      <table style="margin-bottom:18px;">
+        <thead>
+          <tr><th>항목</th><th class="r">FY22</th><th class="r">FY23</th><th class="r">FY24</th><th class="r">FY25</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>매출액 (억원)</td><td class="r">548</td><td class="r">499</td><td class="r">486</td><td class="r bold">428</td></tr>
+          <tr><td class="label">YoY 성장률</td><td class="r">&#8212;</td><td class="r" style="color:var(--red)">-9%</td><td class="r" style="color:var(--red)">-3%</td><td class="r" style="color:var(--red)">-12%</td></tr>
+          <tr><td>매출총이익률 (GM%)</td><td class="r">18.8%</td><td class="r">21.7%</td><td class="r">20.1%</td><td class="r bold">19.3%</td></tr>
+          <tr><td>영업이익 (억원)</td><td class="r red-num">(5)</td><td class="r red-num">(40)</td><td class="r" style="text-align:right;font-family:'IBM Plex Mono',monospace">6</td><td class="r red-num">(2)</td></tr>
+          <tr><td>EBITDA (억원)</td><td class="r red-num">(2)</td><td class="r red-num">(37)</td><td class="r" style="text-align:right;font-family:'IBM Plex Mono',monospace">8</td><td class="r" style="text-align:right;font-family:'IBM Plex Mono',monospace">1</td></tr>
+          <tr><td>순현금 (억원)</td><td class="r gold-num">+53</td><td class="r gold-num">+30</td><td class="r gold-num">+56</td><td class="r gold-num">+57</td></tr>
+          <tr><td>자본총계 (억원)</td><td class="r">396</td><td class="r">363</td><td class="r">397</td><td class="r bold">404</td></tr>
+        </tbody>
+      </table>
+      <div class="obs-block">
+        <div class="obs-block-head"><span class="obs-tag obs">Obs.</span><span class="obs-block-title">매출·EBITDA &#8212; 수익력 회복 여부 확인 필요</span></div>
+        <div class="obs-block-body">FY22→FY25 매출 22% 감소(-120억원). 4년 연속 영업적자 또는 BEP 수준. FY23 EBITDA -37억원은 보유 자기주식의 사내근로복지기금 출연(비현금)에 따른 복리후생비 급증으로 반복 가능성 낮음.</div>
+      </div>
+      <div class="obs-block">
+        <div class="obs-block-head"><span class="obs-tag obs">Obs.</span><span class="obs-block-title">현금·자산 &#8212; 단기 유동성 위험은 제한적</span></div>
+        <div class="obs-block-body">FY25 순현금 +57억원 유지. 자본총계 404억원. 단기 재무위험보다는 현금·자산을 배당, 투자, 자산활용, 파트너십 중 어디에 배분할지의 자본정책 판단이 핵심.</div>
+      </div>
+      <div class="obs-block">
+        <div class="obs-block-head"><span class="obs-tag chk">Check</span><span class="obs-block-title">브랜드/IP별 수익 구조 확인 필요</span></div>
+        <div class="obs-block-body">DIO 135일, CCC 176일. 재고/총자산 25%. 브랜드·IP별 매출·마진, 채널 믹스, 원가 변동 원인은 공개자료만으로 확인 불가. 내부자료 수령 후 추가 분석 필요.</div>
+      </div>
+      <p class="source">* FY23 복리후생비 급증: 보유 자기주식의 사내근로복지기금 출연(비현금). K-GAAP 별도재무제표 기준. 단위: 억원.</p>
+    </div>
+
+    <!-- 04 ASSET REFERENCE -->
+    <div class="section" id="assets">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <span class="section-title">Asset-based Reference Value &nbsp;&middot;&nbsp; 자산 기반 참고가치</span>
+        <span class="section-sub">보수적 추정 &middot; 참고 목적</span>
+      </div>
+      <div class="intro-note">공개자료 기준 보수적 추정. EBITDA 배수 접근만으로는 회사 전체 가치 설명이 제한적인 구조.</div>
+      <div class="val-split">
+        <div>
+          <div class="sub-label">NAV-style 참고가치 (장부가 기준)</div>
+          <table>
+            <thead><tr><th>항목</th><th class="r">금액 (억원)</th><th>비고</th></tr></thead>
+            <tbody>
+              <tr><td>현금 및 현금성 자산</td><td class="r gold-num">76</td><td class="label">FY25 말 잔액</td></tr>
+              <tr><td>매출채권 (90% 실현 가정)</td><td class="r gold-num">60</td><td class="label">aging 미확인</td></tr>
+              <tr><td>재고자산 (70% 실현 가정)</td><td class="r gold-num">83</td><td class="label">구성 미확인</td></tr>
+              <tr><td>보유 토지 (장부가)</td><td class="r gold-num">134</td><td class="label">감정평가 미반영</td></tr>
+              <tr><td>(&#8722;) 부채 총계</td><td class="r red-num">(67)</td><td class="label">FY25 말 기준</td></tr>
+              <tr><td class="sub-row bold">참고가치</td><td class="sub-row gold-num">약 287</td><td class="sub-row label-muted">세금·처분비 미반영</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="sub-label">접근 방법별 참고 범위 (억원)</div>
+          <table style="margin-bottom:12px;">
+            <thead><tr><th>방법</th><th class="r">EV 범위</th><th>전제</th></tr></thead>
+            <tbody>
+              <tr><td>EBITDA 배수법 (4&#8211;7x)</td><td class="r" style="font-family:'IBM Plex Mono',monospace">72&#8211;126</td><td class="label">EBITDA 18억 가정</td></tr>
+              <tr><td>NAV-style (장부가)</td><td class="r gold-num">약 287</td><td class="label">세금·처분비 미반영</td></tr>
+            </tbody>
+          </table>
+          <div style="background:var(--bg2);border-left:2px solid var(--navy);padding:11px 13px;font-size:0.92rem;color:var(--muted);line-height:1.6;">
+            <strong style="color:var(--navy);display:block;margin-bottom:4px;">EBITDA 배수 vs. NAV 괴리</strong>
+            최근 EBITDA가 BEP 수준이어서 배수법 가치(72&#8211;126억원)가 자산 기반 참고가치(약 287억원)를 크게 하회함. 수익력 복원을 인정하는 전략적 인수자는 배수법 상단 이상을 지불할 수 있으며, 자산 중심 접근자는 NAV를 준거로 협상 가능.
+          </div>
+        </div>
+      </div>
+      <div class="limit-box"><strong>Limitation:</strong> 본 참고가치는 공개 K-GAAP 별도 장부가 기준이며, 토지 감정평가, 세금·처분비용, 운영 필요자산 구분, 재고 실질 회수율, 채권 aging 등이 반영되지 않음. 확정 청산가치 또는 딜 가격 추정값이 아님.</div>
+      <p class="source">Source: 공개 재무자료(K-GAAP 별도) FY25 기준. 단위: 억원. 정식 가치평가 아님.</p>
+    </div>
+
+    <!-- 05 SCENARIOS -->
+    <div class="section" id="scenarios">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <span class="section-title">Owner Scenario Overview &nbsp;&middot;&nbsp; 오너 선택지 개요</span>
+        <span class="section-sub">매각 권유 아님</span>
+      </div>
+      <div class="intro-note">아래 선택지는 공개자료 기준 초기 관찰 수준이며, 매각 권유가 아님. 오너의 우선순위에 따라 적합한 선택지는 달라짐.</div>
+      <table>
+        <thead>
+          <tr><th style="width:36px">No.</th><th style="width:165px">시나리오</th><th>주요 내용</th><th style="width:190px">핵심 확인 사항</th></tr>
+        </thead>
+        <tbody>
+          <tr class="sc-row"><td>01</td><td class="bold">현상유지<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Controlled Run-off</span></td><td>매각 또는 적극적 성장 없이 운영 지속. 단기 재무위험은 낮음.</td><td class="sc-check">현상유지의 기회비용. 보유 자산 활용도.</td></tr>
+          <tr class="sc-row"><td>02</td><td class="bold">승계 전 정리<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Legacy Preservation</span></td><td>오너 지분 집중 구조 특성상 승계 시 세금 재원·유동성 부담 가능. 가업승계·지분거래 선검토 필요.</td><td class="sc-check">후계자 참여 여부. 가업승계 요건. 지분 구조 정리 시점.</td></tr>
+          <tr class="sc-row"><td>03</td><td class="bold">전략적 파트너십<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Licensing / JV</span></td><td>전체 매각보다 낮은 강도의 외부 협업. 콘텐츠·유통·라이선싱·키즈 플랫폼 등.</td><td class="sc-check">브랜드/IP별 수익성. 협업 파트너 대상. 계약 구조.</td></tr>
+          <tr class="sc-row"><td>04</td><td class="bold">소규모 인수<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Capability Buy</span></td><td>순현금 구조를 활용한 tuck-in 가능성. 키즈 콘텐츠·IP·D2C 역량 등.</td><td class="sc-check">오너의 M&amp;A 의향·리스크 허용 범위. 타겟 선별 기준.</td></tr>
+          <tr class="sc-row"><td>05</td><td class="bold">자산 활용<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Asset Utilisation</span></td><td>보유 토지·현금·유휴자산의 사업 기여도 점검. 비핵심자산 구분 후 활용 방안.</td><td class="sc-check">운영 필요 vs. 비핵심 구분. 토지 감정평가. 세금.</td></tr>
+          <tr class="sc-row"><td>06</td><td class="bold">소수지분 매각·장기 Exit<br><span style="font-weight:300;font-size:0.88rem;color:var(--muted)">Partial / Full Exit</span></td><td>10&#8211;30% 소수지분 매각으로 유동성 확보 + 경영권 유지 가능성. 전략적 투자자·IP 카브아웃·전체 매각 등.</td><td class="sc-check">Control stake vs. 소수지분. 주주간계약. Buyer universe.</td></tr>
+        </tbody>
+      </table>
+      <p class="source">* 시나리오별 적합성은 내부자료, 오너 의사, 세무·법무 검토 없이 확정할 수 없음. 공개자료 기준 초기 관찰 수준. 매각 또는 투자 권유 아님.</p>
+    </div>
+
+    <!-- 06 ABOUT -->
+    <div class="section" id="about">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <span class="section-title">About AAP Advisory</span>
+      </div>
+      <p style="font-size:1.00rem;color:var(--muted);margin-bottom:18px;line-height:1.7;">AAP Advisory는 비상장 오너기업의 숫자, 자산, 운영 흐름을 오너의 의사결정 관점에서 정리하는 principal-led boutique advisory입니다. 공개자료에서 보이는 관찰사항을 바탕으로, 오너가 먼저 확인해야 할 가치 포인트와 선택지를 정리합니다.</p>
+      <div class="about-grid">
+        <div>
+          <div class="diff-item"><div class="diff-head">Big 4 FDD 출신</div><div class="diff-body">EY Transaction Diligence — Seoul · Sydney · Auckland. 누적 딜 가치 약 7조원. CPA Australia.</div></div>
+          <div class="diff-item"><div class="diff-head">End-to-End, 오너 편에서</div><div class="diff-body">관찰 → 가치 진단 → 선택지 설계 → 매각 준비 → VDD까지 직접 수행.</div></div>
+          <div class="diff-item"><div class="diff-head">독립 자문 &#8212; 이해충돌 없음</div><div class="diff-body">바이어 또는 인수자 자문을 동시에 수행하지 않음. 항상 오너 편에서만 일합니다.</div></div>
+        </div>
+        <div>
+          <div class="sub-label" style="margin-bottom:8px;">Selected Experience (EY Transaction Diligence)</div>
+          <table>
+            <thead><tr><th style="width:105px">구분</th><th>내용</th></tr></thead>
+            <tbody>
+              <tr><td>Sell-side VDD</td><td class="label">헬스케어·재활 서비스 · 약 2.1조원 · APAC 6개 법인 · 글로벌 PE</td></tr>
+              <tr><td>Buy-side DD</td><td class="label">산업가스·제조 · 약 4.6조원 · 글로벌 전략적 투자자</td></tr>
+              <tr><td>Buy-side DD</td><td class="label">교육 플랫폼 · 약 1,300억원 · 영국 200개+ 사이트 · 글로벌 PE</td></tr>
+              <tr><td>Buy-side DD</td><td class="label">소비재 공개매수 · 전략적 투자자</td></tr>
+              <tr><td>FP&amp;A</td><td class="label">글로벌 IT 대기업 · 연간 마케팅 투자비 A$200m 관리</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size:0.87rem;color:var(--muted);margin-top:7px;">누적 딜 가치 약 7조원 &nbsp;&middot;&nbsp; CPA Australia</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 DISCUSSION -->
+    <div class="section" id="next">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <span class="section-title">논의 제안 &nbsp;&middot;&nbsp; Discussion Proposal</span>
+      </div>
+      <div class="intro-note">본 자료는 매각 또는 투자 권유가 아닌, 공개자료 기준 관찰사항을 바탕으로 한 논의 제안입니다.</div>
+      <table style="margin-bottom:18px;">
+        <thead><tr><th style="width:38px">단계</th><th style="width:210px">제목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td style="font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--gold)">01</td><td class="bold">공개자료 관찰사항 공유 (30분)</td><td class="label">수익력·자산가치·재고/운전자본·선택지 관련 공개자료 기준 관찰사항을 공유드립니다. 별도 준비 자료 없이 참여 가능.</td></tr>
+          <tr><td style="font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--gold)">02</td><td class="bold">오너 우선순위 확인</td><td class="label">보유·승계·파트너십·자산활용·부분거래 등 우선순위 확인. 매각 여부를 전제로 하지 않습니다.</td></tr>
+          <tr><td style="font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--gold)">03</td><td class="bold">필요 시 Owner Value Memo</td><td class="label">내부자료 수령 후 브랜드/IP별 매출·마진·재고, 자산활용도, 선택지별 가치 함의 정리. M&amp;A/VDD는 오너 의사에 따라 별도 검토.</td></tr>
+        </tbody>
+      </table>
+      <div style="background:var(--navy);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--white);letter-spacing:0.05em;">AAP<span style="color:var(--gold)">.</span> Advisory</div>
+          <div style="font-size:0.88rem;color:rgba(255,255,255,0.45);margin-top:4px;">Principal-led Boutique Advisory &nbsp;&middot;&nbsp; Origination-driven &nbsp;&middot;&nbsp; Owner-side Only</div>
+        </div>
+        <div style="font-size:0.96rem;color:var(--gold-l);text-align:right;">info@aap-partners.com<br><span style="color:rgba(255,255,255,0.35);font-size:0.87rem;">www.aap-partners.com</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="disclaimer">본 자료는 공개 재무자료 기반 참고목적 분석이며, 확정 가치평가·투자 권유·매각 권유가 아닙니다. 내용은 경영진 확인 및 상세 실사 없이 작성된 관찰사항이며 정확성을 보장하지 않습니다. 본 자료의 무단 전달·복제를 금합니다. &nbsp;&copy;&nbsp;AAP Advisory &nbsp;&middot;&nbsp; May 2026</div>
+</div>
+</div>
+<script>
+const sections=document.querySelectorAll('.section[id]');
+const navLinks=document.querySelectorAll('.nav-item');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){navLinks.forEach(l=>l.classList.remove('active'));const a=document.querySelector('.nav-item[href="#'+e.target.id+'"]');if(a)a.classList.add('active');}});},{threshold:0.3,rootMargin:'-10% 0px -60% 0px'});
+sections.forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>
