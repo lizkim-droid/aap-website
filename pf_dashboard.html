@@ -25,7 +25,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'DM Sans',sans-seri
 .nav-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.45);padding:4px 13px;font-size:0.82rem;cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif;}
 .nav-btn:hover{border-color:var(--gold);color:var(--gold);}
 .nav-btn:disabled{opacity:0.18;cursor:default;}
-/* typography */
 table{width:100%;border-collapse:collapse;font-size:0.90rem;}
 th{background:var(--navy);color:var(--white);font-weight:500;font-size:0.82rem;padding:7px 10px;text-align:left;}
 th.r{text-align:right;}
@@ -36,6 +35,7 @@ td.bold{font-weight:500;color:var(--navy);}
 td.gold-num{font-family:'IBM Plex Mono',monospace;font-weight:500;color:var(--gold);text-align:right;}
 td.red-num{font-family:'IBM Plex Mono',monospace;color:var(--red);text-align:right;}
 td.mono-r{font-family:'IBM Plex Mono',monospace;text-align:right;font-size:0.88rem;}
+td.warn{font-family:'IBM Plex Mono',monospace;color:var(--amber);text-align:right;}
 td.sub-row{background:var(--navy);color:var(--white);font-weight:500;}
 td.sub-row.gold-num{color:var(--gold-l);}
 td.sub-row.lbl{color:rgba(255,255,255,0.38);font-size:0.83rem;}
@@ -79,7 +79,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
 <body>
 <div class="deck" id="deck">
 
-<!-- ═══ SLIDE 1 COVER ═══ -->
+<!-- SLIDE 1 -->
 <div class="slide active" id="s1">
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px 80px;background:var(--navy);position:relative;">
     <div style="position:absolute;left:0;top:0;width:4px;height:100%;background:var(--gold);"></div>
@@ -110,7 +110,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 2 EXECUTIVE OBSERVATION ═══ -->
+<!-- SLIDE 2 -->
 <div class="slide" id="s2">
   <div class="slide-header">
     <span class="slide-num">02 / 08</span>
@@ -149,7 +149,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 3 OWNERSHIP ═══ -->
+<!-- SLIDE 3 -->
 <div class="slide" id="s3">
   <div class="slide-header">
     <span class="slide-num">03 / 08</span>
@@ -185,7 +185,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag chk">02</span><span class="obs-title">기타 주주 2인 — 확인 필요</span></div>
-          <div class="obs-body">기타 주주 2인의 성격, 특수관계 여부, 주주 간 약정은 공개자료상 확인 제한적. 지분 관련 선택지를 검토하려면 세부 주주 구성 및 계악서 확인 필요.</div>
+          <div class="obs-body">기타 주주 2인의 성격, 특수관계 여부, 주주 간 약정은 공개자료상 확인 제한적. 지분 관련 선택지를 검토하려면 세부 주주 구성 및 계약서 확인 필요.</div>
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag chk">03</span><span class="obs-title">선택지 설계 변수</span></div>
@@ -213,8 +213,10 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
   <div class="slide-body">
     <div class="two-col" style="align-items:start;gap:22px;">
+
+      <!-- LEFT: P&L+NWC table + dual charts -->
       <div>
-        <table style="margin-bottom:12px;">
+        <table style="margin-bottom:10px;font-size:0.88rem;">
           <thead>
             <tr><th>항목 (억원)</th><th class="r">FY22</th><th class="r">FY23</th><th class="r">FY24</th><th class="r">FY25</th></tr>
           </thead>
@@ -226,41 +228,113 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
             <tr><td>EBITDA</td><td class="r red-num">(2)</td><td class="r red-num">(37)</td><td class="r mono-r">8</td><td class="r mono-r">1</td></tr>
             <tr><td>순현금</td><td class="r gold-num">+53</td><td class="r gold-num">+30</td><td class="r gold-num">+56</td><td class="r gold-num">+57</td></tr>
             <tr><td>자본총계</td><td class="r">396</td><td class="r">363</td><td class="r">397</td><td class="r bold">404</td></tr>
+            <tr style="border-top:2px solid var(--navy);"><td class="bold">NWC</td><td class="r gold-num">199</td><td class="r gold-num">193</td><td class="r gold-num">186</td><td class="r gold-num">175</td></tr>
+            <tr><td class="label" style="padding-left:14px;">NWC / 매출</td><td class="r">36.3%</td><td class="r">38.6%</td><td class="r">38.3%</td><td class="r" style="color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:0.88rem;">40.8%</td></tr>
           </tbody>
         </table>
-        <div style="background:var(--white);border:1px solid var(--rule);padding:12px 14px 9px;">
-          <div style="font-size:0.75rem;font-weight:500;color:var(--navy);margin-bottom:9px;letter-spacing:0.05em;text-transform:uppercase;">매출 추이 (억원)</div>
-          <svg viewBox="0 0 300 96" style="width:100%;height:86px;">
-            <line x1="30" y1="8" x2="292" y2="8" stroke="#EEE" stroke-width="0.5"/>
-            <line x1="30" y1="33" x2="292" y2="33" stroke="#EEE" stroke-width="0.5"/>
-            <line x1="30" y1="58" x2="292" y2="58" stroke="#EEE" stroke-width="0.5"/>
-            <line x1="30" y1="76" x2="292" y2="76" stroke="#CCC" stroke-width="0.8"/>
-            <text x="26" y="11" text-anchor="end" font-size="11" fill="#999">600</text>
-            <text x="26" y="36" text-anchor="end" font-size="11" fill="#999">400</text>
-            <text x="26" y="61" text-anchor="end" font-size="11" fill="#999">200</text>
-            <rect x="44" y="14.5" width="24" height="61.5" fill="#C9A96E" opacity="0.85"/>
-            <text x="56" y="11" text-anchor="middle" font-size="11" fill="#444">548</text>
-            <rect x="108" y="21.5" width="24" height="54.5" fill="#C9A96E" opacity="0.85"/>
-            <text x="120" y="18" text-anchor="middle" font-size="11" fill="#444">499</text>
-            <rect x="172" y="23" width="24" height="53" fill="#C9A96E" opacity="0.85"/>
-            <text x="184" y="20" text-anchor="middle" font-size="11" fill="#444">486</text>
-            <rect x="236" y="30" width="24" height="46" fill="#C0392B" opacity="0.75"/>
-            <text x="248" y="27" text-anchor="middle" font-size="11" fill="#444">428</text>
-            <text x="56" y="91" text-anchor="middle" font-size="11" fill="#777">FY22</text>
-            <text x="120" y="91" text-anchor="middle" font-size="11" fill="#777">FY23</text>
-            <text x="184" y="91" text-anchor="middle" font-size="11" fill="#777">FY24</text>
-            <text x="248" y="91" text-anchor="middle" font-size="11" fill="#777">FY25</text>
-          </svg>
+
+        <!-- Dual charts -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+          <!-- Revenue bar chart -->
+          <div style="background:var(--white);border:1px solid var(--rule);padding:9px 10px 7px;">
+            <div style="font-size:0.69rem;font-weight:500;color:var(--navy);margin-bottom:7px;letter-spacing:0.05em;text-transform:uppercase;">매출 추이 (억원)</div>
+            <svg viewBox="0 0 230 84" style="width:100%;height:74px;">
+              <line x1="22" y1="6" x2="222" y2="6" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="24" x2="222" y2="24" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="42" x2="222" y2="42" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="58" x2="222" y2="58" stroke="#DDD" stroke-width="0.8"/>
+              <text x="18" y="9" text-anchor="end" font-size="9" fill="#999">600</text>
+              <text x="18" y="27" text-anchor="end" font-size="9" fill="#999">400</text>
+              <text x="18" y="45" text-anchor="end" font-size="9" fill="#999">200</text>
+              <!-- scale: 600d→6px top, 0→58px → 52px/600=0.0867px/억 -->
+              <!-- 548: h=47.5, y=58-47.5=10.5→11 -->
+              <rect x="32" y="11" width="22" height="47" fill="#C9A96E" opacity="0.85"/>
+              <text x="43" y="8" text-anchor="middle" font-size="8.5" fill="#444">548</text>
+              <!-- 499: h=43.3, y=14.7→15 -->
+              <rect x="82" y="15" width="22" height="43" fill="#C9A96E" opacity="0.85"/>
+              <text x="93" y="12" text-anchor="middle" font-size="8.5" fill="#444">499</text>
+              <!-- 486: h=42.1, y=15.9→16 -->
+              <rect x="132" y="16" width="22" height="42" fill="#C9A96E" opacity="0.85"/>
+              <text x="143" y="13" text-anchor="middle" font-size="8.5" fill="#444">486</text>
+              <!-- 428: h=37.1, y=20.9→21 -->
+              <rect x="182" y="21" width="22" height="37" fill="#C0392B" opacity="0.75"/>
+              <text x="193" y="18" text-anchor="middle" font-size="8.5" fill="#444">428</text>
+              <text x="43" y="75" text-anchor="middle" font-size="8.5" fill="#777">FY22</text>
+              <text x="93" y="75" text-anchor="middle" font-size="8.5" fill="#777">FY23</text>
+              <text x="143" y="75" text-anchor="middle" font-size="8.5" fill="#777">FY24</text>
+              <text x="193" y="75" text-anchor="middle" font-size="8.5" fill="#777">FY25</text>
+            </svg>
+          </div>
+
+          <!-- Turnover days line chart -->
+          <div style="background:var(--white);border:1px solid var(--rule);padding:9px 10px 7px;">
+            <div style="font-size:0.69rem;font-weight:500;color:var(--navy);margin-bottom:7px;letter-spacing:0.05em;text-transform:uppercase;">회전일수 추이 (일)</div>
+            <svg viewBox="0 0 240 105" style="width:100%;height:95px;">
+              <!-- Grid lines -->
+              <line x1="22" y1="8" x2="212" y2="8" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="27" x2="212" y2="27" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="45" x2="212" y2="45" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="64" x2="212" y2="64" stroke="#EEE" stroke-width="0.5"/>
+              <line x1="22" y1="82" x2="212" y2="82" stroke="#DDD" stroke-width="0.8"/>
+              <!-- Y labels: 200=y8, 150=y27, 100=y45, 50=y64, 0=y82 → 74px/200=0.37px/d -->
+              <text x="18" y="11" text-anchor="end" font-size="8.5" fill="#999">200</text>
+              <text x="18" y="30" text-anchor="end" font-size="8.5" fill="#999">150</text>
+              <text x="18" y="48" text-anchor="end" font-size="8.5" fill="#999">100</text>
+              <text x="18" y="67" text-anchor="end" font-size="8.5" fill="#999">50</text>
+              <!-- X positions: FY22=42, FY23=92, FY24=147, FY25=197 -->
+              <!-- CCC: 152→26, 165→21, 161→22, 171→19 -->
+              <polyline points="42,26 92,21 147,22 197,19" stroke="#C0392B" stroke-width="1.6" fill="none"/>
+              <circle cx="42" cy="26" r="2.8" fill="#C0392B"/>
+              <circle cx="92" cy="21" r="2.8" fill="#C0392B"/>
+              <circle cx="147" cy="22" r="2.8" fill="#C0392B"/>
+              <circle cx="197" cy="19" r="2.8" fill="#C0392B"/>
+              <!-- DIO: 130→34, 134→32, 128→35, 126→35 -->
+              <polyline points="42,34 92,32 147,35 197,35" stroke="#B8922A" stroke-width="1.6" fill="none"/>
+              <circle cx="42" cy="34" r="2.8" fill="#B8922A"/>
+              <circle cx="92" cy="32" r="2.8" fill="#B8922A"/>
+              <circle cx="147" cy="35" r="2.8" fill="#B8922A"/>
+              <circle cx="197" cy="35" r="2.8" fill="#B8922A"/>
+              <!-- DSO: 48→64, 54→62, 57→61, 57→61 -->
+              <polyline points="42,64 92,62 147,61 197,61" stroke="#2B5FA6" stroke-width="1.6" fill="none"/>
+              <circle cx="42" cy="64" r="2.8" fill="#2B5FA6"/>
+              <circle cx="92" cy="62" r="2.8" fill="#2B5FA6"/>
+              <circle cx="147" cy="61" r="2.8" fill="#2B5FA6"/>
+              <circle cx="197" cy="61" r="2.8" fill="#2B5FA6"/>
+              <!-- DPO: 26→72, 23→74, 24→73, 12→78 -->
+              <polyline points="42,72 92,74 147,73 197,78" stroke="#9B9B9B" stroke-width="1.6" fill="none" stroke-dasharray="3,2"/>
+              <circle cx="42" cy="72" r="2.8" fill="#9B9B9B"/>
+              <circle cx="92" cy="74" r="2.8" fill="#9B9B9B"/>
+              <circle cx="147" cy="73" r="2.8" fill="#9B9B9B"/>
+              <circle cx="197" cy="78" r="2.8" fill="#9B9B9B"/>
+              <!-- FY25 value labels -->
+              <text x="202" y="22" font-size="8" fill="#C0392B" font-family="IBM Plex Mono,monospace">171</text>
+              <text x="202" y="38" font-size="8" fill="#B8922A" font-family="IBM Plex Mono,monospace">126</text>
+              <text x="202" y="64" font-size="8" fill="#2B5FA6" font-family="IBM Plex Mono,monospace">57</text>
+              <text x="202" y="81" font-size="8" fill="#9B9B9B" font-family="IBM Plex Mono,monospace">12</text>
+              <!-- X labels -->
+              <text x="42" y="92" text-anchor="middle" font-size="8.5" fill="#777">FY22</text>
+              <text x="92" y="92" text-anchor="middle" font-size="8.5" fill="#777">FY23</text>
+              <text x="147" y="92" text-anchor="middle" font-size="8.5" fill="#777">FY24</text>
+              <text x="197" y="92" text-anchor="middle" font-size="8.5" fill="#777">FY25</text>
+              <!-- Legend -->
+              <circle cx="53" cy="102" r="2.5" fill="#C0392B"/><text x="58" y="105" font-size="7.5" fill="#C0392B">CCC</text>
+              <circle cx="98" cy="102" r="2.5" fill="#B8922A"/><text x="103" y="105" font-size="7.5" fill="#B8922A">DIO</text>
+              <circle cx="143" cy="102" r="2.5" fill="#2B5FA6"/><text x="148" y="105" font-size="7.5" fill="#2B5FA6">DSO</text>
+              <circle cx="188" cy="102" r="2.5" fill="#9B9B9B"/><text x="193" y="105" font-size="7.5" fill="#9B9B9B">DPO</text>
+            </svg>
+          </div>
         </div>
       </div>
+
+      <!-- RIGHT: obs-blocks -->
       <div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag obs">01</span><span class="obs-title">매출 감소 지속 · 수익성 회복 확인 필요</span></div>
-          <div class="obs-body">FY22→FY25 매출 22% 감소. FY22~FY25 기간 영업이익은 적자 또는 소폭 흑자 범위에 머물며, 안정적인 수익성 회복은 확인되지 않음. 매출총이익률은 일정 범위 유지되나, 판관비 부담으로 영업이익 개선은 제한.</div>
+          <div class="obs-body">FY22→FY25 매출 22% 감소. 4년간 영업이익은 적자 또는 소폭 흑자에 머물며 안정적 수익성 회복 미확인. 매출총이익률은 일정 범위 유지되나 판관비 부담으로 영업이익 개선 제한.</div>
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag obs">02</span><span class="obs-title">FY23 EBITDA 급락 — 비경상 요인 여부 확인 필요</span></div>
-          <div class="obs-body">FY23 EBITDA -37억원은 보유 자기주식의 사내근로복지기금 출연(비현금)에 따른 복리후생비 급증 영향 가능성 있음. 일회성 여부 내부 확인 필요.</div>
+          <div class="obs-body">FY23 EBITDA -37억원은 보유 자기주식의 사내근로복지기금 출연(비현금)에 따른 복리후생비 급증 영향 가능성. 일회성 여부 내부 확인 필요.</div>
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag obs">03</span><span class="obs-title">현금·자본 여력 — 단기 위험 제한적</span></div>
@@ -268,17 +342,26 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag obs">04</span><span class="obs-title">관계기업 손익 영향</span></div>
-          <div class="obs-body">FY25 지분법평가손실 224백만원 중 대부분은 미니소코리아 손실 219백만원에서 발생. 관계기업 투자성과가 순이익에 부담으로 반영.</div>
+          <div class="obs-body">FY25 지분법평가손실 224백만원 중 미니소코리아 손실 219백만원이 대부분. 관계기업 투자성과가 순이익에 부담으로 반영.</div>
+        </div>
+        <div class="obs-block">
+          <div class="obs-head"><span class="obs-tag obs">05</span><span class="obs-title">NWC / CCC — 매출 대비 비율 상승, CCC 악화</span></div>
+          <div class="obs-body">NWC 199억(FY22)→175억(FY25) 감소했으나 NWC/매출 비율은 36.3%→40.8%로 상승. 재고·채권보다 매출이 더 빠르게 줄어든 결과. CCC 152→171일 악화, DPO 급감(26→12일)이 주요 원인. DIO 126일은 업종 참고 수준 대비 높음.</div>
+        </div>
+        <div class="obs-block">
+          <div class="obs-head"><span class="obs-tag chk">CAPEX</span><span class="obs-title">CAPEX D&amp;A의 30% 수준 — 유지투자 적정성 확인 필요</span></div>
+          <div class="obs-body">FY25 CAPEX성 지출 약 0.85억원(유형자산 취득 84백만원 + 무형자산 1백만원) vs. D&amp;A 약 2.80억원. 자산 소모 대비 신규 투자 현저히 낮음. 단기 현금흐름에는 유리하나, 금형·설비·물류·IT 유지 및 성장 투자 필요액 확인 필요.</div>
         </div>
         <div class="obs-block">
           <div class="obs-head"><span class="obs-tag chk">Check</span><span class="obs-title">브랜드·채널별 수익 구조 확인 필요</span></div>
-          <div class="obs-body">DIO 135일, CCC 176일. 재고/총자산 25%. 자체 브랜드 vs 라이선스 브랜드별 매출·마진·재고는 공개자료만으로 분석 제한적.</div>
+          <div class="obs-body">자체 브랜드 vs. 라이선스 브랜드별 매출·마진·재고는 공개자료만으로 분석 제한적.</div>
         </div>
-        <p class="source">K-GAAP 별도재무제표 기준. 단위: 억원. 확정 가치평가 아님.</p>
+        <p class="source">K-GAAP 별도재무제표 기준. 단위: 억원.</p>
       </div>
     </div>
+
     <div class="thesis-bar" style="margin-top:10px;">
-      <p>공개자료 기준 단기 유동성 위험은 제한적이나, <span class="hl">매출 감소와 수익성 약화가 지속</span>되어 향후 방향성 판단 필요. 원인 분석은 내부자료 수령 이후 가능.</p>
+      <p>공개자료 기준 단기 유동성 위험은 제한적이나, <span class="hl">매출 감소와 수익성 약화가 지속</span>되어 향후 방향성 판단 필요. NWC 비율 상승·CCC 악화·낮은 CAPEX 수준을 감안하면, 표면상 현금흐름보다 본업의 반복 가능한 현금창출력 확인이 중요.</p>
     </div>
   </div>
   <div class="nav-bar">
@@ -288,7 +371,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 5 ASSET VS EARNINGS ═══ -->
+<!-- SLIDE 5 -->
 <div class="slide" id="s5">
   <div class="slide-header">
     <span class="slide-num">05 / 08</span>
@@ -356,7 +439,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 6 VALUE QUESTIONS ═══ -->
+<!-- SLIDE 6 -->
 <div class="slide" id="s6">
   <div class="slide-header">
     <span class="slide-num">06 / 08</span>
@@ -389,7 +472,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 7 OWNER OPTION MAP ═══ -->
+<!-- SLIDE 7 -->
 <div class="slide" id="s7">
   <div class="slide-header">
     <span class="slide-num">07 / 08</span>
@@ -399,31 +482,11 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   <div class="slide-body">
     <div class="intro-note">아래 선택지는 공개자료 기준 초기 가설이며, 매각 권유가 아닙니다. 오너의 우선순위에 따라 적합한 선택지는 달라지며, 세무·법무·내부자료 확인 없이 확정 불가합니다.</div>
     <div class="opt-grid" style="margin-bottom:14px;">
-      <div class="opt-card">
-        <div class="opt-num">01</div>
-        <div class="opt-title">보유 지속 + 현금관리</div>
-        <div class="opt-body">단기 재무위험 낮음. 수익성 약화 및 자산 활용도에 대한 지속 점검 필요. 현상유지의 기회비용 인식 필요.</div>
-      </div>
-      <div class="opt-card">
-        <div class="opt-num">02</div>
-        <div class="opt-title">승계 전 구조 정리</div>
-        <div class="opt-body">지분 집중 구조상 승계세, 유동성, 기타 주주 관계 선검토 필요. 가업승계 요건 및 시점 설계 병행.</div>
-      </div>
-      <div class="opt-card">
-        <div class="opt-num">03</div>
-        <div class="opt-title">전략적 파트너십 / 라이센싱</div>
-        <div class="opt-body">전체 매각보다 낮은 강도의 외부 협업. 기존 관계기업 투자와 연결될 수 있는 유통·소싱·브랜드 확장 기회 탐색 포함.</div>
-      </div>
-      <div class="opt-card">
-        <div class="opt-num">04</div>
-        <div class="opt-title">브랜드/채널 보완 투자</div>
-        <div class="opt-body">보유 현금을 활용해 콘텐츠, 디지털 채널, 제품기획, 리테일/유통 접점 등 부족한 역량을 보완하는 선택지. 기존 미니소코리아·진광상역 투자와의 전략적 연계성 및 투자 우선순위 확인 필요.</div>
-      </div>
-      <div class="opt-card">
-        <div class="opt-num">05</div>
-        <div class="opt-title">일부 지분 유동화 / 장기적 지분 정리</div>
-        <div class="opt-body">일부 지분 유동화, 전략적 파트너 유치, 특정 브랜드/IP 단위 협업, 장기적 지분 정리 등으로 확장 가능. 구조는 오너의 보유·승계·정리 의사 확인 후 검토 예정.</div>
-      </div>
+      <div class="opt-card"><div class="opt-num">01</div><div class="opt-title">보유 지속 + 현금관리</div><div class="opt-body">단기 재무위험 낮음. 수익성 약화 및 자산 활용도에 대한 지속 점검 필요. 현상유지의 기회비용 인식 필요.</div></div>
+      <div class="opt-card"><div class="opt-num">02</div><div class="opt-title">승계 전 구조 정리</div><div class="opt-body">지분 집중 구조상 승계세, 유동성, 기타 주주 관계 선검토 필요. 가업승계 요건 및 시점 설계 병행.</div></div>
+      <div class="opt-card"><div class="opt-num">03</div><div class="opt-title">전략적 파트너십 / 라이센싱</div><div class="opt-body">전체 매각보다 낮은 강도의 외부 협업. 기존 관계기업 투자와 연결될 수 있는 유통·소싱·브랜드 확장 기회 탐색 포함.</div></div>
+      <div class="opt-card"><div class="opt-num">04</div><div class="opt-title">브랜드/채널 보완 투자</div><div class="opt-body">보유 현금을 활용해 콘텐츠, 디지털 채널, 제품기획, 리테일/유통 접점 등 부족한 역량을 보완하는 선택지. 기존 관계기업 투자와의 전략적 연계성 및 투자 우선순위 확인 필요.</div></div>
+      <div class="opt-card"><div class="opt-num">05</div><div class="opt-title">일부 지분 유동화 / 장기적 지분 정리</div><div class="opt-body">일부 지분 유동화, 전략적 파트너 유치, 특정 브랜드/IP 단위 협업, 장기적 지분 정리 등으로 확장 가능. 구조는 오너 의사 확인 후 검토.</div></div>
     </div>
     <table style="table-layout:fixed;">
       <thead><tr><th style="width:120px;">선택지</th><th style="width:220px;">주요 내용</th><th style="width:360px;">핵심 확인 사항</th></tr></thead>
@@ -444,7 +507,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-<!-- ═══ SLIDE 8 DISCUSSION PROPOSAL ═══ -->
+<!-- SLIDE 8 -->
 <div class="slide" id="s8">
   <div class="slide-header">
     <span class="slide-num">08 / 08</span>
@@ -456,22 +519,10 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
     <div class="two-col" style="align-items:start;gap:26px;">
       <div>
         <div style="background:var(--white);border:1px solid var(--rule);">
-          <div class="step-item">
-            <div class="step-num">01</div>
-            <div><div class="step-title">공개자료 기반 핵심 관찰사항 공유</div><div class="step-body">Project Flower의 수익성, 보유자산, 운전자본, 관계기업 투자, 지분구조에 대해 공개자료상 확인되는 주요 포인트를 공유.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">02</div>
-            <div><div class="step-title">오너의 방향성 및 우선순위 확인</div><div class="step-body">보유 지속, 승계 준비, 외부 협업, 자산 활용, 일부 지분 유동화 등 가능한 방향 중 오너가 실제로 열어두고 있는 선택지 확인. 매각 여부를 전제로 하지 않음.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">03</div>
-            <div><div class="step-title">Owner Value Memo — 내부자료 기반 가치 진단</div><div class="step-body">내부자료 수령 시 브랜드/IP별 매출·마진, 재고 aging, 채널별 수익성, 관계기업 투자성과, 보유자산 활용도, 현금흐름 전환력을 분석하여 오너 관점의 선택지별 함의 정리.</div></div>
-          </div>
-          <div class="step-item">
-            <div class="step-num">04</div>
-            <div><div class="step-title">우선순위 기반 실행 방향 구체화</div><div class="step-body">오너 우선순위에 따라 자산 활용, 외부 파트너십, 관계기업 정리/지원, 지분구조 검토, 거래 준비 등 실행 가능한 다음 단계를 별도 설계.</div></div>
-          </div>
+          <div class="step-item"><div class="step-num">01</div><div><div class="step-title">공개자료 기반 핵심 관찰사항 공유</div><div class="step-body">Project Flower의 수익성, 보유자산, 운전자본, 관계기업 투자, 지분구조에 대해 공개자료상 확인되는 주요 포인트를 공유.</div></div></div>
+          <div class="step-item"><div class="step-num">02</div><div><div class="step-title">오너의 방향성 및 우선순위 확인</div><div class="step-body">보유 지속, 승계 준비, 외부 협업, 자산 활용, 일부 지분 유동화 등 가능한 방향 중 오너가 실제로 열어두고 있는 선택지 확인. 매각 여부를 전제로 하지 않음.</div></div></div>
+          <div class="step-item"><div class="step-num">03</div><div><div class="step-title">Owner Value Memo — 내부자료 기반 가치 진단</div><div class="step-body">내부자료 수령 시 브랜드/IP별 매출·마진, 재고 aging, 채널별 수익성, 관계기업 투자성과, 보유자산 활용도, 현금흐름 전환력을 분석하여 오너 관점의 선택지별 함의 정리.</div></div></div>
+          <div class="step-item"><div class="step-num">04</div><div><div class="step-title">우선순위 기반 실행 방향 구체화</div><div class="step-body">오너 우선순위에 따라 자산 활용, 외부 파트너십, 관계기업 정리/지원, 지분구조 검토, 거래 준비 등 실행 가능한 다음 단계를 별도 설계.</div></div></div>
         </div>
       </div>
       <div>
@@ -480,7 +531,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
           <div style="font-size:0.90rem;color:var(--text);line-height:1.65;margin-bottom:12px;">AAP Advisory는 아직 시장에 충분히 설명되지 않은 기업가치를 발굴하고, 이를 오너의 선택지로 실현하는 재무자문사입니다.</div>
           <table style="font-size:0.84rem;">
             <tbody>
-              <tr><td class="label" style="width:105px;padding:5px 8px;">About Principal</td><td style="padding:5px 8px;">Big 4 재무자문본부 · 글로벌 IT 기업 FP&A 팀장 </td></tr>
+              <tr><td class="label" style="width:105px;padding:5px 8px;">About Principal</td><td style="padding:5px 8px;">Big 4 재무자문본부 · 글로벌 IT 기업 FP&A 팀장</td></tr>
               <tr><td class="label" style="padding:5px 8px;">경험</td><td style="padding:5px 8px;">M&A Lead, 재무실사, 기업가치평가, 관리회계, 내부 경영 리포팅 등</td></tr>
               <tr><td class="label" style="padding:5px 8px;">누적 딜 가치</td><td style="padding:5px 8px;">약 7조원</td></tr>
               <tr><td class="label" style="padding:5px 8px;">중점 분야</td><td style="padding:5px 8px;">가치 발굴부터 실현까지, 오너 중심 End-to-End 재무자문</td></tr>
@@ -504,7 +555,7 @@ tr:nth-child(even) td:not(.sub-row){background:var(--bg2);}
   </div>
 </div>
 
-</div><!-- /deck -->
+</div>
 <script>
 let cur=0;
 const slides=document.querySelectorAll('.slide');
